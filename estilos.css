@@ -1,0 +1,111 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* Obliga estilo de la tipografía a través de estilos, en lugar de elementos */
+  font: inherit;
+}
+
+html {
+  /* Estilos de agente de usuario para el modo oscuro */
+  color-scheme: dark light;
+  /* Mejora la puntuación en navegadores compatibles */
+  hanging-punctuation: first last;
+}
+
+body {
+  min-height: 100svh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* imágenes/videos adaptables */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/* Encabezados mejorados en navegadores compatibles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  text-wrap: balance;
+}
+
+
+/* si NO se prefiere eliminar animaciones */
+@media (prefers-reduced-motion: no-preference) {
+  :has(:target) {
+    /* Scroll suave */
+    scroll-behavior: smooth;
+    /* Relleno superior para que el destino no quede oculto por un header sticky  */
+    scroll-padding-top: var(--altura-header, 4rem);
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-block-end: 2em;
+  text-align: center;
+}
+
+.contenedora {
+  margin-inline: auto;
+  inline-size: min(100%, 100rem);
+  padding: 1rem;
+}
+
+ul {
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      min(100%, 200px),
+      1fr)
+  );
+  gap: .75rem;
+
+  & li {
+
+    & a {
+      display: block;
+      height: 100%;
+      background: color-mix(in oklab, currentColor 5%, transparent);
+      border: solid 1px color-mix(in oklab, currentColor 10%, transparent);
+      border-radius: 1rem;
+      color: hsl(0 0% 60%);
+      padding: .5rem;
+
+      display: grid;
+      place-items: center;
+      place-content: center;
+
+      text-align: center;
+      text-decoration: none;
+
+      &:is(:hover, :focus-visible) {
+        color: hsl(0 0% 95%);
+      }
+
+      & span {
+        font-weight: 700;
+      }
+
+    }
+
+  }
+}
