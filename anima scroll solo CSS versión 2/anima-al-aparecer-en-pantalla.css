@@ -1,0 +1,26 @@
+@media (prefers-reduced-motion: no-preference) {
+
+  .clase-a-animar {
+    animation: la-animacion linear forwards;
+    animation-timeline: view();
+    animation-range: entry;
+  }
+
+  /* en este ejemplo,
+  se mueve hacia arriba con fade */
+  
+  @keyframes la-animacion {
+    0% {
+      opacity: 0;
+      translate: 0 400px;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+}

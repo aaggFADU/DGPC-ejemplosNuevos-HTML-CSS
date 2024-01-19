@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+
+  min-height: 100vh;
+  background: hsl(227 69% 8%);
+
+  display: grid;
+  place-items: center;
+}
+
+.contenedor {
+  position: relative;
+  width: 90%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-rows: auto;
+  gap: 3rem;
+}
+
+.contenedor .box {
+  position: relative;
+  
+  height: 400px;
+  background: hsl(227 69% 8%);
+  border: 1px solid hsl(227 0% 0%);
+
+  display: flex;
+  align-items: center;
+}
+
+.contenedor .box::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+
+  background: hsl(227 0% 100%);
+
+  transform: skew(2deg, 2deg);
+  opacity: .5;
+  transition: .5s;
+}
+
+.contenedor .box:hover:before {
+  transform: skew(4deg, 4deg);
+  opacity: 1;
+}
+
+.contenedor .box:nth-child(1)::before {
+  background: linear-gradient(315deg,
+    hsl(340 100% 50%),
+    hsl(14 80% 50%)
+    );
+}
+
+.contenedor .box:nth-child(2)::before {
+  background: linear-gradient(315deg,
+    hsl(88 100% 50%),
+    hsl(187 100% 42%)
+    );
+}
+
+.contenedor .box:nth-child(3)::before {
+  background: linear-gradient(315deg,
+    hsl(340 82% 52%),
+    hsl(262 100% 50%)
+    );
+}
+
+.contenedor .box:nth-child(4)::before {
+  background: linear-gradient(315deg,
+    hsl(0 100% 50%),
+    hsl(45 100% 50%)
+    );
+}
+
+.contenedor .box::after {
+  content: '';
+  position: absolute;
+  inset: 0 50% 0 0;
+
+  background: hsl(227 0% 100% / .05);
+
+  pointer-events: none;
+}
+
+.box .contenido {
+  position: relative;
+  padding: 1.25rem;
+
+  color: hsl(227 0% 100%);
+
+  transform: translateY(40px);
+  opacity: .5;
+  transition: .35s;
+}
+
+.box:hover .contenido {
+  opacity: 1;
+
+}
+
+.box .contenido h2 {
+  position: absolute;
+  inset-block-start: -3.75rem;
+  inset-inline-end: 1.25rem;
+  
+  font-size: 10em;
+  color: hsl(227 0% 100% / .05);
+
+  transition: .25s;
+}
+
+.box:hover .contenido h2 {
+  inset-block-start: -10rem;
+}
+
+.box .contenido h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.box .contenido a {
+   position: relative;
+   display: inline-block;
+
+   text-decoration: none;
+   color: inherit;
+
+   padding: 10px 20px;
+   margin: 20px 0 0 0;
+   border: 1px solid hsl(227 0% 100%);
+   
+   transition: .35s;
+   transform: translateY(-40px);
+   opacity: 0;
+   visibility: hidden;
+}
+
+.box:hover .contenido a {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.box .contenido a:hover {
+  color: hsl(227 0% 0%);
+  background: hsl(227 0% 100%);
+}

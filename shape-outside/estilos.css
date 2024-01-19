@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --color-0: hsl(30deg 100% 75% / .5);
+  --color-1: hsl(215deg 30% 15%);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.25em;
+  padding: 1rem;
+}
+
+h1,
+h2 {
+  line-height: 1.1;
+}
+
+section {
+  background: var(--color-0);
+  color: var(--color-1);
+
+  width: min(50rem, 100%);
+  margin-inline: auto;
+  padding: 1rem;
+
+  display: flow-root;
+}
+
+section > * + * {
+  margin-top: 1rem;
+}
+
+.imgRecorrida {
+  max-width: 60%;
+  margin-right: -1rem;
+  float: right;
+  shape-outside: url(perroConGorro.png);
+}
+.imgRecorrida2 {
+  max-width: 40%;
+  margin-right: 1rem;
+  margin-left: -1rem;
+  float: left;
+  /* shape-outside: ellipse(43% 37.5% at 188px 186px); */
+  shape-outside: polygon(
+      0px 0px,
+      40% 0px,
+      72% 22%,
+      82% 22%,
+      90% 28%,
+      100% 40%,
+      93% 58%,
+      97% 65%,
+      92% 75%,
+      75% 85%,
+      74% 100%,
+      0px 100%
+    );
+}
+

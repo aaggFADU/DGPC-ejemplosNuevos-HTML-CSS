@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --tono: 210;
+  --color-txt: hsl(var(--tono) 20% 85%);
+  --color-bg: hsl(var(--tono) 20% 15%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  padding: 1rem;
+  background: var(--color-bg);
+  color: var(--color-txt);
+
+}
+
+body > * {
+  padding: 2rem;
+  width: min(100%, 960px);
+  margin-inline: auto;
+}
+
+h1 {
+  font-weight: 400;
+}
+h1 span {
+  font-weight: 700;
+  display: inline-block;
+  padding-inline: 1em;
+  background: hsl(var(--tono) 10% 10%);
+  border-radius: .5rem;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
+  transition: 1s;
+  border-radius: 1rem;
+}
+
+.galeria article {
+  transition: .75s;
+  overflow: hidden;
+}
+
+.galeria:has( article:hover) {
+  --tono: 240;
+  --color-txt: hsl(var(--tono) 20% 85%);
+  --color-bg: hsl(var(--tono) 10% 10%);
+  background: var(--color-bg);
+}
+
+.galeria:has( article:hover) article:not(:hover) {
+  opacity: .15;
+  scale: .95;
+  border-radius: 50%;
+}
+
+.galeria article:hover {
+  scale: 1.2;
+  box-shadow: 0 5px 10px 5px hsl(0 0% 0% / 50%);
+  z-index: 1;
+  transition: .3s;
+}
+
+.galeria img {
+  display: block;
+  width: 100%;
+}

@@ -1,0 +1,58 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  place-content: center;
+
+  background: linear-gradient(
+      hsl(0 0% 10%),
+      hsl(0 0% 0%)
+    );
+  color: white;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.ficha {
+  position: relative;
+
+  width: 300px;
+  height: 450px;
+
+  border-radius: 10px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.ficha span {
+  position: absolute;
+  top: 0;
+  left: calc( 100% / 6 * var(--i) );
+  width: calc( 100% / 6 );
+  height: 100%;
+}
+
+.ficha img {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ficha img:nth-child(2),
+.ficha span:hover + img {
+  opacity: 1;
+}

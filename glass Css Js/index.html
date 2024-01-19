@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="icono-dgpc.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Efecto vidrio - CSS y JS sólo para giro y brillo</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+   
+ <section class="contenedor">
+
+   <article class="ficha">
+
+    <div class="contenidos">
+      <h2>01</h2>
+      <h3>Ficha Uno</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, officiis! Dolores qui mollitia incidunt odit.</p>
+      <a href="#">Más info</a>
+    </div>
+
+   </article>
+
+   <article class="ficha">
+
+    <div class="contenidos">
+      <h2>02</h2>
+      <h3>Ficha Dos</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, officiis! Dolores qui mollitia incidunt odit.</p>
+      <a href="#">Más info</a>
+    </div>
+
+   </article>
+
+   <article class="ficha">
+
+    <div class="contenidos">
+      <h2>03</h2>
+      <h3>Ficha Tres</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, officiis! Dolores qui mollitia incidunt odit.</p>
+      <a href="#">Más info</a>
+    </div>
+
+   </article>
+
+ </section> 
+
+<script src="vanilla-tilt.js"></script>
+<script>
+ VanillaTilt.init(document.querySelectorAll(".ficha"), {
+		max: 15,
+		speed: 400,
+    glare: true,
+    "max-glare": .5,
+    reverse: true
+
+	});
+</script>
+
+</body>
+</html>

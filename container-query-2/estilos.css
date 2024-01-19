@@ -1,0 +1,185 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+
+  /* colores del proyecto */
+  --color-textos: hsl(0 0% 15%);
+  --color-textos-secundarios: hsl(0 0% 0% / 50%);
+  --color-textos-alfa: hsl(0 0% 0% / 10%);
+  --color-fondos: hsl(0 0% 90%);
+  --color-1: hsl(210 92% 36%);
+  --color-2: hsl(38 100% 47%);
+  --color-3: hsl(280 29% 44%);
+  --color-3-alfa: hsl(280 29% 44% / 15%);
+  --color-4: hsl(198 100% 44%);
+
+  /* tipografías */
+  --tipo-titulos: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --tipo-textos: serif;
+
+  /*
+  otras variables
+  ...
+  */
+  --sombras:
+    0   /* desplazamiento horizontal */
+    4px /* desplazamiento vertical */
+    4px /* desenfoque */
+    var(--color-textos-alfa); /* color */
+
+  --tamanio: 20rem;
+
+  --gap: 1rem;
+}
+
+body {
+  background-color: var(--color-fondos);
+  font-family: var(--tipo-textos);
+  margin: 0;
+
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--tipo-titulos);
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+header,
+footer,
+section > * {
+  padding: var(--gap);
+}
+
+header,
+footer {
+  color: var(--color-fondos);
+  background-color: var(--color-textos-secundarios);
+}
+
+:where(header, section, footer) > * {
+  max-width: 75rem;
+  margin-inline: auto;
+}
+
+
+h2 {
+  margin-block-end: var(--gap);
+}
+
+section {
+  padding-block: calc( var(--gap) * 2 );
+}
+section:nth-of-type(1) {
+  --tamanio: 20rem;
+  --fondo-ficha: var(--color-2);
+  background-color: color-mix(in srgb, var(--color-2) 7.5%, white);
+}
+section:nth-of-type(2) {
+  --tamanio: 15rem;
+  --fondo-ficha: var(--color-1);
+  --color-textos: var(--color-fondos);
+  background-color: color-mix(in srgb, var(--color-1) 10%, white);
+}
+section:nth-of-type(3) {
+  --tamanio: 25rem;
+  --fondo-ficha: var(--color-3);
+  --color-textos: var(--color-fondos);
+  background-color: color-mix(in srgb, var(--color-3) 7.5%, white);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax( min( var(--tamanio), 100%), 1fr));
+  gap: var(--gap);
+}
+
+.card {
+  background-color: var(--fondo-ficha);
+  border-radius: var(--gap);
+  overflow: hidden;
+  box-shadow: var(--sombras);
+
+  /* "contenedor" cuyo ancho será evaluado
+  cuando se aplique "@container"
+  en elementos en su interior */
+  container-type: inline-size;
+
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto 1fr;
+}
+
+.card > * {
+  grid-column: span 2;
+
+  /* si el elemento contenedor cumple la condición */
+  @container (width > 22rem) {
+    grid-column: unset;
+    grid-row: 1 / -1;
+  }
+}
+
+.card__img {
+  aspect-ratio: 2;
+  
+  /* si el elemento contenedor cumple la condición */
+  @container (width > 22rem) {
+    aspect-ratio: unset;
+  }
+}
+
+.card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__textos {
+  padding: var(--gap);
+  color: var(--color-textos);
+  flex: 0 0 100%;
+
+  /* align-self: stretch; */
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--gap);
+
+  @container (width > 22rem) {
+    flex: 0 0 60%
+  }
+
+}
+
+.card__textos a {
+  background-color: var(--color-fondos);
+  border-radius: .125em;
+  color: var(--fondo-ficha);
+  font-family: var(--tipo-titulos);
+  font-weight: 700;
+  margin-inline-start: auto;
+  padding: 0 .75em;
+  text-decoration: none;
+}
+
+.card__textos a:hover,
+.card__textos a:focus-visible {
+  background-color: white;
+  box-shadow: var(--sombras);
+  outline-color: transparent;
+}

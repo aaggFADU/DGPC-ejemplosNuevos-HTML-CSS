@@ -1,0 +1,47 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(
+      hsl(240 50% 5%),
+      hsl(120 50% 5%)
+    );
+  color: white;
+    
+  font-family: monospace;
+
+  display: grid;
+  place-items: center;
+}
+
+h1 {
+  font-size: 5em;
+  font-weight: normal;
+  white-space: nowrap;
+  border-inline-end: 4px solid white;
+  width: 18ch;
+  overflow: hidden;
+
+  animation:
+    tipeando 3s steps(18),
+    blink .5s infinite step-end alternate;
+}
+
+@keyframes tipeando {
+  from { width: 0; }
+}
+
+@keyframes blink {
+  50% { border: transparent; }
+}
+

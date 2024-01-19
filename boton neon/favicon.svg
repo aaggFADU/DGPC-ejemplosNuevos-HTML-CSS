@@ -1,0 +1,20 @@
+<svg 
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ width="200px" height="200px">
+  <path fill-rule="evenodd"
+    fill="rgb(0, 73, 124)"
+    d="M0.0,0.0 L200.0,0.0 L200.0,200.0 L0.0,200.0 L0.0,0.0 Z"/>
+  <text kerning="auto"
+    transform="matrix( 0.64468864468864, 0, 0, 0.43417330933402,14.3110183150183, 166.631468629468)"
+    font-size="240px"
+    font-family="Fira Code"
+    font-weight="bold"
+    fill="#FFFFFF">PC</text>
+  <text kerning="auto"
+    transform="matrix( 0.64468864468864, 0, 0, 0.43417330933402,12.6668424908425, 80.6314686294677)"
+    font-size="240px"
+    font-family="Fira Code"
+    font-weight="bold"
+    fill="#FFFFFF">DG</text>
+</svg>

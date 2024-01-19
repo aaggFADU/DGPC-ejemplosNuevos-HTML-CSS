@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Rosario:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {  
+  --clr-primary: #ee6352;
+  --clr-secondary: #d16e8d;
+  --clr-accent: #F7F7FF;
+  --clr-gradient: linear-gradient(-90deg,
+      var(--clr-primary),
+      var(--clr-secondary)
+    );
+  --ff-title: 'Rosario', sans-serif;
+  --ff-body: 'Rosario',sans-serif;
+  --fw-body: 300;
+  --fw-bold: 700;
+  --fw-title: 700;
+  --fw-number: 700;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--ff-body);
+  font-weight: var(--fw-body);
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding: .5em 0 1em;
+  margin: 0;
+  background: var(--clr-gradient);
+  position: relative;
+  clip-path: polygon(0 0, 100% 0%, 100% 75%, 0% 100%);
+  text-align: center;
+  text-shadow: 3px 5px 10px rgba(0,0,0, .2);
+  font-size: calc(1rem + 3vw);
+  font-family: var(--ff-title);
+  font-weight: var(--fw-title);
+  color: white;
+}
+
+
+h2 {
+  border-inline-start: 5px solid red;
+  padding-inline-start: 1rem;
+  position: relative;
+}
+
+.content {
+  width: 65%;
+  max-width: 60ch;
+  margin: 0 auto;
+  padding-block-end: 2em;
+}
+
+#example3 {
+  writing-mode: vertical-rl;
+  max-inline-size: 35vh;
+}
+
+#example1,
+#example2 {
+  writing-mode: horizontal-tb;
+  padding-block-end: 2em;
+}
+
+
+
+
+h2::after {
+  content: '';
+  position: absolute;
+  background: var(--clr-primary);
+  opacity: .4;
+  block-size: 100%;
+  aspect-ratio: 1;
+  inset-inline-end: 0;
+}

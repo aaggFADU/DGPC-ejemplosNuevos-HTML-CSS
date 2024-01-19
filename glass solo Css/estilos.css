@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(
+      hsl(240 50% 5%),
+      hsl(120 50% 5%)
+    );
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      hsl(0 100% 50%),
+      hsl(300 100% 50%)
+    );
+  clip-path: circle(30% at right 70%);
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      hsl(207 90% 50%),
+      hsl(340 80% 50%),
+      hsl(340 80% 50%)
+    );
+  clip-path: circle(25% at 1% 15%);
+}
+
+.contenedor {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(min(10ch, 100%), 35ch));
+  place-content: center;
+
+  max-inline-size: 1200px;
+  block-size: 100%;
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ficha {
+  position: relative;
+  min-block-size: 320px;
+  box-shadow: 20px 20px 50px hsl(0 0% 0% / 0.5);
+  border-radius: 15px;
+  background: hsl(0 100% 100% / 0.1);
+  overflow: hidden;
+  display: grid;
+  place-content: center;
+  background-clip: padding-box;
+  border: solid 2px hsl(0 100% 100% / 0.15);
+  backdrop-filter: blur(5px);
+}
+
+.contenedor .ficha .numero,
+.contenedor .ficha .contenidos {
+  position: relative;
+  padding: 1.25em;
+  text-align: center;
+  transition: .5s;
+
+  transform:  translateY(25px);
+  opacity: .1;
+}
+
+.contenedor .ficha:hover .numero,
+.contenedor .ficha:hover .contenidos {
+  transform:  translateY(0px);
+  opacity: 1;
+  transition: .3s;
+
+}
+
+.contenedor .ficha .numero {
+  background: linear-gradient(
+    45deg,
+    hsl(0 100% 50% / .75),
+    hsl(45 100% 50% / .75)
+  );
+
+  position: absolute;
+  inset: -2rem 0 0;
+
+  width: 100%;
+  height: calc(100% + 2rem);
+  opacity: 1;
+}
+
+.contenedor .ficha:nth-of-type(2) .numero {
+  background: linear-gradient(
+    45deg,
+    hsl(60 100% 50% / .75),
+    hsl(105 100% 50% / .75)
+  );
+}
+
+.contenedor .ficha:nth-of-type(3) .numero {
+  background: linear-gradient(
+    45deg,
+    hsl(180 100% 50% / .75),
+    hsl(225 100% 50% / .75)
+  );
+}
+
+.contenedor .ficha:hover .numero {
+  height: 5rem;
+  pointer-events: none;
+}
+
+
+.contenedor .ficha .numero h2 {
+  position: absolute;
+  top: -70px;
+  right: .5rem;
+
+  font-size: 8em;
+  color: hsl(0 100% 100% / 0.5);
+
+  
+  transform: translateY(4rem);
+  transition: .5s;
+}
+
+.contenedor .ficha:hover .numero h2 {
+  font-size: 3em;
+  transform: translateY(5.75rem);
+  transition: .25s;
+}
+
+.contenedor .ficha .contenidos h3 {
+  font-size: 2em;
+  color: white;
+  z-index: 1;
+}
+
+.contenedor .ficha .contenidos p {
+  font-size: 1em;
+  color: white;
+  font-weight: 300;
+}
+
+.contenedor .ficha .contenidos a {
+  position: relative;
+  display: inline-block;
+  padding: .5em 1.25em;
+  margin-block-start: 1em;
+  background: white;
+  color: black;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 1.25em;
+  box-shadow: 0 5px 15px hsl(0 0% 0% / 0.25);
+
+  transform: scale(.85);
+  transform-origin: bottom;
+  transition: .5s;
+}
+
+.contenedor .ficha:hover .contenidos a {
+  transform: scale(1);
+  transition: .25s; 
+}

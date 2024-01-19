@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lista filtrada con JS vainilla y transition nativa</title>
+
+  <link rel="icon" type="image/svg+xml" href="icono-dgpc.svg">
+
+  <link rel="stylesheet" href="estilos.css">
+  <script src="scripts.js" defer></script>
+
+</head>
+
+<body class="content-grid">
+  
+  <header class="primary-header full-width">
+
+    <div class="primary-header__layout">
+
+      <nav class="primary-navigation">
+
+        <ul>
+          <li><a href="#">Descubrir</a></li>
+          <li><a href="#">Vivo</a></li>
+          <li><a href="#">Trabajos</a></li>
+          <li><a aria-current="page" href="#">Conferencias</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="account-links">
+
+        <a href="#">Acceder</a>
+        <a href="#" class="create-account">Empezar</a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <nav aria-label="Breadcrumb" class="breadcrumbs">
+    <ol>
+      <li><a href="#">Conferencias</a></li>
+      <li><a href="#" aria-current="page">Tecnología</a></li>
+    </ol>
+  </nav>
+
+  <main class="main-with-aside">
+
+    <div class="flow">
+
+      <h1>Conferencias tecnológicas</h1>
+
+      <div class="filter">
+        <h2 class="visually-hidden">Filtrar por tipo de conferencia</h2>
+        <button class='filter-btn active' data-filter="all">Todas</button>
+        <button class='filter-btn' data-filter="frontend">Frontend</button>
+        <button class='filter-btn' data-filter="backend">Backend</button>
+        <button class='filter-btn' data-filter="fullstack">Fullstack</button>
+      </div>
+
+      <ul class="conference-list">
+
+        <li class="conference" data-category='fullstack'>
+          <div class="conference-details">
+            <span class="conference-date">30 de enero a 1º de febrero</span>
+            <span class="conference-category">Fullstack</span>
+          </div>
+          <h2 class="conference-name">THAT Conference Texas</h2>
+        </li>
+
+        <li class="conference" data-category='fullstack'>
+          <div class="conference-details">
+            <span class="conference-date">29 de febrero a 1º de marzo</span>
+            <span class="conference-category">Fullstack</span>
+          </div>
+          <h2 class="conference-name">DEVWorld</h2>
+        </li>
+
+        <li class="conference" data-category='backend'>
+          <div class="conference-details">
+            <span class="conference-date">19 a 23 de marzo</span>
+            <span class="conference-category">Backend</span>
+          </div>
+          <h2 class="conference-name">SQLBits</h2>
+        </li>
+
+        <li class="conference" data-category='frontend'>
+          <div class="conference-details">
+            <span class="conference-date">6 y 7 de junio</span>
+            <span class="conference-category">Frontend</span>
+          </div>
+          <h2 class="conference-name">CSS Day</h2>
+        </li>
+
+        <li class="conference" data-category='frontend'>
+          <div class="conference-details">
+            <span class="conference-date">9 a 11 de septiembre</span>
+            <span class="conference-category">Frontend</span>
+          </div>
+          <h2 class="conference-name">SmashingConf Freiburg</h2>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <aside class='sidebar flow'>
+
+      <h3>Descubre</h3>
+
+      <div>
+        <h4>Lorem, ipsum dolor.</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam nihil modi at?</p>
+      </div>
+
+      <div>
+        <h4>Aperiam, minima debitis!</h4>
+        <p>Perferendis unde possimus temporibus quia dolorem quibusdam ullam excepturi! Pariatur, saepe totam!</p>
+      </div>
+
+      <div>
+        <h4>Error, incidunt ab?</h4>
+        <p>Asperiores deleniti eum quos consectetur non eveniet error doloribus veniam dolores omnis.</p>
+      </div>
+
+      <div>
+        <h4>Perspiciatis, nesciunt amet.</h4>
+        <p>Ex impedit et molestias magni modi numquam doloremque repellat necessitatibus expedita porro?</p>
+      </div>
+
+    </aside>
+
+  </main>
+
+</body>
+
+</html>

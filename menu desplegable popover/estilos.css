@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --tipo_textos: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --color_textos: hsl(0 0% 90%);
+  --color_fondo: hsl(0 0% 10%);
+  --espacio_1: 1rem;
+  --tamanio_textos: 1.25rem;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--color_fondo);
+  color: var(--color_textos);
+  font-family: var(--tipo_textos);
+  font-size: var(--tamanio_textos);
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100dvh;
+}
+
+header {
+  background-color: var(--color_fondo);
+
+  display: grid;
+  grid-template-columns: 1fr min(calc(100% - (2 * var(--espacio_1))), 60rem) 1fr;
+  padding-block: var(--espacio_1);
+
+  position: sticky;
+  top: 0;
+
+  .contenido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block-end: var(--espacio_1);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.contenedor:not(header) {
+  display: grid;
+  grid-template-columns: 1fr min(calc(100% - (2 * var(--espacio_1))), 60rem) 1fr;
+  padding-block: calc(3 * var(--espacio_1));
+}
+
+.contenido {
+  grid-column: 2;
+}
+
+
+button {
+  background: color-mix(
+    in oklab,
+    var(--color_fondo) 80%,
+    var(--color_textos) 20%);
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+nav {
+  background: color-mix(
+    in oklab,
+    var(--color_fondo) 90%,
+    var(--color_textos) 10%);
+  color: var(--color_textos);
+  border: none;
+  height: 100dvh;
+  padding: var(--espacio_1);
+
+  width: 50%;
+  left: auto;
+  bottom: auto;
+
+  text-align: right;
+
+  translate: 100%;
+  /* para transición del popover */
+  transition: translate .5s, display .5s ease-out allow-discrete;
+
+  /* "fondo" del popover */
+  &::backdrop {
+    background-color: hsl(0 0% 20% / 80%);
+    backdrop-filter: blur(1px);
+  }
+  
+  /* cuando el popover esté "abierto" */
+  &:popover-open {
+    translate: 0;
+
+    /* vuelta al estado original (corrido a la derecha) */
+    @starting-style {
+      translate: 100%;
+    }
+  }
+
+
+  & ul {
+    list-style: none;
+    min-height: 50%;
+    display: grid;
+    align-content: center;
+    align-items: center;
+
+    & li {
+      padding: var(--espacio_1);
+    }
+
+    & a {
+      color: color-mix(
+        in srgb,
+        var(--color_textos) 85%,
+        var(--color_fondo) 15%);
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--color_textos);
+        outline-color: transparent;
+      }
+    }
+  }
+}
+
+section:nth-of-type(odd) {
+  background-color: color-mix(in oklab, var(--color_fondo) 90%, var(--color_textos) 10%);
+}
+
+section:nth-of-type(even) {
+  background-color: color-mix(in oklab, var(--color_fondo) 80%, var(--color_textos) 20%);
+}

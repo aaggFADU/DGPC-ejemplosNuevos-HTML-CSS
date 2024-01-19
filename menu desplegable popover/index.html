@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Menu desplegable sin JS usando atributo "popover"</title>
+
+  <link rel="icon" type="image/svg+xml" href="icono-dgpc.svg">
+
+  <link rel="stylesheet" href="estilos.css">
+
+</head>
+
+<body>
+  
+<header class="contenedor">
+
+
+  <div class="contenido">
+
+    <h1>Menu desplegable sin JS</h1>
+  
+    <button popovertarget="menu">
+      menu
+    </button>
+
+  </div>
+
+
+  <nav popover role="menu" id="menu">
+
+    <button popovertarget="menu" popovertargetaction="hide">
+
+      cerrar
+
+    </button>
+
+    <ul>
+      <li><a href="">enlace 1</a></li>
+      <li><a href="">enlace 2</a></li>
+      <li><a href="">enlace 3</a></li>
+      <li><a href="">enlace 4</a></li>
+    </ul>
+
+  </nav>
+
+</header>
+
+<main>
+
+  <section class="contenedor" id="seccion1">
+    <h2 class="contenido">Sin "input type='checkbox'"</h2>
+    <p class="contenido">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem magnam obcaecati eaque atque. Dolor, expedita!</p>
+    <p class="contenido">Magni praesentium ratione, minus iste inventore nihil blanditiis. Molestias, sit! Sed enim qui illo explicabo soluta, natus ad ipsa? Adipisci voluptates vero vitae ipsum sit. Qui impedit voluptatibus laudantium sunt quis a totam, enim iste reiciendis quibusdam expedita corrupti quae nam deserunt vero aliquid magni explicabo magnam porro repellat molestias minima alias.</p>
+    <p class="contenido">Minus cum dolore vel quas maxime qui nemo, officia error maiores animi doloremque eveniet labore. Veritatis, autem!</p>
+  </section>
+
+  <section class="contenedor" id="seccion2">
+    <h2 class="contenido">Sin etiqueta "label" ni atributo "checked"</h2>
+    <p class="contenido">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatum possimus tenetur sunt culpa. Nam sequi fugiat recusandae saepe? Quo.</p>
+    <p class="contenido">Corporis iure, pariatur voluptatibus, fugiat nemo aperiam, eaque distinctio velit recusandae sequi sed alias ullam earum saepe dignissimos illum! Consectetur, nesciunt illum atque deleniti beatae error? Expedita, voluptates voluptatem quod cupiditate ipsum, minus neque nesciunt, iste eligendi voluptate deserunt!</p>
+  </section>
+  
+  <section class="contenedor" id="seccion3">
+    <h2 class="contenido">Con los atributos "popover" y "popovertarget"</h2>
+    <p class="contenido">Maxime deleniti at animi omnis quis possimus eligendi ab magnam ex numquam. Ab architecto, corrupti eveniet laborum placeat ducimus quas aliquid! Voluptatibus eum ducimus eius odit, corporis est unde architecto, eligendi earum amet officia nam ullam quaerat exercitationem qui officiis rerum ea at? Sit dolore ipsum dolorem alias asperiores, quaerat, magni numquam assumenda labore pariatur optio sequi illo doloribus provident ea consectetur molestias eos saepe quidem laborum!</p>
+    <p class="contenido">Voluptatibus eum ducimus eius odit, corporis est unde architecto, eligendi earum amet officia nam ullam quaerat exercitationem qui officiis rerum ea at? Sit dolore ipsum dolorem alias asperiores, quaerat, magni numquam assumenda labore pariatur optio sequi illo doloribus provident ea consectetur molestias eos saepe quidem laborum! Porro eum exercitationem esse magni.</p>
+  </section>
+
+</main>
+
+</body>
+
+</html>

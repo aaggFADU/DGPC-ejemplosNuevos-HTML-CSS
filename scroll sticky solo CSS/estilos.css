@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.contenedor {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+.seccion {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  scroll-snap-align: center;
+}
+
+h3 {
+  color: white;
+  font-size: 10vw;
+  text-align: center;
+  margin: 0 50px;
+  line-height: 1;
+}
+
+.seccion:nth-child(1) {
+  background: red url(https://picsum.photos/1200?random=1);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.seccion:nth-child(2) {
+  background: green url(https://picsum.photos/1200?random=2);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.seccion:nth-child(3) {
+  background: yellow url(https://picsum.photos/1200?random=3);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.seccion:nth-child(4) {
+  background: magenta url(https://picsum.photos/1200?random=4);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.seccion:nth-child(5) {
+  background: blue url(https://picsum.photos/1200?random=5);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.seccion:nth-child(6) {
+  background: orange url(https://picsum.photos/1200?random=6);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.seccion:nth-child(7) {
+  background: green url(https://picsum.photos/1200?random=7);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.seccion:nth-child(9) {
+  background: red url(https://picsum.photos/1200?random=8);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+
+
+.contenido {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.contenido h2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.contenido h2 span {
+  position: sticky;
+  top: 0;
+  line-height: 100dvh;
+  height: 100dvh;
+  color: white;
+  font-size: 14vw;
+  margin-top: calc( 100dvh * var(--i) );
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API popover con posicionamiento "anchor"</title>
+    <link rel="icon" type="image/svg+xml" href="icono-dgpc.svg">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Biblioteca Pública</h1>
+</header>
+
+<main>
+
+  <h2>Libros prestados</h2>
+
+  <ul>
+
+    <li>
+
+      <p>
+        Fahrenheit 451
+        <span>Ray Bradbury</span>
+      </p>
+      <button
+        id="menu-btn-1"
+        aria-label="Acciones para: Fahrenheit 451"
+        popovertarget="menu-content-1">
+          &#65049;
+      </button>
+
+      <div
+      id="menu-content-1"
+      role="menu"
+      aria-labelledby="menu-btn-1"
+      popover
+      anchor="menu-btn-1"
+      tabindex="-1">
+
+      <button
+        role="menuitem"
+        tabindex="-1"
+        onclick="alert('Más información')">
+          Más información
+      </button>
+      <button
+        role="menuitem"
+        tabindex="-1"
+        onclick="alert('Extender período de lectura')">
+          Extender período de lectura
+      </button>
+      <button
+        role="menuitem"
+        tabindex="-1"
+        onclick="alert('Descargar como ePUB')">
+          Descargar como ePUB
+      </button>
+
+      </div>
+
+    </li>
+
+    <li>
+      <p>
+        The Hitchhiker's Guide to the Galaxy
+        <span>Douglas Adams</span>
+      </p>
+
+      <button
+        id="menu-btn-2"
+        aria-label="Acciones para: The Hitchhiker's Guide to the Galaxy"
+        popovertarget="menu-content-2">
+          &#65049;
+      </button>
+
+      <div
+        id="menu-content-2"
+        role="menu"
+        aria-labelledby="menu-btn-2"
+        popover
+        anchor="menu-btn-2"
+        tabindex="-1">
+        
+        <button
+          role="menuitem"
+          tabindex="-1"
+          onclick="alert('Más información')">
+            Más información
+        </button>
+        <button
+          role="menuitem"
+          tabindex="-1"
+          onclick="alert('Extender período de lectura')">
+            Extender período de lectura
+        </button>
+        <button
+          role="menuitem"
+          tabindex="-1"
+          onclick="alert('Descargar como ePUB')">
+            Descargar como ePUB
+        </button>
+
+      </div>
+
+    </li>
+
+    <li>
+      <p>
+        The Martian
+        <span>Andy Weir</span>
+      </p>
+
+      <button
+        id="menu-btn-3"
+        aria-label="Acciones para: The Martian"
+        popovertarget="menu-content-3">
+          &#65049;
+      </button>
+
+      <div
+        id="menu-content-3"
+        role="menu"
+        aria-labelledby="menu-btn-3"
+        popover
+        anchor="menu-btn-3"
+        tabindex="-1">
+
+        <button
+          role="menuitem"
+          tabindex="-1"
+          onclick="alert('Más información')">
+            Más información
+        </button>
+        <button
+          role="menuitem"
+          tabindex="-1"
+          onclick="alert('Extender período de lectura')">
+            Extender período de lectura
+        </button>
+        <button
+          role="menuitem"
+          tabindex="-1"
+          onclick="alert('Descargar como ePUB')">
+            Descargar como ePUB
+        </button>
+
+      </div>
+
+    </li>
+
+  </ul>
+
+</main>
+
+<footer>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat.
+  </p>
+
+</footer>
+
+<div class="not-supported">
+  <p>Este <span>navegador no soporta aún</span> la API Popover con posicionamiento Anchor.</p>
+</div>
+  
+</body>
+
+</html>

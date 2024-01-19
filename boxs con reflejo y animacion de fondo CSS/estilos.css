@@ -1,0 +1,98 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-inicial: hsl(120 100% 50% / 35%);
+  --color-fondo: hsl(120 0% 15% / 35%);
+  --tamanio-fondo: 15px;
+}
+
+body {
+  background: hsl(0 0% 5%);
+  min-height: 100dvh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  display: grid;
+  place-items: center;
+}
+
+.contenedor {
+  position: relative;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--tamanio-fondo);
+  -webkit-box-reflect:
+    below
+    calc(var(--tamanio-fondo) / 4)
+    linear-gradient(
+      transparent 30%,
+      hsl(0 0% 0% / 45%));
+}
+
+.contenedor .box {
+  position: relative;
+  width: 200px;
+  aspect-ratio: 1;
+  color: whitesmoke;
+
+  display: grid;
+  place-items: center;
+}
+
+.contenedor .box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    45deg,
+    var(--color-inicial) 10%,
+    var(--color-fondo) 10%,
+    var(--color-fondo) 50%,
+    var(--color-inicial) 50%,
+    var(--color-inicial) 60%,
+    var(--color-fondo) 60%,
+    var(--color-fondo) 100%
+  );
+  background-size: var(--tamanio-fondo) var(--tamanio-fondo);
+  border-radius: var(--tamanio-fondo);
+
+  transform: rotate(calc(var(--i) * 90deg));
+  filter: hue-rotate(calc(var(--i) * 90deg));
+  animation: animar .5s linear  infinite;
+}
+
+@keyframes animar {
+ from { background-position: 0; }
+ to { background-position: var(--tamanio-fondo); }
+}
+
+
+.contenedor h2 {
+  line-height: 1;
+  font-size: 4rem;
+  text-align: center;
+}
+.contenedor h2 span {
+  color: hsl(0 0% 50%);
+  display: block;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.contenedor .box::before {
+  content: '';
+  position: absolute;
+  inset: auto var(--tamanio-fondo) -20px var(--tamanio-fondo);
+  height: 5px;
+  border-radius: 50%;
+  background: hsl(0 0% 100% / 80%);
+  filter: blur(10px);
+}

@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Rosario:wght@400;700&display=swap');
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background:
+  fixed url(https://picsum.photos/seed/picsum/1200/800) bottom right,
+  fixed linear-gradient(
+    hsl(240 50% 15% / .75),
+    hsl(0 0% 0%)
+    );
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  background-size: cover;
+  
+  color: white;
+  font-family: 'Rosario', sans-serif;
+  font-size: clamp(2rem, 1rem + 10vw, 6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img {
+  max-inline-size: 100%;
+}
+
+section {
+  block-size: 300%;
+  inline-size: min( 100% - 6rem, 1200px);
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 100dvh auto;
+  gap: 1em;
+
+  transform: rotate(2deg);
+  
+}
+
+section > * {
+  transform: rotate(-2deg);
+}
+
+@keyframes fade {
+  0% { opacity: 0;}
+  50% { opacity: 1;}
+  90% { opacity: 1;}
+  100% { opacity: .2;}
+  
+}
+
+.intro {
+  grid-template-areas: 
+    'intro-1 intro-1'
+    'intro-2 intro-3'
+  ;
+  padding-block-end: 1em;
+}
+
+.intro-1 {
+
+  font-size: larger;
+
+  grid-area: intro-1;
+  align-self: start;
+  justify-self: center;
+
+  position: sticky;
+  inset-block-start: 2em;
+
+  opacity: .2;
+
+  animation: fade 5s ease;
+}
+
+.intro-2 {
+  grid-area: intro-2;
+  align-self: start;
+
+  position: sticky;
+  inset-block-start: 3em;
+
+  text-align: end;
+  font-size: smaller;
+  padding-block-start: 1em;
+
+  opacity: .5;
+}
+
+.intro-3 {
+  grid-area: intro-3;
+  align-self: center;
+
+  font-size: larger;
+
+  position: sticky;
+  inset-block-start: 3em;
+
+  background: linear-gradient( 90deg,
+    hsl(0 100% 90%),
+    hsl(0 100% 90%),
+    hsl(60 100% 90%),
+    hsl(120 100% 90%),
+    hsl(180 100% 90%),
+    hsl(240 100% 90%),
+    hsl(240 100% 90%),
+    hsl(300 100% 90%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  transform: 
+    rotate(-2deg)
+    translateY(1em);
+
+}
+
+
+
+.cuerpo-1 {
+  position: sticky;
+  inset-block-start: 1em;
+
+  padding-block-start: 1em;
+  padding-block-end: 1em;
+  text-align: end;
+
+  align-self: start;
+}
+
+.cuerpo-2 {
+  transform:
+    translateY(50dvh)
+    rotate(-2deg);
+}
+
+.cuerpo-2 img {
+  border-radius: 31% 69% 28% 72% / 74% 37% 63% 26%;
+}
+
+.fin {
+  padding-block: 2em;
+}
+
+.fin-1 {
+  position: sticky;
+  inset-block-start: 2em;
+
+  transform:
+  translateY(-1.5em)
+  rotate(-2deg);
+}
+
+.fin-2 {
+  align-self: center;
+
+  position: sticky;
+  inset-block-start: 3em;
+
+  padding-inline-start: .5em;
+}
+
+.fin-3 {
+  grid-column: 1 / -1;
+
+  display: grid;
+  align-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  block-size: 100dvh;
+  
+  background: hsl(0 50% 50% / .9);
+  border-radius: 34% 66% 66% 34% / 48% 69% 31% 52%;
+}
+
+.fin-3 p {
+  margin-block-start: .125em;
+}
+
+.texto2rem {  
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+footer {
+  block-size: 2em;
+  background: hsl(0 50% 50% / .9);
+  border-radius: 58% 32% 25% 25% / 79% 37% 0% 0%;
+  text-align: end;
+  line-height: 1;
+  padding: .5em;
+}

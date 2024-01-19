@@ -1,0 +1,189 @@
+:root {
+  --ff-primary: Heebo, sans-serif;
+  --ff-secondary: Bungee, cursive;
+}
+
+/* -------
+    reset
+   ------- */
+
+/* tamaños */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* remueve margen predeterminado */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--ff-secondary);
+}
+
+/* remueve estilo de listas en elementos ul, ol con "rol" de lista */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* scroll suave */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* configura body */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* decoración de vínculos sin atributo class */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Imágenes más fáciles de trabajar */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* entradas y botones heredan fuentes */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Elimina animaciones, transiciones y desplazamiento suave para las personas que prefieren no verlos */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* fin de reset */
+
+body {
+  background: linear-gradient(hsl(0 0% 90%), hsl(0 0% 70%));
+  font-family: var(--ff-primary);
+  font-size: 1rem;
+  /* for demo purposes only */
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 100rem;
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+.stacked {
+  display: grid;
+}
+
+.stacked > * {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.product-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.card {
+  aspect-ratio: 1 / 1.5;
+  /* border: 3px solid hotpink; */
+}
+
+.card__content {
+  background: white;
+  align-self: end;
+  margin: 0.5rem 0.5rem 2rem;
+  padding: 0.5rem;
+  box-shadow: 0 0.25rem 1rem hsl(0 0% 0% / 0.1);
+  border-radius: 4px;
+}
+
+.card__title {
+  font-size: 1.25rem;
+  line-height: 1.1;
+  color: firebrick;
+}
+
+.card__price {
+  font-size: 1.75rem;
+}
+
+.card__img {
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+  object-fit: cover;
+}
+
+@media (min-width: 60em) {
+  .card__img {
+    aspect-ratio: 1 / 1;
+  }
+
+  .card.featured {
+    grid-row: span 2;
+    grid-column: span 2;
+  }
+
+  .card.featured .card__img {
+    aspect-ratio: 1 / 1.25;
+  }
+
+  .card.featured .card__title {
+    font-size: 1.75rem;
+  }
+}
+
+.main-title {
+  font-size: clamp(2rem, 5vw + 1rem, 5rem);
+  line-height: 1;
+  color: white;
+  background: linear-gradient(-45deg, blue, red);
+  padding: 0.125em 0.5em;
+  margin-bottom: 1em;
+
+  width: fit-content;
+}
+
+p.max-content {
+  width: max-content;
+}
+
+p.min-content {
+  width: min-content;
+}

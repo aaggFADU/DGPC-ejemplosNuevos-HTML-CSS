@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: #0f0f0f;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+}
+
+.contenedor {
+  position: relative;
+  inline-size: 100%;
+  display: grid;
+  place-items: center;
+  transition: .5s;
+}
+
+.contenedor:hover {
+  translate: 0 -2rem;
+}
+
+.contenedor .card {
+  position: absolute;
+  width: 15rem;
+  aspect-ratio: 3 / 4;
+  background: #5e5cfc;
+  border-radius: .5rem;
+  display: grid;
+  place-items: center;
+  color: rgb(0 0 0 / 20%);
+  font-size: 8rem;
+  font-weight: 700;
+  border: 10px solid rgb(0 0 0 / 10%);
+  cursor: pointer;
+  transition: .5s;
+  transform-origin: 50% 100%;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 10%);
+}
+
+.contenedor:hover .card {
+  transform:
+    rotate(calc(var(--i) * 7deg ))
+    translate(calc(var(--i) * 6rem - 2rem));
+  color: rgb(0 0 0 / 25%);
+  filter: hue-rotate(calc(var(--i) * 30deg));
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 10%);
+}
+
+.contenedor:active .card {
+  background: #333;
+}
+
+.contenedor .card:active {
+  transform:
+    rotate(calc(var(--i) * 8deg ))
+    translate(calc(var(--i) * 7rem - 2rem));
+  z-index: 100;
+  background: #5e5cfc;
+}

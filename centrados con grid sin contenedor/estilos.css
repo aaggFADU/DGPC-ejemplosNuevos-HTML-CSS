@@ -1,0 +1,206 @@
+.contenido {
+  /* aqui se decide
+  cuanto estarán separados los contenidos del borde del navegador
+  en pantallas angostas */
+  --padding-inline: 1rem;
+  /* aqui se decide el ancho de los contenidos corrientes */
+  --ancho-maximo-contenido: 50rem;
+  /* aqui se decide el ancho de los contenidos destacados */
+  --ancho-maximo-destaque: 60rem;
+
+  --tamanio-destaque: calc(
+    (var(--ancho-maximo-destaque) - var(--ancho-maximo-contenido)) / 2
+  );
+
+  display: grid;
+
+  /*
+  plantilla de 5 columnas que permite
+  contenido centrado corriente,
+  contenido centrado más ancho
+  y secciones y/o partes y/o imágenes y videos
+  de borde a borde del navegador
+  */
+  grid-template-columns:
+    [ancho-total-start]
+      minmax(var(--padding-inline), 1fr)
+        [destaque-start]
+          minmax(0, var(--tamanio-destaque))
+            [contenido-start]
+              min(
+                100% - (var(--padding-inline) * 2),
+                var(--ancho-maximo-contenido)
+              )
+            [contenido-end]
+          minmax(0, var(--tamanio-destaque))
+        [destaque-end]
+      minmax(var(--padding-inline), 1fr)
+    [ancho-total-end];
+}
+
+/* contenidos "normales" en columna central  */
+.contenido > :not(.destaque, .ancho-total),
+.ancho-total > :not(.destaque, .ancho-total) {
+  grid-column: contenido;
+}
+
+/* contenidos destacados ocupando las tres columnas centrales */
+.contenido > .destaque {
+  grid-column: destaque;
+}
+
+/* secciones y/o elementos de borde a borde del navegador */
+.contenido > .ancho-total {
+  grid-column: ancho-total;
+
+  display: grid;
+  grid-template-columns: inherit;
+}
+
+img.ancho-total {
+  width: 100%;
+  max-height: 50dvh;
+  object-fit: cover;
+}
+
+:root {
+  --color-scheme: dark;
+
+  --font-family: system-ui;
+
+  --fs-300: clamp(0.94rem, calc(0.92rem + 0.08vw), 0.98rem);
+  --fs-400: clamp(1.13rem, calc(1.06rem + 0.33vw), 1.31rem);
+  --fs-500: clamp(1.35rem, calc(1.21rem + 0.69vw), 1.75rem);
+  --fs-600: clamp(1.62rem, calc(1.37rem + 1.24vw), 2.33rem);
+  --fs-700: clamp(1.94rem, calc(1.54rem + 2.03vw), 3.11rem);
+  --fs-800: clamp(2.33rem, calc(1.7rem + 3.15vw), 4.14rem);
+  --fs-900: clamp(2.8rem, calc(1.85rem + 4.74vw), 5.52rem);
+
+  --clr-primary-300: hsl(219, 76%, 55%);
+  --clr-primary-400: hsl(219, 76%, 40%);
+  --clr-primary-500: hsl(219, 76%, 25%);
+  --clr-secondary-300: hsl(269, 75%, 55%);
+  --clr-secondary-400: hsl(269, 75%, 40%);
+  --clr-secondary-500: hsl(269, 75%, 25%);
+  --clr-accent-200: hsl(358, 85%, 80%);
+  --clr-accent-300: hsl(358, 72%, 65%);
+  --clr-accent-400: hsl(358, 72%, 50%);
+  --clr-accent-500: hsl(358, 72%, 35%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: var(--color-scheme);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--fs-400);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.site-title {
+  font-size: var(--fs-800);
+  line-height: 1;
+  /* text-transform: uppercase; */
+  text-wrap: balance;
+  margin-block-end: .5em;
+}
+
+.section-title {
+  font-size: var(--fs-800);
+  line-height: 1;
+}
+
+.bg-primary {
+  background-color: var(--clr-primary-500);
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.call-to-action {
+  padding: 1rem;
+  background: hsl(0 0% 100% / 0.1);
+}
+
+.flow > * + * {
+  margin-top: var(--flow-spacing, 1em);
+}
+
+.section-padding {
+  padding-block: 2.5rem;
+}
+
+.primary-header {
+  padding-block: 1rem;
+  margin-block-end: 3rem;
+  background: var(--clr-accent-500);
+  color: var(--clr-primary-200);
+}
+
+.primary-header__layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  max-width: 17.5rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: max(5vw, 1rem);
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--clr-accent-500);
+  text-decoration: underline;
+}
+
+.even-columns {
+  display: flex;
+  gap: 1rem;
+}
