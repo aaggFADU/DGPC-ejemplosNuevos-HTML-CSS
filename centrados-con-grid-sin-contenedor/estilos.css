@@ -1,11 +1,11 @@
 .contenido {
-  /* aqui se decide
+  /* aquí se decide
   cuanto estarán separados los contenidos del borde del navegador
   en pantallas angostas */
   --padding-inline: 1rem;
-  /* aqui se decide el ancho de los contenidos corrientes */
+  /* aquí se decide el ancho de los contenidos corrientes */
   --ancho-maximo-contenido: 50rem;
-  /* aqui se decide el ancho de los contenidos destacados */
+  /* aquí se decide el ancho de los contenidos destacados */
   --ancho-maximo-destaque: 60rem;
 
   --tamanio-destaque: calc(
@@ -114,6 +114,14 @@ h6,
 p,
 figure {
   margin: 0;
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
 }
 
 img {
@@ -203,4 +211,9 @@ nav a:focus {
 .even-columns {
   display: flex;
   gap: 1rem;
+}
+
+
+p:has(+ section) {
+  margin-block-end: 4rem;
 }
