@@ -103,6 +103,7 @@ body::after {
   font-size: 1em;
   color: white;
   font-weight: 300;
+  text-wrap: balance;
 }
 
 .contenedor .ficha .contenidos a {
