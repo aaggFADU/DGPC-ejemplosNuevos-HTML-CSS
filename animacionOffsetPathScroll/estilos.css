@@ -58,6 +58,10 @@ p {
 
   position: fixed;
   inset: 0 auto auto 0;
+  
+  svg {
+    scale: 1.75;
+  }
 }
 
 @keyframes move {

@@ -45,6 +45,10 @@ body {
   height: 40px;
   display: grid;
   place-items: center;
+
+  svg {
+    scale: 1.75;
+  }
 }
 
 @keyframes move {
