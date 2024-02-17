@@ -1,0 +1,94 @@
+/* 
+  se le da un "tipo" a la propiedad para poder animarla
+*/
+@property --lines {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0.00010px;
+}
+
+@keyframes liner {
+  50% {
+    --lines: 0.00012px;
+  }
+}
+
+@layer demo {
+  .ruido {
+    /* se anima la propiedad "--lines" */
+    animation: liner 3s linear infinite;
+    
+    /*
+    Crea miles de "subpíxeles" tan pequeños que distorsionan
+    Se usa esta distorsión como máscara.
+    */
+    mask: repeating-radial-gradient(
+      circle at center,
+      #000,
+      var(--lines),
+      #000,
+      0,
+      #0000,
+      calc(var(--lines) * 2),
+      #0000 0
+    );
+  }
+}
+
+@layer demo.gradient-text {
+  .ruido {
+    --space:;
+    @supports (background: linear-gradient(in oklch, #000, #000)) {
+      --space: in oklch;
+    }
+    
+    display: grid;
+    place-content: center;
+    
+    background-image: linear-gradient(
+      to right var(--space), 
+      deeppink, blue
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    @media (prefers-color-scheme: light) {
+      background-image: linear-gradient(
+        to right var(--space), 
+        black, gray
+      );
+      
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+@layer demo.support {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html {
+    block-size: 100%;
+    color-scheme: dark light;
+  }
+
+  body {
+    min-block-size: 100%;
+    font-family: system-ui, sans-serif;
+
+    display: grid;
+    place-content: center;
+  }
+  
+  h1 {
+    font-size: 30vmin;
+    text-transform: uppercase;
+  }
+
+  .creditos {
+    text-align: center;
+  }
+}

@@ -55,7 +55,7 @@ li {
 /* Scroll suave, si NO se prefiere eliminar animaciones */
 /* Relleno superior para que el destino no quede oculto por un header sticky  */
 @media (prefers-reduced-motion: no-preference) {
-  :has(:target) {
+  :root {
     scroll-behavior: smooth;
     scroll-padding-top: var(--altura-header, 4rem);
   }
