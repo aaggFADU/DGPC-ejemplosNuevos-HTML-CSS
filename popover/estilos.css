@@ -31,11 +31,12 @@ ul {
   padding: 0;
   width: min(100%, 25rem);
   
-  & li:nth-child(odd) {
+  li:nth-child(odd) {
     background: hsl(145 50% 97.5%);
 
   }
-  & li {
+  li {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,7 +47,7 @@ ul {
       border-top: 1px dashed hsl(180, 5%, 5%);;
     }
         
-    & p {
+    p {
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
@@ -58,7 +59,7 @@ ul {
       }
     }
     
-    & > button {
+    > button {
       font-size: 1.1em;
       flex-shrink: 0;
       display: grid;
@@ -71,43 +72,66 @@ ul {
       aspect-ratio: 1;
       outline-offset: 0.125rem;
       outline-color: #00514c;
+
+      position: relative;
+      anchor-name: --anchor-el;
     }
   }
 }
 
-/* @position-fallback --fallback {
-  @try {
-    top: calc(anchor(bottom) + 0.25rem);
-    right: anchor(right);
-  }
-  @try {
-    top: anchor(bottom);
-    left: calc(anchor(left) - (anchor(center) - anchor(left)));
-  }
-} */
+#menu-btn-1 {
+  anchor-name: --anchor-el-1;
+}
+#menu-content-1 {
+  position: absolute;
+  position-anchor: --anchor-el-1;
+  left: anchor(right);
+  top: anchor(top);
+}
+#menu-btn-2 {
+  anchor-name: --anchor-el-2;
+}
+#menu-content-2 {
+  position: absolute;
+  position-anchor: --anchor-el-2;
+  left: anchor(right);
+  top: anchor(top);
+}
+#menu-btn-3 {
+  anchor-name: --anchor-el-3;
+}
+#menu-content-3 {
+  position: absolute;
+  position-anchor: --anchor-el-3;
+  left: anchor(right);
+  top: anchor(top);
+}
+
+div[role="menu"] {
+}
 
 div[role="menu"]:popover-open {
 
-  /* anchor-default: --my-anchor;
-  position-fallback: --fallback; */
-
-  top: calc(anchor(bottom) + 0.25rem);
-  right: anchor(right);
   display: flex;
   flex-direction: column;
   margin: 0;
+  margin-left: 1em;
+  margin-top: .25em;
   padding: 0;
   border: none;
   border-radius: 0.25rem;
+  outline: solid 1px hsl(176 100% 16% / 25%);
   box-shadow: 8px 8px 15px -5px rgb(0 0 0 / 0.35);
+  overflow: visible;
  
-  & button {
+  button {
     appearance: none;
     background: none;
     border: none;
     font-size: 0.875rem;
     padding: 0.75rem 1rem;
     text-align: left;
+    
 
     &:focus {
       outline: none;
@@ -121,6 +145,17 @@ div[role="menu"]:popover-open {
   &.keyboard-only button:focus {
       background: hsl(145 50% 95%);
   }
+}
+
+div[role="menu"]:popover-open::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: -1.5em;
+  width: 0;
+  height: 0;
+  border: solid .75em transparent;
+  border-right: solid .75em #00514c;
 }
 
 .not-supported {
