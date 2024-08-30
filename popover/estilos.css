@@ -115,12 +115,12 @@ div[role="menu"]:popover-open {
   display: flex;
   flex-direction: column;
   margin: 0;
-  margin-left: 1em;
-  margin-top: .25em;
+  margin-left: 1.2em;
+  margin-top: .85em;
   padding: 0;
   border: none;
   border-radius: 0.25rem;
-  outline: solid 1px hsl(176 100% 16% / 25%);
+  outline: solid 1px hsl(176 100% 16% / 10%);
   box-shadow: 8px 8px 15px -5px rgb(0 0 0 / 0.35);
   overflow: visible;
  
@@ -150,12 +150,15 @@ div[role="menu"]:popover-open {
 div[role="menu"]:popover-open::before {
   content: "";
   position: absolute;
+  background-color: hsl(176 100% 16% / 50%);
   z-index: 2;
-  left: -1.5em;
-  width: 0;
-  height: 0;
-  border: solid .75em transparent;
-  border-right: solid .75em #00514c;
+  left: -1em;
+  top: .25rem;
+  width: 1em;
+  aspect-ratio: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%)
+  /* border: solid .75em transparent;
+  border-right: solid .75em #00514c; */
 }
 
 .not-supported {
