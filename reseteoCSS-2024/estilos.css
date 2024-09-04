@@ -47,9 +47,22 @@ h6 {
 /* Mejora la legibilidad con max-width en párrafos y listas */
 /* Evita huérfanos en navegadores compatibles */
 p,
-li {
+li,
+figcaption {
   max-width: var(--p-max-width, 70ch);
   text-wrap: pretty;
+}
+
+/* transforma en "contenedores" cuyas medidas
+puedes ser evaluadas para decidir
+disposición de elementos contenidos
+usando "@container" */
+header,
+footer,
+main,
+section,
+article {
+  container-type: inline-size;
 }
 
 /* Scroll suave, si NO se prefiere eliminar animaciones */
@@ -60,6 +73,7 @@ li {
     scroll-padding-top: var(--altura-header, 4rem);
   }
 }
+
 
 
 
