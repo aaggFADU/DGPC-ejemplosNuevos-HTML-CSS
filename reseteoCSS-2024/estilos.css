@@ -6,7 +6,7 @@
 }
 
 /* elimina espaciado predeterminado */
-/* Obliga estilo de la tipografía a través de estilos, en lugar de elementos */
+/* Obliga que estilo de la tipografía se defina a través de estilos, en lugar de elementos */
 * {
   margin: 0;
   padding: 0;
