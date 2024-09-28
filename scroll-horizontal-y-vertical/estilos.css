@@ -1,0 +1,128 @@
+@property --k {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: true;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  scrollbar-color: hsl(25 75% 47%) #161616;
+}
+
+body {
+  margin: 0;
+}
+
+header,
+footer {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  min-height: 100dvh;
+  background: silver;
+  font-size: 4em;
+  font: 700 4em/1 system-ui, sans-serif;
+  text-align: center;
+  text-shadow: 0.05em 0.05em 0.1em hsl(0 0% 0% / 50%);
+}
+
+section {
+  height: 500dvh;
+  background: #212121;
+}
+
+@supports (animation-timeline: view()) {
+  section {
+    background: linear-gradient(
+        90deg,
+        hsla(25, 75%, 47%, calc(1 - round(down, var(--k)))) calc(var(--k) * 100%),
+        #0000 0
+      )
+      0 0/100% 0.5rem no-repeat fixed #212121;
+    animation: k 1s both;
+    animation-timeline: view();
+    animation-range: contain;
+  }
+}
+
+@keyframes k {
+  to {
+    --k: 1;
+  }
+}
+h2 {
+  color: #ededed;
+  font: 900 2em/2 sans-serif;
+}
+
+img {
+  width: min(30vw, 70vh);
+  aspect-ratio: 1;
+  object-fit: cover;
+  box-shadow: 2px 2px 5px;
+}
+
+.stick {
+  box-sizing: border-box;
+  display: grid;
+  align-content: center;
+  position: sticky;
+  top: 0;
+  padding: 2em;
+  height: 100dvh;
+}
+
+.wrap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 2em;
+  translate: calc(var(--k) * (50vw - 100%));
+}
+
+/* just support info */
+aside {
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+}
+
+.box-info-scrollani {
+  margin: 1em;
+  border-left: solid 5px #dc3055;
+  padding: 1em;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+  background: #851d40;
+  color: #fff;
+  font: 1.25em/1.25 ubuntu, trebuchet ms, arial, sans-serif;
+}
+@supports (animation-timeline: view()) {
+  .box-info-scrollani {
+    display: none;
+  }
+}
+
+kbd {
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.35);
+  font: 1.1em/1.2 ubuntu mono, consolas, monaco, monospace;
+}
+
+a {
+  color: hsl(25 75% 47%);
+  text-decoration: none;
+}
+
+a:is(:focus, :hover) {
+  color: hsl(25 100% 35%);
+}
+
+span {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-shadow: none;
+}
