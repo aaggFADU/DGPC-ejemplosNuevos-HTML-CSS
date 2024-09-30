@@ -1,0 +1,205 @@
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+*::-webkit-scrollbar {
+    width: 0;
+}
+
+html {
+    color-scheme: dark light;
+    hanging-punctuation: first last;
+}
+
+body {
+    margin: 0;
+    font-family: "Montserrat", 'Poppins', sans-serif;
+    background-color: #1B1B1B;
+    color: hsl(74 50% 95%);
+    background-image:
+        url(img/bg.png),
+        repeating-linear-gradient(
+            to right,
+            transparent 0 500px,
+            hsl(215 26% 40% / 20%) 500px 501px
+        );
+    background-size: 100%;
+}
+
+section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    place-content: center;
+    place-items: center;
+}
+
+a {
+    color: hsl(215 70% 50%);
+    text-decoration: none;
+
+    &:hover {
+        color: lightcoral;
+    }
+}
+
+p {
+    font-size: 1.25em;
+    line-height: 1.5;
+    text-wrap: pretty;
+}
+
+.content-fit {
+    width: min(75rem, 90vw);
+    margin-inline: auto;
+    min-height: 100dvh;
+    position: relative;
+    padding-block: 10em;
+}
+
+.title {
+    line-height: 1;
+    margin-block-end: 1em;
+}
+
+header {
+    padding-block: 1em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10px;
+    backdrop-filter: blur(20px);
+    z-index: 100;
+    background-color: hsl(0 0% 11% / 1%);
+    background-image: repeating-linear-gradient(
+        to right,
+        transparent 0 500px,
+        hsl(0 0% 93% / 1%) 500px 501px
+    );
+}
+header .content-fit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: unset!important;
+    padding-block: unset!important;
+}
+
+.logo { color: white; }
+
+header .content-fit nav ul{
+    display: flex;
+    gap: 2em;
+}
+
+#banner {
+    background-image: url("img/flower.png"), url("img/leaf.png");
+    background-position: bottom right, bottom left;
+    background-size: 50vw, 30vw;
+    background-repeat: no-repeat, no-repeat;
+}
+#banner .title {
+    color: hsl(120 73% 75%);
+    font-size: clamp(3rem, -0.7952rem + 16.8675vw, 10rem);
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+}
+#banner .title::before {
+    content: attr(data-before);
+    position: absolute;
+    top: 0.5em;
+    inset: 0.66em 0 0 0;
+    z-index: -1;
+    color: hsl(120 73% 75% / 10%);
+}
+.section .decorate {
+    position: absolute;
+}
+#intro .content-fit {
+    display: flex;
+    gap: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+.section .number {
+    font-size: clamp(5rem, -0.4217rem + 24.0964vw, 15rem);
+    font-weight: bold;
+}
+.section .content-fit .title {
+    font-size: clamp(2rem, 0.3735rem + 7.2289vw, 5rem);
+    font-weight: bold;
+}
+#description .content-fit {
+    padding-right: 30%;
+}
+
+#description .title {
+    font-size: clamp(5rem, 3.9157rem + 4.8193vw, 7rem);
+    font-weight: 500;
+}
+#contact .content-fit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+#contact table {
+    width: min(800px, 90vw);
+    padding-top: 2em;
+    font-size: 2em;
+    margin: auto;
+}
+#contact table td {
+    padding-block: 0.5em;
+    border-bottom: 1px dashed #445022;
+}
+#contact table td:nth-child(1) {
+    text-align: left;
+    font-weight: 500;
+}
+#contact table td:nth-child(2) {
+    text-align: right;
+    font-weight: 200;
+}
+#contact .sign {
+    font-size: clamp(4rem, 0.747rem + 14.4578vw, 10rem);
+    margin-block-start: 1em;
+}
+#container3D {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+@media screen and (max-width: 1023px){
+    #intro .content-fit {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 767px){
+    
+    #intro .content-fit {
+        flex-direction: column;
+    }
+    #description .content-fit {
+        padding-right: 0;
+    }
+    #contact table {
+        font-size: 1em;
+    }
+    #container3D {
+        position: absolute;
+    }
+}
+
+
+.logo svg { scale: 1.5;}
+.st0 { fill:#0CB0E5; }
+.st1 { fill: currentColor; }
