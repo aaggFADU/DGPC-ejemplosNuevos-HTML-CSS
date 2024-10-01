@@ -3,24 +3,44 @@
 *::before,
 *::after {
   box-sizing: border-box;
+/* 
+se propone tb:
+
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit;}
+
+Esto dará el mismo resultado y facilitará el cambio de la propiedad `box-sizing` en plugins u otros componentes que utilicen un comportamiento diferente.
+*/
 }
 
-/* elimina espaciado predeterminado */
+/* Elimina espaciado predeterminado */
 /* Obliga que estilo de la tipografía se defina a través de estilos, en lugar de elementos */
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0; /* tal vez */
+  padding: 0; /* tal vez */
   font: inherit; /* tal vez */
 }
 
-/* Estilos de agente de usuario para el modo oscuro */
-/* Mejora la puntuación en navegadores compatibles */
 html {
-  color-scheme: dark light;
+  /* Estilos de agente de usuario para el modo claro / oscuro */
+  color-scheme: light dark;
+
+  /* Mejora la puntuación en navegadores compatibles */
   hanging-punctuation: first last;
+  
+  /* Evitar el aumento del tamaño de fuente en celulares IOS */
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  
+  /* Permite animar desde, por ejemplo, "display: none" */
+  interpolate-size: allow-keywords;
+
+  /* interlineado ampliado (aqui en lugar de en "body" para mayor control en diferentes situaciones) */
+  line-height: 1.6;
 }
 
-/* altura mínima de body */
+/* altura mínima: ventana del navegador */
 body {
   min-height: 100svh;
 }
@@ -39,9 +59,14 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
+button,
+input,
+label,
+optgroup,
+select,
+textarea {
   text-wrap: balance;
+  line-height: 1.1;
 }
 
 /* Mejora la legibilidad con max-width en párrafos y listas */
@@ -49,7 +74,7 @@ h6 {
 p,
 li,
 figcaption {
-  max-width: var(--p-max-width, 70ch);
+  max-width: var(--p-ancho-maximo, 75ch);
   text-wrap: pretty;
 }
 
@@ -65,18 +90,33 @@ article {
   container-type: inline-size;
 }
 
+/*  botones e inputs de formularios heredan tipografía */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+
+/* Relleno superior para que el destino de un link
+no quede oculto por un header sticky  */
+:root { scroll-padding-top: var(--altura-header, 4rem); }
+
 /* Scroll suave, si NO se prefiere eliminar animaciones */
-/* Relleno superior para que el destino no quede oculto por un header sticky  */
 @media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth;
-    scroll-padding-top: var(--altura-header, 4rem);
-  }
+  :root { scroll-behavior: smooth; }
 }
 
 
 
-
+/* 
+-----
+-----
+-----
+-----
+*/
 
 
 /* no es reset, es solo para mejorar apariencia del html */
