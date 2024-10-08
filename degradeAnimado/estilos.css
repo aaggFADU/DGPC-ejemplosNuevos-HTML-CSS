@@ -12,6 +12,7 @@ body {
 
 body {
   background: linear-gradient(
+    in oklab,
     hsl(240 50% 10%),
     hsl(0 0% 5%)
   );
@@ -21,14 +22,15 @@ body::after {
   content: "";
   position: fixed;
   background: linear-gradient(
+    in oklab,
     hsl(60 100% 50% / .5),
     hsl(240 100% 20% / .5)
   );
-  inline-size: 60%;
+  inline-size: 80%;
   block-size: 120%;
   inset: -100px;
   z-index: -1;
-  filter: blur(150px);
+  filter: blur(250px);
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   animation:
     bordes 8s ease-in-out infinite,
@@ -39,14 +41,15 @@ body::before {
   content: "";
   position: fixed;
   background: linear-gradient(
+    in oklab,
     hsl(0 100% 50% / .5),
     hsl(240 100% 20% / .5)
   );
-  inline-size: 60%;
+  inline-size: 80%;
   block-size: 120%;  
   inset: -100px -100px auto auto;
   z-index: -1;
-  filter: blur(150px);
+  filter: blur(250px);
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   animation:
     bordes 8s 1s ease-in-out infinite,
