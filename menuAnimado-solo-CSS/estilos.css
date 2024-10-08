@@ -2,6 +2,8 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -22,8 +24,6 @@ nav ul {
 
   display: flex;
   
-  margin: 0;
-  padding: 0;
   list-style: none;
 }
 
@@ -49,18 +49,21 @@ nav li::after {
     translate 500ms var(--_translate-delay, 0ms);
 }
 
-nav li:hover {
+nav li:hover,
+nav li:focus {
   --_width: 1;
 }
 
 @supports selector(:has(h1)) {
-  nav li:hover + li {
+  nav li:hover + li,
+  nav li:focus-visible + li {
     --_translate: -100%;
     --_scale-delay: 300ms;
     --_translate-delay: 200ms;
   }
   
-  nav li:has(+ :hover) {
+  nav li:has(+ :hover),
+  nav li:has(+ :focus-visible) {
     --_translate: 100%;
     --_scale-delay: 300ms;
     --_translate-delay: 200ms;
@@ -79,5 +82,6 @@ nav a {
 nav a:hover,
 nav a:focus-visible {
   opacity: 1;
+  outline: none;
 }
 

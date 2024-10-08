@@ -19,8 +19,9 @@ h1 {
                0 -5px 3px hsl(0 0% 100% / .5);
 
   font-size: clamp(4rem, 8vw, 8rem);
-  text-align: center;
   line-height: 1;
+  text-align: center;
+  text-wrap: balance;
 
   padding-inline: 1em;
 
@@ -68,8 +69,10 @@ section {
 section h2 {
   font-size: 2.5em;
   margin-block-end: 1.25rem;
+  text-wrap: balance;
 }
 
 section p {
   margin-block-end: 1em;
+  text-wrap: pretty;
 }
