@@ -33,7 +33,7 @@ html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
   
-  /* Permite animar desde, por ejemplo, "display: none" */
+  /* Permite animar desde, por ejemplo, "display: none;" o a "height: auto;" */
   interpolate-size: allow-keywords;
 
   /* interlineado ampliado (aqui en lugar de en "body" para mayor control en diferentes situaciones) */
