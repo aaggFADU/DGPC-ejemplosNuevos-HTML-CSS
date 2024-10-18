@@ -35,7 +35,8 @@
 
   --tamanio: 20rem;
 
-  --gap: 1rem;
+  /* como minimo 1 renglon, como maximo 1.5 renglon cuando la ventana del navegador crece */
+  --gap: clamp(1rem, 0.8261rem + 0.8696vw, 1.5rem);
 }
 
 body {
