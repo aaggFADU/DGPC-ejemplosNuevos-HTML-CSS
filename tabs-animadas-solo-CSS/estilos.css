@@ -13,12 +13,10 @@ body {
   font-family: system-ui, sans-serif;
   line-height: 1.7;
   color: #101010;
-  background-color: hsl(218 10% 85%);
-  background-image: linear-gradient(
-    in oklch 145deg,
-    hsl(245 15% 50%),
-    hsl(218 10% 85%),
-    hsl(245 15% 35%)
+  background: linear-gradient(
+    135deg in oklch,
+    hsl(161 35% 65%),
+    hsl(203 35% 50%)
   );
   padding: 3rem 1rem;
   min-height: 100svh;
@@ -40,7 +38,7 @@ h3 {
 
 h1 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 h2 {
@@ -74,7 +72,7 @@ p:not(:last-child) {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   height: 3.5rem;
-  border-block-end: 2px solid hsl(245 15% 95%);
+  border-block-end: 2px solid hsl(203 35% 90%);
 }
 
 .tabs input {
@@ -108,11 +106,12 @@ p:not(:last-child) {
   border-radius: 0.5rem 0.5rem 0 0;
   border: 1px solid #e9ebec;
   border-block-end: none;
-  background-image: linear-gradient(
-    in oklch, 
-    hsl(245 15% 85%), 
-    hsl(245 15% 95%));
-
+  background: linear-gradient(
+    in oklch,
+    hsl(161 50% 85%),
+    hsl(203 35% 90%)
+  );
+  
   /*
     1st = 0 * 100% = 0%
     2nd = 1 * 100% = 100%
