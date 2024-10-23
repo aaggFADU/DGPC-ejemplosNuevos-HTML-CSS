@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../icono-dgpc.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navegación con pestañas animadas con CSS</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<main>
+  <h1>Navegación por pestañas animadas - Solo CSS</h1>
+  <h3>
+    usando la pseudoclase <strong>:has</strong><br>
+    y pseudoelementos en posición absoluta <br>
+    con "variables" CSS
+  </h3>
+
+  <article class="widget">
+
+    <div class="tabs">
+      <input type="radio" id="overview" name="tabs" checked />
+      <label for="overview">Pestaña 1</label>
+  
+      <input type="radio" id="experience" name="tabs" />
+      <label for="experience">Pestaña 2</label>
+  
+      <input type="radio" id="awards" name="tabs" />
+      <label for="awards">Pestaña 3</label>
+    </div>
+  
+    <div class="tab-content">
+
+      <div class="tab-content-1">
+        <h2>Pestaña 1</h2>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum molestiae aperiam impedit error, vitae odit nulla officia id quae, sunt eos, ad inventore! Laborum eligendi, alias consequuntur accusantium aperiam reprehenderit.
+        </p>
+      </div>
+  
+      <div class="tab-content-2">
+        <h2>Pestaña 2</h2>
+        <p>
+          Explicabo soluta, placeat cumque dolorum aliquam eaque corporis obcaecati aspernatur molestias, rem nemo omnis reiciendis!
+        </p>
+        <p>
+          Quisquam sint ipsam, perspiciatis debitis hic commodi modi reprehenderit animi architecto nisi explicabo asperiores tempora adipisci voluptatum enim soluta obcaecati cumque error corporis necessitatibus inventore et a?
+        </p>
+        <p>
+          Exercitationem saepe deserunt nostrum nobis veniam unde sequi voluptatibus. Non animi molestias fugit labore iste. Eius, molestias, doloribus eligendi officia adipisci vero sint, quidem reiciendis distinctio reprehenderit dolorum asperiores facere.
+        </p>
+      </div>
+  
+      <div class="tab-content-3">
+        <h2>Pestaña 3</h2>
+        <p>
+          Facilis, sequi eos. Dolor temporibus eveniet, exercitationem voluptate culpa voluptates, ratione debitis quae quam dignissimos molestiae nihil dolorum repellat? Molestiae ratione modi totam iure in rerum placeat quas quae, unde dicta iusto dolore mollitia accusamus perferendis explicabo.
+        </p>
+      </div>
+    </div>
+
+  </article>
+  
+</main>
+
+<footer>
+  <p>"fuertemente inspirado" en <a href="https://codepen.io/optimisticweb/pen/WNqXagW" target="_blank">CodePen de Optimistic Web</a></p>
+</footer>
+
+</body>
+</html>
