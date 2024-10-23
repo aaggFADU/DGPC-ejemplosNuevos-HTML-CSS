@@ -62,7 +62,7 @@ p:not(:last-child) {
   margin-block: 2rem;
   border-radius: 1rem;
   background-color: #fff;
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.025);
+  box-shadow: .25rem .75rem 1.25rem 0 hsl(0 0% 0% / 5%);
 }
 
 .tabs {
@@ -71,9 +71,10 @@ p:not(:last-child) {
 
   position: relative;
   isolation: isolate;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   height: 3.5rem;
-  border-block-end: 1px solid #e9ebec;
+  border-block-end: 2px solid hsl(245 15% 95%);
 }
 
 .tabs input {
@@ -81,10 +82,8 @@ p:not(:last-child) {
 }
 
 .tabs label {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
   font-size: 0.9375rem;
   font-weight: 600;
   color: #656d7b;
