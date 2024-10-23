@@ -16,7 +16,7 @@ body {
   background-color: hsl(218 10% 85%);
   background-image: linear-gradient(
     hsl(218 10% 85%),
-    hsl(218 25% 35%)
+    hsl(245 15% 35%)
   );
   padding: 3rem 1rem;
   min-height: 100svh;
