@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../icono-dgpc.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ con solo HTML y CSS</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+  <header class="page-layout">
+    <h1>FAQ con elementos HTML <code>&lt;details></code> y CSS puro</h1>
+    <p>
+      * Para ver animación se requiere navegador Chrome 131 o posterior ó con la opción <code>"Funciones experimentales de la plataforma web"</code> habilitada.
+    </p>
+  </header>
+
+  <main class="page-layout">
+
+    <section class="faq">
+
+      <div>
+        <span class="section-icon" aria-hidden='true'>🤔</span>
+        <h2 class="section-title">Preguntas frecuentes</h2>
+      </div>
+
+      <div class="questions-and-answers">
+  
+        <details name="FAQ" open>
+          <summary>¿Se pueden animar los elementos details/summary?</summary>
+          <p>Solía ser imposible, pero ahora, gracias al CSS moderno, ¡es bastante fácil de hacer!</p>
+        </details>
+  
+        <details name="FAQ">
+          <summary>¿Cómo se hace?</summary>
+          <p>Hay formas diferentes de hacerlo. Una de ellas es usar <code>calc-size()</code>, que tiene algunas cosas extra que puedes hacer con ella, pero actualmente la forma más fácil es usar una combinación de <code>interpolate-size: allow-keywords;</code> y <code>transition-behavior: allow-discrete</code>.</p>
+        </details>
+  
+        <details name="FAQ">
+          <summary>¿Qué pasa con la compatibilidad con navegadores?</summary>
+          <p>
+            La compatibilidad con navegadores no es buena aún, pero mejorará. Además, es una gran <em>mejora progresiva</em>. Esto significa que no romperá nada para los usuarios de navegadores antiguos, que no tendrán la animación, mientras que los usuarios de navegadores más nuevos la tendrán.
+          </p>
+        </details>
+  
+        <details name="FAQ">
+          <summary>¿Cuál es el truco?</summary>
+          <p>
+            ¡No hay ninguno! ¡Es fácil de hacer y funciona muy bien!<br>
+            El texto es demasiado corto y para mostrar las animaciones se necesita una caja más larga, así que aquí hay un poco de texto de relleno adicional. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi at ipsum dolor tempore impedit corrupti ad fugiat voluptate reiciendis voluptatum!
+          </p>
+        </details>
+  
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="page-layout">
+    <p>
+      Tomado de <a href="https://www.youtube.com/watch?v=Vzj3jSUbMtI">video de Kevin Powell</a>.
+    </p>
+  </footer>
+
+</body>
+</html>

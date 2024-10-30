@@ -1,0 +1,171 @@
+:root {
+  interpolate-size: allow-keywords;
+}
+
+details {
+  background: hsl(0 0% 5%);
+  border: 1px solid hsl(303 100% 26% / 0.35);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+
+  overflow: hidden;
+}
+
+/* No agregar margen ni relleno aqui,
+se agrega al contenido real dentro del contenido de detalles. */
+details::details-content {
+  color: hsl(0 0% 78%);
+  font-size: 1rem;
+  block-size: 0;
+  transition: block-size 1s, content-visibility 1s;
+
+  transition-behavior: allow-discrete;
+}
+
+details:open::details-content {
+  block-size: auto;
+}
+
+@layer general-styling {
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: system-ui;
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    min-height: 100dvh;
+
+    background-image: radial-gradient(
+      in oklch circle at top left,
+      hsl(303 100% 26% / 0.35),
+      transparent
+    );
+    background-repeat: no-repeat;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  header,
+  footer {
+    background: hsl(303 0% 0% / 0.35);
+    border-block: 2px solid hsl(303 100% 26% / 0.35);
+    padding-block: 1rem;
+
+    p {
+      line-height: 1.2;
+      margin-block-start: 1rem;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  details,
+  summary {
+    margin-block-end: 0;
+    text-wrap: balance;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    line-height: 1.1;
+  }
+
+  p,
+  details,
+  summary {
+    text-wrap: pretty;
+  }
+
+  .page-layout {
+    display: grid;
+    grid-template-columns:
+      minmax(2rem, 1fr)
+      min(960px, 100% - 4rem)
+      minmax(2rem, 1fr);
+
+    & > * {
+      grid-column: 2 / 3;
+    }
+    container-type: inline-size;
+    container-name: page-layout;
+  }
+
+  main.page-layout {
+    margin-block: 5rem;
+    align-self: self-start;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .section-icon {
+    font-size: 3rem;
+  }
+
+  .faq {
+    display: grid;
+    gap: clamp(1rem, 10vw, 2.5rem);
+
+    @container (width > 45rem) {
+      grid-template-columns: 250px 1fr;
+    }
+  }
+
+  .questions-and-answers {
+    margin-block-start: 3.5rem;
+  }
+
+  .questions-and-answers {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+  }
+
+
+  details * {
+    margin: 0;
+  }
+
+  details > p {
+    padding-block: 1rem;
+    font-size: 1.125rem;
+    color: hsl(0 0% 70%);
+  }
+
+  summary {
+    color: hsl(0 0% 98%);
+    line-height: 1.3;
+    margin-inline-start: 1rem;
+    list-style-position: outside;
+  }
+
+  summary::marker {
+    font-size: 0.75em;
+    color: orange;
+  }
+
+  code {
+    font-weight: 700;
+    color: white;
+  }
+}
