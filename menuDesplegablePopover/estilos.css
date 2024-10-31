@@ -18,6 +18,9 @@
 
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  
+  interpolate-size: allow-keywords;
+  transition-behavior: allow-discrete;
 }
 
 body {
