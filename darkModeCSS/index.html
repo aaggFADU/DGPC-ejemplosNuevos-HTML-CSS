@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="../icono-dgpc.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo oscuro y claro sin JS</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<header>
+  <div class="header-content">
+
+    <div class="logo">WebDesign</div>
+    <img src="" alt="">
+
+    <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle" class="theme-toggle-label">
+            <svg class="moon-icon" viewBox="0 0 24 24">
+                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
+            </svg>
+            <svg class="sun-icon" viewBox="0 0 24 24">
+                <path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0-2V3c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1s-1-.45-1-1zm0 14v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1s-1-.45-1-1zm6.36-12.95l2.83-2.83c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-2.83 2.83c-.39.39-1.02.39-1.41 0-.39-.39-.39-1.02 0-1.41zm-12.72 0c.39-.39 1.02-.39 1.41 0l2.83 2.83c.39.39.39 1.02 0 1.41-.39.39-1.02.39-1.41 0l-2.83-2.83c-.39-.39-.39-1.02 0-1.41zM21 11h-4c-.55 0-1 .45-1 1s.45 1 1 1h4c.55 0 1-.45 1-1s-.45-1-1-1zM3 11h4c.55 0 1 .45 1 1s-.45 1-1 1H3c-.55 0-1-.45-1-1s.45-1 1-1z"/>
+            </svg>
+        </label>
+    </div>
+  </div>
+
+</header>
+
+<main>
+
+  <section class="hero">
+
+    <article class="hero-content">
+      <h1>Cambio entre modos oscuro y claro sin JS</h1>
+      <p>Con la pseudoclase <code>:has</code> y variables CSS se puede cambiar el tema del sitio web marcando o desmarcando un checkbox.</p>
+      <p>Códigos creados con Claude 3.5 Sonnet (new) después de cinco interacciones, luego revisados, corregidos y completados.</p>
+      <a href="#" class="cta-button">Botón de prueba</a>
+    </article>
+
+  </section>
+
+    <section class="articles-section">
+
+        <h2>Artículos Destacados</h2>
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="article-content">
+                    <h3>Tendencias de Diseño 2024</h3>
+                    <p>Descubre las últimas tendencias en diseño web y cómo implementarlas en tus proyectos.</p>
+                </div>
+            </article>
+            <article class="article-card">
+                <div class="article-content">
+                    <h3>Accesibilidad Web</h3>
+                    <p>Aprende a crear sitios web inclusivos que todos puedan usar y disfrutar.</p>
+                </div>
+            </article>
+            <article class="article-card">
+                <div class="article-content">
+                    <h3>Diseño Responsivo</h3>
+                    <p>Técnicas avanzadas para crear experiencias perfectas en todos los dispositivos.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 WebDesign. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

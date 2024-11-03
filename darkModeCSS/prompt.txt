@@ -1,0 +1,12 @@
+Actúa como un desarrollador y diseñador web experto, especializado en UX y UI, con conocimientos avanzados en HTML y CSS. Crea una página web sencilla que solo utilice HTML y CSS (sin JavaScript), con la siguiente estructura:
+
+Header: Incluye un interruptor de "modo oscuro" que funcione mediante un checkbox, utilizando la pseudoclase :has y propiedades personalizadas (custom properties) en CSS. Configura el modo oscuro como el predeterminado. El interruptor debe alternar entre un ícono de sol en modo claro (ubicado a la izquierda) y un ícono de luna en modo oscuro (a la derecha).
+Asegúrate de que el diseño del interruptor sea atractivo, usando colores y formas apropiadas para representar el "sol" y la "luna". El sol debe tener un color cálido con rayos sutiles, mientras que la luna debe ser suave y redondeada, con un color frío y tenue.
+En modo oscuro, el interruptor debe mostrar la luna a la izquierda y el círculo a la derecha; en modo claro, el círculo a la izquierda y el sol a la derecha.
+Main: Contiene una sección hero y dos secciones adicionales con artículos.
+Hero Section: Debe tener una imagen de fondo aleatoria cargada desde https://picsum.photos/. Asegura que el contenido esté alineado a la izquierda y superpuesto al fondo con un overlay, para mejorar el contraste y la legibilidad.
+Footer: Añade una sección de pie de página sencilla.
+Otros requisitos:
+
+Limita el ancho de todos los contenidos a un máximo de 1200px y centra este ancho horizontalmente en la página.
+Asegura que el diseño sea accesible y visualmente atractivo en ambos modos (claro y oscuro), y que todos los colores y contrastes respeten las pautas de accesibilidad.
