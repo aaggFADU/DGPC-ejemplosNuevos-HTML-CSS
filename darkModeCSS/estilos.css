@@ -111,6 +111,10 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  :root:has(#theme-toggle:checked) & {
+    background-color: hsl(from var(--accent) h s 80%);
+  }
 }
 
 .theme-toggle-label::before {
@@ -138,6 +142,9 @@ header {
 /* Ocultamos el sol en modo oscuro y la luna en modo claro */
 .sun-icon {
   opacity: 0;
+  color: var(--accent);
+  fill: orange;
+  stroke: var(--accent);
 }
 
 :root:has(#theme-toggle:checked) .sun-icon {
