@@ -161,7 +161,12 @@ details:open::details-content {
 
   summary::marker {
     font-size: 0.75em;
+    color: hsl(from orange h s l / 0.25);
+  }
+
+  details[open] summary::marker {
     color: orange;
+    transition: color 2s;
   }
 
   code {
