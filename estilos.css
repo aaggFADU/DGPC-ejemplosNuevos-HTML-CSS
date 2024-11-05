@@ -105,9 +105,9 @@ a {
 }
 
 h1 {
-  font-size: clamp(1.25rem, 1.0761rem + 0.8696vw, 1.75rem);
+  font-size: clamp(1.25rem, 1.163rem + 0.4348vw, 1.5rem);
   font-weight: 700;
-  margin: 0;
+  margin: 0;cl
   color: hsl(from var(--accent) h 50% l / 95%);
 }
 
