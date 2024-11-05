@@ -107,7 +107,7 @@ a {
 h1 {
   font-size: clamp(1.25rem, 1.163rem + 0.4348vw, 1.5rem);
   font-weight: 700;
-  margin: 0;cl
+  margin: 0;
   color: hsl(from var(--accent) h 50% l / 95%);
 }
 
