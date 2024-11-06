@@ -3,8 +3,8 @@
   --bg-secondary: #252525;
   --text-primary: #ffffff;
   --text-secondary: #e0e0e0;
-  --accent: hsl(245 83% 58%);
-  --accent-hover: hsl(245 70% 50%);
+  --accent: hsl(245 83% 65%);
+  --accent-hover: hsl(245 70% 75%);
 
   --bg-primary-alpha-20: hsl(from var(--bg-primary) h s l / 20%);
   --bg-secondary-alpha-20: hsl(from var(--bg-secondary) h s l / 20%);
@@ -153,13 +153,18 @@ ul {
       text-decoration: none;
 
       &:is(:hover, :focus-visible) {
-        color: var(--accent);
+        color: var(--accent-hover);
         background-color: var(--bg-secondary-alpha-20);
+        outline: solid 2px hsl( from var(--accent-hover) h s l / 35%);
       }
 
       & span {
         font-weight: 700;
         color: var(--accent);
+      }
+
+      &:is(:hover, :focus-visible) span {
+        color: var(--accent-hover);
       }
 
     }
