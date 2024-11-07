@@ -22,7 +22,7 @@ details::details-content {
   transition-behavior: allow-discrete;
 }
 
-details:not([open]):has(summary:focus-visible) {
+details:not([open]):has(:is(summary:focus-visible, summary:hover)) {
   background: hsl(0 0% 5% / 25%);
 }
 
@@ -178,7 +178,7 @@ details:open::details-content {
     transition: color 2s;
   }
 
-  details:not([open]):has(summary:focus-visible) summary::marker {
+  details:not([open]):has(:is(summary:focus-visible, summary:hover)) summary::marker {
     color: white;
   }
 
