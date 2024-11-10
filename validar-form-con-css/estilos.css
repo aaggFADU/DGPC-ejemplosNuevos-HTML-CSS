@@ -27,18 +27,18 @@ input:focus:invalid:not(:placeholder-shown) {
   display: none;
 }
 
-/* show hint if user is in the input
-   but it is invalid */
+/* mostrar sugerencia si el usuario está en el input
+   pero es valor inválido */
 input:focus:invalid:not(:placeholder-shown) ~ .hint {
   display: block;
 }
 
-/* show error after users leaves input
-   but it is invalid */
+/* mostrar error después de que el usuario deja el input
+   si es valor inválido */
 
 input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
   display: block;
-  /*   animation: form-error 250ms 3; */
+  /* animation: form-error 250ms 3; */
 }
 
 @keyframes form-error {
@@ -51,7 +51,7 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
 }
 
 
-/* add an animation when they have an error */
+/* agregar animación cuando hay un error */
 
 @layer general-styling {
   :root {
@@ -86,6 +86,7 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
     display: grid;
     place-items: center;
     min-height: 100vh;
+    gap: 1rem;
   }
 
   body > * {
@@ -135,5 +136,20 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
   p {
     font-size: .6rem;
     text-align: center;
+
+    span {
+      display: block;
+      margin-block-start: .5rem;
+      line-height: 2.5;
+
+      code {
+        display: inline-block;
+        color: hsl(203 30% 15%);
+        background-color: hsl(203 15% 65%);
+        border-radius: 100vmax;
+        font-weight: 700;
+        padding: 0 0.5rem;
+      }
+    }
   }
 }
