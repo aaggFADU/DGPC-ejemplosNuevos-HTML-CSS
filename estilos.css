@@ -186,10 +186,11 @@ header {
   z-index: 1;
 
   background-color: hsl(from var(--accent) h s l / 20%);
-  box-shadow: 0 2px 4px hsl(0 0% 0% / 10%);
+  box-shadow: 0 3px 5px hsl(0 0% 0% / 15%);
   backdrop-filter: blur(.35rem);
   text-align: start;
 
+  border: solid 1px var(--accent-alpha-20);
   border-radius: 100vmax;
   padding: 1rem 2rem;
   margin-block: 1rem;

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../icono-dgpc.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validación de formularios con CSS</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+  <h1>Validación de formularios con CSS</h1>
+
+  <form action="respuesta.html">
+
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text"
+        id="name"
+        placeholder="Mario Neta"
+        minlength="3"
+        required>
+
+      <div class="error"
+        id="name-error"
+        aria-live="polite">
+        Por favor, ingrese su nombre
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email"
+        id="email"
+        placeholder="mi@mail.com"
+        required
+        aria-errormessage='email-error'>
+
+      <div class="error"
+        id="email-error"
+        aria-live="polite">
+          Por favor, ingrese un email válido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input type="password"
+        placeholder="12+ caracteres"
+        id="password"
+        minlength="12"
+        required
+        aria-errormessage="password-error">
+
+      <div class="hint">Un mínimo de 12 caracteres</div>
+      <div class="error"
+        id="password-error"
+        aria-live="polite">
+          Un mínimo de 12 caracteres
+      </div>
+    </div>
+
+    <button>Registrarse</button>
+
+  </form>
+
+  <p>
+    Tomado de la presentación de <br>
+    <a href="https://www.youtube.com/watch?v=0rZywO6jdU4">Kevin Powell: "No se necesita JavaScript para eso"</a><br>
+    en el marco del JS Day 2024 de <a href="https://www.youtube.com/@JetBrainsTV/videos" target="_blank">JetBrains</a>
+  </p>
+  
+  <!-- 
+  pattern="^(?=.*[A-Za-z])(?=.*\d).+$"
+  -->
+  
+</body>
+</html>
