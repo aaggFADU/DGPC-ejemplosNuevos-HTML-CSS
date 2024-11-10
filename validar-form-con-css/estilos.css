@@ -115,14 +115,24 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
   }
 
   button {
+    background-color: hsl(201 31% 11%);
+    border: none;
+    border-radius: 0.25rem;
+    outline: 3px solid hsl(203 30% 26%);
+
+    cursor: pointer;
+
     margin-block-start: 1rem;
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    background-color: hsl(201 31% 11%);
 
     :invalid & {
       opacity: 0.1;
       pointer-events: none;
+    }
+
+    &:focus-visible,
+    &:hover {
+      outline-color: hsl(203 30% 45%);
     }
   }
 
