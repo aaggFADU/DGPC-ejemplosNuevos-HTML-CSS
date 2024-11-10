@@ -126,7 +126,7 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
     padding: 0.5rem 1rem;
 
     :invalid & {
-      opacity: 0.1;
+      opacity: 0.2;
       pointer-events: none;
     }
 
