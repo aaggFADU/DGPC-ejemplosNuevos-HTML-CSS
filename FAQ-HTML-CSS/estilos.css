@@ -12,16 +12,13 @@ details {
 }
 
 /* No agregar margen ni relleno en este selector,
-se agrega al contenido real dentro del contenido de detalles.
-
-PROVISORIAMENTE deshabilitado
-porque NO funciona en Chrome 131 por ahora*/
+se agrega al contenido real dentro del contenido de detalles. */
 
 details::details-content {
   color: hsl(0 0% 78%);
   font-size: 1rem;
-  /* block-size: 0; */
-  transition: block-size 1s/*, content-visibility 1s; */
+  block-size: 0;
+  transition: block-size 1s, content-visibility 1s;
 
   transition-behavior: allow-discrete;
 }
@@ -30,10 +27,9 @@ details:not([open]):has(:is(summary:focus-visible, summary:hover)) {
   background: hsl(0 0% 5% / 25%);
 }
 
-details:open::details-content {
+details[open]::details-content {
   block-size: auto;
 }
-/* */
 
 @layer general-styling {
 
