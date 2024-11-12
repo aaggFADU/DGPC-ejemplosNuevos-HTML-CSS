@@ -1,6 +1,6 @@
 :root {
-  --body-bg: #123;
-  --nav-bg: #234;
+  --body-bg: hsl(230 30% 10%);
+  --nav-bg: hsl(230 20% 18%);
 }
 
 * {
@@ -173,8 +173,22 @@ li:has([aria-current])::after {
   grid-template-rows: repeat(4, auto) 1fr;
 }
 .nav-list li:last-child {
-  width: min-content;
-  height: 1fr;
   background-color: color-mix(in oklab, var(--nav-bg) 95%, white 5%);
+  border-radius: 1em;
   font-size: smaller;
+  height: 1fr;
+  width: min-content;
+}
+
+
+p {
+  line-height: 1.4;
+  max-width: 65ch;
+  text-wrap: pretty;
+}
+
+code {
+  color: chocolate;
+  font-weight: 700;
+  font-size: 1.5em;
 }
