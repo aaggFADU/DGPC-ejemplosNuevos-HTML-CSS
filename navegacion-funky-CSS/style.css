@@ -26,6 +26,7 @@ nav {
   bottom: 0;
   left: 0;
   padding-block: 2rem;
+
 }
 
 .nav-list {
@@ -60,8 +61,30 @@ nav {
   border-radius: 100vw 0 0 100vw;
 }
 
-::view-transition-group(nav) {
+@view-transition {
+  navigation: auto;
+}
+
+/* ::view-transition-name(nav) {
+  animation-name: nav;
   animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+} */
+
+/* ::view-transition-group(nav) {
+  animation-duration: 1s;
+} */
+
+::view-transition-old(nav) {
+  animation: 1s;
+}
+
+::view-transition-new(nav) {
+  animation: 1s;
+}
+
+.nav-list li.active {
+  view-transition-name: nav;
 }
 
 .nav-list li.active::before,
