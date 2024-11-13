@@ -4,36 +4,60 @@
 
 .card-1 {
   view-transition-name: card_1;
+
+  h1 {
+    view-transition-name: titulo_1;
+  }
   a {
     view-transition-name: link_1;
   }
 }
 .card-2 {
   view-transition-name: card_2;
+  
+  h1 {
+    view-transition-name: titulo_2;
+  }
   a {
     view-transition-name: link_2;
   }
 }
 .card-3 {
   view-transition-name: card_3;
+  
+  h1 {
+    view-transition-name: titulo_3;
+  }
   a {
     view-transition-name: link_3;
   }
 }
 .card-4 {
   view-transition-name: card_4;
+  
+  h1 {
+    view-transition-name: titulo_4;
+  }
   a {
     view-transition-name: link_4;
   }
 }
 .card-5 {
   view-transition-name: card_5;
+  
+  h1 {
+    view-transition-name: titulo_5;
+  }
   a {
     view-transition-name: link_5;
   }
 }
 .card-6 {
   view-transition-name: card_6;
+  
+  h1 {
+    view-transition-name: titulo_6;
+  }
   a {
     view-transition-name: link_6;
   }
