@@ -4,21 +4,39 @@
 
 .card-1 {
   view-transition-name: card_1;
+  a {
+    view-transition-name: link_1;
+  }
 }
 .card-2 {
   view-transition-name: card_2;
+  a {
+    view-transition-name: link_2;
+  }
 }
 .card-3 {
   view-transition-name: card_3;
+  a {
+    view-transition-name: link_3;
+  }
 }
 .card-4 {
   view-transition-name: card_4;
+  a {
+    view-transition-name: link_4;
+  }
 }
 .card-5 {
   view-transition-name: card_5;
+  a {
+    view-transition-name: link_5;
+  }
 }
 .card-6 {
   view-transition-name: card_6;
+  a {
+    view-transition-name: link_6;
+  }
 }
 
 @keyframes fade-back {
