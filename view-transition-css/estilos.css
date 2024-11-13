@@ -259,3 +259,13 @@ section {
   outline-color: transparent;
   color: var(--color-fondos);
 }
+
+
+[class^="detalle"] code {
+  background-color: var(--color-textos-alfa);
+  border-radius: 0.25em;
+  color: var(--color-2);
+  padding: 0.25em 0.5em;
+  font-weight: 700;
+  font-size: larger;
+}
