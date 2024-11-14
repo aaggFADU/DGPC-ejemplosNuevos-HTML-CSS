@@ -8,6 +8,9 @@
   h1 {
     view-transition-name: titulo_1;
   }
+  figcaption {
+    view-transition-name: caption_1;
+  }
   a {
     view-transition-name: link_1;
   }
@@ -17,6 +20,9 @@
   
   h1 {
     view-transition-name: titulo_2;
+  }
+  figcaption {
+    view-transition-name: caption_2;
   }
   a {
     view-transition-name: link_2;
@@ -28,6 +34,9 @@
   h1 {
     view-transition-name: titulo_3;
   }
+  figcaption {
+    view-transition-name: caption_3;
+  }
   a {
     view-transition-name: link_3;
   }
@@ -37,6 +46,9 @@
   
   h1 {
     view-transition-name: titulo_4;
+  }
+  figcaption {
+    view-transition-name: caption_4;
   }
   a {
     view-transition-name: link_4;
@@ -48,6 +60,9 @@
   h1 {
     view-transition-name: titulo_5;
   }
+  figcaption {
+    view-transition-name: caption_5;
+  }
   a {
     view-transition-name: link_5;
   }
@@ -57,6 +72,9 @@
   
   h1 {
     view-transition-name: titulo_6;
+  }
+  figcaption {
+    view-transition-name: caption_6;
   }
   a {
     view-transition-name: link_6;
@@ -231,7 +249,7 @@ section {
   grid-column: span 2;
 
   /* si el elemento contenedor cumple la condición */
-  @container (width > 22rem) {
+  @container (width > 25rem) {
     grid-column: unset;
     grid-row: 1 / -1;
   }
@@ -241,8 +259,29 @@ section {
   aspect-ratio: 2;
 
   /* si el elemento contenedor cumple la condición */
-  @container (width > 22rem) {
+  @container (width > 25rem) {
     aspect-ratio: unset;
+  }
+}
+
+.card__img {
+  position: relative;
+
+  figcaption {
+    background-color: var(--color-3);
+    border-radius: 0 100vmax 100vmax 0;
+    color: var(--color-fondos);
+    padding: .125em 1em .125em 2em;
+    font-weight: 700;
+    text-align: end;
+    
+    position: absolute;
+    z-index: 1;
+    inset: auto auto 1.125em 0;
+
+    [class^="detalle"] & {
+      inset: 1.125em auto auto 0;
+    }
   }
 }
 
