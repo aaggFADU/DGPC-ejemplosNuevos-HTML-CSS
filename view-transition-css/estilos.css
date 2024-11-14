@@ -276,7 +276,7 @@ section {
     inset: auto auto 1em 0;
 
     [class^="detalle"] & {
-      inset: 1.5em auto auto 0;
+      inset: 1rem auto auto 0;
       font-size: larger;
     }
   }
