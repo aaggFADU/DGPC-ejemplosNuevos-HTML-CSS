@@ -208,10 +208,6 @@ footer {
 }
 
 
-h2 {
-  /* margin-block-end: var(--gap); */
-}
-
 section {
   padding-block: calc( var(--gap) * 2 );
   --tamanio: 20rem;
@@ -268,19 +264,19 @@ section {
   position: relative;
 
   figcaption {
-    background-color: var(--color-3);
+    background-color: var(--color-2);
     border-radius: 0 100vmax 100vmax 0;
-    color: var(--color-fondos);
-    padding: .125em 1em .125em 2em;
+    color: var(--color-textos);
+    padding: 0 1em 0 2em;
     font-weight: 700;
     text-align: end;
     
     position: absolute;
     z-index: 1;
-    inset: auto auto 1.125em 0;
+    inset: auto auto 1em 0;
 
     [class^="detalle"] & {
-      inset: 1.125em auto auto 0;
+      inset: 1.5em auto auto 0;
     }
   }
 }
@@ -319,12 +315,13 @@ section {
 }
 
 .card__textos a {
-  background-color: var(--color-2);
+  background-color: var(--color-3);
   border-radius: 100vmax;
-  color: var(--color-textos-secundarios);
+  color: var(--color-fondos);
   font-family: var(--tipo-titulos);
+  font-size: larger;
   font-weight: 700;
-  padding: 0 .75em;
+  padding: 0 1em;
   text-decoration: none;
 
   .listado & {
