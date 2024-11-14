@@ -199,7 +199,7 @@ section > * {
 header,
 footer {
   color: var(--color-textos-secundarios);
-  background-color: var(--color-textos-alfa);
+  background-color: hsl(from var(--color-2) h s 30% / 15%);
 }
 
 :where(header, section, footer) > * {
