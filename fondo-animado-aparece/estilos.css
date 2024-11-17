@@ -1,0 +1,93 @@
+/* 
+---------------
+Sección animada
+---------------
+*/
+
+.portada {
+  block-size: 100dvb;
+  
+  display: grid;
+  place-content: center;
+
+  position: relative;
+
+  &::after {
+    content: "";
+    
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background-color: hsl(215 50% 20% / 75%);
+    background-image: url("fadu_20180817_02.jpg");
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    
+    /* 3 declaraciones para animar el fondo */
+    mask-image: url("black-ink-transition.gif");
+    mask-size: cover;
+    mask-position: center;
+  }
+}
+
+
+/* 
+-------------
+Otros estilos
+-------------
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  block-size: 100%;
+  color-scheme: dark;
+}
+
+body {
+  min-block-size: 100%;
+  font-family: system-ui, sans-serif;
+}
+
+
+.sobre-fondo {
+  width: min(100% - 6em, 50rem);
+  margin-inline: auto;
+  text-align: center;
+
+  display: grid;
+  gap: 4em;
+}
+
+h1 {
+  font-size: clamp(2rem, 0.9773rem + 4.5455vw, 4.5rem);
+  line-height: 1;
+  text-wrap: balance;
+}
+h2 {
+  line-height: 2;
+}
+
+.creditos {
+  text-align: center;
+
+}
+
+code {
+  background-color: hsl(0 0% 80% / 20%);
+  border-radius: 0.25em;
+  color: hsl(280 29% 50%);
+  /* display: inline-block; */
+  padding: .25em 1em;
+  margin-inline: .25em;
+  font-weight: 700;
+  font-size: larger;
+}
