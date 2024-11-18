@@ -89,6 +89,32 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
     gap: 1rem;
   }
 
+  body::before {
+    --size: 40px;
+    --line: hsl(203 30% 35% / 15%);
+    content: '';
+    height: 100dvh;
+    width: 100vw;
+    position: fixed;
+    mask: linear-gradient(0deg, transparent 10%, white);
+    background-image: 
+      radial-gradient(
+        var(--line) 4px,
+        transparent 4px
+      ),
+      radial-gradient(
+        var(--line) 4px,
+        transparent 4px
+      );
+    background-size: var(--size) var(--size);
+    background-position: 0 0, calc(var(--size) / 2) calc(var(--size) / 2);
+
+    top: 0;
+    transform-style: flat;
+    pointer-events: none;
+    z-index: -1;
+  }
+
   body > * {
     width: min(100% - 4rem, 15rem);
   }
