@@ -91,7 +91,7 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
 
   body::before {
     --size: 40px;
-    --line: hsl(203 30% 35% / 15%);
+    --dot-color: hsl(203 30% 35% / 5%);
     content: '';
     height: 100dvh;
     width: 100vw;
@@ -99,12 +99,12 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
     mask: linear-gradient(0deg, transparent 10%, white);
     background-image: 
       radial-gradient(
-        var(--line) 4px,
-        transparent 4px
+        var(--dot-color) calc(var(--size) / 4),
+        transparent calc(var(--size) / 4)
       ),
       radial-gradient(
-        var(--line) 4px,
-        transparent 4px
+        var(--dot-color) calc(var(--size) / 4),
+        transparent calc(var(--size) / 4)
       );
     background-size: var(--size) var(--size);
     background-position: 0 0, calc(var(--size) / 2) calc(var(--size) / 2);
