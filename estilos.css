@@ -191,15 +191,19 @@ header {
   text-align: start;
 
   border: solid 1px var(--accent-alpha-20);
-  border-radius: 100vmax;
-  padding: 1rem 2rem;
+  border-radius: 2rem;
   margin-block: 1rem;
-
+  padding: 1rem 1.5rem;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-
+  
+  @media (width > 32rem) {
+    border-radius: 100vmax;
+    padding: 1rem 2rem;
+  }
 }
 
 .theme-toggle-wrapper {
