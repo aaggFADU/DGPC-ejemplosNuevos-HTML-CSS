@@ -433,21 +433,25 @@
   }
 
   body::before {
-    --size: 45px;
-    --line: color-mix(in lch, canvasText, transparent 70%);
+    --size: 40px;
+    --line: hsl(260 100% 70% / 15%);
     content: '';
     height: 100dvh;
     width: 100vw;
     position: fixed;
-    background: linear-gradient(
-          90deg,
-          var(--line) 1px,
-          transparent 1px var(--size)
-        )
-        50% 50% / var(--size) var(--size),
-      linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
-        var(--size) var(--size);
-    mask: linear-gradient(-20deg, transparent 50%, white);
+    mask: linear-gradient(0deg, transparent 10%, white);
+    background-image: 
+      radial-gradient(
+        var(--line) 4px,
+        transparent 4px
+      ),
+      radial-gradient(
+        var(--line) 4px,
+        transparent 4px
+      );
+    background-size: var(--size) var(--size);
+    background-position: 0 0, calc(var(--size) / 2) calc(var(--size) / 2);
+
     top: 0;
     transform-style: flat;
     pointer-events: none;
