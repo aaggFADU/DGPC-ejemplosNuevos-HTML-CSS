@@ -1,0 +1,204 @@
+/*
+declaraciones específicas de la alineación con "subgrid":
+ver líneas 131 a 134
+*/
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+
+  /* colores del proyecto */
+  --color-fondos: hsl(0 0% 10%);
+  --color-fondos-secundarios: hsl(0 0% 0% / 50%);
+  --color-fondos-alfa: hsl(0 0% 0% / 10%);
+  --color-textos: hsl(0 0% 90%);
+  --color-textos-secundarios: hsl(0 0% 90% / 50%);
+  --color-textos-alfa: hsl(0 0% 90% / 10%);
+  --color-1: hsl(210 92% 36%);
+  --color-2: hsl(280 29% 44%);
+  --color-2-alfa: hsl(280 29% 44% / 30%);
+  --color-3: hsl(38 100% 47%);
+  --color-4: hsl(198 100% 44%);
+
+  /* tipografías */
+  --tipo-titulos: system-ui, sans-serif;
+  --tipo-textos: system-ui, sans-serif;
+
+  /*
+  otras variables
+  ...
+  */
+  --sombras:
+    0   /* desplazamiento horizontal */
+    4px /* desplazamiento vertical */
+    4px /* desenfoque */
+    var(--color-fondos-alfa); /* color */
+
+  --tamanio: 20rem;
+  --gap: clamp(0.75rem, 0.5761rem + 0.8696vw, 1.25rem);
+}
+
+body {
+  background-color: var(--color-fondos);
+  color: var(--color-textos);
+  font-family: var(--tipo-textos);
+  margin: 0;
+
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--tipo-titulos);
+  text-wrap: balance;
+  line-height: 1.2;
+}
+
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+  line-height: 1.6;
+
+  & + & {
+    margin-block-start: var(--gap);
+  }
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+header,
+footer,
+section > * {
+  padding-block: var(--gap);
+
+  [class^="detalle"] &.card {
+    padding-block: 0;
+  }
+}
+
+header,
+footer {
+  color: var(--color-textos-secundarios);
+  background-color: hsl(from var(--color-2) h s 30% / 15%);
+}
+
+:where(header, section, footer) > * {
+  width: min(100% - (2 * var(--gap)), 75rem);
+  margin-inline: auto;
+}
+
+
+section {
+  padding-block: calc( var(--gap) * 2 );
+  --tamanio: 20rem;
+  --fondo-ficha: var(--color-2-alfa);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(min(var(--tamanio), 100%), 1fr));
+  gap: var(--gap);
+
+  grid-template-rows: repeat(4, auto);
+}
+
+.card {
+  background-color: var(--fondo-ficha);
+  border-radius: var(--gap);
+  overflow: hidden;
+  box-shadow: var(--sombras);
+
+  /*
+  para que los elementos de cada ".card"
+  sean considerados elementos
+  de la cuadrícula del contenedor ".cards"
+  */
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+}
+
+.card > *:not(:first-child):not(:last-child) {
+  margin-inline: 1rem;
+}
+
+.card__img {
+  aspect-ratio: 2;
+  position: relative;
+
+  figcaption {
+    background-color: var(--color-2);
+    border-radius: 0 100vmax 100vmax 0;
+    color: var(--color-textos);
+    padding: 0 1em 0 2em;
+    font-weight: 700;
+    text-align: end;
+    
+    position: absolute;
+    z-index: 1;
+    inset: auto auto 1em 0;
+
+    [class^="detalle"] & {
+      inset: 1rem auto auto 0;
+      font-size: larger;
+    }
+  }
+}
+
+.card__img img {
+  width: 100%;
+  aspect-ratio: 2;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card h2 {
+  position: relative;
+  padding-block-end: 1em;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto auto 0 0;
+    width: 5rem;
+    height: .25rem;
+    background-color: var(--color-2);
+  }
+}
+
+.card a {
+  display: block;
+
+  background-color: var(--color-3);
+  border-radius: 100vmax;
+  color: var(--color-fondos);
+  font-family: var(--tipo-titulos);
+  font-size: larger;
+  font-weight: 700;
+  padding: 0 1em;
+  text-decoration: none;
+  margin: auto 1rem 1rem auto;
+}
+
+.card a:hover,
+.card a:focus-visible {
+  background-color: white;
+  box-shadow: var(--sombras);
+  outline-color: transparent;
+  color: var(--color-fondos);
+}
