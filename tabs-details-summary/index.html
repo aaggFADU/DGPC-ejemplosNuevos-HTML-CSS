@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../icono-dgpc.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ con solo HTML y CSS</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<header class="page-layout">
+  <h1>Tabs con elementos HTML <code>&lt;details></code> y CSS puro</h1>
+  <p>
+    * Para ver animación se requiere navegador Chrome 131 o posterior ó con la opción <code>"Funciones experimentales de la plataforma web"</code> habilitada.
+  </p>
+</header>
+
+<main class="page-layout">
+
+  <article class="questions-and-answers">
+
+    <details name="FAQ" open>
+      <summary>¿Animar details?</summary>
+      <p>Solía ser imposible, pero ahora, gracias al CSS moderno, ¡es bastante fácil de hacer!</p>
+    </details>
+
+    <details name="FAQ">
+      <summary>¿Cómo se hace?</summary>
+      <p>Hay formas diferentes de hacerlo. Una de ellas sería usar <code>calc-size()</code>, que tiene algunas cosas extra que se puede hacer con ella, pero actualmente la forma más fácil es usar una combinación de <code>interpolate-size: allow-keywords;</code> y <code>transition-behavior: allow-discrete</code>.</p>
+    </details>
+
+    <details name="FAQ">
+      <summary>¿Compatibilidad?</summary> 
+      <p>
+        La compatibilidad con navegadores no es buena pero mejorará. Además, es una gran <em>mejora progresiva</em>: no romperá nada para los usuarios de navegadores antiguos, solo no tendrán la animación que los usuarios de navegadores más nuevos tendrán.
+      </p>
+    </details>
+
+  </article>
+
+</main>
+
+<footer class="page-layout">
+  <p>
+    Cambio a "tabs" propio, usando <code>display: grid;</code> y <code>display: contents;</code>.<br>
+    Animación de elementos <code>&lt;details></code> visto en <a href="https://www.youtube.com/watch?v=Vzj3jSUbMtI" target="_blank">video de Kevin Powell</a>.
+  </p>
+</footer>
+
+</body>
+</html>
