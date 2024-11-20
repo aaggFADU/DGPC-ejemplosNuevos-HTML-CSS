@@ -21,7 +21,7 @@ Esto dará el mismo resultado y facilitará el cambio de la propiedad `box-sizin
   font: inherit; /* tal vez */
 }
 
-html {
+:root {
   /* Estilos de agente de usuario para el modo claro / oscuro */
   color-scheme: light dark;
 
@@ -32,17 +32,20 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-  
-  /* Permite animar desde, por ejemplo, "display: none;" o a "height: auto;" */
-  interpolate-size: allow-keywords;
 
-  /* interlineado ampliado (aqui en lugar de en "body" para mayor control en diferentes situaciones) */
+  /* interlineado ampliado (aquí en lugar de en "body" para mayor control en diferentes situaciones) */
   line-height: 1.6;
+  
+  /* Permite animar, por ejemplo, a "height: auto;" o desde "display: none;" o  */
+  @supports (interpolate-size: allow-keywords) {
+    interpolate-size: allow-keywords;
+  }
+
 }
 
 /* altura mínima: ventana del navegador */
 body {
-  min-height: 100svh;
+  min-block-size: 100svh;
 }
 
 /* imágenes/videos adaptables */
@@ -51,7 +54,7 @@ picture,
 svg,
 video {
   display: block;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 /* Encabezados mejorados en navegadores compatibles */
@@ -74,7 +77,7 @@ textarea {
 p,
 li,
 figcaption {
-  max-width: var(--p-ancho-maximo, 75ch);
+  max-inline-size: var(--p-ancho-maximo, 75ch);
   text-wrap: pretty;
 }
 
