@@ -39,7 +39,7 @@ details summary {
     transition: background-color 2s;
   }
   &:is(:focus-visible, :hover)::after {
-    background-color: hsl(from orange h s l / 10%);
+    background-color: hsl(from black h s l / 75%);
     transition: .5s;
   }
 }
