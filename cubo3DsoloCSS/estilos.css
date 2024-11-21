@@ -16,13 +16,14 @@ body {
 }
 
 h1 {
+	--desplazamiento: max(-50vh + 60%, -40vh);
 	position: absolute;
 	color: white;
 	text-align: center;
 	font-family: 'Poppins', sans-serif;
 	font-size: .75em;
 	line-height: 1.1;
-	transform: translateY(-250px);
+	transform: translateY(var(--desplazamiento));
 	padding-inline: 1rem;
 }
 
@@ -33,10 +34,34 @@ h1 span {
 	opacity: .7;
 }
 
+h1 span:last-child {
+	font-size: .45em;
+	margin-block-start: .35em;
+
+	a {
+		color: lightcoral;
+		text-decoration: none;
+		display: inline-block;
+		padding: .25em 1em;
+		border-radius: 10em;
+		background: hsl(0 79% 72% / .01);
+		transition: color .3s, background-color 1s;
+
+
+		&:hover,
+		&:focus-visible {
+			outline: none;
+			background: hsl(0 50% 30% / .75);
+			color: hsl(0 79% 95%);
+		}
+	}
+}
+
 .scene {
 	position: relative;
 	transform-style: preserve-3d;
 	animation: rotarEscena var(--rotate-speed) infinite linear;
+	pointer-events: none;
 }
 
 @keyframes rotarEscena {
