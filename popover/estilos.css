@@ -85,8 +85,9 @@ ul {
 #menu-content-1 {
   position: absolute;
   position-anchor: --anchor-el-1;
-  left: anchor(right);
-  top: anchor(top);
+  position-try-fallbacks: --derecha;
+  left: anchor(center);
+  top: anchor(center);
 }
 #menu-btn-2 {
   anchor-name: --anchor-el-2;
@@ -94,8 +95,9 @@ ul {
 #menu-content-2 {
   position: absolute;
   position-anchor: --anchor-el-2;
-  left: anchor(right);
-  top: anchor(top);
+  position-try-fallbacks: --derecha;
+  left: anchor(center);
+  top: anchor(center);
 }
 #menu-btn-3 {
   anchor-name: --anchor-el-3;
@@ -103,36 +105,39 @@ ul {
 #menu-content-3 {
   position: absolute;
   position-anchor: --anchor-el-3;
-  left: anchor(right);
-  top: anchor(top);
+  position-try-fallbacks: --derecha;
+  left: anchor(center);
+  top: anchor(center);
 }
 
 div[role="menu"] {
-}
 
-div[role="menu"]:popover-open {
+  width: max-content;
 
-  display: flex;
-  flex-direction: column;
   margin: 0;
-  margin-left: 1.2em;
-  margin-top: .85em;
+  margin-inline: 0.5em;
+  margin-top: 0.5em;
   padding: 0;
   border: none;
   border-radius: 0.25rem;
   outline: solid 1px hsl(176 100% 16% / 10%);
   box-shadow: 8px 8px 15px -5px rgb(0 0 0 / 0.35);
   overflow: visible;
- 
+
+  transition: display 1s, opacity 1s;
+  transition-behavior: allow-discrete;
+
+  opacity: 0;
+
   button {
+
     appearance: none;
     background: none;
     border: none;
     font-size: 0.875rem;
     padding: 0.75rem 1rem;
     text-align: left;
-    
-
+   
     &:focus {
       outline: none;
     }
@@ -145,9 +150,22 @@ div[role="menu"]:popover-open {
   &.keyboard-only button:focus {
       background: hsl(145 50% 95%);
   }
+
 }
 
-div[role="menu"]:popover-open::before {
+div[role="menu"]:popover-open {
+
+  display: grid;
+  opacity: 1;
+
+  @starting-style {
+    display: grid;
+    opacity: 0;
+  }
+
+}
+
+/*div[role="menu"]:popover-open::before {
   content: "";
   position: absolute;
   background-color: hsl(176 100% 16% / 50%);
@@ -159,7 +177,7 @@ div[role="menu"]:popover-open::before {
   clip-path: polygon(0 0, 100% 0, 100% 100%)
   /* border: solid .75em transparent;
   border-right: solid .75em #00514c; */
-}
+/*}*/
 
 .not-supported {
   position: fixed;
@@ -186,4 +204,10 @@ div[role="menu"]:popover-open::before {
   .not-supported {
     display: none;
   }
+}
+
+@position-try --derecha {
+ /* inset: auto; */
+ right: anchor(center);
+ left: unset;
 }
