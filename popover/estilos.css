@@ -151,12 +151,23 @@ div[role="menu"] {
       background: hsl(145 50% 95%);
   }
 
+  &::backdrop {
+    background-color: hsl(180 30% 10% / 50%);
+    opacity: 0;
+    transition: 2s;
+  }
+
 }
 
 div[role="menu"]:popover-open {
 
   display: grid;
   opacity: 1;
+
+  &::backdrop {
+    background-color: hsl(180 30% 10% / 50%);
+    opacity: 1;
+  }
 
   @starting-style {
     display: grid;
