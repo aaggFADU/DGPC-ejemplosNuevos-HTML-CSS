@@ -15,8 +15,8 @@
 }
 
 html {
-  font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.5rem;
+  font-family: Poppins, 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.7;
 }
 
 body {
@@ -136,9 +136,13 @@ body {
   margin-left: auto;
   padding: 1em;
   border: none;
-  border-radius: .5em;
+  border-radius: 5em;
   background: none;
   cursor: pointer;
+
+  aspect-ratio: 1;
+  align-self: center;
+  display: block;
 
   svg {
     transition: rotate 150ms ease;
