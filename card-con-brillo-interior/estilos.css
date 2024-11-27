@@ -16,13 +16,13 @@
   width: min(12.5em, 80vmin);
   aspect-ratio: 1;
   border-radius: 1em;
-  place-self: center;
-  place-content: center;
   padding: 1em;
   color: #ededed;
   font: clamp(1em, 2vw + 2vh, 2em) sans-serif;
   text-align: center;
   text-wrap: balance;
+  place-self: center;
+  place-content: center;
 
   p {
     font-size: 0.6em;
