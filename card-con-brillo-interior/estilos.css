@@ -1,0 +1,83 @@
+@property --a {
+  /* se debe registrar "--a" para animarla */
+  syntax: "<angle>";
+  initial-value: 0deg;
+  /* usada solo en pseudo, no se heredara, 
+    mejor rendimiento si se pone false, ver
+    * https://www.bram.us/2024/10/03/benchmarking-the-performance-of-css-property/ */
+  inherits: false;
+}
+
+.card {
+  /* se oculta la parte exterior del brillo */
+  overflow: hidden;
+  
+  position: relative;
+  width: min(12.5em, 80vmin);
+  aspect-ratio: 1;
+  border-radius: 1em;
+  place-self: center;
+  place-content: center;
+  padding: 1em;
+  color: #ededed;
+  font: clamp(1em, 2vw + 2vh, 2em) sans-serif;
+  text-align: center;
+  text-wrap: balance;
+
+  p {
+    font-size: 0.6em;
+
+    a {
+      color: lightcoral;
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        color: hsl(from lightcoral h s calc(l * 1.1));
+        text-decoration: underline;
+        outline: none;
+      }
+    }
+  }
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -1.25em;
+  
+  border: solid 1.25em;
+  border-image: conic-gradient(
+    from var(--a), #669900, #99cc33, #ccee66, #006699, #3399cc, #990066, #cc3399, #ff6600, #ff9900, #ffcc00, #669900) 1;
+  filter: blur(0.75em);
+  
+  animation: a 4s linear infinite;
+}
+
+@keyframes a {
+  to {
+    --a: 1turn ;
+  }
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, div {
+  display: grid;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: 
+    url(../view-transition-css/imagenes/fadu_20180817_03.jpg) 50%/cover
+    #212121EE;
+  background-blend-mode: multiply;
+}
