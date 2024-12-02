@@ -83,10 +83,11 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
   }
 
   body {
-    display: grid;
-    place-items: center;
     min-height: 100vh;
-    gap: 1rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    place-items: center;
+    gap: 2rem;
   }
 
   body::before {
