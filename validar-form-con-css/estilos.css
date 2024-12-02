@@ -154,6 +154,14 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
     :invalid & {
       opacity: 0.2;
       pointer-events: none;
+      user-select: none;
+      cursor: not-allowed;
+    }
+
+    :invalid &:focus-visible,
+    :invalid &:hover {
+      outline: none;
+      cursor: not-allowed;
     }
 
     &:focus-visible,
