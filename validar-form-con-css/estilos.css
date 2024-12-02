@@ -85,9 +85,12 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
   body {
     min-height: 100vh;
     display: grid;
-    grid-template-rows: auto 1fr;
     place-items: center;
-    gap: 2rem;
+    
+    &:has(form) {
+      grid-template-rows: auto 1fr;
+      gap: 2rem;
+    }
   }
 
   body::before {
