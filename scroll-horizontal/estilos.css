@@ -10,7 +10,7 @@ main {
   display: grid;
   gap: var(--_spacer);
   grid-auto-flow: column;
-  grid-auto-columns: 21%;
+  grid-auto-columns: 12rem;
 
   padding: 0 0 var(--_spacer) 0;
 
