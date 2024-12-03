@@ -8,10 +8,11 @@
   --clr-primary: #ee6352;
   --clr-secondary: #d16e8d;
   --clr-accent: #F7F7FF;
-  --clr-gradient: linear-gradient(-90deg,
-      var(--clr-primary),
-      var(--clr-secondary)
-    );
+  --clr-gradient: linear-gradient(
+    -90deg,
+    var(--clr-primary),
+    var(--clr-secondary)
+  );
   --ff-title: system-ui, sans-serif;
   --ff-body: serif;
   --fw-body: 300;
