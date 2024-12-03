@@ -13,11 +13,14 @@
       var(--clr-secondary)
     );
   --ff-title: system-ui, sans-serif;
-  --ff-body: system-ui, sans-serif;
+  --ff-body: serif;
   --fw-body: 300;
   --fw-bold: 700;
   --fw-title: 700;
   --fw-number: 700;
+
+  --lh-title: 1.1;
+  --lh-body: 1.6;
 }
 
 body {
@@ -26,6 +29,7 @@ body {
   font-family: var(--ff-body);
   font-weight: var(--fw-body);
   font-size: 1.25rem;
+  line-height: var(--lh-body);
   display: flex;
   flex-direction: column;
 }
@@ -42,12 +46,15 @@ body {
   font-family: var(--ff-title);
   font-weight: var(--fw-title);
   color: white;
+  line-height: var(--lh-title);
 }
 
 
 h2 {
   border-inline-start: 5px solid red;
   padding-inline-start: 1rem;
+  font-family: var(--ff-title);
+  line-height: var(--lh-title);
   position: relative;
 }
 
@@ -84,13 +91,13 @@ h2::after {
 
 
 a {
-  color: hsl(25 85% 40%);
-  font-weight: 700;
+  color: var(--clr-primary);
+  font-weight: var(--fw-bold);
   text-decoration: none;
 
   &:hover,
   &:focus-visible {
-    color: hsl(25 85% 50%);
+    color: var(--clr-secondary);
     text-decoration: underline;
     outline: none;
   }
