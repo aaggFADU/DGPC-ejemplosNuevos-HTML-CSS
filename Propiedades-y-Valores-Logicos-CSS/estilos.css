@@ -25,28 +25,32 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--ff-body);
   font-weight: var(--fw-body);
   font-size: 1.25rem;
   line-height: var(--lh-body);
-  display: flex;
-  flex-direction: column;
+}
+
+section {
+  /* valor NO lógico para que siempre se mantenga el ancho de la sección */
+  margin-bottom: 10rem;
 }
 
 .title {
-  padding: .5em 0 1em;
-  margin: 0;
+  padding: .5em 1em 1em 1em;
+  margin: 0 0 5rem 0;
   background: var(--clr-gradient);
   position: relative;
   clip-path: polygon(0 0, 100% 0%, 100% 75%, 0% 100%);
-  text-align: center;
-  text-shadow: 3px 5px 10px rgba(0,0,0, .2);
+  color: white;
   font-size: calc(1rem + 3vw);
+  line-height: var(--lh-title);
   font-family: var(--ff-title);
   font-weight: var(--fw-title);
-  color: white;
-  line-height: var(--lh-title);
+  text-align: center;
+  text-shadow: 3px 5px 10px rgba(0,0,0, .2);
+  text-wrap: balance;
 }
 
 
@@ -56,11 +60,11 @@ h2 {
   font-family: var(--ff-title);
   line-height: var(--lh-title);
   position: relative;
+  text-wrap: balance;
 }
 
 .content {
-  width: 65%;
-  max-width: 60ch;
+  width: min(100% - 4rem, 60ch);
   margin: 0 auto;
   padding-block-end: 2em;
 }
@@ -73,7 +77,7 @@ h2 {
 #example1,
 #example2 {
   writing-mode: horizontal-tb;
-  padding-block-end: 2em;
+  /* padding-block-end: 1em; */
 }
 
 
@@ -87,6 +91,7 @@ h2::after {
   block-size: 100%;
   aspect-ratio: 1;
   inset-inline-end: 0;
+  inset-block-start: 0;
 }
 
 
