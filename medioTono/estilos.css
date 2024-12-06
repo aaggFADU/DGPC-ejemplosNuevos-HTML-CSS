@@ -31,11 +31,10 @@ html {
 }
 
 .hero > article {
-  font-size: 2em;
-  line-height: 1.2;
+  font-size: clamp(1.5rem, 1.2391rem + 1.3043vw, 2.25rem);
   text-align: end;
 
-  inline-size: min(80%, 20em);
+  inline-size: min(100% - clamp(1.5rem, 0.9783rem + 2.6087vw, 3rem) * 2, 20em);
 
   grid-area: 1/1;
   color: #fff;
@@ -57,7 +56,24 @@ html {
     margin: 0;
   }
 
-  p {
+  code {
+    background-color: hsl(0 0% 95% / 50%);
+    border-radius: 0.25em;
+    color: hsl(280 50% 30%);
+ 
+    padding: .125em .75em;
+    margin-inline: .25em;
+    font-weight: 700;
+    font-size: larger;
+  }
+
+  p:not(:last-child) {
+    font-size: .75em;
+    line-height: 1.75;
+    text-wrap: balance;
+  }
+
+  p:last-child {
     font-size: 1.25rem;
 
     a {
