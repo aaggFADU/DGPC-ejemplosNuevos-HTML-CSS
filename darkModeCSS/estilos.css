@@ -163,7 +163,7 @@ header {
   padding-block: clamp(3rem, 2.5909rem + 1.8182vw, 4rem);
 
   background-color: var(--bg-secondary);
-  background-image: url(https://picsum.photos/1920/1080);
+  background-image: url(../subgrid/imagenes/fadu_20180817_01.jpg);
   background-size: cover;
   background-blend-mode: multiply;
   
