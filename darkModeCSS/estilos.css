@@ -3,8 +3,8 @@
   --bg-secondary: #252525;
   --text-primary: #ffffff;
   --text-secondary: #e0e0e0;
-  --accent: #7c3aed;
-  --accent-hover: #6d28d9;
+  --accent: hsl(255 83% 58%);
+  --accent-hover: hsl(255 70% 50%);
 
   --bg-primary-alpha-20: hsl(from var(--bg-primary) h s l / 20%);
   --bg-secondary-alpha-20: hsl(from var(--bg-secondary) h s l / 20%);
