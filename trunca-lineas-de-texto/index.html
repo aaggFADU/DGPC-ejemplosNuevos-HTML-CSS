@@ -17,7 +17,8 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: whitesmoke;
+  font-family: system-ui, sans-serif;
 
   display: grid;
   min-height: 100dvh;
@@ -42,6 +43,7 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
   gap: 1rem;
+  align-items: center;
 }
 
 .contenedora {
@@ -49,12 +51,26 @@ main {
   margin-inline: auto;
 }
 
+.card {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: solid 1px hsl(0 0% 0% / 0.2);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
 .card__textos {
   display: grid;
   gap: 1rem;
+  padding: 1rem;
 }
 
-/* parrafo que muesta cantidad limitada de lineas */
+/* parrafo que muestra cantidad limitada de lineas */
 .card__textos p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -74,7 +90,7 @@ main {
 
   <main class="contenedora">
     <article class="card">
-      <img src="https://picsum.photos/320/320" alt="">
+      <img src="../subgrid/imagenes/fadu_20180817_01.jpg" alt="FADU 1">
       <div class="card__textos">
         <h3>Ficha 1</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt magni expedita ut consequatur nemo dolor adipisci hic eum laboriosam assumenda!</p>
@@ -82,7 +98,7 @@ main {
       </div>
     </article>
     <article class="card">
-      <img src="https://picsum.photos/320/320" alt="">
+      <img src="../subgrid/imagenes/fadu_20180817_04.jpg" alt="FADU 4">
       <div class="card__textos">
         <h3>Ficha 2</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed beatae cumque et? Pariatur dolores recusandae dolor ut aliquam voluptate praesentium repellat aspernatur nihil quos molestias cum ipsa in perferendis deserunt, iste maiores. Aspernatur, soluta magnam.</p>
@@ -90,7 +106,7 @@ main {
       </div>
     </article>
     <article class="card">
-      <img src="https://picsum.photos/320/320" alt="">
+      <img src="../subgrid/imagenes/fadu_20180817_03.jpg" alt="FADU 3">
       <div class="card__textos">
         <h3>Ficha 3</h3>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum odio iure dignissimos obcaecati ullam magni.</p>
