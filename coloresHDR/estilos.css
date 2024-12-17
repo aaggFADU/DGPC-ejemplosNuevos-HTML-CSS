@@ -1,0 +1,47 @@
+body > .swatch {
+  &:nth-child(1) { background: color(display-p3 1 .8 0) }
+  &:nth-child(2) { background: color(display-p3 1 .6 0) }
+  &:nth-child(3) { background: color(display-p3 1 .45 0) }
+  &:nth-child(4) { background: color(display-p3 1 .3 0) }
+  &:nth-child(5) { background: color(display-p3 1 .1 0) }
+}
+
+body::after {
+  content: "Paleta de colores HDR usando CSS color() y display-p3, tomado de codepen de Adam Argyle";
+  
+  font-size: clamp(2rem, 1.3043rem + 3.4783vw, 4rem);
+  font-weight: bold;
+  text-align: center;
+  text-wrap: balance;
+  
+  color: hsl(0 0% 95%);
+  text-shadow: -2px -2px 2px hsl(0 0% 100%), 2px 2px 2px hsl(0 0% 0%);
+  
+  position: absolute;
+  inset: 0;
+  padding: 1em;
+    
+  display: grid;
+  place-content: center;
+}
+
+
+@layer support {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    block-size: 100%;
+  }
+
+  body {
+    min-block-size: 100%;
+    font-family: system-ui, sans-serif;
+
+    display: grid;
+    grid-auto-flow: column;
+  }
+}
