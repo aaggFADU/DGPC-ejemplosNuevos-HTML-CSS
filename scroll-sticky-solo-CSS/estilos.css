@@ -41,7 +41,7 @@ h3 {
 }
 
 .seccion:nth-child(1) {
-  background: red url(https://picsum.photos/1200?random=1);
+  background: red url(../subgrid/imagenes/fadu_20180817_04.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -49,7 +49,7 @@ h3 {
 }
 
 .seccion:nth-child(2) {
-  background: green url(https://picsum.photos/1200?random=2);
+  background: green url(../subgrid/imagenes/fadu_20180817_03.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -57,7 +57,7 @@ h3 {
 }
 
 .seccion:nth-child(3) {
-  background: yellow url(https://picsum.photos/1200?random=3);
+  background: yellow url(../subgrid/imagenes/fadu_20180817_02.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -65,7 +65,7 @@ h3 {
 }
 
 .seccion:nth-child(4) {
-  background: magenta url(https://picsum.photos/1200?random=4);
+  background: magenta url(../subgrid/imagenes/fadu_20180817_01.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -73,7 +73,7 @@ h3 {
 }
 
 .seccion:nth-child(5) {
-  background: blue url(https://picsum.photos/1200?random=5);
+  background: blue url(../subgrid/imagenes/fadu_20180817_04.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -81,7 +81,7 @@ h3 {
 }
 
 .seccion:nth-child(6) {
-  background: orange url(https://picsum.photos/1200?random=6);
+  background: orange url(../subgrid/imagenes/fadu_20180817_03.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -89,7 +89,7 @@ h3 {
 }
 
 .seccion:nth-child(7) {
-  background: green url(https://picsum.photos/1200?random=7);
+  background: green url(../subgrid/imagenes/fadu_20180817_02.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -97,7 +97,7 @@ h3 {
 }
 
 .seccion:nth-child(9) {
-  background: red url(https://picsum.photos/1200?random=8);
+  background: red url(../subgrid/imagenes/fadu_20180817_01.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
