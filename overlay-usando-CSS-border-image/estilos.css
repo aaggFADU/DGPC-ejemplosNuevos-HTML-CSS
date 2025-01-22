@@ -7,7 +7,7 @@
 y no se puede usar pseudo-elementos */
 
 .container {
-  background: url(https://picsum.photos/600/600) center/cover;
+  background: url(../subgrid/imagenes/fadu_20180817_02.jpg) center/cover;
   color: #fff;
   min-height: 20rem;
   padding: 1rem;
