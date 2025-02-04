@@ -1,3 +1,19 @@
+/* 
+2025
+Permite transiciones visuales fluidas entre distintas páginas de un sitio web, lo que mejora la experiencia del usuario al hacer que la navegación sea más fluida y atractiva.
+Conviene colocar las transiciones dentro de la condición de si el usuario NO prefiere reducir el movimiento por alguna dificultad visual.
+*/
+@media (prefers-reduced-motion: no-preference) {
+
+  @view-transition {
+    navigation: auto;
+  }
+  /*::view-transition-group(root) {
+      animation-duration: 1s; 
+  }*/
+}
+
+
 /* hace que dimensionar sea más simple */
 *,
 *::before,
