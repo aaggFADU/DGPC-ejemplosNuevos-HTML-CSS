@@ -108,4 +108,9 @@ input[type="range"]::-moz-range-thumb {
     box-sizing: unset;
   }
 
+  .descripcion span {
+    opacity: .5;
+    font-style: italic;
+  }
+
 }
