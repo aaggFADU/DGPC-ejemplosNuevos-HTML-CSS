@@ -10,7 +10,7 @@
 
 <body>
 
-  <h1>Calificación con estrellas con sólo CSS</h1>
+  <h1>Calificación con estrellas con sólo HTML yCSS</h1>
 
   <article class="card">
 
@@ -30,7 +30,11 @@
       
     </div>
 
-    <input type="range" min="1" value="3" max="5" name="rating" id="rating">
+    <div class="elrating">
+
+      <label for="rating">Puntuación:</label>
+      <input type="range" min="1" value="3" max="5" name="rating" id="rating">
+    </div>
     <!-- 
       Cambiar el valor del atributo max para cambiar la cantidad de estrellas, en ese caso también debe se actualizar el CSS si attr() no es compatible
   -->

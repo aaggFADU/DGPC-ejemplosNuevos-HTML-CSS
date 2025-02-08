@@ -101,6 +101,9 @@ input[type="range"]::-moz-range-thumb {
     padding: 0 .5em;
   }
 
+  .elrating {
+    display: grid;
+  }
   input[type="range"] {
     box-sizing: unset;
   }
