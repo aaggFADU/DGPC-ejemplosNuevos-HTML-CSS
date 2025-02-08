@@ -64,7 +64,8 @@ input[type="range"]::-moz-range-thumb {
     min-height: 100svh;
     display: grid;
     place-content: center;
-    gap: 4em;
+    gap: 2em;
+    padding-block: 1em;
 
     > * {
       width: min(30rem, 100% - 4rem);
