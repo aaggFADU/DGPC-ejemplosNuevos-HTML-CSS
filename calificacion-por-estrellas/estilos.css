@@ -68,7 +68,7 @@ input[type="range"]::-moz-range-thumb {
     padding-block: 1em;
 
     > * {
-      width: min(30rem, 100% - 4rem);
+      width: min(40rem, 100% - 4rem);
       margin: 0 auto;
     }
   }
