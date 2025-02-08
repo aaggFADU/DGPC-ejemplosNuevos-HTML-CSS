@@ -1,0 +1,155 @@
+.card {
+  width: min(100% - 4rem, 50ch);
+  height: min(50vh, 50ch);
+  background-color: white;
+  clip-path: polygon(
+    0% 60px,
+    10px 50px,
+    90px 50px,
+    100px 40px,
+    100px 10px,
+    110px 0px,
+    calc(100% - 10px) 0px,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0% calc(100% - 10px)
+  );
+}
+
+@layer reset {
+
+  /* hace que dimensionar sea más simple */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  /* 
+  se propone tb:
+
+  html { box-sizing: border-box; }
+  *, *:before, *:after { box-sizing: inherit;}
+
+  Esto dará el mismo resultado y facilitará el cambio de la propiedad `box-sizing` en plugins u otros componentes que utilicen un comportamiento diferente.
+  */
+  }
+
+  /* Elimina espaciado predeterminado */
+  /* Obliga que estilo de la tipografía se defina a través de estilos, en lugar de elementos */
+  * {
+    margin: 0; /* tal vez */
+    padding: 0; /* tal vez */
+    font: inherit; /* tal vez */
+  }
+
+  :root {
+    /* Estilos de agente de usuario para el modo claro / oscuro */
+    color-scheme: dark light;
+
+    /* Mejora la puntuación en navegadores compatibles */
+    hanging-punctuation: first last;
+    
+    /* Evitar el aumento del tamaño de fuente en celulares IOS */
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+
+    /* interlineado ampliado (aquí en lugar de en "body" para mayor control en diferentes situaciones) */
+    line-height: 1.6;
+    
+    /* Permite animar, por ejemplo, a "height: auto;" o desde "display: none;" o  */
+    @supports (interpolate-size: allow-keywords) {
+      interpolate-size: allow-keywords;
+    }
+
+  }
+
+  /* altura mínima: ventana del navegador */
+  body {
+    min-block-size: 100svh;
+  }
+
+  /* imágenes/videos adaptables */
+  img,
+  picture,
+  svg,
+  video {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  /* Encabezados mejorados en navegadores compatibles */
+  h1,
+  h2,
+  h3,
+  h4,
+  button,
+  input,
+  label,
+  optgroup,
+  select,
+  textarea {
+    text-wrap: balance;
+    line-height: 1.1;
+  }
+
+  /* Mejora la legibilidad con max-width en párrafos y listas */
+  /* Evita huérfanos en navegadores compatibles */
+  p,
+  li,
+  figcaption {
+    max-inline-size: var(--p-ancho-maximo, 75ch);
+    text-wrap: pretty;
+  }
+
+  /* transforma en "contenedores" cuyas medidas
+  puedes ser evaluadas para decidir
+  disposición de elementos contenidos
+  usando "@container" */
+  header,
+  footer,
+  main,
+  section,
+  article {
+    container-type: inline-size;
+  }
+
+  /*  botones e inputs de formularios heredan tipografía */
+  input,
+  button,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+
+  /* Relleno superior para que el destino de un link
+  no quede oculto por un header sticky  */
+  :root { scroll-padding-top: var(--altura-header, 4rem); }
+
+  /* Scroll suave, si NO se prefiere eliminar animaciones */
+  @media (prefers-reduced-motion: no-preference) {
+    :root { scroll-behavior: smooth; }
+  }
+
+
+
+  /* 
+  -----
+  -----
+  -----
+  -----
+  */
+
+
+
+  body {
+    display: grid;
+    place-items: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  }
+
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calificación con estrellas con CSS</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+  <h1>Calificación con estrellas con sólo CSS</h1>
+
+  <article class="card">
+
+    <h2>Input con mask</h2>
+
+    <div class="descripcion">
+
+      <p>
+        La calificación se establece con un elemento <code>&lt;input type="range"&gt;</code> con atributos <code>min="1"</code>, <code>max="5"</code> y valor inicial <code>value="3"</code>.
+      </p>
+      <p>
+        El valor del atributo <code>max</code> se usa para determinar el número de estrellas.
+      </p>
+      <p>
+        La apariencia del elemento se obtiene usando la propiedad CSS <code>mask</code>.
+      </p>
+      
+    </div>
+
+    <input type="range" min="1" value="3" max="5" name="rating" id="rating">
+    <!-- 
+      Cambiar el valor del atributo max para cambiar la cantidad de estrellas, en ese caso también debe se actualizar el CSS si attr() no es compatible
+  -->
+  </article>
+
+  <p>Tomado de <a href="https://codepen.io/t_afif/pen/GgKYbee" target="_blank">Codepen de Temani Afif</a></p>
+  
+</body>
+
+</html>
