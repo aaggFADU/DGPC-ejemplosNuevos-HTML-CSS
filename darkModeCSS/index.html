@@ -12,30 +12,48 @@
 <body>
 
 <header>
+
   <div class="header-content">
 
     <div class="logo">WebDesign</div>
     
-    <div class="theme-toggle-wrapper">
+    <div class="theme-toggle-wrapper" role="group" aria-label="Selector de tema">
 
-        <input type="checkbox" id="theme-toggle">
+        <input
+          type="checkbox"
+          id="theme-toggle"
+          aria-label="Cambiar entre modo oscuro y claro">
 
         <label for="theme-toggle" class="theme-toggle-label">
 
-          <svg class="moon-icon" viewBox="0 0 24 24">
-            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
+          <svg
+            class="moon-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true" 
+            focusable="false"
+            role="presentation">
+              <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
           </svg>
             
-          <svg class="sun-icon" viewBox="0 0 48 48" width="48" height="48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="12" />
-            <line x1="24" y1="2" x2="24" y2="10" stroke="currentColor" stroke-width="2" />
-            <line x1="24" y1="38" x2="24" y2="46" stroke="currentColor" stroke-width="2" />
-            <line x1="2" y1="24" x2="10" y2="24" stroke="currentColor" stroke-width="2" />
-            <line x1="38" y1="24" x2="46" y2="24" stroke="currentColor" stroke-width="2" />
-            <line x1="8.5" y1="8.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="2" />
-            <line x1="33.5" y1="33.5" x2="39.5" y2="39.5" stroke="currentColor" stroke-width="2" />
-            <line x1="8.5" y1="39.5" x2="14.5" y2="33.5" stroke="currentColor" stroke-width="2" />
-            <line x1="33.5" y1="14.5" x2="39.5" y2="8.5" stroke="currentColor" stroke-width="2" />
+          <svg
+            class="sun-icon"
+            viewBox="0 0 48 48"
+            width="48"
+            height="48"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true" 
+            focusable="false"
+            role="presentation">
+              <circle cx="24" cy="24" r="12" />
+              <line x1="24" y1="2" x2="24" y2="10" stroke="currentColor" stroke-width="2" />
+              <line x1="24" y1="38" x2="24" y2="46" stroke="currentColor" stroke-width="2" />
+              <line x1="2" y1="24" x2="10" y2="24" stroke="currentColor" stroke-width="2" />
+              <line x1="38" y1="24" x2="46" y2="24" stroke="currentColor" stroke-width="2" />
+              <line x1="8.5" y1="8.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="2" />
+              <line x1="33.5" y1="33.5" x2="39.5" y2="39.5" stroke="currentColor" stroke-width="2" />
+              <line x1="8.5" y1="39.5" x2="14.5" y2="33.5" stroke="currentColor" stroke-width="2" />
+              <line x1="33.5" y1="14.5" x2="39.5" y2="8.5" stroke="currentColor" stroke-width="2" />
           </svg>
               
         </label>
@@ -59,30 +77,35 @@
 
   </section>
 
-    <section class="articles-section">
+  <section class="articles-section">
 
-        <h2>Artículos Destacados</h2>
-        <div class="articles-grid">
-            <article class="article-card">
-                <div class="article-content">
-                    <h3>Tendencias de Diseño 2024</h3>
-                    <p>Descubre las últimas tendencias en diseño web y cómo implementarlas en tus proyectos.</p>
-                </div>
-            </article>
-            <article class="article-card">
-                <div class="article-content">
-                    <h3>Accesibilidad Web</h3>
-                    <p>Aprende a crear sitios web inclusivos que todos puedan usar y disfrutar.</p>
-                </div>
-            </article>
-            <article class="article-card">
-                <div class="article-content">
-                    <h3>Diseño Responsivo</h3>
-                    <p>Técnicas avanzadas para crear experiencias perfectas en todos los dispositivos.</p>
-                </div>
-            </article>
-        </div>
-    </section>
+    <h2>Artículos Destacados</h2>
+
+    <div class="articles-grid">
+
+      <article class="article-card">
+          <div class="article-content">
+              <h3>Tendencias de Diseño 2024</h3>
+              <p>Descubre las últimas tendencias en diseño web y cómo implementarlas en tus proyectos.</p>
+          </div>
+      </article>
+      <article class="article-card">
+          <div class="article-content">
+              <h3>Accesibilidad Web</h3>
+              <p>Aprende a crear sitios web inclusivos que todos puedan usar y disfrutar.</p>
+          </div>
+      </article>
+      <article class="article-card">
+          <div class="article-content">
+              <h3>Diseño Responsivo</h3>
+              <p>Técnicas avanzadas para crear experiencias perfectas en todos los dispositivos.</p>
+          </div>
+      </article>
+
+    </div>
+
+  </section>
+
 </main>
 
 <footer>

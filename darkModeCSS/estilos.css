@@ -3,8 +3,8 @@
   --bg-secondary: #252525;
   --text-primary: #ffffff;
   --text-secondary: #e0e0e0;
-  --accent: hsl(255 83% 58%);
-  --accent-hover: hsl(255 70% 50%);
+  --accent: hsl(250 83% 58%);
+  --accent-hover: hsl(250 70% 50%);
 
   --bg-primary-alpha-20: hsl(from var(--bg-primary) h s l / 20%);
   --bg-secondary-alpha-20: hsl(from var(--bg-secondary) h s l / 20%);
@@ -26,8 +26,8 @@
   --bg-secondary: #f5f5f5;
   --text-primary: #1a1a1a;
   --text-secondary: #4a4a4a;
-  --accent: #6d28d9;
-  --accent-hover: #5b21b6;
+  --accent: hsl(250 70% 50%);
+  --accent-hover: hsl(250 69% 42%);
 }
 
 *,
@@ -72,6 +72,7 @@ header {
   top: 0;
   z-index: 10;
   box-shadow: 0 2px 4px hsl(0 0% 0% / 10%);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
