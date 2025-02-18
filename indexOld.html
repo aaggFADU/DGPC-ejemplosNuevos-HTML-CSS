@@ -46,15 +46,6 @@
 
 </header>
 
-<div class="contenedora search-container">
-  <input 
-    type="search" 
-    id="filterInput" 
-    placeholder="Filtrar por palabras clave..."
-    aria-label="Filtrar ejemplos"
-  >
-</div>
-
 <main class="contenedora">
 
   <ul>
@@ -136,24 +127,6 @@
     Muchos de los ejemplos son inspirados o tomados de artículos, videos, tutoriales disponibles en la web. Se irán indicando las fuentes
   </p>
 </footer>
-
-<script>
-  const filterInput = document.getElementById('filterInput');
-  const links = document.querySelectorAll('main ul li');
-
-  filterInput.addEventListener('input', function(e) {
-    const searchTerm = e.target.value.toLowerCase();
-
-    links.forEach(link => {
-      const text = link.textContent.toLowerCase();
-      if (text.includes(searchTerm)) {
-        link.style.display = '';
-      } else {
-        link.style.display = 'none';
-      }
-    });
-  });
-</script>
-
+  
 </body>
 </html>

@@ -93,6 +93,9 @@ a {
   line-height: 1.2;
 }
 
+p {
+  text-wrap: pretty;
+}
 
 /* si NO se prefiere eliminar animaciones */
 @media (prefers-reduced-motion: no-preference) {
@@ -173,7 +176,7 @@ ul {
 }
 
 footer p {
-  color: hsl(from var(--text-secondary) h s l / 50%)
+  color: hsl(from var(--text-secondary) h s l / 50%);
 }
 
 
@@ -266,4 +269,33 @@ header {
 
 :root:has(#theme-toggle:checked) .moon-icon {
   opacity: 0;
+}
+
+
+/* Filtro de búsqueda */
+
+.search-container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#filterInput {
+  width: min(100%, 500px);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: solid 1px var(--accent-alpha-20);
+  border-radius: 100vw;
+  background-color: hsl(from var(--accent-alpha-20) h s l / 1%);
+  color: hsl(from var(--accent) h 75% l / 75%);
+
+  ::placeholder {
+    color: hsl(from var(--accent) h 75% l / 75%);
+  }
+}
+
+#filterInput:focus-visible {
+  outline: none;
+  color: var(--accent-hover);
+  background-color: var(--bg-secondary-alpha-20);
+  box-shadow: 0 0 0 2px var(--accent-alpha-20, rgba(74, 158, 255, 0.2));
 }

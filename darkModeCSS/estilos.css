@@ -9,6 +9,7 @@
   --bg-primary-alpha-20: hsl(from var(--bg-primary) h s l / 20%);
   --bg-secondary-alpha-20: hsl(from var(--bg-secondary) h s l / 20%);
   --text-primary-alpha-20: hsl(from var(--text-primary) h s l / 20%);
+  --text-secondary-alpha-10: hsl(from var(--text-secondary) h s l / 10%);
   --text-secondary-alpha-20: hsl(from var(--text-secondary) h s l / 20%);
   --accent-alpha-20: hsl(from var(--accent) h s l / 20%);
   --accent-hover-alpha-20: hsl(from var(--accent-hover) h s l / 20%);
@@ -66,7 +67,7 @@ figcaption {
 }
 
 header {
-  background-color: var(--text-secondary-alpha-20);
+  background-color: var(--text-secondary-alpha-10);
   padding-block: 1rem;
   position: sticky;
   top: 0;
