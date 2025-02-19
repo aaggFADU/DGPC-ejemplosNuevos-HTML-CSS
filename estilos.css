@@ -65,7 +65,7 @@ body {
   /* 😝 */
 
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
 }
 
 body > * {
@@ -129,9 +129,9 @@ ul {
 
   display: grid;
   grid-template-columns: repeat(
-    auto-fit,
+    auto-fill,
     minmax(
-      min(100%, 220px),
+      min(100%, 12.5rem),
       1fr)
   );
   gap: clamp(0.75rem, 0.663rem + 0.4348vw, 1rem);

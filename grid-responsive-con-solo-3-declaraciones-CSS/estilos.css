@@ -19,6 +19,18 @@
           100%),
         1fr)
       );
+      /*
+      en una línea:
+      grid-template-columns: repeat(auto-fit, minmax(min(var(--tamanio), 100%), 1fr));
+
+      Crea una plantilla de columnas que:
+        - Ajusta automáticamente el número de columnas y las estira (auto-fit)
+        - Ajusta automáticamente el tamaño de las columnas (minmax()) con un tamaño mínimo y un tamaño máximo definido por el espacio disponible (1fr)
+        - Asegura que ninguna columna sea más ancha que el contenedor (min())
+        - El tamaño mínimo es definido por la variable "--tamanio" (20rem)
+        - El tamaño máximo es el del contenedor (100%)
+        Todo esto sin necesidad de media queries
+      */
 
     /* espacio entre elementos de la cuadrícula */
     gap: var(--gap);
