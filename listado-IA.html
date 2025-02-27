@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Herramientas de IA</title>
+    <style>
+        :root {
+            --primary-color: hsl(215 70% 78%);
+            --bg-color: hsl(215 44% 7%);
+            --text-color: hsl(215 40% 98%);
+            --hover-color: hsl(215 97% 87%);
+            --card-bg: hsl(215 33% 15%);
+            --item-bg: hsl(215 21% 21%);
+            --item-hover: hsl(215 20% 28%);
+            --description-color: hsl(215 27% 84%);
+            font-size: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-color);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        .category {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .link-item {
+            padding: 0.75rem;
+            background: var(--item-bg);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover {
+            background: var(--item-hover);
+            transform: translateY(-2px);
+        }
+
+        .description {
+            font-size: 0.9rem;
+            color: var(--description-color);
+            margin-top: 0.25rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+            /* Added bold */
+        }
+
+        a:hover {
+            color: var(--hover-color);
+        }
+
+        .description {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Recursos con Inteligencia Artificial</h1>
+
+        <section class="category chat">
+            <h2>Chats y Asistentes</h2>
+            <div class="links">
+                <article class="link-item">
+                    <a href="https://chat.openai.com/">ChatGPT</a>
+                    <div class="description">
+                        El asistente de IA más popular de OpenAI
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://claude.ai/chats">Claude</a>
+                    <div class="description">Asistente de IA de Anthropic</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://chat.deepseek.com/">Deep Seek</a>
+                    <div class="description">
+                        Asistente conversacional especializado
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://chat.qwenlm.ai/">Qwen 2.5-max</a>
+                    <div class="description">Chat (web hasta dic. 2024)</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://gemini.google.com/?hl=es">Gemini</a>
+                    <div class="description">
+                        El modelo de lenguaje más avanzado de Google
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://chat.mistral.ai/chat">Mistral AI</a>
+                    <div class="description">Chat basado en el modelo Mistral</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/chat/">Hugging Chat</a>
+                    <div class="description">Chat de Hugging Face</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://poe.com/">Poe</a>
+                    <div class="description">
+                        Plataforma con múltiples modelos de IA
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.morphic.sh/">Morphic</a>
+                    <div class="description">Asistente conversacional</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://storm.genie.stanford.edu/">Storm</a>
+                    <div class="description">Asistente de Stanford.edu</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://kimi.moonshot.cn/">Kimi</a>
+                    <div class="description">Código hasta 09/2023</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://playground.allenai.org/">Allen AI</a>
+                    <div class="description">Playground (hasta 2023)</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://glif.app/@AP/glifs/clzbm2qvb000113zgz4a9r1wj">Glif</a>
+                    <div class="description">Mejorador de prompts (para flux)</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/gokaygokay/FLUX-Prompt-Generator">FLUX-Prompt-Generator</a>
+                    <div class="description">Generador de prompts en Huggingface</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.prompthackers.co/">Prompt Hackers</a>
+                    <div class="description">Mejorador de prompts</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://chatgpt.com/g/g-678faa261f888191946af0ba95a374af-runway-frames-prompt-builder">Runway
+                        Frames Prompt Builder</a>
+                    <div class="description">
+                        Constructor de prompts para Runway en ChatGPT
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://chatgpt.com/g/g-71Fq47Ec6-minimax-cinemotion-prompter">Minimax Cinemotion
+                        Prompter</a>
+                    <div class="description">Prompter de Minimax en ChatGPT</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://platform.openai.com/api-keys">API-keys OpenAI</a>
+                    <div class="description">Gestión de claves API de OpenAI</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://lmarena.ai/">LM Arena</a>
+                    <div class="description">Plataforma para probar y comparar diferentes modelos de IA</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="category imagen">
+            <h2>Herramientas generales y para imágenes</h2>
+            <div class="links">
+                <article class="link-item">
+                    <a href="https://aitestkitchen.withgoogle.com/">Google AI Test Kitchen</a>
+                    <div class="description">Image FX, video FX, music FX</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces">Huggingface Spaces</a>
+                    <div class="description">
+                        Plataforma de modelos y espacios de IA
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.recraft.ai/">Recraft AI</a>
+                    <div class="description">Red Panda</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.meta.ai/">Meta AI</a>
+                    <div class="description">Plataforma de IA de Meta</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://dreamina.capcut.com/ai-tool/home">Dreamina</a>
+                    <div class="description">Herramientas de CapCut</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.blendbox.ai/create">Blendbox</a>
+                    <div class="description">Imágenes compuestas</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://openart.ai/create">Open Art AI</a>
+                    <div class="description">Generación de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://replicate.com/black-forest-labs/flux-dev">Flux Dev</a>
+                    <div class="description">Texto a imagen</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://github.com/Alpha-VLLM/Lumina-Image-2.0">Lumina-Image-2.0</a>
+                    <div class="description">Generación de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev">Flux.1 Dev</a>
+                    <div class="description">Flux en Huggingface</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/XLabs-AI/flux-RealismLora">Flux-RealismLora</a>
+                    <div class="description">Lora realista en Huggingface</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://fluxpro.art/create">Flux Pro Art</a>
+                    <div class="description">Flux libre sin censura</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://fastflux.ai/">Fast Flux</a>
+                    <div class="description">Generación rápida con Flux</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://dezgo.com/text2image/sdxl">Dezgo</a>
+                    <div class="description">Generación con Flux</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/deepseek-ai/Janus-Pro-7B">Janus-Pro-7B</a>
+                    <div class="description">Modelo Deepseek</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.leonardo.ai/">Leonardo AI</a>
+                    <div class="description">Plataforma de generación de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://tensor.art/">Tensor Art</a>
+                    <div class="description">Diversos generadores de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.rendernet.ai/">RenderNet</a>
+                    <div class="description">Plataforma de renderizado</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://civitai.com/">Civit AI</a>
+                    <div class="description">Varios modelos incluye Flux</div>
+                </article>
+                <article class="link-item">
+                    <a
+                        href="https://colab.research.google.com/github/lllyasviel/Fooocus/blob/main/fooocus_colab.ipynb">Fooocus</a>
+                    <div class="description">Generador de imágenes en Colab</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.segmind.com/models/flux-realism-lora">Segmind Flux-realism-lora</a>
+                    <div class="description">24 generaciones gratis</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://fal.ai/models/fal-ai/flux-realism">Flux-realism LORA</a>
+                    <div class="description">Versión de pago</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://rendernet.ai/">RenderNet</a>
+                    <div class="description">Caracteres, upscale, lip sync</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.apob.ai/">Apob</a>
+                    <div class="description">Influencers virtuales</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://ideogram.ai/">Ideogram AI</a>
+                    <div class="description">Text to image</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.krea.ai/apps/image/realtime">Krea AI</a>
+                    <div class="description">Generación en tiempo real</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.piclumen.com/">Pic Lumen</a>
+                    <div class="description">Generación de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.aiease.ai/es/">AI Ease</a>
+                    <div class="description">Herramientas para imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.freepik.es/ia/generador-de-imagenes#from_element=home_tools">Freepik</a>
+                    <div class="description">Generador de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.freepik.com/pikaso/">Freepik Pikaso</a>
+                    <div class="description">Dibujo con IA gratuito</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://seaart.ai/es">Sea Art</a>
+                    <div class="description">Generador de arte AI - varios</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.basedlabs.ai/apps">Based Labs</a>
+                    <div class="description">Apps - all in one</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://dreamer.lab24.ai/generate">Dreamer</a>
+                    <div class="description">Generación de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/multimodalart/stable-cascade">Stable Cascade</a>
+                    <div class="description">Stable Diffusion mejorado</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://playgroundai.com/">Playground</a>
+                    <div class="description">Creador de imágenes con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.shakker.ai/">Shakker AI</a>
+                    <div class="description">Image to image AI</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://cgdream.ai/">CGDream</a>
+                    <div class="description">Creador de imágenes con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://getimg.ai/">Get Img AI</a>
+                    <div class="description">Generación de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.switchlight.beeble.ai/">SwitchLight</a>
+                    <div class="description">Edición de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://lexica.art/">Lexica</a>
+                    <div class="description">Buscador y generador de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/AI4Editing/MagicQuill">MagicQuill</a>
+                    <div class="description">Editor de imágenes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://hotpot.ai/">Hotpot</a>
+                    <div class="description">Conjunto de herramientas</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://pixnova.ai/">Pix Nova</a>
+                    <div class="description">Herramientas para imagen</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://gamma.app/?lng=es-ES">Gamma</a>
+                    <div class="description">Creación de presentaciones</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/jbilcke-hf/ai-comic-factory">AI Comic Factory</a>
+                    <div class="description">Generación de cómics</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.artflow.ai/character-builder?feature=actors">Artflow AI</a>
+                    <div class="description">Herramienta de narración con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.canva.com/your-apps">Canva</a>
+                    <div class="description">Diseño con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.promeai.pro/es">Prome AI</a>
+                    <div class="description">Asistentes de diseño y marketing</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://domoai.app/">DomoAI</a>
+                    <div class="description">Generador de arte con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.upscayl.org/">Upscayl</a>
+                    <div class="description">App para instalar</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.upscale.media/es">Upscale</a>
+                    <div class="description">Mejora de calidad de imagen</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://bigjpg.com/">Bigjpg</a>
+                    <div class="description">Ampliación sin pérdida</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.pixelcut.ai/es">Pixelcut</a>
+                    <div class="description">Herramientas para imagen y ampliación</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.dzine.ai/">Dzine (Stylar)</a>
+                    <div class="description">Imagen a video y cambio de estilo</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.scenario.com/">Scenario</a>
+                    <div class="description">Personajes consistentes</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/yanze/PuLID-FLUX">PuLID-FLUX</a>
+                    <div class="description">
+                        Personajes consistentes en Huggingface
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/tuan2308/face-swap">Face Swap</a>
+                    <div class="description">Intercambio de rostros en Huggingface</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://remaker.ai/en">Remaker</a>
+                    <div class="description">Generador de contenido creativo</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://dgb.lol/">DGB.lol</a>
+                    <div class="description">Tratamiento de imágenes con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://infografix.app/">Infografix</a>
+                    <div class="description">Infografías con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://perchance.org/ai-text-to-image-generator">Perchance</a>
+                    <div class="description">Generador de imágenes desde texto</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="category web">
+            <h2>Desarrollo Web</h2>
+            <div class="links">
+                <article class="link-item">
+                    <a href="https://www.relume.io/">Relume</a>
+                    <div class="description">De texto a sitemap y wireframe</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.trae.ai/">Trae AI</a>
+                    <div class="description">Asistente de programación inteligente</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://bolt.new/">Bolt</a>
+                    <div class="description">De StackBlitz</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://lovable.dev/">Lovable</a>
+                    <div class="description">Idea to app in seconds</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.blackbox.ai/">Blackbox</a>
+                    <div class="description">
+                        AI Code Generation, Code Chat, Code Search
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://replit.com/">Replit</a>
+                    <div class="description">Built software faster</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://codellm.abacus.ai/">Code LLM</a>
+                    <div class="description">Pago</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://llamacoder.together.ai/">Llama Coder</a>
+                    <div class="description">Asistente de programación</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://ai.mobirise.com/">Mobirise AI</a>
+                    <div class="description">Constructor de sitios web</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://soloist.ai/">Solo AI</a>
+                    <div class="description">Constructor de sitios web</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.zipwp.com/">ZipWP</a>
+                    <div class="description">Constructor WordPress con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.usegalileo.ai/">Galileo AI</a>
+                    <div class="description">UI generation platform</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://console.groq.com/playground">Groq Playground</a>
+                    <div class="description">Entorno de desarrollo IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.napkins.dev/">Napkins Dev</a>
+                    <div class="description">De screenshot a webapp con React</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://creatie.ai/">Creatie</a>
+                    <div class="description">AI-powered product design software</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://v0.dev/">V0 by Vercel</a>
+                    <div class="description">Generación de interfaces web con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://websim.ai/">Web Sim</a>
+                    <div class="description">Simulador web con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://purecode.ai/">Pure Code AI</a>
+                    <div class="description">Generación de código limpio</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://cerebrascoder.com/">Cerebras Coder</a>
+                    <div class="description">Asistente de programación</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/osanseviero/gemini-coder">Gemini Coder</a>
+                    <div class="description">Gemini coder en Hugging Face</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://web.lmarena.ai/">Web Dev Arena</a>
+                    <div class="description">Compara modelos IA en desarrollo web</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://chat.deepseek.com/">DeepSeek</a>
+                    <div class="description">Asistente de desarrollo</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.tempolabs.ai/">Tempo Labs AI</a>
+                    <div class="description">Apps con React</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.reweb.so/">ReWeb</a>
+                    <div class="description">Visual builder for Next.js & Tailwind</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="category archivos">
+            <h2>A partir de medios</h2>
+            <div class="links">
+                <article class="link-item">
+                    <a href="https://notebooklm.google.com/">Notebook LM</a>
+                    <div class="description">
+                        Google - Análisis de documentos con IA
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://learning.google.com/experiments/learn-about/signup">Learn About</a>
+                    <div class="description">Experimentos de aprendizaje de Google</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://unstuckstudy.com/">Unstuck Study</a>
+                    <div class="description">
+                        Análisis desde YouTube u otros archivos
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://videohighlight.com/">Video Highlight</a>
+                    <div class="description">
+                        Análisis desde Youtube, Vimeo o DailyMotion
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/wjbmattingly/caracal">Caracal</a>
+                    <div class="description">Identifica texto manuscrito</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="category musica">
+            <h2>Música y Voces</h2>
+            <div class="links">
+                <article class="link-item">
+                    <a href="https://app.suno.ai/create">Suno AI</a>
+                    <div class="description">Generación de música con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.udio.com/">Udio</a>
+                    <div class="description">Herramienta de música con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.riffusion.com/">Riffusion</a>
+                    <div class="description">Generación de música y sonidos</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.mureka.ai/create">Mureka</a>
+                    <div class="description">Creación musical con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.kits.ai/">Kits AI</a>
+                    <div class="description">Herramientas de audio con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://pro.splashmusic.com/">Splash Pro</a>
+                    <div class="description">Generador de música con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://sonauto.ai/Home">Son Auto AI</a>
+                    <div class="description">Automatización de audio</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.songr.ai/">SongR</a>
+                    <div class="description">Creación de canciones con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.loudly.com/music/ai-music-generator">Loudly</a>
+                    <div class="description">Generador de música con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.tryreplay.io/">Try Replay</a>
+                    <div class="description">Herramienta de música con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://studio.moises.ai/library/">Moises AI</a>
+                    <div class="description">Separación de voces e instrumentos</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.hedra.com/app/characters">Hedra</a>
+                    <div class="description">Creación de personajes y voces</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://weights.gg/es">Weights GG</a>
+                    <div class="description">Generación de voces</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/mrfakename/E2-F5-TTS">E2-F5-TTS</a>
+                    <div class="description">Clonación de voces en Huggingface</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/redradios/F5-TTS-Sp">Spanish-F5</a>
+                    <div class="description">TTS en español en Huggingface</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://create.musicfy.lol/create/voice">Musicfy</a>
+                    <div class="description">Generación de voces</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.lalal.ai/es/">Lalal AI</a>
+                    <div class="description">Extracción de voces y instrumentos</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.synclabs.so/playground/lip-sync">Synclabs</a>
+                    <div class="description">Sincronización de audio y video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.irocketvpn.com/ai-voice-generator/">AI Voice Generator</a>
+                    <div class="description">App para generar voces</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://elevenlabs.io/speech-synthesis">ElevenLabs</a>
+                    <div class="description">El mejor para síntesis de voz</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://fakeyou.com/">Fake You</a>
+                    <div class="description">Clonación de voces</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://play.ht/">Play HT</a>
+                    <div class="description">Generación de voces</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.kits.ai/convert">Kits AI Convert</a>
+                    <div class="description">Convertidor de voz</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://play.cartesia.ai/text-to-speech">Cartesia</a>
+                    <div class="description">Text-to-speech</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://lalamu.studio/demo/demo.html">Lalamu Studio</a>
+                    <div class="description">Sincronización de voz y video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/H-Liu1997/TANGO">TANGO</a>
+                    <div class="description">Sincronización en Huggingface</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/OpenSound/EzAudio">EzAudio</a>
+                    <div class="description">Generador de audio de alta calidad</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://multimedia.easeus.com/es/vocal-remover/">EaseUS Vocal Remover</a>
+                    <div class="description">Separador de pistas</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://applio.org/">Applio</a>
+                    <div class="description">Text to speech</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.text-to-speech.online/">Text-to-Speech Online</a>
+                    <div class="description">
+                        Voces gratuitas con diferentes acentos
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://riverside.fm/transcription">Riverside FM</a>
+                    <div class="description">Transcripción de audio y video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://fish.audio/">Fish Audio</a>
+                    <div class="description">Herramientas de audio con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://mangoanimate.com/ai">MangoAnimate AI</a>
+                    <div class="description">Animación y audio con IA</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="category video">
+            <h2>Video</h2>
+            <div class="links">
+                <article class="link-item">
+                    <a href="https://runwayml.com/">Runway</a>
+                    <div class="description">Edición y generación de video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://klingai.com/">Kling AI</a>
+                    <div class="description">Generación de video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://hailuoaifree.com/es">MiniMax</a>
+                    <div class="description">Text to video de Alibaba (chino)</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://hailuoai.video/create">Hailuoai Minimax</a>
+                    <div class="description">Plataforma de creación de video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://chatgpt.com/g/g-71Fq47Ec6-minimax-cinemotion-prompter">Minimax Cinemotion
+                        Prompter</a>
+                    <div class="description">
+                        Generador de prompts para video en ChatGPT
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://kaiber.ai/superstudio">Kaiber Superstudio</a>
+                    <div class="description">Estudio de creación de video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.hedra.com/">Hedra</a>
+                    <div class="description">
+                        Video, personajes e historias con control creativo
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.ltx.studio/">LTX Studio</a>
+                    <div class="description">Videos largos con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://lumalabs.ai/dream-machine/creations">Luma Labs</a>
+                    <div class="description">Texto a video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/fffiloni/liveportrait-vid2vid">Liveportrait-vid2vid</a>
+                    <div class="description">Lip sync en Huggingface.co</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.vidu.studio/">Vidu Studio</a>
+                    <div class="description">Estudio de video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://pika.art/">Pika</a>
+                    <div class="description">Generación de video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://yuewen.cn/videos">Jia Qing / Yuewen</a>
+                    <div class="description">Plataforma de videos</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.skyreels.ai/home">SkyReels AI</a>
+                    <div class="description">Creación de videos con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://tensor.art/">Tensor Art</a>
+                    <div class="description">
+                        Diversos generadores de imágenes y video
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://hotshot.co/">Hot Shot</a>
+                    <div class="description">Text to video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://vivago.ai/video">Viva Go</a>
+                    <div class="description">Imagen y video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://viggle.ai/">Viggle AI</a>
+                    <div class="description">Generación controlable de video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.pixverse.ai/">Pixverse</a>
+                    <div class="description">Imagen/texto a video</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.morphstudio.com/">Morph Studio</a>
+                    <div class="description">Estudio de video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.revid.ai/">Revid AI</a>
+                    <div class="description">Plataforma de video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.genmo.ai/">Genmo</a>
+                    <div class="description">Creación de videos e imágenes con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/THUDM/CogVideoX-5B-Space">CogVideoX-5B</a>
+                    <div class="description">
+                        Image y video a video - por ahora libre
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://app.clipchamp.com/">Clipchamp</a>
+                    <div class="description">Editor de video con IA de Microsoft</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://moonvalley.ai/">Moonvalley</a>
+                    <div class="description">Animate your ideas</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://haiper.ai/">Haiper</a>
+                    <div class="description">
+                        Generación de contenido de video con IA
+                    </div>
+                </article>
+                <article class="link-item">
+                    <a href="https://plaiday.io/discord/">Plaiday</a>
+                    <div class="description">Texto a video en Discord</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://lensgo.ai/">Lensgo</a>
+                    <div class="description">Imágenes y video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.synthesia.io/">Synthesia</a>
+                    <div class="description">Videos de avatares ultraexpresivos</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://akool.com/">A Kool</a>
+                    <div class="description">Varias herramientas de IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.topview.ai/">Top View</a>
+                    <div class="description">Plataforma de video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://wonderdynamics.com/">Wonder Dynamics</a>
+                    <div class="description">Efectos visuales con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://tost.ai/">Tost AI</a>
+                    <div class="description">
+                        Video con Flux, Lora y otras aplicaciones
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="category 3D">
+            <h2>3D</h2>
+            <div class="links">
+                <article class="link-item">
+                    <a href="https://www.vizcom.ai/">Vizcom</a>
+                    <div class="description">Herramientas de diseño 3D con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/shariqfarooq/ZoeDepth">ZoeDepth</a>
+                    <div class="description">Imagen a 3D</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.tripo3d.ai/">Tripo 3D</a>
+                    <div class="description">De imagen a modelo</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.csm.ai/">CSM AI</a>
+                    <div class="description">3D from images</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://monstermash.zone/">Monstermash Zone</a>
+                    <div class="description">Creación de modelos 3D</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://huggingface.co/spaces/JeffreyXiang/TRELLIS">TRELLIS</a>
+                    <div class="description">Generación 3D en Huggingface</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.meshy.ai/">Meshy AI</a>
+                    <div class="description">Generación de modelos 3D</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.blendergpt.org/">BlenderGPT</a>
+                    <div class="description">IA para Blender</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="category youtube">
+            <h2>Canales de YouTube</h2>
+            <div class="links">
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@DotCSV/videos">DotCSV</a>
+                    <div class="description">Canal sobre IA y aprendizaje automático</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@DotCSVLab/videos">DotCSV Lab</a>
+                    <div class="description">Experimentos y tutoriales de IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@TheoreticallyMedia/videos">Theoretically Media</a>
+                    <div class="description">Análisis teórico de tecnologías IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@mreflow/videos">Matt Wolfe</a>
+                    <div class="description">Tutoriales y novedades sobre IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@XavierMitjana/videos">Xavier Mitjana</a>
+                    <div class="description">Contenido sobre IA en español</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@techhalla/videos">Techhalla</a>
+                    <div class="description">Noticias y análisis de tecnología IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@johansolutionsdigitales/videos">Johan Solutions Digitales</a>
+                    <div class="description">Tutoriales y soluciones con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@futurepedia_io/videos">Futurepedia</a>
+                    <div class="description">Novedades y herramientas de IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@MattVidPro/videos">MattVidPro AI</a>
+                    <div class="description">Producción de video con IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@curiousrefuge/videos">Curious Refuge</a>
+                    <div class="description">Exploración de tecnologías IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@AIWebbTV/videos">AI Webb TV</a>
+                    <div class="description">Noticias y actualizaciones de IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@aicontroversy/videos">AI Controversy</a>
+                    <div class="description">Debates y análisis crítico sobre IA</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@elomaquiabelo/videos">Elomaquiabelo</a>
+                    <div class="description">IA aplicada a la música</div>
+                </article>
+                <article class="link-item">
+                    <a href="https://www.youtube.com/@wearenocode/videos">We Are No-Code</a>
+                    <div class="description">Desarrollo sin código con IA</div>
+                </article>
+            </div>
+        </section>
+    </div>
+    
+</body>
+
+</html>
