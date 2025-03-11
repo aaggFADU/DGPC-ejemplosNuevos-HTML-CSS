@@ -13,7 +13,7 @@
 - Use `id` attributes only for JavaScript interaction or anchor links
 - Always include HTML5 DOCTYPE declaration (`<!DOCTYPE html>`)
 - Include meta viewport tag for responsive design (`<meta name="viewport" content="width=device-width, initial-scale=1.0">`)
-- Structure documents with semantic elements (header, nav, main, section, article, footer)
+- Structure documents with semantic elements (`header, nav, main, section, article, footer`)
 - Provide descriptive alt text for all images
 - Ensure all form elements have associated labels and appropriate ARIA attributes
 - Validate HTML code against W3C standards
@@ -36,7 +36,7 @@
   - Custom properties (variables) for reusable values
   - Nesting for better selector organization
   - Container queries for component-based responsiveness
-  - Feature queries (@supports) for progressive enhancement
+  - Feature queries (`@supports`) for progressive enhancement
 - Design with mobile-first approach, adding complexity at larger breakpoints
 - Group related styles by component or functionality
 - Follow BEM naming methodology (Block__Element--Modifier)
@@ -44,7 +44,7 @@
 - Define theme colors, typography, and spacing as CSS custom properties
 - Maintain low specificity for better maintainability
 - Wrap animations and transitions in `@media (prefers-reduced-motion: no-preference)` queries to respect user motion preferences
-- Implement View Transitions API for page transitions using CSS only with @property and view-transition-name properties where supported
+- Implement View Transitions API for page transitions using CSS only with `@property` and `view-transition-name` properties where supported
 - Optimize performance by minimizing selector complexity and redundant rules
 
 ## JS
