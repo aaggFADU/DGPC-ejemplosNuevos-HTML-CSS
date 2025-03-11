@@ -4,6 +4,7 @@
 - Indent code with 2 spaces
 - Prioritize HTML and CSS solutions over JavaScript whenever possible, leveraging modern web capabilities, particularly for animations, transitions, and client-side validations
 
+
 ## HTML
 
 - Use semantic HTML5 tags appropriate to content context
@@ -42,7 +43,8 @@
 - Avoid !important declarations except for utility classes
 - Define theme colors, typography, and spacing as CSS custom properties
 - Maintain low specificity for better maintainability
-- Wrap animations and transitions in @media (prefers-reduced-motion: no-preference) queries to respect user motion preferences
+- Wrap animations and transitions in `@media (prefers-reduced-motion: no-preference)` queries to respect user motion preferences
+- Implement View Transitions API for page transitions using CSS only with @property and view-transition-name properties where supported
 - Optimize performance by minimizing selector complexity and redundant rules
 
 ## JS
