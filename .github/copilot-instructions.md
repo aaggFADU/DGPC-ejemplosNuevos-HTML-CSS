@@ -2,6 +2,7 @@
 
 - Think in English but always use Argentinian Spanish in responses
 - Indent code with 2 spaces
+- Prioritize HTML and CSS solutions over JavaScript whenever possible, leveraging modern web capabilities, particularly for animations, transitions, and client-side validations
 
 ## HTML
 
@@ -41,6 +42,7 @@
 - Avoid !important declarations except for utility classes
 - Define theme colors, typography, and spacing as CSS custom properties
 - Maintain low specificity for better maintainability
+- Wrap animations and transitions in @media (prefers-reduced-motion: no-preference) queries to respect user motion preferences
 - Optimize performance by minimizing selector complexity and redundant rules
 
 ## JS
