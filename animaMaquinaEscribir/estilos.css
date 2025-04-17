@@ -25,10 +25,10 @@ body {
 }
 
 h1 {
-  font-size: 5em;
+  font-size: clamp(2rem, 0.9565rem + 5.2174vw, 5rem);
   font-weight: normal;
   white-space: nowrap;
-  border-inline-end: 4px solid white;
+  border-inline-end: .1em solid white;
   width: 18ch;
   overflow: hidden;
 
