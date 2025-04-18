@@ -2,1657 +2,1659 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Herramientas de IA</title>
-    <style>
-        :root {
-            --primary-color: hsl(215 70% 78%);
-            --bg-color: hsl(215 44% 7%);
-            --text-color: hsl(215 40% 98%);
-            --hover-color: hsl(215 97% 87%);
-            --card-bg: hsl(215 33% 15%);
-            --item-bg: hsl(215 21% 21%);
-            --item-hover: hsl(215 20% 28%);
-            --description-color: hsl(215 27% 84%);
-            font-size: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herramientas de IA</title>
+  <style>
+    :root {
+        --primary-color: hsl(215 70% 78%);
+        --bg-color: hsl(215 44% 7%);
+        --text-color: hsl(215 40% 98%);
+        --hover-color: hsl(215 97% 87%);
+        --card-bg: hsl(215 33% 15%);
+        --item-bg: hsl(215 21% 21%);
+        --item-hover: hsl(215 20% 28%);
+        --description-color: hsl(215 27% 84%);
+        font-size: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+    }
 
-        * {
-            box-sizing: border-box;
-            text-wrap: balance;
-        }
+    * {
+        box-sizing: border-box;
+        text-wrap: balance;
+    }
 
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background: var(--bg-color);
+        padding: 1rem 2rem;
+    }
+
+    .container {
+        max-inline-size: 1400px;
+        margin-inline: auto;
+    }
+
+    h1,
+    h2,
+    h3 {
+        color: var(--primary-color);
+        margin-block: 1.5rem 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-block-start: 0;
+        margin-block-end: 2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        line-height: 1.1;
+        border-block-end: 2px solid var(--primary-color);
+        padding-block-end: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--card-bg);
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .category {
+        background: var(--card-bg);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-block-end: 2rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .links {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .link-item {
+        padding: 0.75rem;
+        background: var(--item-bg);
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .link-item:hover {
+        background: var(--item-hover);
+        transform: translateY(-2px);
+    }
+
+    .description {
+        font-size: 0.9rem;
+        color: var(--description-color);
+        margin-block-start: 0.5rem;
+    }
+
+    a {
+        color: var(--primary-color);
+        text-decoration: none;
+        display: block;
+        font-weight: bold;
+        /* Added bold */
+    }
+
+    a:hover {
+        color: var(--hover-color);
+    }
+
+    .description {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin-top: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background: var(--bg-color);
-            padding: 2rem;
-        }
-
-        .container {
-            max-inline-size: 1400px;
-            margin-inline: auto;
-        }
-
-        h1,
-        h2,
-        h3 {
-            color: var(--primary-color);
-            margin-block: 1.5rem 1rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-block-end: 2rem;
-        }
-
-        h2 {
-            font-size: 2rem;
-            line-height: 1.1;
-            border-block-end: 2px solid var(--primary-color);
-            padding-block-end: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            background: var(--card-bg);
-        }
-
-        h3 {
-            font-size: 1.5rem;
-        }
-
-        .category {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-block-end: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            padding: 1rem;
         }
 
         .links {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
-            gap: 1rem;
-            padding: 1rem 0;
+            grid-template-columns: 1fr;
         }
-
-        .link-item {
-            padding: 0.75rem;
-            background: var(--item-bg);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .link-item:hover {
-            background: var(--item-hover);
-            transform: translateY(-2px);
-        }
-
-        .description {
-            font-size: 0.9rem;
-            color: var(--description-color);
-            margin-block-start: 0.5rem;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            display: block;
-            font-weight: bold;
-            /* Added bold */
-        }
-
-        a:hover {
-            color: var(--hover-color);
-        }
-
-        .description {
-            font-size: 0.9rem;
-            color: #64748b;
-            margin-top: 0.25rem;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-
-            .links {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-
-        <h1>Recursos con Inteligencia Artificial</h1>
-
-        <section class="category chat">
-            <h2>Chats y Asistentes</h2>
-            <div class="links">
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://chat.openai.com/">ChatGPT</a>
-                    <div class="description">
-                        El asistente de IA más popular de OpenAI. Ofrece conversaciones naturales, responde preguntas, ayuda con redacción y programación, y permite integración con plugins de terceros.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://claude.ai/chats">Claude</a>
-                    <div class="description">Asistente de IA de Anthropic. Destaca por su capacidad de procesar grandes cantidades de texto, razonamiento ético y respuestas matizadas con menor tendencia a alucinaciones.</div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://chat.deepseek.com/">Deep Seek</a>
-                    <div class="description">
-                        Asistente conversacional especializado. Enfocado en tareas técnicas y de programación, con capacidad para resolver problemas complejos y generar código optimizado.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://chat.qwen.ai/">Qwen 2.5-max</a>
-                    <div class="description">
-                        Chat (web hasta dic. 2024). Modelo de lenguaje multimodal de Alibaba, especializado en tareas técnicas y creativas, con capacidad de procesamiento de texto, código e imágenes.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://gemini.google.com/?hl=es">Gemini</a>
-                    <div class="description">
-                        El modelo de lenguaje más avanzado de Google. Multimodal, capaz de procesar texto, imágenes y código simultáneamente, con versiones Pro y Ultra para diferentes necesidades.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://manus.im/">Manus AI</a>
-                    <div class="description">
-                        Avanzado agente IA general desarrollado por una empresa tecnológica china llamada Monica. Se destaca por su capacidad para abordar y ejecutar tareas complejas de manera autónoma, desde el análisis de datos hasta la resolución creativa de problemas, sin requerir intervención humana constante.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://chat.mistral.ai/chat">Mistral AI</a>
-                    <div class="description">
-                        Chat basado en el modelo Mistral. Destaca por su eficiencia y precisión en tareas de programación y análisis, con capacidad multilingüe y comprensión contextual avanzada.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/chat/">Hugging Chat</a>
-                    <div class="description">
-                        Chat de Hugging Face. Plataforma de código abierto que ofrece acceso a múltiples modelos de lenguaje, con enfoque en transparencia y personalización.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://poe.com/">Poe</a>
-                    <div class="description">
-                        Plataforma con múltiples modelos de IA. Permite acceder a ChatGPT, Claude, Llama y otros modelos desde una única interfaz, con posibilidad de crear bots personalizados y compartirlos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.morphic.sh/">Morphic</a>
-                    <div class="description">
-                        Asistente conversacional. Especializado en diseño y desarrollo, con capacidades de generación de código y resolución de problemas técnicos en tiempo real.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://storm.genie.stanford.edu/">Storm</a>
-                    <div class="description">
-                        Asistente de Stanford.edu. Modelo de lenguaje desarrollado por investigadores de Stanford, especializado en razonamiento científico y académico con fuentes verificables.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://kimi.ai//">Kimi</a>
-                    <div class="description">
-                        Asistente de IA chino con capacidades avanzadas de programación y comprensión de código, optimizado para desarrolladores. Código hasta 09/2023.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://playground.allenai.org/">Allen AI</a>
-                    <div class="description">
-                        Entorno experimental del Allen Institute for AI para probar modelos de lenguaje en diversas tareas de razonamiento y comprensión. Playground (hasta 2023)
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://glif.app/@AP/glifs/clzbm2qvb000113zgz4a9r1wj">Glif</a>
-                    <div class="description">
-                        Mejorador de prompts (para flux). Herramienta especializada en optimizar instrucciones para modelos de generación de imágenes Flux, mejorando resultados visuales.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/gokaygokay/FLUX-Prompt-Generator">FLUX-Prompt-Generator</a>
-                    <div class="description">
-                        Generador de prompts en Huggingface. Aplicación que ayuda a crear instrucciones efectivas para el modelo Flux, con sugerencias de palabras clave y estructuras.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.prompthackers.co/">Prompt Hackers</a>
-                    <div class="description">
-                        Plataforma que ofrece técnicas y herramientas para optimizar instrucciones para diversos modelos de IA, con ejemplos y plantillas.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://chatgpt.com/g/g-678faa261f888191946af0ba95a374af-runway-frames-prompt-builder">Runway
-                        Frames Prompt Builder</a>
-                    <div class="description">
-                        Constructor de prompts para Runway en ChatGPT. GPT especializado en crear instrucciones optimizadas para la generación de videos en Runway, con sugerencias de composición y estilo.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://chatgpt.com/g/g-71Fq47Ec6-minimax-cinemotion-prompter">Minimax Cinemotion
-                        Prompter</a>
-                    <div class="description">
-                        Prompter de Minimax en ChatGPT. GPT diseñado para crear instrucciones efectivas para la plataforma de video Minimax, optimizando resultados cinematográficos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://imagetoprompt.com/">image → prompt</a>
-                    <div class="description">
-                        Generador de prompts a partir de imágenes. Aplicación que utiliza IA para crear instrucciones precisas para la reproducción de una imagen ya generada o de cualquier otro tipo de imagen.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://platform.openai.com/api-keys">API-keys OpenAI</a>
-                    <div class="description">
-                        Gestión de claves API de OpenAI. Portal para crear, administrar y monitorizar el uso de claves API para integrar servicios de OpenAI en aplicaciones propias.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://lmarena.ai/">LM Arena</a>
-                    <div class="description">
-                        Plataforma para probar y comparar diferentes modelos de IA. Permite evaluar el rendimiento de diversos modelos de lenguaje en las mismas tareas para identificar fortalezas y debilidades.
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <section class="category imagen">
-            <h2>Herramientas generales y para imágenes</h2>
-            <div class="links">
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://aitestkitchen.withgoogle.com/">Google AI Test Kitchen</a>
-                    <div class="description">
-                        Image FX, video FX, music FX, etc. Laboratorio experimental de Google que permite probar las últimas innovaciones en IA para generación y edición multimedia.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces">Huggingface Spaces</a>
-                    <div class="description">
-                        Plataforma de modelos y espacios de IA. Comunidad que aloja miles de aplicaciones y modelos de IA, permitiendo probar, compartir y colaborar en proyectos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.recraft.ai/">Recraft AI</a>
-                    <div class="description">
-                        Red Panda. Plataforma de diseño que también permite crear y editar imágenes vectoriales con IA, ideal para logos, iconos y gráficos personalizables en múltiples estilos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.meta.ai/">Meta AI</a>
-                    <div class="description">
-                        Plataforma de IA de Meta. Conjunto de herramientas y modelos para procesamiento de lenguaje natural, visión por computadora y generación de contenido multimedia.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://pinokio.computer/">Pinokio</a>
-                    <div class="description">
-                        Aplicación para descargar, Corre un navegador que permite instalar, ejecutar y administrar CUALQUIER aplicación IA de manera local, en la computadora, con un solo clic.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://dreamina.capcut.com/ai-tool/home">Dreamina</a>
-                    <div class="description">
-                        Herramientas de CapCut. Suite completa de edición multimedia con IA, incluyendo generación y edición de video, audio e imágenes con efectos avanzados.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.blendbox.ai/create">Blendbox</a>
-                    <div class="description">
-                        Imágenes compuestas. Herramienta que permite combinar múltiples estilos y elementos visuales para crear composiciones únicas con IA, ideal para diseñadores.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://preview.reve.art/">Reve Art</a>
-                    <div class="description">
-                        Herramienta de generación de imágenes que transforma descripciones de texto en imágenes de alta resolución. 20 imágenes gratuitas por día. Alta capacidad para adherirse a los prompts y producir resultados visuales atractivos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://openart.ai/create">Open Art AI</a>
-                    <div class="description">
-                        Plataforma que ofrece acceso a múltiples modelos de generación de imágenes, con opciones de personalización y una galería comunitaria para inspiración.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://raphael.app/es">Raphael AI</a>
-                    <div class="description">
-                        Genera imágenes a partir de texto o imagen. Afirma ser 100% Gratis, es impulsado por Flux.1 Dev. No se requiere inicio de sesión. Generaciones ilimitadas. Tiene planes pagos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://replicate.com/black-forest-labs/flux-dev">Flux Dev</a>
-                    <div class="description">
-                        Implementación del modelo Flux en Replicate, que permite generar imágenes de alta calidad a partir de descripciones textuales con control preciso.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://github.com/Alpha-VLLM/Lumina-Image-2.0">Lumina-Image-2.0</a>
-                    <div class="description">
-                        Modelo de código abierto para crear imágenes realistas a partir de texto, con opciones para instalación local y personalización avanzada.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev">Flux.1 Dev</a>
-                    <div class="description">
-                        Implementación del modelo Flux en la plataforma Hugging Face, permitiendo generar imágenes de alta calidad directamente desde el navegador.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/XLabs-AI/flux-RealismLora">Flux-RealismLora</a>
-                    <div class="description">
-                        Adaptación del modelo Flux optimizada para generar imágenes fotorrealistas, disponible en Huggingface como módulo LoRA para integrar en flujos de trabajo existentes.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://fluxpro.art/create">Flux Pro Art</a>
-                    <div class="description">
-                        Flux libre sin censura. Versión del modelo Flux con menos restricciones de contenido, permitiendo mayor libertad creativa para artistas y diseñadores.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://fastflux.ai/">Fast Flux</a>
-                    <div class="description">
-                        Generación rápida con Flux. Implementación optimizada del modelo Flux que ofrece tiempos de generación más rápidos, ideal para iteraciones y pruebas de concepto.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://dezgo.com/text2image/sdxl">Dezgo</a>
-                    <div class="description">
-                        Plataforma que implementa el modelo Flux para crear imágenes de alta calidad, con opciones gratuitas y una interfaz sencilla para usuarios de todos los niveles.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/deepseek-ai/Janus-Pro-7B">Janus-Pro-7B</a>
-                    <div class="description">
-                        Modelo Deepseek de lenguaje multimodal especializado en comprensión y generación de contenido visual y textual con alta precisión.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.leonardo.ai/">Leonardo AI</a>
-                    <div class="description">
-                        Plataforma de generación de imágenes. Ofrece múltiples modelos de IA, creación de datasets personalizados y herramientas para artistas digitales y diseñadores con control preciso de estilos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://tensor.art/">Tensor Art</a>
-                    <div class="description">
-                        Plataforma que integra múltiples modelos de IA para crear imágenes y videos con diferentes estilos, incluyendo opciones para personalización y edición avanzada.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://civitai.com/">Civit AI</a>
-                    <div class="description">
-                        Comunidad y repositorio de modelos de IA para generación de imágenes, con miles de modelos personalizados, LoRAs y extensiones para diferentes estilos y necesidades.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a
-                        href="https://colab.research.google.com/github/lllyasviel/Fooocus/blob/main/fooocus_colab.ipynb">Fooocus</a>
-                    <div class="description">
-                        Implementación optimizada de Stable Diffusion que funciona en Google Colab, con interfaz simplificada y resultados de alta calidad sin necesidad de hardware potente.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.segmind.com/models/flux-realism-lora">Segmind Flux-realism-lora</a>
-                    <div class="description">
-                        24 generaciones gratis. Implementación del modelo Flux con LoRA de realismo en Segmind, que ofrece un número limitado de generaciones gratuitas con resultados fotorrealistas de alta calidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/flux-realism">Flux-realism LORA</a>
-                    <div class="description">
-                        Versión de pago. Implementación premium del modelo Flux con LoRA de realismo en la plataforma fal.ai, optimizada para generar imágenes fotorrealistas con mayor control y calidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://rendernet.ai/">RenderNet</a>
-                    <div class="description">
-                        Caracteres, upscale, lip sync. Plataforma integral que combina generación de personajes, mejora de resolución de imágenes y sincronización labial para crear contenido visual de alta calidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.apob.ai/">Apob</a>
-                    <div class="description">
-                        Influencers virtuales. Plataforma especializada en la creación y animación de personajes digitales hiperrealistas para marketing, entretenimiento y contenido en redes sociales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://ideogram.ai/">Ideogram AI</a>
-                    <div class="description">
-                        Text to image. Generador de imágenes a partir de texto con capacidades avanzadas para crear ilustraciones, arte conceptual y visualizaciones con estilos personalizables y alta fidelidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.krea.ai/apps/image/realtime">Krea AI</a>
-                    <div class="description">
-                        Generación en tiempo real. Herramienta innovadora que permite crear imágenes mientras se escribe, con resultados instantáneos que evolucionan según las modificaciones del prompt.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.piclumen.com/">Pic Lumen</a>
-                    <div class="description">
-                        Generación de imágenes. Plataforma intuitiva para crear imágenes artísticas y fotorrealistas con IA, ofreciendo múltiples estilos y opciones de personalización para creadores visuales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.aiease.ai/es/">AI Ease</a>
-                    <div class="description">
-                        Herramientas para imágenes. Suite completa de utilidades para procesamiento y generación de imágenes con IA, incluyendo eliminación de fondos, mejora de resolución y edición inteligente.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.freepik.es/ia/generador-de-imagenes#from_element=home_tools">Freepik</a>
-                    <div class="description">
-                        Generador de imágenes. Herramienta de la popular plataforma Freepik que permite crear ilustraciones, fotografías y gráficos personalizados con IA para proyectos de diseño y marketing.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.freepik.com/pikaso/">Freepik Pikaso</a>
-                    <div class="description">
-                        Dibujo con IA gratuito. Herramienta de Freepik especializada en la creación de ilustraciones y dibujos estilizados con IA, con opciones gratuitas para usuarios de todos los niveles.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://seaart.ai/es">Sea Art</a>
-                    <div class="description">
-                        Generador de arte AI - varios. Plataforma versátil que ofrece múltiples modelos y estilos para crear arte digital, ilustraciones y diseños con diferentes estéticas y técnicas artísticas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.basedlabs.ai/apps">Based Labs</a>
-                    <div class="description">
-                        Apps - all in one. Colección de aplicaciones de IA integradas en una sola plataforma, que incluye generación de imágenes, video, texto y otras herramientas creativas para profesionales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://dreamer.lab24.ai/generate">Dreamer</a>
-                    <div class="description">
-                        Generación de imágenes. Herramienta intuitiva para crear visuales artísticos y fotorrealistas a partir de descripciones textuales, con opciones para ajustar estilo, composición y detalles.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/multimodalart/stable-cascade">Stable Cascade</a>
-                    <div class="description">
-                        Stable Diffusion mejorado. Versión avanzada del popular modelo Stable Diffusion, con mejor calidad de imagen, mayor coherencia y capacidad para generar detalles más precisos y realistas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://playgroundai.com/">Playground</a>
-                    <div class="description">
-                        Creador de imágenes con IA. Plataforma amigable para generar y editar imágenes con IA, que ofrece múltiples modelos, estilos artísticos y herramientas de personalización para creadores.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.shakker.ai/">Shakker AI</a>
-                    <div class="description">
-                        Image to image AI. Herramienta especializada en transformar imágenes existentes en nuevas versiones con diferentes estilos, contenidos o características, manteniendo elementos estructurales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://cgdream.ai/">CGDream</a>
-                    <div class="description">
-                        Creador de imágenes con IA. Plataforma enfocada en la generación de gráficos por computadora de alta calidad, ideal para artistas 3D, diseñadores y creadores de contenido visual profesional.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://getimg.ai/">Get Img AI</a>
-                    <div class="description">
-                        Generación de imágenes. Suite completa de herramientas para crear, editar y transformar imágenes con IA, incluyendo generación desde texto, edición inteligente y conversión entre estilos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.switchlight.beeble.ai/">SwitchLight</a>
-                    <div class="description">
-                        Edición de imágenes. Herramienta especializada en modificar la iluminación y condiciones ambientales en fotografías, permitiendo cambiar entre día/noche, interior/exterior y diferentes atmósferas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://lexica.art/">Lexica</a>
-                    <div class="description">
-                        Buscador y generador de imágenes. Plataforma dual que permite buscar en una extensa biblioteca de imágenes generadas por IA y crear nuevas a partir de descripciones o imágenes de referencia.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/AI4Editing/MagicQuill">MagicQuill</a>
-                    <div class="description">
-                        Editor de imágenes. Herramienta en Hugging Face que permite modificar imágenes mediante instrucciones en lenguaje natural, facilitando ediciones complejas sin conocimientos técnicos avanzados.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://hotpot.ai/">Hotpot</a>
-                    <div class="description">
-                        Conjunto de herramientas. Colección de utilidades de IA para diseño gráfico, incluyendo generación de imágenes, eliminación de fondos, redimensionamiento inteligente y creación de mockups.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://pixnova.ai/">Pix Nova</a>
-                    <div class="description">
-                        Herramientas para imagen. Suite de aplicaciones para procesamiento y generación de imágenes con IA, con funciones especializadas para diferentes necesidades creativas y profesionales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://gamma.app/?lng=es-ES">Gamma</a>
-                    <div class="description">
-                        Creación de presentaciones. Plataforma que utiliza IA para generar presentaciones visualmente atractivas a partir de texto, con diseños profesionales, imágenes integradas y contenido coherente.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/jbilcke-hf/ai-comic-factory">AI Comic Factory</a>
-                    <div class="description">
-                        Generación de cómics. Herramienta especializada en crear historietas y narrativas visuales con IA, generando secuencias de imágenes coherentes con estilos de cómic personalizables.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.artflow.ai/character-builder?feature=actors">Artflow AI</a>
-                    <div class="description">
-                        Herramienta de narración con IA. Plataforma para crear personajes, escenas y narrativas visuales interactivas, ideal para storyboards, conceptos de videojuegos y contenido narrativo.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.canva.com/your-apps">Canva</a>
-                    <div class="description">
-                        Diseño con IA. Popular plataforma de diseño gráfico ahora potenciada con herramientas de IA para generar imágenes, textos, layouts y elementos visuales para todo tipo de proyectos creativos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.promeai.pro/es">Prome AI</a>
-                    <div class="description">
-                        Asistentes de diseño y marketing. Conjunto de herramientas especializadas en crear contenido visual para marketing digital, con generación de imágenes optimizadas para redes sociales y publicidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://domoai.app/">DomoAI</a>
-                    <div class="description">
-                        Generador de arte con IA. Plataforma para crear obras artísticas digitales con diversos estilos y técnicas, ideal para artistas que buscan explorar nuevas posibilidades creativas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.upscayl.org/">Upscayl</a>
-                    <div class="description">
-                        App para instalar. Aplicación de código abierto para mejorar la resolución de imágenes mediante IA, que funciona localmente en el ordenador sin necesidad de conexión a internet.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.upscale.media/es">Upscale</a>
-                    <div class="description">
-                        Mejora de calidad de imagen. Servicio web que utiliza IA para aumentar la resolución de imágenes manteniendo detalles y nitidez, ideal para fotografías, ilustraciones y material gráfico.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://bigjpg.com/">Bigjpg</a>
-                    <div class="description">
-                        Ampliación sin pérdida. Herramienta especializada en aumentar el tamaño de imágenes sin perder calidad, utilizando algoritmos de IA para preservar detalles y evitar pixelación.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.pixelcut.ai/es">Pixelcut</a>
-                    <div class="description">
-                        Herramientas para imagen y ampliación. Suite de utilidades para procesamiento de imágenes con IA, incluyendo eliminación de fondos, mejora de resolución y edición inteligente para e-commerce.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.dzine.ai/">Dzine (Stylar)</a>
-                    <div class="description">
-                        Imagen a video y cambio de estilo. Plataforma que permite animar imágenes estáticas y transformar estilos visuales, creando contenido dinámico a partir de fotografías o ilustraciones.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.scenario.com/">Scenario</a>
-                    <div class="description">
-                        Personajes consistentes. Herramienta especializada en la generación de personajes con alta coherencia visual entre diferentes poses, expresiones y ángulos, ideal para desarrollo de videojuegos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/yanze/PuLID-FLUX">PuLID-FLUX</a>
-                    <div class="description">
-                        Personajes consistentes en Huggingface. Herramienta especializada en la generación de personajes con coherencia visual entre diferentes poses y ángulos, implementada como espacio interactivo en Hugging Face.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/tuan2308/face-swap">Face Swap</a>
-                    <div class="description">
-                        Intercambio de rostros en Huggingface. Aplicación que permite sustituir caras en imágenes con alta precisión y naturalidad, manteniendo expresiones y características faciales coherentes con el contexto.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://remaker.ai/en">Remaker</a>
-                    <div class="description">
-                        Generador de contenido creativo. Plataforma versátil para crear y transformar imágenes, videos y diseños con IA, ofreciendo múltiples estilos y opciones de personalización para proyectos creativos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://dgb.lol/">DGB.lol</a>
-                    <div class="description">
-                        Tratamiento de imágenes con IA. Conjunto de herramientas para procesamiento avanzado de imágenes, incluyendo mejora de calidad, restauración, colorización y transformaciones estilísticas con algoritmos de IA.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://infografix.app/">Infografix</a>
-                    <div class="description">
-                        Infografías con IA. Plataforma especializada en la creación de visualizaciones de datos e infografías profesionales utilizando IA para organizar información compleja en formatos visualmente atractivos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://perchance.org/ai-text-to-image-generator">Perchance</a>
-                    <div class="description">
-                        Generador de imágenes desde texto. Herramienta gratuita y accesible que convierte descripciones textuales en imágenes, con opciones para ajustar estilos y parámetros de generación sin necesidad de registro.
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="category web">
-            <h2>Desarrollo Web</h2>
-            <div class="links">
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.relume.io/">Relume</a>
-                    <div class="description">
-                        Plataforma que convierte descripciones textuales en mapas de sitio y wireframes interactivos, acelerando el proceso de planificación y diseño web con sugerencias basadas en IA.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.trae.ai/">Trae AI</a>
-                    <div class="description">
-                        Entorno de desarrollo web con asistente de programación inteligente. Ayuda a desarrolladores a escribir, explicar y depurar código con contexto del repositorio completo y sugerencias en tiempo real para múltiples lenguajes.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://bolt.new/">Bolt</a>
-                    <div class="description">
-                        De StackBlitz. Entorno de desarrollo web instantáneo que permite crear y compartir proyectos web completos directamente desde el navegador, con soporte para múltiples frameworks y bibliotecas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://lovable.dev/">Lovable</a>
-                    <div class="description">
-                        Plataforma que transforma descripciones textuales en aplicaciones web funcionales en segundos, generando código, diseño y funcionalidades basadas en instrucciones en lenguaje natural.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.blackbox.ai/">Blackbox</a>
-                    <div class="description">
-                        AI Code Generation, Code Chat, Code Search. Suite de herramientas para desarrolladores que ofrece generación de código, asistencia conversacional y búsqueda inteligente en bases de código existentes.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://replit.com/">Replit</a>
-                    <div class="description">
-                        Plataforma de desarrollo colaborativo en la nube con funciones de IA que acelera la creación de software, permitiendo codificar, ejecutar y desplegar aplicaciones desde el navegador.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://codellm.abacus.ai/">Code LLM</a>
-                    <div class="description">
-                        Es de Pago. Modelo de lenguaje especializado en programación que ofrece asistencia avanzada para desarrollo de software, con capacidades de generación y optimización de código bajo suscripción.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/osanseviero/InstantCoder">Instant Coder</a>
-                    <div class="description">
-                        Implementación en Hugging Face del modelo Gemini 2.5 Pro optimizada para tareas de programación, creación de webapps.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://llamacoder.together.ai/">Llama Coder</a>
-                    <div class="description">
-                        Implementación del modelo Llama optimizada para tareas de programación, que ofrece sugerencias de código, explicaciones y soluciones a problemas técnicos en múltiples lenguajes.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://ai.mobirise.com/">Mobirise AI</a>
-                    <div class="description">
-                        Plataforma que utiliza IA para crear sitios web responsivos sin necesidad de conocimientos técnicos, con generación automática de diseños, contenidos y elementos interactivos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://soloist.ai/">Solo AI</a>
-                    <div class="description">
-                        Herramienta que permite crear sitios web profesionales a partir de instrucciones en lenguaje natural, automatizando diseño, estructura y contenido con tecnología de IA.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.zipwp.com/">ZipWP</a>
-                    <div class="description">
-                        Plataforma especializada en crear sitios WordPress completos mediante IA, generando temas, páginas y contenido personalizado según las especificaciones del usuario.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.usegalileo.ai/">Galileo AI</a>
-                    <div class="description">
-                        Herramienta que genera interfaces de usuario completas a partir de descripciones textuales, con capacidad para crear diseños coherentes y componentes interactivos para aplicaciones web.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://console.groq.com/playground">Groq Playground</a>
-                    <div class="description">
-                        Entorno de desarrollo IA. Plataforma que ofrece acceso a modelos de lenguaje ultrarrápidos para desarrollo de aplicaciones, con un entorno interactivo para experimentar y prototipar soluciones basadas en IA.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://appgen.groqlabs.com/">Groq AppGen</a>
-                    <div class="description">
-                        Generador de micro apps con IA. Plataforma que permite crear aplicaciones web a partir de texto o bocetando.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.napkins.dev/">Napkins Dev</a>
-                    <div class="description">
-                        Herramienta que convierte capturas de pantalla o bocetos en código React funcional, permitiendo transformar rápidamente ideas visuales en aplicaciones web interactivas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://creatie.ai/">Creatie</a>
-                    <div class="description">
-                        Plataforma integral para diseño de productos digitales que utiliza IA para generar interfaces, prototipos y especificaciones técnicas a partir de conceptos iniciales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://v0.dev/">V0 by Vercel</a>
-                    <div class="description">
-                        Generación de interfaces web con IA. Herramienta de Vercel que crea componentes y páginas web completas a partir de descripciones textuales, con código optimizado para Next.js y Tailwind CSS.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://websim.ai/">Web Sim</a>
-                    <div class="description">
-                        Simulador web con IA. Plataforma que permite simular y probar interacciones de usuario en sitios web generados por IA, facilitando la evaluación de usabilidad y experiencia de usuario antes del desarrollo.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://purecode.ai/">Pure Code AI</a>
-                    <div class="description">
-                        Generación de código limpio. Asistente especializado en producir código optimizado, mantenible y siguiendo las mejores prácticas, con enfoque en calidad y rendimiento para proyectos profesionales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://cerebrascoder.com/">Cerebras Coder</a>
-                    <div class="description">
-                        Herramienta basada en modelos de IA de Cerebras Systems que ayuda a desarrolladores a escribir, revisar y optimizar código con sugerencias contextuales y solución de problemas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/osanseviero/gemini-coder">Gemini Coder</a>
-                    <div class="description">
-                        Implementación del modelo Gemini de Google optimizada para tareas de programación, disponible como espacio interactivo en la plataforma Hugging Face para uso gratuito.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://web.lmarena.ai/">Web Dev Arena</a>
-                    <div class="description">
-                        Plataforma que permite evaluar y comparar el rendimiento de diferentes modelos de IA en tareas específicas de desarrollo web, ayudando a elegir la mejor herramienta.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://chat.deepseek.com/">DeepSeek</a>
-                    <div class="description">
-                        Modelo de lenguaje especializado en programación y desarrollo de software, con capacidades avanzadas para entender y generar código en múltiples lenguajes y frameworks.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.tempolabs.ai/">Tempo Labs AI</a>
-                    <div class="description">
-                        Plataforma especializada en la generación y optimización de aplicaciones React, que automatiza la creación de componentes, estados y lógica de negocio con asistencia de IA.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.reweb.so/">ReWeb</a>
-                    <div class="description">
-                        Constructor visual que permite crear aplicaciones web modernas con Next.js y Tailwind CSS mediante una interfaz de arrastrar y soltar potenciada por IA.
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="category archivos">
-            <h2>A partir de medios</h2>
-            <div class="links">
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://notebooklm.google.com/">Notebook LM</a>
-                    <div class="description">
-                        Herramienta de Google que permite analizar y extraer información de documentos largos, generando resúmenes, respuestas a preguntas, análisis detallados del contenido y "podcasts".
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://learning.google.com/experiments/learn-about/signup">Learn About</a>
-                    <div class="description">
-                        Plataforma experimental de Google que utiliza IA para crear experiencias educativas personalizadas, permitiendo explorar y aprender de diversos temas de forma interactiva.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://unstuckstudy.com/">Unstuck Study</a>
-                    <div class="description">
-                        Herramienta que procesa videos y documentos para extraer conceptos clave, generar resúmenes y crear materiales de estudio personalizados con ayuda de IA.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://videohighlight.com/">Video Highlight</a>
-                    <div class="description">
-                        Análisis desde Youtube, Vimeo o DailyMotion. Plataforma que utiliza IA para identificar y extraer momentos importantes en videos, crear resúmenes automáticos y generar transcripciones precisas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/wjbmattingly/caracal">Caracal</a>
-                    <div class="description">
-                        Modelo de IA especializado en reconocimiento de escritura a mano, capaz de transcribir documentos manuscritos a texto digital con alta precisión y soporte para múltiples idiomas.
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="category musica">
-            <h2>Música y Voces</h2>
-            <div class="links">
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.suno.ai/create">Suno AI</a>
-                    <div class="description">
-                        Generación de música con IA. Crea canciones completas con letra y música a partir de descripciones textuales en diversos géneros y estilos, permitiendo ajustes de instrumentación y estructura.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.udio.com/">Udio</a>
-                    <div class="description">
-                        Plataforma integral para componer, producir y editar música utilizando inteligencia artificial, con capacidades para generar melodías, armonías y arreglos personalizados.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.riffusion.com/">Riffusion</a>
-                    <div class="description">
-                        Herramienta que utiliza modelos de difusión para crear secuencias musicales y efectos sonoros a partir de descripciones textuales o imágenes de espectrogramas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.mureka.ai/create">Mureka</a>
-                    <div class="description">
-                        Plataforma que permite generar composiciones musicales originales con control sobre género, tempo, instrumentación y estructura, ideal para creadores de contenido.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.kits.ai/">Kits AI</a>
-                    <div class="description">
-                        Suite completa para procesamiento y generación de audio, incluyendo creación de música, efectos sonoros, conversión de voz y mejora de calidad de grabaciones.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://pro.splashmusic.com/">Splash Pro</a>
-                    <div class="description">
-                        Plataforma profesional para crear pistas musicales personalizadas con diferentes estilos y géneros, con opciones para exportación en alta calidad y uso comercial.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://sonauto.ai/Home">Son Auto AI</a>
-                    <div class="description">
-                        Herramienta que automatiza procesos de producción musical como mezcla, masterización y arreglos, ahorrando tiempo a productores y músicos profesionales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.songr.ai/">SongR</a>
-                    <div class="description">
-                        Plataforma especializada en la generación de canciones completas con letras coherentes y música adaptada al estilo solicitado, con opciones para colaboración.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.loudly.com/music/ai-music-generator">Loudly</a>
-                    <div class="description">
-                        Servicio que permite crear pistas musicales personalizadas para proyectos creativos, con una extensa biblioteca de estilos y opciones de personalización avanzadas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.tryreplay.io/">Try Replay</a>
-                    <div class="description">
-                        Plataforma que permite remixar y transformar canciones existentes o crear nuevas composiciones a partir de descripciones textuales con control creativo detallado.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://studio.moises.ai/library/">Moises AI</a>
-                    <div class="description">
-                        Tecnología avanzada que permite aislar y extraer pistas individuales de canciones, ideal para remixes, práctica musical y análisis de composiciones.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.hedra.com/app/characters">Hedra</a>
-                    <div class="description">
-                        Plataforma que permite generar avatares digitales con voces personalizadas para narración, doblaje y contenido interactivo con expresiones realistas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://weights.gg/es">Weights GG</a>
-                    <div class="description">
-                        Herramienta que permite crear voces sintéticas realistas en múltiples idiomas y estilos, ideal para narración, podcasts y contenido multimedia con calidad profesional.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://poppop.ai/">Pop Pop AI</a>
-                    <div class="description">
-                        Taller de audio en línea. Crea efectos de sonido, re-mezcla canciones, genera voces y cambia voces usando IA, todo en un solo lugar, gratis.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.hume.ai/">Hume</a>
-                    <div class="description">
-                        Crea voces de IA que comprenden la expresión emocional.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/mrfakename/E2-F5-TTS">E2-F5-TTS</a>
-                    <div class="description">
-                        Clonación de voces en Huggingface. Implementación del modelo E2-F5 para síntesis de voz que permite replicar características vocales a partir de muestras cortas con alta fidelidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/redradios/F5-TTS-Sp">Spanish-F5</a>
-                    <div class="description">
-                        TTS en español en Huggingface. Versión del modelo F5 optimizada para síntesis de voz en español, con soporte para diferentes acentos regionales y control de entonación y emoción.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://create.musicfy.lol/create/voice">Musicfy</a>
-                    <div class="description">
-                        Plataforma que permite crear voces cantadas y habladas con IA, ideal para producción musical, doblaje y creación de contenido con voces personalizadas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.lalal.ai/es/">Lalal AI</a>
-                    <div class="description">
-                        Servicio especializado en separar pistas de audio con alta precisión, permitiendo aislar voces, instrumentos y otros elementos sonoros de cualquier grabación.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.synclabs.so/playground/lip-sync">Synclabs</a>
-                    <div class="description">
-                        Sincronización de audio y video. Herramienta que alinea automáticamente el movimiento labial en videos con nuevas pistas de audio, ideal para doblaje, localización y contenido multilingüe.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.irocketvpn.com/ai-voice-generator/">AI Voice Generator</a>
-                    <div class="description">
-                        Aplicación que ofrece una amplia gama de voces sintéticas con diferentes características, idiomas y estilos para proyectos creativos y profesionales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://elevenlabs.io/speech-synthesis">ElevenLabs</a>
-                    <div class="description">
-                        Plataforma líder en generación de voces ultrarrealistas con control preciso sobre entonación, emoción y estilo, utilizada en producciones profesionales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://fakeyou.com/">Fake You</a>
-                    <div class="description">
-                        Servicio que permite replicar voces conocidas o crear nuevas voces personalizadas para proyectos creativos, con una extensa biblioteca de perfiles vocales.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://play.ht/">Play HT</a>
-                    <div class="description">
-                        Plataforma versátil para convertir texto en voz natural con más de 900 voces en múltiples idiomas, ideal para narración, podcasts y contenido educativo.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.kits.ai/convert">Kits AI Convert</a>
-                    <div class="description">
-                        Herramienta especializada en transformar grabaciones de voz entre diferentes estilos, timbres y características, manteniendo el contenido y la naturalidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://play.cartesia.ai/text-to-speech">Cartesia</a>
-                    <div class="description">
-                        Servicio de conversión de texto a voz con opciones avanzadas de personalización, incluyendo control de ritmo, entonación y características vocales específicas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.canva.com/apps/AAF5prtvncA/lalamu-studio">Lalamu Studio</a>
-                    <div class="description">
-                        Plataforma que permite sincronizar automáticamente el movimiento labial de personajes con nuevas pistas de audio para doblaje y localización de contenido.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/H-Liu1997/TANGO">TANGO</a>
-                    <div class="description">
-                        Sincronización en Huggingface. Implementación del modelo TANGO para sincronización labial avanzada, disponible como espacio interactivo en la plataforma Hugging Face para uso gratuito.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/OpenSound/EzAudio">EzAudio</a>
-                    <div class="description">
-                        Herramienta en Hugging Face que permite crear efectos sonoros, música ambiental y clips de audio personalizados con parámetros ajustables.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://multimedia.easeus.com/es/vocal-remover/">EaseUS Vocal Remover</a>
-                    <div class="description">
-                        Separador de pistas. Aplicación que utiliza IA para eliminar o aislar voces y elementos específicos de grabaciones musicales, con opciones para ajustar la intensidad del efecto.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://applio.org/">Applio</a>
-                    <div class="description">
-                        Herramienta de código abierto para síntesis de voz que permite crear voces personalizadas con control sobre características tonales y expresivas para diversos usos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.text-to-speech.online/">Text-to-Speech Online</a>
-                    <div class="description">
-                        Voces gratuitas con diferentes acentos. Servicio web que ofrece conversión de texto a voz sin costo, con una amplia variedad de acentos regionales y opciones de personalización básicas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://riverside.fm/transcription">Riverside FM</a>
-                    <div class="description">
-                        Transcripción de audio y video. Servicio que convierte automáticamente contenido hablado en texto con alta precisión, ideal para subtitulado, documentación y accesibilidad de contenido.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://fish.audio/">Fish Audio</a>
-                    <div class="description">
-                        Conjunto de utilidades para procesamiento y generación de audio, incluyendo separación de pistas, mejora de calidad y creación de efectos sonoros personalizados.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://mangoanimate.com/ai">MangoAnimate AI</a>
-                    <div class="description">
-                        Animación y audio con IA. Plataforma que combina generación de voces y animación de personajes para crear contenido multimedia interactivo con sincronización automática de movimientos.
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="category video">
-            <h2>Video</h2>
-            <div class="links">
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://wan.video/">Wan video</a>
-                    <div class="description">
-                        Generación de video con IA a partir de texto o imágenes, con opciones avanzadas para ajustar estilos visuales, movimientos de cámara y transiciones fluidas.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://runwayml.com/">Runway</a>
-                    <div class="description">
-                        Edición y generación de video con IA. Ofrece herramientas como Gen-2 para texto a video, inpainting, extensión de videos y efectos visuales avanzados con control creativo detallado.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://klingai.com/">Kling AI</a>
-                    <div class="description">
-                        Generación de video con IA a partir de texto o imágenes, con opciones para personalizar estilos, movimientos de cámara y transiciones.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://hailuoaifree.com/es">MiniMax</a>
-                    <div class="description">
-                        Herramienta desarrollada por Alibaba que convierte descripciones textuales en secuencias de video fluidas, con interfaz en chino y capacidades avanzadas de generación visual.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://hailuoai.video/create">Hailuoai Minimax</a>
-                    <div class="description">
-                        Versión internacional de la herramienta de Minimax que ofrece generación de video a partir de texto con controles avanzados de composición y estilo visual.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://chatgpt.com/g/g-71Fq47Ec6-minimax-cinemotion-prompter">Minimax Cinemotion Prompter</a>
-                    <div class="description">
-                        GPT especializado que ayuda a crear instrucciones optimizadas para la plataforma Minimax, mejorando los resultados de generación de video.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://kaiber.ai/superstudio">Kaiber Superstudio</a>
-                    <div class="description">
-                        Suite completa para producción de video con IA que incluye generación, edición y efectos especiales con una interfaz intuitiva y resultados de alta calidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.hedra.com/">Hedra</a>
-                    <div class="description">
-                        Video, personajes e historias con control creativo. Plataforma integral que permite crear narrativas visuales completas con personajes consistentes y escenas dinámicas generadas por IA.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.florafauna.ai/">Flora AI</a>
-                    <div class="description">
-                        Lienzo que conecta herramientas IA. Permite la ideación, iteración y exploración rápidas utilizando modelos de IA de texto, imagen y video en un lienzo infinito. Ofrece colaboración en tiempo real y flujos de trabajo comunitarios.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.ltx.studio/">LTX Studio</a>
-                    <div class="description">
-                        Herramienta especializada en la generación de secuencias de video de mayor duración con coherencia narrativa, ideal para contenido explicativo y storytelling.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://lumalabs.ai/dream-machine/creations">Luma Labs</a>
-                    <div class="description">
-                        Plataforma que convierte descripciones textuales en videos tridimensionales con efectos de iluminación y movimiento realistas, especializada en escenas y entornos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.vidu.studio/">Vidu Studio</a>
-                    <div class="description">
-                        Plataforma completa para la creación y edición de videos con asistencia de IA, que incluye herramientas para guiones, storyboards y postproducción.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://pika.art/">Pika</a>
-                    <div class="description">
-                        Herramienta que permite crear videos cortos a partir de texto o imágenes, con opciones para ajustar estilo, movimiento y composición visual.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://yuewen.cn/videos">Jia Qing / Yuewen</a>
-                    <div class="description">
-                        Servicio chino de generación y distribución de contenido de video con tecnología de IA, especializado en narrativas visuales y adaptaciones de textos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.skyreels.ai/home">SkyReels AI</a>
-                    <div class="description">
-                        Plataforma que automatiza la producción de videos para marketing y redes sociales, con plantillas personalizables y generación de contenido dinámico.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://tensor.art/">Tensor Art</a>
-                    <div class="description">
-                        Colección de herramientas que utilizan diferentes modelos de IA para crear contenido visual estático y en movimiento con estilos variados.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://hotshot.co/">Hot Shot</a>
-                    <div class="description">
-                        Servicio que convierte descripciones textuales en videos cortos con alta calidad visual, ideal para creadores de contenido y marketing digital.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.rendernet.ai/">RenderNet</a>
-                    <div class="description">
-                        Potente generador de imágenes centrado en crear personajes consistentes y controlar su pose, composición y estilo para su uso en videos
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://vivago.ai/video">Viva Go</a>
-                    <div class="description">
-                        Plataforma versátil que permite tanto la generación de imágenes como su transformación en secuencias de video animadas con diversos efectos y estilos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://viggle.ai/">Viggle AI</a>
-                    <div class="description">
-                        Herramienta que ofrece controles precisos sobre la generación de video, permitiendo ajustar parámetros específicos para obtener resultados personalizados.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.pixverse.ai/">Pixverse</a>
-                    <div class="description">
-                        Servicio que permite convertir imágenes estáticas o descripciones textuales en secuencias de video con movimiento natural y transiciones fluidas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.morphstudio.com/">Morph Studio</a>
-                    <div class="description">
-                        Plataforma integral para la creación y edición de contenido audiovisual con herramientas de IA para efectos especiales, animación y composición.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.revid.ai/">Revid AI</a>
-                    <div class="description">
-                        Servicio especializado en la generación y edición de videos para marketing y redes sociales, con opciones para personalización de marca y estilo.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.genmo.ai/">Genmo</a>
-                    <div class="description">
-                        Creación de videos e imágenes con IA. Plataforma versátil que permite generar tanto contenido estático como en movimiento a partir de descripciones textuales detalladas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/THUDM/CogVideoX-5B-Space">CogVideoX-5B</a>
-                    <div class="description">
-                        Por ahora libre. Modelo de código abierto en Hugging Face que permite transformar imágenes o clips cortos en secuencias de video más largas y elaboradas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://app.clipchamp.com/">Clipchamp</a>
-                    <div class="description">
-                        Editor de video con IA de Microsoft en la nube con funciones para automatizar tareas como transcripción, subtitulado y mejora de calidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://moonvalley.ai/">Moonvalley</a>
-                    <div class="description">
-                        Plataforma que convierte conceptos e ideas en animaciones fluidas y videos narrativos con estilos visuales personalizables y alta calidad.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://haiper.ai/">Haiper</a>
-                    <div class="description">
-                        Servicio especializado en crear videos para marketing, educación y entretenimiento con opciones avanzadas de personalización.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://plaiday.io/discord/">Plaiday</a>
-                    <div class="description">
-                        Bot de Discord que permite generar videos a partir de descripciones textuales directamente dentro de la plataforma de comunicación.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://lensgo.ai/">Lensgo</a>
-                    <div class="description">
-                        Plataforma integrada que ofrece herramientas para la creación tanto de imágenes estáticas como de contenido de video con diversos estilos y efectos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.synthesia.io/">Synthesia</a>
-                    <div class="description">
-                        Servicio especializado en la creación de presentadores virtuales con expresiones faciales y gestos realistas para videos corporativos y educativos.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://akool.com/">A Kool</a>
-                    <div class="description">
-                        Suite de aplicaciones que incluye generadores de video, imágenes y texto para diversos usos creativos y profesionales con interfaz unificada.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.topview.ai/">Top View</a>
-                    <div class="description">
-                        Servicio especializado en la creación de videos explicativos y promocionales con narración, animaciones y efectos visuales generados por IA.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://wonderdynamics.com/">Wonder Dynamics</a>
-                    <div class="description">
-                        Plataforma profesional para la creación de efectos especiales y animación de personajes en producciones cinematográficas y televisivas.
-                    </div>
-                </article>
-                
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://tost.ai/">Tost AI</a>
-                    <div class="description">
-                        Video con Flux, Lora y otras aplicaciones. Servicio que integra múltiples modelos de IA para ofrecer opciones avanzadas de generación y edición de video con control creativo detallado.
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="category 3D">
-            <h2>3D</h2>
-            <div class="links">
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.vizcom.ai/">Vizcom</a>
-                    <div class="description">
-                        Herramientas de diseño 3D con IA. Convierte bocetos en renderizados 3D profesionales, ideal para diseñadores de producto e industriales, con opciones de exportación para software 3D.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/shariqfarooq/ZoeDepth">ZoeDepth</a>
-                    <div class="description">
-                        Imagen a 3D. Herramienta que estima mapas de profundidad a partir de imágenes 2D, permitiendo convertirlas en modelos tridimensionales o aplicar efectos basados en profundidad.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.tripo3d.ai/">Tripo 3D</a>
-                    <div class="description">
-                        Plataforma que convierte fotografías en modelos 3D detallados, ideal para comercio electrónico, visualización de productos y creación de activos para realidad virtual.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.csm.ai/">CSM AI</a>
-                    <div class="description">
-                        Servicio que genera modelos 3D a partir de imágenes con alta fidelidad, utilizando algoritmos avanzados para reconstruir geometría y texturas realistas.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://monstermash.zone/">Monstermash Zone</a>
-                    <div class="description">
-                        Herramienta interactiva que permite crear y animar modelos 3D a partir de bocetos simples, con enfoque en personajes y criaturas fantásticas.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/JeffreyXiang/TRELLIS">TRELLIS</a>
-                    <div class="description">
-                        Modelo en Huggingface que crea objetos 3D a partir de descripciones textuales, con capacidad para generar geometrías complejas y texturas coherentes.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.meshy.ai/">Meshy AI</a>
-                    <div class="description">
-                        Plataforma completa para crear, editar y optimizar modelos 3D con IA, con herramientas para texturizado, rigging y exportación a formatos estándar.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/tencent/Hunyuan3D-2">Hunyuan3D-2</a>
-                    <div class="description">
-                        Sistema avanzado de síntesis 3D a gran escala para generar activos 3D texturizados de alta resolución. tiene complemento para Blender.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.blendergpt.org/">BlenderGPT</a>
-                    <div class="description">
-                        IA para Blender. Asistente inteligente que ayuda a automatizar tareas en Blender mediante comandos en lenguaje natural, acelerando flujos de trabajo de modelado y animación.
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="category youtube">
-            <h2>Canales de YouTube</h2>
-            <div class="links">
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@DotCSV/videos">DotCSV</a>
-                    <div class="description">
-                        Canal sobre IA y aprendizaje automático. Contenido educativo en español que explica conceptos de inteligencia artificial, machine learning y deep learning de forma accesible y rigurosa.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@DotCSVLab/videos">DotCSV Lab</a>
-                    <div class="description">
-                        Canal complementario de DotCSV con enfoque práctico, mostrando implementaciones, experimentos y tutoriales paso a paso sobre tecnologías de IA.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@TheoreticallyMedia/videos">Theoretically Media</a>
-                    <div class="description">
-                        Canal sobre IA para la realización cinematográfica, la música, la escritura y el arte.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@BobDoyleMedia/videos">Bob Doyle Media</a>
-                    <div class="description">
-                        Arte y animación con IA, intercambio de rostros, clonación de voces, música con IA, creación de avatares y toda la tecnología de IA que genera indignación entre la gente. Se centra en los usos creativos de la IA, con un enfoque en la creación de medios y la tecnología de soporte.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@mreflow/videos">Matt Wolfe</a>
-                    <div class="description">
-                        Canal con las últimas herramientas y avances en IA, con tutoriales prácticos y comparativas entre diferentes plataformas y servicios.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@XavierMitjana/videos">Xavier Mitjana</a>
-                    <div class="description">
-                        Contenido sobre IA en español que explora aplicaciones prácticas de la inteligencia artificial, con enfoque en herramientas para creadores de contenido y emprendedores.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@techhalla/videos">Techhalla</a>
-                    <div class="description">
-                        Noticias de tecnología IA, con análisis crítico de tendencias y entrevistas a expertos del sector.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@johansolutionsdigitales/videos">Johan Solutions Digitales</a>
-                    <div class="description">
-                        Canal en español especializado en mostrar aplicaciones prácticas de la IA para negocios digitales y marketing, con guías paso a paso.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@futurepedia_io/videos">Futurepedia</a>
-                    <div class="description">
-                        Novedades y herramientas de IA con demostraciones y casos de uso prácticos.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@MattVidPro/videos">MattVidPro AI</a>
-                    <div class="description">
-                        Canal especializado en técnicas y herramientas de IA para la producción audiovisual, con tutoriales sobre generación y edición de video.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@curiousrefuge/videos">Curious Refuge</a>
-                    <div class="description">
-                        Canal que investiga aplicaciones innovadoras de la IA en diversos campos, con enfoque en creatividad, cine, storytelling, arte y diseño asistidos por inteligencia artificial.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@AIWebbTV/videos">AI Webb TV</a>
-                    <div class="description">
-                        Noticias y actualizaciones de IA con análisis de nuevos modelos, herramientas y tendencias emergentes.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@aicontroversy/videos">AI Controversy</a>
-                    <div class="description">
-                        Debates y análisis crítico sobre IA. Aborda las implicaciones éticas, sociales y políticas del desarrollo de la inteligencia artificial, con perspectivas diversas.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@elomaquiabelo/videos">Elomaquiabelo</a>
-                    <div class="description">IA aplicada a la música  con tutoriales sobre generación y edición de audio con IA.</div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@wearenocode/videos">We Are No-Code</a>
-                    <div class="description">
-                        Desarrollo sin código con IA. Canal que muestra cómo crear aplicaciones y servicios sin programación tradicional, utilizando herramientas de IA y plataformas no-code.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@bilawalsidhu/videos">Bilawal Sidhu</a>
-                    <div class="description">
-                        Análisis profundo de IA, RA/RV y robótica: mapeo de los avances, los puntos ciegos y las tecnologías que alteran la realidad y que están transformando nuestro mundo.
-                    </div>
-                </article>
-
-                <article class="link-item">
-                    <a target="_blank" rel="noopener" href="https://www.youtube.com/@meydeey/videos">Mey Deey</a>
-                    <div class="description">
-                        En francés. Tutoriales y demostraciones de herramientas de IA, Automatización, Negocios en línea.
-                    </div>
-                </article>
-            </div>
-        </section>
-        
-    </div>
+
+  <div class="container">
+
+    <h1>Recursos con Inteligencia Artificial</h1>
+
+    <section class="category chat">
+      <h2>Chats y Asistentes</h2>
+      <div class="links">
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://chat.openai.com/">ChatGPT</a>
+              <div class="description">
+                  El asistente de IA más popular de OpenAI. Ofrece conversaciones naturales, responde preguntas, ayuda con redacción y programación, y permite integración con plugins de terceros.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://claude.ai/chats">Claude</a>
+              <div class="description">Asistente de IA de Anthropic. Destaca por su capacidad de procesar grandes cantidades de texto, razonamiento ético y respuestas matizadas con menor tendencia a alucinaciones.</div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://chat.deepseek.com/">Deep Seek</a>
+              <div class="description">
+                  Asistente conversacional especializado. Enfocado en tareas técnicas y de programación, con capacidad para resolver problemas complejos y generar código optimizado.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://chat.qwen.ai/">Qwen 2.5-max</a>
+              <div class="description">
+                  Chat (web hasta dic. 2024). Modelo de lenguaje multimodal de Alibaba, especializado en tareas técnicas y creativas, con capacidad de procesamiento de texto, código e imágenes.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://gemini.google.com/?hl=es">Gemini</a>
+              <div class="description">
+                  El modelo de lenguaje más avanzado de Google. Multimodal, capaz de procesar texto, imágenes y código simultáneamente, con versiones Pro y Ultra para diferentes necesidades.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://manus.im/">Manus AI</a>
+              <div class="description">
+                  Avanzado agente IA general desarrollado por una empresa tecnológica china llamada Monica. Se destaca por su capacidad para abordar y ejecutar tareas complejas de manera autónoma, desde el análisis de datos hasta la resolución creativa de problemas, sin requerir intervención humana constante.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://chat.mistral.ai/chat">Mistral AI</a>
+              <div class="description">
+                  Chat basado en el modelo Mistral. Destaca por su eficiencia y precisión en tareas de programación y análisis, con capacidad multilingüe y comprensión contextual avanzada.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/chat/">Hugging Chat</a>
+              <div class="description">
+                  Chat de Hugging Face. Plataforma de código abierto que ofrece acceso a múltiples modelos de lenguaje, con enfoque en transparencia y personalización.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://poe.com/">Poe</a>
+              <div class="description">
+                  Plataforma con múltiples modelos de IA. Permite acceder a ChatGPT, Claude, Llama y otros modelos desde una única interfaz, con posibilidad de crear bots personalizados y compartirlos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.morphic.sh/">Morphic</a>
+              <div class="description">
+                  Asistente conversacional. Especializado en diseño y desarrollo, con capacidades de generación de código y resolución de problemas técnicos en tiempo real.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://storm.genie.stanford.edu/">Storm</a>
+              <div class="description">
+                  Asistente de Stanford.edu. Modelo de lenguaje desarrollado por investigadores de Stanford, especializado en razonamiento científico y académico con fuentes verificables.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://kimi.ai//">Kimi</a>
+              <div class="description">
+                  Asistente de IA chino con capacidades avanzadas de programación y comprensión de código, optimizado para desarrolladores. Código hasta 09/2023.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://playground.allenai.org/">Allen AI</a>
+              <div class="description">
+                  Entorno experimental del Allen Institute for AI para probar modelos de lenguaje en diversas tareas de razonamiento y comprensión. Playground (hasta 2023)
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://glif.app/@AP/glifs/clzbm2qvb000113zgz4a9r1wj">Glif</a>
+              <div class="description">
+                  Mejorador de prompts (para flux). Herramienta especializada en optimizar instrucciones para modelos de generación de imágenes Flux, mejorando resultados visuales.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/gokaygokay/FLUX-Prompt-Generator">FLUX-Prompt-Generator</a>
+              <div class="description">
+                  Generador de prompts en Huggingface. Aplicación que ayuda a crear instrucciones efectivas para el modelo Flux, con sugerencias de palabras clave y estructuras.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.prompthackers.co/">Prompt Hackers</a>
+              <div class="description">
+                  Plataforma que ofrece técnicas y herramientas para optimizar instrucciones para diversos modelos de IA, con ejemplos y plantillas.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://chatgpt.com/g/g-678faa261f888191946af0ba95a374af-runway-frames-prompt-builder">Runway
+                  Frames Prompt Builder</a>
+              <div class="description">
+                  Constructor de prompts para Runway en ChatGPT. GPT especializado en crear instrucciones optimizadas para la generación de videos en Runway, con sugerencias de composición y estilo.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://chatgpt.com/g/g-71Fq47Ec6-minimax-cinemotion-prompter">Minimax Cinemotion
+                  Prompter</a>
+              <div class="description">
+                  Prompter de Minimax en ChatGPT. GPT diseñado para crear instrucciones efectivas para la plataforma de video Minimax, optimizando resultados cinematográficos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://imagetoprompt.com/">image → prompt</a>
+              <div class="description">
+                  Generador de prompts a partir de imágenes. Aplicación que utiliza IA para crear instrucciones precisas para la reproducción de una imagen ya generada o de cualquier otro tipo de imagen.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://platform.openai.com/api-keys">API-keys OpenAI</a>
+              <div class="description">
+                  Gestión de claves API de OpenAI. Portal para crear, administrar y monitorizar el uso de claves API para integrar servicios de OpenAI en aplicaciones propias.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://lmarena.ai/">LM Arena</a>
+              <div class="description">
+                  Plataforma para probar y comparar diferentes modelos de IA. Permite evaluar el rendimiento de diversos modelos de lenguaje en las mismas tareas para identificar fortalezas y debilidades.
+              </div>
+          </article>
+
+      </div>
+    </section>
+
+    <section class="category imagen">
+      <h2>Herramientas generales y para imágenes</h2>
+      <div class="links">
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://aitestkitchen.withgoogle.com/">Google AI Test Kitchen</a>
+              <div class="description">
+                  Image FX, video FX, music FX, etc. Laboratorio experimental de Google que permite probar las últimas innovaciones en IA para generación y edición multimedia.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces">Huggingface Spaces</a>
+              <div class="description">
+                  Plataforma de modelos y espacios de IA. Comunidad que aloja miles de aplicaciones y modelos de IA, permitiendo probar, compartir y colaborar en proyectos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.recraft.ai/">Recraft AI</a>
+              <div class="description">
+                  Red Panda. Plataforma de diseño que también permite crear y editar imágenes vectoriales con IA, ideal para logos, iconos y gráficos personalizables en múltiples estilos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.meta.ai/">Meta AI</a>
+              <div class="description">
+                  Plataforma de IA de Meta. Conjunto de herramientas y modelos para procesamiento de lenguaje natural, visión por computadora y generación de contenido multimedia.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://pinokio.computer/">Pinokio</a>
+              <div class="description">
+                  Aplicación para descargar, Corre un navegador que permite instalar, ejecutar y administrar CUALQUIER aplicación IA de manera local, en la computadora, con un solo clic.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://dreamina.capcut.com/ai-tool/home">Dreamina</a>
+              <div class="description">
+                  Herramientas de CapCut. Suite completa de edición multimedia con IA, incluyendo generación y edición de video, audio e imágenes con efectos avanzados.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.blendbox.ai/create">Blendbox</a>
+              <div class="description">
+                  Imágenes compuestas. Herramienta que permite combinar múltiples estilos y elementos visuales para crear composiciones únicas con IA, ideal para diseñadores.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://preview.reve.art/">Reve Art</a>
+              <div class="description">
+                  Herramienta de generación de imágenes que transforma descripciones de texto en imágenes de alta resolución. 20 imágenes gratuitas por día. Alta capacidad para adherirse a los prompts y producir resultados visuales atractivos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://openart.ai/create">Open Art AI</a>
+              <div class="description">
+                  Plataforma que ofrece acceso a múltiples modelos de generación de imágenes, con opciones de personalización y una galería comunitaria para inspiración.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://raphael.app/es">Raphael AI</a>
+              <div class="description">
+                  Genera imágenes a partir de texto o imagen. Afirma ser 100% Gratis, es impulsado por Flux.1 Dev. No se requiere inicio de sesión. Generaciones ilimitadas. Tiene planes pagos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://replicate.com/black-forest-labs/flux-dev">Flux Dev</a>
+              <div class="description">
+                  Implementación del modelo Flux en Replicate, que permite generar imágenes de alta calidad a partir de descripciones textuales con control preciso.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://github.com/Alpha-VLLM/Lumina-Image-2.0">Lumina-Image-2.0</a>
+              <div class="description">
+                  Modelo de código abierto para crear imágenes realistas a partir de texto, con opciones para instalación local y personalización avanzada.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev">Flux.1 Dev</a>
+              <div class="description">
+                  Implementación del modelo Flux en la plataforma Hugging Face, permitiendo generar imágenes de alta calidad directamente desde el navegador.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/XLabs-AI/flux-RealismLora">Flux-RealismLora</a>
+              <div class="description">
+                  Adaptación del modelo Flux optimizada para generar imágenes fotorrealistas, disponible en Huggingface como módulo LoRA para integrar en flujos de trabajo existentes.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://fluxpro.art/create">Flux Pro Art</a>
+              <div class="description">
+                  Flux libre sin censura. Versión del modelo Flux con menos restricciones de contenido, permitiendo mayor libertad creativa para artistas y diseñadores.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://fastflux.ai/">Fast Flux</a>
+              <div class="description">
+                  Generación rápida con Flux. Implementación optimizada del modelo Flux que ofrece tiempos de generación más rápidos, ideal para iteraciones y pruebas de concepto.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://dezgo.com/text2image/sdxl">Dezgo</a>
+              <div class="description">
+                  Plataforma que implementa el modelo Flux para crear imágenes de alta calidad, con opciones gratuitas y una interfaz sencilla para usuarios de todos los niveles.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/deepseek-ai/Janus-Pro-7B">Janus-Pro-7B</a>
+              <div class="description">
+                  Modelo Deepseek de lenguaje multimodal especializado en comprensión y generación de contenido visual y textual con alta precisión.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.leonardo.ai/">Leonardo AI</a>
+              <div class="description">
+                  Plataforma de generación de imágenes. Ofrece múltiples modelos de IA, creación de datasets personalizados y herramientas para artistas digitales y diseñadores con control preciso de estilos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://tensor.art/">Tensor Art</a>
+              <div class="description">
+                  Plataforma que integra múltiples modelos de IA para crear imágenes y videos con diferentes estilos, incluyendo opciones para personalización y edición avanzada.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://civitai.com/">Civit AI</a>
+              <div class="description">
+                  Comunidad y repositorio de modelos de IA para generación de imágenes, con miles de modelos personalizados, LoRAs y extensiones para diferentes estilos y necesidades.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a
+                  href="https://colab.research.google.com/github/lllyasviel/Fooocus/blob/main/fooocus_colab.ipynb">Fooocus</a>
+              <div class="description">
+                  Implementación optimizada de Stable Diffusion que funciona en Google Colab, con interfaz simplificada y resultados de alta calidad sin necesidad de hardware potente.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.segmind.com/models/flux-realism-lora">Segmind Flux-realism-lora</a>
+              <div class="description">
+                  24 generaciones gratis. Implementación del modelo Flux con LoRA de realismo en Segmind, que ofrece un número limitado de generaciones gratuitas con resultados fotorrealistas de alta calidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/flux-realism">Flux-realism LORA</a>
+              <div class="description">
+                  Versión de pago. Implementación premium del modelo Flux con LoRA de realismo en la plataforma fal.ai, optimizada para generar imágenes fotorrealistas con mayor control y calidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://rendernet.ai/">RenderNet</a>
+              <div class="description">
+                  Caracteres, upscale, lip sync. Plataforma integral que combina generación de personajes, mejora de resolución de imágenes y sincronización labial para crear contenido visual de alta calidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.apob.ai/">Apob</a>
+              <div class="description">
+                  Influencers virtuales. Plataforma especializada en la creación y animación de personajes digitales hiperrealistas para marketing, entretenimiento y contenido en redes sociales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://ideogram.ai/">Ideogram AI</a>
+              <div class="description">
+                  Text to image. Generador de imágenes a partir de texto con capacidades avanzadas para crear ilustraciones, arte conceptual y visualizaciones con estilos personalizables y alta fidelidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.krea.ai/apps/image/realtime">Krea AI</a>
+              <div class="description">
+                  Generación en tiempo real. Herramienta innovadora que permite crear imágenes mientras se escribe, con resultados instantáneos que evolucionan según las modificaciones del prompt.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.piclumen.com/">Pic Lumen</a>
+              <div class="description">
+                  Generación de imágenes. Plataforma intuitiva para crear imágenes artísticas y fotorrealistas con IA, ofreciendo múltiples estilos y opciones de personalización para creadores visuales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.aiease.ai/es/">AI Ease</a>
+              <div class="description">
+                  Herramientas para imágenes. Suite completa de utilidades para procesamiento y generación de imágenes con IA, incluyendo eliminación de fondos, mejora de resolución y edición inteligente.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.freepik.es/ia/generador-de-imagenes#from_element=home_tools">Freepik</a>
+              <div class="description">
+                  Generador de imágenes. Herramienta de la popular plataforma Freepik que permite crear ilustraciones, fotografías y gráficos personalizados con IA para proyectos de diseño y marketing.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.freepik.com/pikaso/">Freepik Pikaso</a>
+              <div class="description">
+                  Dibujo con IA gratuito. Herramienta de Freepik especializada en la creación de ilustraciones y dibujos estilizados con IA, con opciones gratuitas para usuarios de todos los niveles.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://seaart.ai/es">Sea Art</a>
+              <div class="description">
+                  Generador de arte AI - varios. Plataforma versátil que ofrece múltiples modelos y estilos para crear arte digital, ilustraciones y diseños con diferentes estéticas y técnicas artísticas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.basedlabs.ai/apps">Based Labs</a>
+              <div class="description">
+                  Apps - all in one. Colección de aplicaciones de IA integradas en una sola plataforma, que incluye generación de imágenes, video, texto y otras herramientas creativas para profesionales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://dreamer.lab24.ai/generate">Dreamer</a>
+              <div class="description">
+                  Generación de imágenes. Herramienta intuitiva para crear visuales artísticos y fotorrealistas a partir de descripciones textuales, con opciones para ajustar estilo, composición y detalles.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/multimodalart/stable-cascade">Stable Cascade</a>
+              <div class="description">
+                  Stable Diffusion mejorado. Versión avanzada del popular modelo Stable Diffusion, con mejor calidad de imagen, mayor coherencia y capacidad para generar detalles más precisos y realistas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://playgroundai.com/">Playground</a>
+              <div class="description">
+                  Creador de imágenes con IA. Plataforma amigable para generar y editar imágenes con IA, que ofrece múltiples modelos, estilos artísticos y herramientas de personalización para creadores.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.shakker.ai/">Shakker AI</a>
+              <div class="description">
+                  Image to image AI. Herramienta especializada en transformar imágenes existentes en nuevas versiones con diferentes estilos, contenidos o características, manteniendo elementos estructurales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://cgdream.ai/">CGDream</a>
+              <div class="description">
+                  Creador de imágenes con IA. Plataforma enfocada en la generación de gráficos por computadora de alta calidad, ideal para artistas 3D, diseñadores y creadores de contenido visual profesional.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://getimg.ai/">Get Img AI</a>
+              <div class="description">
+                  Generación de imágenes. Suite completa de herramientas para crear, editar y transformar imágenes con IA, incluyendo generación desde texto, edición inteligente y conversión entre estilos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.switchlight.beeble.ai/">SwitchLight</a>
+              <div class="description">
+                  Edición de imágenes. Herramienta especializada en modificar la iluminación y condiciones ambientales en fotografías, permitiendo cambiar entre día/noche, interior/exterior y diferentes atmósferas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://lexica.art/">Lexica</a>
+              <div class="description">
+                  Buscador y generador de imágenes. Plataforma dual que permite buscar en una extensa biblioteca de imágenes generadas por IA y crear nuevas a partir de descripciones o imágenes de referencia.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/AI4Editing/MagicQuill">MagicQuill</a>
+              <div class="description">
+                  Editor de imágenes. Herramienta en Hugging Face que permite modificar imágenes mediante instrucciones en lenguaje natural, facilitando ediciones complejas sin conocimientos técnicos avanzados.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://hotpot.ai/">Hotpot</a>
+              <div class="description">
+                  Conjunto de herramientas. Colección de utilidades de IA para diseño gráfico, incluyendo generación de imágenes, eliminación de fondos, redimensionamiento inteligente y creación de mockups.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://pixnova.ai/">Pix Nova</a>
+              <div class="description">
+                  Herramientas para imagen. Suite de aplicaciones para procesamiento y generación de imágenes con IA, con funciones especializadas para diferentes necesidades creativas y profesionales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://gamma.app/?lng=es-ES">Gamma</a>
+              <div class="description">
+                  Creación de presentaciones. Plataforma que utiliza IA para generar presentaciones visualmente atractivas a partir de texto, con diseños profesionales, imágenes integradas y contenido coherente.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/jbilcke-hf/ai-comic-factory">AI Comic Factory</a>
+              <div class="description">
+                  Generación de cómics. Herramienta especializada en crear historietas y narrativas visuales con IA, generando secuencias de imágenes coherentes con estilos de cómic personalizables.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.artflow.ai/character-builder?feature=actors">Artflow AI</a>
+              <div class="description">
+                  Herramienta de narración con IA. Plataforma para crear personajes, escenas y narrativas visuales interactivas, ideal para storyboards, conceptos de videojuegos y contenido narrativo.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.canva.com/your-apps">Canva</a>
+              <div class="description">
+                  Diseño con IA. Popular plataforma de diseño gráfico ahora potenciada con herramientas de IA para generar imágenes, textos, layouts y elementos visuales para todo tipo de proyectos creativos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.promeai.pro/es">Prome AI</a>
+              <div class="description">
+                  Asistentes de diseño y marketing. Conjunto de herramientas especializadas en crear contenido visual para marketing digital, con generación de imágenes optimizadas para redes sociales y publicidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://domoai.app/">DomoAI</a>
+              <div class="description">
+                  Generador de arte con IA. Plataforma para crear obras artísticas digitales con diversos estilos y técnicas, ideal para artistas que buscan explorar nuevas posibilidades creativas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.upscayl.org/">Upscayl</a>
+              <div class="description">
+                  App para instalar. Aplicación de código abierto para mejorar la resolución de imágenes mediante IA, que funciona localmente en el ordenador sin necesidad de conexión a internet.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.upscale.media/es">Upscale</a>
+              <div class="description">
+                  Mejora de calidad de imagen. Servicio web que utiliza IA para aumentar la resolución de imágenes manteniendo detalles y nitidez, ideal para fotografías, ilustraciones y material gráfico.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://bigjpg.com/">Bigjpg</a>
+              <div class="description">
+                  Ampliación sin pérdida. Herramienta especializada en aumentar el tamaño de imágenes sin perder calidad, utilizando algoritmos de IA para preservar detalles y evitar pixelación.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.pixelcut.ai/es">Pixelcut</a>
+              <div class="description">
+                  Herramientas para imagen y ampliación. Suite de utilidades para procesamiento de imágenes con IA, incluyendo eliminación de fondos, mejora de resolución y edición inteligente para e-commerce.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.dzine.ai/">Dzine (Stylar)</a>
+              <div class="description">
+                  Imagen a video y cambio de estilo. Plataforma que permite animar imágenes estáticas y transformar estilos visuales, creando contenido dinámico a partir de fotografías o ilustraciones.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.scenario.com/">Scenario</a>
+              <div class="description">
+                  Personajes consistentes. Herramienta especializada en la generación de personajes con alta coherencia visual entre diferentes poses, expresiones y ángulos, ideal para desarrollo de videojuegos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/yanze/PuLID-FLUX">PuLID-FLUX</a>
+              <div class="description">
+                  Personajes consistentes en Huggingface. Herramienta especializada en la generación de personajes con coherencia visual entre diferentes poses y ángulos, implementada como espacio interactivo en Hugging Face.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/tuan2308/face-swap">Face Swap</a>
+              <div class="description">
+                  Intercambio de rostros en Huggingface. Aplicación que permite sustituir caras en imágenes con alta precisión y naturalidad, manteniendo expresiones y características faciales coherentes con el contexto.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://remaker.ai/en">Remaker</a>
+              <div class="description">
+                  Generador de contenido creativo. Plataforma versátil para crear y transformar imágenes, videos y diseños con IA, ofreciendo múltiples estilos y opciones de personalización para proyectos creativos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://dgb.lol/">DGB.lol</a>
+              <div class="description">
+                  Tratamiento de imágenes con IA. Conjunto de herramientas para procesamiento avanzado de imágenes, incluyendo mejora de calidad, restauración, colorización y transformaciones estilísticas con algoritmos de IA.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://infografix.app/">Infografix</a>
+              <div class="description">
+                  Infografías con IA. Plataforma especializada en la creación de visualizaciones de datos e infografías profesionales utilizando IA para organizar información compleja en formatos visualmente atractivos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://perchance.org/ai-text-to-image-generator">Perchance</a>
+              <div class="description">
+                  Generador de imágenes desde texto. Herramienta gratuita y accesible que convierte descripciones textuales en imágenes, con opciones para ajustar estilos y parámetros de generación sin necesidad de registro.
+              </div>
+          </article>
+      </div>
+    </section>
+
+    <section class="category web">
+      <h2>Desarrollo Web</h2>
+      <div class="links">
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.relume.io/">Relume</a>
+              <div class="description">
+                  Plataforma que convierte descripciones textuales en mapas de sitio y wireframes interactivos, acelerando el proceso de planificación y diseño web con sugerencias basadas en IA.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.trae.ai/">Trae AI</a>
+              <div class="description">
+                  Entorno de desarrollo web con asistente de programación inteligente. Ayuda a desarrolladores a escribir, explicar y depurar código con contexto del repositorio completo y sugerencias en tiempo real para múltiples lenguajes.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://bolt.new/">Bolt</a>
+              <div class="description">
+                  De StackBlitz. Entorno de desarrollo web instantáneo que permite crear y compartir proyectos web completos directamente desde el navegador, con soporte para múltiples frameworks y bibliotecas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://lovable.dev/">Lovable</a>
+              <div class="description">
+                  Plataforma que transforma descripciones textuales en aplicaciones web funcionales en segundos, generando código, diseño y funcionalidades basadas en instrucciones en lenguaje natural.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.blackbox.ai/">Blackbox</a>
+              <div class="description">
+                  AI Code Generation, Code Chat, Code Search. Suite de herramientas para desarrolladores que ofrece generación de código, asistencia conversacional y búsqueda inteligente en bases de código existentes.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://replit.com/">Replit</a>
+              <div class="description">
+                  Plataforma de desarrollo colaborativo en la nube con funciones de IA que acelera la creación de software, permitiendo codificar, ejecutar y desplegar aplicaciones desde el navegador.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://codellm.abacus.ai/">Code LLM</a>
+              <div class="description">
+                  Es de Pago. Modelo de lenguaje especializado en programación que ofrece asistencia avanzada para desarrollo de software, con capacidades de generación y optimización de código bajo suscripción.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/osanseviero/InstantCoder">Instant Coder</a>
+              <div class="description">
+                  Implementación en Hugging Face del modelo Gemini 2.5 Pro optimizada para tareas de programación, creación de webapps.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://llamacoder.together.ai/">Llama Coder</a>
+              <div class="description">
+                  Implementación del modelo Llama optimizada para tareas de programación, que ofrece sugerencias de código, explicaciones y soluciones a problemas técnicos en múltiples lenguajes.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://ai.mobirise.com/">Mobirise AI</a>
+              <div class="description">
+                  Plataforma que utiliza IA para crear sitios web responsivos sin necesidad de conocimientos técnicos, con generación automática de diseños, contenidos y elementos interactivos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://soloist.ai/">Solo AI</a>
+              <div class="description">
+                  Herramienta que permite crear sitios web profesionales a partir de instrucciones en lenguaje natural, automatizando diseño, estructura y contenido con tecnología de IA.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.zipwp.com/">ZipWP</a>
+              <div class="description">
+                  Plataforma especializada en crear sitios WordPress completos mediante IA, generando temas, páginas y contenido personalizado según las especificaciones del usuario.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.usegalileo.ai/">Galileo AI</a>
+              <div class="description">
+                  Herramienta que genera interfaces de usuario completas a partir de descripciones textuales, con capacidad para crear diseños coherentes y componentes interactivos para aplicaciones web.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://console.groq.com/playground">Groq Playground</a>
+              <div class="description">
+                  Entorno de desarrollo IA. Plataforma que ofrece acceso a modelos de lenguaje ultrarrápidos para desarrollo de aplicaciones, con un entorno interactivo para experimentar y prototipar soluciones basadas en IA.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://appgen.groqlabs.com/">Groq AppGen</a>
+              <div class="description">
+                  Generador de micro apps con IA. Plataforma que permite crear aplicaciones web a partir de texto o bocetando.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.napkins.dev/">Napkins Dev</a>
+              <div class="description">
+                  Herramienta que convierte capturas de pantalla o bocetos en código React funcional, permitiendo transformar rápidamente ideas visuales en aplicaciones web interactivas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://creatie.ai/">Creatie</a>
+              <div class="description">
+                  Plataforma integral para diseño de productos digitales que utiliza IA para generar interfaces, prototipos y especificaciones técnicas a partir de conceptos iniciales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://v0.dev/">V0 by Vercel</a>
+              <div class="description">
+                  Generación de interfaces web con IA. Herramienta de Vercel que crea componentes y páginas web completas a partir de descripciones textuales, con código optimizado para Next.js y Tailwind CSS.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://websim.ai/">Web Sim</a>
+              <div class="description">
+                  Simulador web con IA. Plataforma que permite simular y probar interacciones de usuario en sitios web generados por IA, facilitando la evaluación de usabilidad y experiencia de usuario antes del desarrollo.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://purecode.ai/">Pure Code AI</a>
+              <div class="description">
+                  Generación de código limpio. Asistente especializado en producir código optimizado, mantenible y siguiendo las mejores prácticas, con enfoque en calidad y rendimiento para proyectos profesionales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://cerebrascoder.com/">Cerebras Coder</a>
+              <div class="description">
+                  Herramienta basada en modelos de IA de Cerebras Systems que ayuda a desarrolladores a escribir, revisar y optimizar código con sugerencias contextuales y solución de problemas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/osanseviero/gemini-coder">Gemini Coder</a>
+              <div class="description">
+                  Implementación del modelo Gemini de Google optimizada para tareas de programación, disponible como espacio interactivo en la plataforma Hugging Face para uso gratuito.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://web.lmarena.ai/">Web Dev Arena</a>
+              <div class="description">
+                  Plataforma que permite evaluar y comparar el rendimiento de diferentes modelos de IA en tareas específicas de desarrollo web, ayudando a elegir la mejor herramienta.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://chat.deepseek.com/">DeepSeek</a>
+              <div class="description">
+                  Modelo de lenguaje especializado en programación y desarrollo de software, con capacidades avanzadas para entender y generar código en múltiples lenguajes y frameworks.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.tempolabs.ai/">Tempo Labs AI</a>
+              <div class="description">
+                  Plataforma especializada en la generación y optimización de aplicaciones React, que automatiza la creación de componentes, estados y lógica de negocio con asistencia de IA.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.reweb.so/">ReWeb</a>
+              <div class="description">
+                  Constructor visual que permite crear aplicaciones web modernas con Next.js y Tailwind CSS mediante una interfaz de arrastrar y soltar potenciada por IA.
+              </div>
+          </article>
+      </div>
+    </section>
+
+    <section class="category archivos">
+      <h2>A partir de medios</h2>
+      <div class="links">
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://notebooklm.google.com/">Notebook LM</a>
+              <div class="description">
+                  Herramienta de Google que permite analizar y extraer información de documentos largos, generando resúmenes, respuestas a preguntas, análisis detallados del contenido y "podcasts".
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://learning.google.com/experiments/learn-about/signup">Learn About</a>
+              <div class="description">
+                  Plataforma experimental de Google que utiliza IA para crear experiencias educativas personalizadas, permitiendo explorar y aprender de diversos temas de forma interactiva.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://unstuckstudy.com/">Unstuck Study</a>
+              <div class="description">
+                  Herramienta que procesa videos y documentos para extraer conceptos clave, generar resúmenes y crear materiales de estudio personalizados con ayuda de IA.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://videohighlight.com/">Video Highlight</a>
+              <div class="description">
+                  Análisis desde Youtube, Vimeo o DailyMotion. Plataforma que utiliza IA para identificar y extraer momentos importantes en videos, crear resúmenes automáticos y generar transcripciones precisas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/wjbmattingly/caracal">Caracal</a>
+              <div class="description">
+                  Modelo de IA especializado en reconocimiento de escritura a mano, capaz de transcribir documentos manuscritos a texto digital con alta precisión y soporte para múltiples idiomas.
+              </div>
+          </article>
+      </div>
+    </section>
+
+    <section class="category musica">
+      <h2>Música y Voces</h2>
+      <div class="links">
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.suno.ai/create">Suno AI</a>
+              <div class="description">
+                  Generación de música con IA. Crea canciones completas con letra y música a partir de descripciones textuales en diversos géneros y estilos, permitiendo ajustes de instrumentación y estructura.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.udio.com/">Udio</a>
+              <div class="description">
+                  Plataforma integral para componer, producir y editar música utilizando inteligencia artificial, con capacidades para generar melodías, armonías y arreglos personalizados.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.riffusion.com/">Riffusion</a>
+              <div class="description">
+                  Herramienta que utiliza modelos de difusión para crear secuencias musicales y efectos sonoros a partir de descripciones textuales o imágenes de espectrogramas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.mureka.ai/create">Mureka</a>
+              <div class="description">
+                  Plataforma que permite generar composiciones musicales originales con control sobre género, tempo, instrumentación y estructura, ideal para creadores de contenido.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.kits.ai/">Kits AI</a>
+              <div class="description">
+                  Suite completa para procesamiento y generación de audio, incluyendo creación de música, efectos sonoros, conversión de voz y mejora de calidad de grabaciones.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://pro.splashmusic.com/">Splash Pro</a>
+              <div class="description">
+                  Plataforma profesional para crear pistas musicales personalizadas con diferentes estilos y géneros, con opciones para exportación en alta calidad y uso comercial.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://sonauto.ai/Home">Son Auto AI</a>
+              <div class="description">
+                  Herramienta que automatiza procesos de producción musical como mezcla, masterización y arreglos, ahorrando tiempo a productores y músicos profesionales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.songr.ai/">SongR</a>
+              <div class="description">
+                  Plataforma especializada en la generación de canciones completas con letras coherentes y música adaptada al estilo solicitado, con opciones para colaboración.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.loudly.com/music/ai-music-generator">Loudly</a>
+              <div class="description">
+                  Servicio que permite crear pistas musicales personalizadas para proyectos creativos, con una extensa biblioteca de estilos y opciones de personalización avanzadas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.tryreplay.io/">Try Replay</a>
+              <div class="description">
+                  Plataforma que permite remixar y transformar canciones existentes o crear nuevas composiciones a partir de descripciones textuales con control creativo detallado.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://studio.moises.ai/library/">Moises AI</a>
+              <div class="description">
+                  Tecnología avanzada que permite aislar y extraer pistas individuales de canciones, ideal para remixes, práctica musical y análisis de composiciones.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.hedra.com/app/characters">Hedra</a>
+              <div class="description">
+                  Plataforma que permite generar avatares digitales con voces personalizadas para narración, doblaje y contenido interactivo con expresiones realistas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://weights.gg/es">Weights GG</a>
+              <div class="description">
+                  Herramienta que permite crear voces sintéticas realistas en múltiples idiomas y estilos, ideal para narración, podcasts y contenido multimedia con calidad profesional.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://poppop.ai/">Pop Pop AI</a>
+              <div class="description">
+                  Taller de audio en línea. Crea efectos de sonido, re-mezcla canciones, genera voces y cambia voces usando IA, todo en un solo lugar, gratis.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.hume.ai/">Hume</a>
+              <div class="description">
+                  Crea voces de IA que comprenden la expresión emocional.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/mrfakename/E2-F5-TTS">E2-F5-TTS</a>
+              <div class="description">
+                  Clonación de voces en Huggingface. Implementación del modelo E2-F5 para síntesis de voz que permite replicar características vocales a partir de muestras cortas con alta fidelidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/redradios/F5-TTS-Sp">Spanish-F5</a>
+              <div class="description">
+                  TTS en español en Huggingface. Versión del modelo F5 optimizada para síntesis de voz en español, con soporte para diferentes acentos regionales y control de entonación y emoción.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://create.musicfy.lol/create/voice">Musicfy</a>
+              <div class="description">
+                  Plataforma que permite crear voces cantadas y habladas con IA, ideal para producción musical, doblaje y creación de contenido con voces personalizadas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.lalal.ai/es/">Lalal AI</a>
+              <div class="description">
+                  Servicio especializado en separar pistas de audio con alta precisión, permitiendo aislar voces, instrumentos y otros elementos sonoros de cualquier grabación.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.synclabs.so/playground/lip-sync">Synclabs</a>
+              <div class="description">
+                  Sincronización de audio y video. Herramienta que alinea automáticamente el movimiento labial en videos con nuevas pistas de audio, ideal para doblaje, localización y contenido multilingüe.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.irocketvpn.com/ai-voice-generator/">AI Voice Generator</a>
+              <div class="description">
+                  Aplicación que ofrece una amplia gama de voces sintéticas con diferentes características, idiomas y estilos para proyectos creativos y profesionales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://elevenlabs.io/speech-synthesis">ElevenLabs</a>
+              <div class="description">
+                  Plataforma líder en generación de voces ultrarrealistas con control preciso sobre entonación, emoción y estilo, utilizada en producciones profesionales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://fakeyou.com/">Fake You</a>
+              <div class="description">
+                  Servicio que permite replicar voces conocidas o crear nuevas voces personalizadas para proyectos creativos, con una extensa biblioteca de perfiles vocales.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://play.ht/">Play HT</a>
+              <div class="description">
+                  Plataforma versátil para convertir texto en voz natural con más de 900 voces en múltiples idiomas, ideal para narración, podcasts y contenido educativo.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.kits.ai/convert">Kits AI Convert</a>
+              <div class="description">
+                  Herramienta especializada en transformar grabaciones de voz entre diferentes estilos, timbres y características, manteniendo el contenido y la naturalidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://play.cartesia.ai/text-to-speech">Cartesia</a>
+              <div class="description">
+                  Servicio de conversión de texto a voz con opciones avanzadas de personalización, incluyendo control de ritmo, entonación y características vocales específicas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.canva.com/apps/AAF5prtvncA/lalamu-studio">Lalamu Studio</a>
+              <div class="description">
+                  Plataforma que permite sincronizar automáticamente el movimiento labial de personajes con nuevas pistas de audio para doblaje y localización de contenido.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/H-Liu1997/TANGO">TANGO</a>
+              <div class="description">
+                  Sincronización en Huggingface. Implementación del modelo TANGO para sincronización labial avanzada, disponible como espacio interactivo en la plataforma Hugging Face para uso gratuito.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/OpenSound/EzAudio">EzAudio</a>
+              <div class="description">
+                  Herramienta en Hugging Face que permite crear efectos sonoros, música ambiental y clips de audio personalizados con parámetros ajustables.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://multimedia.easeus.com/es/vocal-remover/">EaseUS Vocal Remover</a>
+              <div class="description">
+                  Separador de pistas. Aplicación que utiliza IA para eliminar o aislar voces y elementos específicos de grabaciones musicales, con opciones para ajustar la intensidad del efecto.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://applio.org/">Applio</a>
+              <div class="description">
+                  Herramienta de código abierto para síntesis de voz que permite crear voces personalizadas con control sobre características tonales y expresivas para diversos usos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.text-to-speech.online/">Text-to-Speech Online</a>
+              <div class="description">
+                  Voces gratuitas con diferentes acentos. Servicio web que ofrece conversión de texto a voz sin costo, con una amplia variedad de acentos regionales y opciones de personalización básicas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://riverside.fm/transcription">Riverside FM</a>
+              <div class="description">
+                  Transcripción de audio y video. Servicio que convierte automáticamente contenido hablado en texto con alta precisión, ideal para subtitulado, documentación y accesibilidad de contenido.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://fish.audio/">Fish Audio</a>
+              <div class="description">
+                  Conjunto de utilidades para procesamiento y generación de audio, incluyendo separación de pistas, mejora de calidad y creación de efectos sonoros personalizados.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://mangoanimate.com/ai">MangoAnimate AI</a>
+              <div class="description">
+                  Animación y audio con IA. Plataforma que combina generación de voces y animación de personajes para crear contenido multimedia interactivo con sincronización automática de movimientos.
+              </div>
+          </article>
+      </div>
+    </section>
+
+    <section class="category video">
+      <h2>Video</h2>
+      <div class="links">
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://wan.video/">Wan video</a>
+              <div class="description">
+                  Generación de video con IA a partir de texto o imágenes, con opciones avanzadas para ajustar estilos visuales, movimientos de cámara y transiciones fluidas.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://runwayml.com/">Runway</a>
+              <div class="description">
+                  Edición y generación de video con IA. Ofrece herramientas como Gen-2 para texto a video, inpainting, extensión de videos y efectos visuales avanzados con control creativo detallado.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://klingai.com/">Kling AI</a>
+              <div class="description">
+                  Generación de video con IA a partir de texto o imágenes, con opciones para personalizar estilos, movimientos de cámara y transiciones.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://hailuoaifree.com/es">MiniMax</a>
+              <div class="description">
+                  Herramienta desarrollada por Alibaba que convierte descripciones textuales en secuencias de video fluidas, con interfaz en chino y capacidades avanzadas de generación visual.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://hailuoai.video/create">Hailuoai Minimax</a>
+              <div class="description">
+                  Versión internacional de la herramienta de Minimax que ofrece generación de video a partir de texto con controles avanzados de composición y estilo visual.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://chatgpt.com/g/g-71Fq47Ec6-minimax-cinemotion-prompter">Minimax Cinemotion Prompter</a>
+              <div class="description">
+                  GPT especializado que ayuda a crear instrucciones optimizadas para la plataforma Minimax, mejorando los resultados de generación de video.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://kaiber.ai/superstudio">Kaiber Superstudio</a>
+              <div class="description">
+                  Suite completa para producción de video con IA que incluye generación, edición y efectos especiales con una interfaz intuitiva y resultados de alta calidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.hedra.com/">Hedra</a>
+              <div class="description">
+                  Video, personajes e historias con control creativo. Plataforma integral que permite crear narrativas visuales completas con personajes consistentes y escenas dinámicas generadas por IA.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.florafauna.ai/">Flora AI</a>
+              <div class="description">
+                  Lienzo que conecta herramientas IA. Permite la ideación, iteración y exploración rápidas utilizando modelos de IA de texto, imagen y video en un lienzo infinito. Ofrece colaboración en tiempo real y flujos de trabajo comunitarios.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.ltx.studio/">LTX Studio</a>
+              <div class="description">
+                  Herramienta especializada en la generación de secuencias de video de mayor duración con coherencia narrativa, ideal para contenido explicativo y storytelling.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://lumalabs.ai/dream-machine/creations">Luma Labs</a>
+              <div class="description">
+                  Plataforma que convierte descripciones textuales en videos tridimensionales con efectos de iluminación y movimiento realistas, especializada en escenas y entornos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.vidu.studio/">Vidu Studio</a>
+              <div class="description">
+                  Plataforma completa para la creación y edición de videos con asistencia de IA, que incluye herramientas para guiones, storyboards y postproducción.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://pika.art/">Pika</a>
+              <div class="description">
+                  Herramienta que permite crear videos cortos a partir de texto o imágenes, con opciones para ajustar estilo, movimiento y composición visual.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://yuewen.cn/videos">Jia Qing / Yuewen</a>
+              <div class="description">
+                  Servicio chino de generación y distribución de contenido de video con tecnología de IA, especializado en narrativas visuales y adaptaciones de textos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.skyreels.ai/home">SkyReels AI</a>
+              <div class="description">
+                  Plataforma que automatiza la producción de videos para marketing y redes sociales, con plantillas personalizables y generación de contenido dinámico.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://tensor.art/">Tensor Art</a>
+              <div class="description">
+                  Colección de herramientas que utilizan diferentes modelos de IA para crear contenido visual estático y en movimiento con estilos variados.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://hotshot.co/">Hot Shot</a>
+              <div class="description">
+                  Servicio que convierte descripciones textuales en videos cortos con alta calidad visual, ideal para creadores de contenido y marketing digital.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.rendernet.ai/">RenderNet</a>
+              <div class="description">
+                  Potente generador de imágenes centrado en crear personajes consistentes y controlar su pose, composición y estilo para su uso en videos
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://vivago.ai/video">Viva Go</a>
+              <div class="description">
+                  Plataforma versátil que permite tanto la generación de imágenes como su transformación en secuencias de video animadas con diversos efectos y estilos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://viggle.ai/">Viggle AI</a>
+              <div class="description">
+                  Herramienta que ofrece controles precisos sobre la generación de video, permitiendo ajustar parámetros específicos para obtener resultados personalizados.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.pixverse.ai/">Pixverse</a>
+              <div class="description">
+                  Servicio que permite convertir imágenes estáticas o descripciones textuales en secuencias de video con movimiento natural y transiciones fluidas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.morphstudio.com/">Morph Studio</a>
+              <div class="description">
+                  Plataforma integral para la creación y edición de contenido audiovisual con herramientas de IA para efectos especiales, animación y composición.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.revid.ai/">Revid AI</a>
+              <div class="description">
+                  Servicio especializado en la generación y edición de videos para marketing y redes sociales, con opciones para personalización de marca y estilo.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.genmo.ai/">Genmo</a>
+              <div class="description">
+                  Creación de videos e imágenes con IA. Plataforma versátil que permite generar tanto contenido estático como en movimiento a partir de descripciones textuales detalladas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/THUDM/CogVideoX-5B-Space">CogVideoX-5B</a>
+              <div class="description">
+                  Por ahora libre. Modelo de código abierto en Hugging Face que permite transformar imágenes o clips cortos en secuencias de video más largas y elaboradas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://app.clipchamp.com/">Clipchamp</a>
+              <div class="description">
+                  Editor de video con IA de Microsoft en la nube con funciones para automatizar tareas como transcripción, subtitulado y mejora de calidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://moonvalley.ai/">Moonvalley</a>
+              <div class="description">
+                  Plataforma que convierte conceptos e ideas en animaciones fluidas y videos narrativos con estilos visuales personalizables y alta calidad.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://haiper.ai/">Haiper</a>
+              <div class="description">
+                  Servicio especializado en crear videos para marketing, educación y entretenimiento con opciones avanzadas de personalización.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://plaiday.io/discord/">Plaiday</a>
+              <div class="description">
+                  Bot de Discord que permite generar videos a partir de descripciones textuales directamente dentro de la plataforma de comunicación.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://lensgo.ai/">Lensgo</a>
+              <div class="description">
+                  Plataforma integrada que ofrece herramientas para la creación tanto de imágenes estáticas como de contenido de video con diversos estilos y efectos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.synthesia.io/">Synthesia</a>
+              <div class="description">
+                  Servicio especializado en la creación de presentadores virtuales con expresiones faciales y gestos realistas para videos corporativos y educativos.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://akool.com/">A Kool</a>
+              <div class="description">
+                  Suite de aplicaciones que incluye generadores de video, imágenes y texto para diversos usos creativos y profesionales con interfaz unificada.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.topview.ai/">Top View</a>
+              <div class="description">
+                  Servicio especializado en la creación de videos explicativos y promocionales con narración, animaciones y efectos visuales generados por IA.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://wonderdynamics.com/">Wonder Dynamics</a>
+              <div class="description">
+                  Plataforma profesional para la creación de efectos especiales y animación de personajes en producciones cinematográficas y televisivas.
+              </div>
+          </article>
+          
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://tost.ai/">Tost AI</a>
+              <div class="description">
+                  Video con Flux, Lora y otras aplicaciones. Servicio que integra múltiples modelos de IA para ofrecer opciones avanzadas de generación y edición de video con control creativo detallado.
+              </div>
+          </article>
+      </div>
+    </section>
+
+    <section class="category 3D">
+      <h2>3D</h2>
+      <div class="links">
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.vizcom.ai/">Vizcom</a>
+              <div class="description">
+                  Herramientas de diseño 3D con IA. Convierte bocetos en renderizados 3D profesionales, ideal para diseñadores de producto e industriales, con opciones de exportación para software 3D.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/shariqfarooq/ZoeDepth">ZoeDepth</a>
+              <div class="description">
+                  Imagen a 3D. Herramienta que estima mapas de profundidad a partir de imágenes 2D, permitiendo convertirlas en modelos tridimensionales o aplicar efectos basados en profundidad.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.tripo3d.ai/">Tripo 3D</a>
+              <div class="description">
+                  Plataforma que convierte fotografías en modelos 3D detallados, ideal para comercio electrónico, visualización de productos y creación de activos para realidad virtual.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.csm.ai/">CSM AI</a>
+              <div class="description">
+                  Servicio que genera modelos 3D a partir de imágenes con alta fidelidad, utilizando algoritmos avanzados para reconstruir geometría y texturas realistas.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://monstermash.zone/">Monstermash Zone</a>
+              <div class="description">
+                  Herramienta interactiva que permite crear y animar modelos 3D a partir de bocetos simples, con enfoque en personajes y criaturas fantásticas.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/JeffreyXiang/TRELLIS">TRELLIS</a>
+              <div class="description">
+                  Modelo en Huggingface que crea objetos 3D a partir de descripciones textuales, con capacidad para generar geometrías complejas y texturas coherentes.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.meshy.ai/">Meshy AI</a>
+              <div class="description">
+                  Plataforma completa para crear, editar y optimizar modelos 3D con IA, con herramientas para texturizado, rigging y exportación a formatos estándar.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/tencent/Hunyuan3D-2">Hunyuan3D-2</a>
+              <div class="description">
+                  Sistema avanzado de síntesis 3D a gran escala para generar activos 3D texturizados de alta resolución. tiene complemento para Blender.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.blendergpt.org/">BlenderGPT</a>
+              <div class="description">
+                  IA para Blender. Asistente inteligente que ayuda a automatizar tareas en Blender mediante comandos en lenguaje natural, acelerando flujos de trabajo de modelado y animación.
+              </div>
+          </article>
+      </div>
+    </section>
+
+    <section class="category youtube">
+      <h2>Canales de YouTube</h2>
+      <div class="links">
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@DotCSV/videos">DotCSV</a>
+              <div class="description">
+                  Canal sobre IA y aprendizaje automático. Contenido educativo en español que explica conceptos de inteligencia artificial, machine learning y deep learning de forma accesible y rigurosa.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@DotCSVLab/videos">DotCSV Lab</a>
+              <div class="description">
+                  Canal complementario de DotCSV con enfoque práctico, mostrando implementaciones, experimentos y tutoriales paso a paso sobre tecnologías de IA.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@TheoreticallyMedia/videos">Theoretically Media</a>
+              <div class="description">
+                  Canal sobre IA para la realización cinematográfica, la música, la escritura y el arte.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@BobDoyleMedia/videos">Bob Doyle Media</a>
+              <div class="description">
+                  Arte y animación con IA, intercambio de rostros, clonación de voces, música con IA, creación de avatares y toda la tecnología de IA que genera indignación entre la gente. Se centra en los usos creativos de la IA, con un enfoque en la creación de medios y la tecnología de soporte.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@mreflow/videos">Matt Wolfe</a>
+              <div class="description">
+                  Canal con las últimas herramientas y avances en IA, con tutoriales prácticos y comparativas entre diferentes plataformas y servicios.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@XavierMitjana/videos">Xavier Mitjana</a>
+              <div class="description">
+                  Contenido sobre IA en español que explora aplicaciones prácticas de la inteligencia artificial, con enfoque en herramientas para creadores de contenido y emprendedores.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@techhalla/videos">Techhalla</a>
+              <div class="description">
+                  Noticias de tecnología IA, con análisis crítico de tendencias y entrevistas a expertos del sector.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@johansolutionsdigitales/videos">Johan Solutions Digitales</a>
+              <div class="description">
+                  Canal en español especializado en mostrar aplicaciones prácticas de la IA para negocios digitales y marketing, con guías paso a paso.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@futurepedia_io/videos">Futurepedia</a>
+              <div class="description">
+                  Novedades y herramientas de IA con demostraciones y casos de uso prácticos.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@MattVidPro/videos">MattVidPro AI</a>
+              <div class="description">
+                  Canal especializado en técnicas y herramientas de IA para la producción audiovisual, con tutoriales sobre generación y edición de video.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@curiousrefuge/videos">Curious Refuge</a>
+              <div class="description">
+                  Canal que investiga aplicaciones innovadoras de la IA en diversos campos, con enfoque en creatividad, cine, storytelling, arte y diseño asistidos por inteligencia artificial.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@AIWebbTV/videos">AI Webb TV</a>
+              <div class="description">
+                  Noticias y actualizaciones de IA con análisis de nuevos modelos, herramientas y tendencias emergentes.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@aicontroversy/videos">AI Controversy</a>
+              <div class="description">
+                  Debates y análisis crítico sobre IA. Aborda las implicaciones éticas, sociales y políticas del desarrollo de la inteligencia artificial, con perspectivas diversas.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@elomaquiabelo/videos">Elomaquiabelo</a>
+              <div class="description">IA aplicada a la música  con tutoriales sobre generación y edición de audio con IA.</div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@wearenocode/videos">We Are No-Code</a>
+              <div class="description">
+                  Desarrollo sin código con IA. Canal que muestra cómo crear aplicaciones y servicios sin programación tradicional, utilizando herramientas de IA y plataformas no-code.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@bilawalsidhu/videos">Bilawal Sidhu</a>
+              <div class="description">
+                  Análisis profundo de IA, RA/RV y robótica: mapeo de los avances, los puntos ciegos y las tecnologías que alteran la realidad y que están transformando nuestro mundo.
+              </div>
+          </article>
+
+          <article class="link-item">
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@meydeey/videos">Mey Deey</a>
+              <div class="description">
+                  En francés. Tutoriales y demostraciones de herramientas de IA, Automatización, Negocios en línea.
+              </div>
+          </article>
+      </div>
+    </section>
+
+  </div>
     
 </body>
 
