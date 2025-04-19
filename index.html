@@ -82,7 +82,7 @@
     <li><a href="./subgrid/" target="_blank">Contenidos totalmente alineados usando CSS <span>subgrid</span></a></li>
     <li><a href="./cubo3DsoloCSS/" target="_blank">Cubo 3D que rota, con sólo CSS</a></li>
     <li><a href="./cursorAnimado-con-JS/" target="_blank">Cursor animado, con JS</a></li>
-        <li><a href="./3D-en-hover-solo-css/" target="_blank">Efecto 3D en :hover, con sólo CSS</a></li>
+    <li><a href="./3D-en-hover-solo-css/" target="_blank">Efecto 3D en :hover, con sólo CSS</a></li>
     <li><a href="./efecto-de-cartas/" target="_blank">Efecto de cartas, con sólo CSS</a></li>
     <li><a href="./FAQ-HTML-CSS/" target="_blank">FAQ - Preguntas frecuentes, con sólo HTML y CSS</a></li>
     <li><a href="./degradeAnimado/" target="_blank">Fondo con degradé animado</a></li>
@@ -139,29 +139,29 @@
 
 <script>
   // Selecciona el elemento input de búsqueda
-    const filterInput = document.getElementById('filterInput');
-    // Selecciona todos los elementos li que contienen los enlaces dentro de la lista en main
-    const links = document.querySelectorAll('main ul li');
-  
-    // Agrega un evento que se ejecuta cada vez que el usuario escribe en el campo de búsqueda
-    filterInput.addEventListener('input', function(e) {
-      // Obtiene el texto ingresado y lo convierte a minúsculas para hacer la búsqueda insensible a mayúsculas/minúsculas
-      const searchTerm = e.target.value.toLowerCase();
-  
-      // Recorre cada elemento de la lista
-      links.forEach(link => {
-        // Obtiene el texto del enlace y lo convierte a minúsculas
-        const text = link.textContent.toLowerCase();
-        // Si el texto del enlace incluye el término buscado, muestra el elemento
-        if (text.includes(searchTerm)) {
-          link.style.display = '';
-        } else {
-          // Si no incluye el término buscado, oculta el elemento
-          link.style.display = 'none';
-        }
-      });
+  const filterInput = document.getElementById('filterInput');
+  // Selecciona todos los elementos li que contienen los enlaces dentro de la lista en main
+  const links = document.querySelectorAll('main ul li');
+
+  // Agrega un evento que se ejecuta cada vez que el usuario escribe en el campo de búsqueda
+  filterInput.addEventListener('input', function(e) {
+    // Obtiene el texto ingresado y lo convierte a minúsculas para hacer la búsqueda insensible a mayúsculas/minúsculas
+    const searchTerm = e.target.value.toLowerCase();
+
+    // Recorre cada elemento de la lista
+    links.forEach(link => {
+      // Obtiene el texto del enlace y lo convierte a minúsculas
+      const text = link.textContent.toLowerCase();
+      // Si el texto del enlace incluye el término buscado, muestra el elemento
+      if (text.includes(searchTerm)) {
+        link.style.display = '';
+      } else {
+        // Si no incluye el término buscado, oculta el elemento
+        link.style.display = 'none';
+      }
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>

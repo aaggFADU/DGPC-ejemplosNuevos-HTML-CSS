@@ -7,124 +7,123 @@
   <title>Herramientas de IA</title>
   <style>
     :root {
-        --primary-color: hsl(215 70% 78%);
-        --bg-color: hsl(215 44% 7%);
-        --text-color: hsl(215 40% 98%);
-        --hover-color: hsl(215 97% 87%);
-        --card-bg: hsl(215 33% 15%);
-        --item-bg: hsl(215 21% 21%);
-        --item-hover: hsl(215 20% 28%);
-        --description-color: hsl(215 27% 84%);
-        font-size: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+      --primary-color: hsl(215 70% 78%);
+      --bg-color: hsl(215 44% 7%);
+      --text-color: hsl(215 40% 98%);
+      --hover-color: hsl(215 97% 87%);
+      --card-bg: hsl(215 33% 15%);
+      --item-bg: hsl(215 21% 21%);
+      --item-hover: hsl(215 20% 28%);
+      --description-color: hsl(215 27% 84%);
+      font-size: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
     }
 
     * {
-        box-sizing: border-box;
-        text-wrap: balance;
+      box-sizing: border-box;
+      text-wrap: balance;
     }
 
     body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Oxygen, Ubuntu, Cantarell, sans-serif;
-        line-height: 1.6;
-        color: var(--text-color);
-        background: var(--bg-color);
-        padding: 1rem 2rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background: var(--bg-color);
+      padding: 1rem 2rem;
     }
 
     .container {
-        max-inline-size: 1400px;
-        margin-inline: auto;
+      max-inline-size: 1400px;
+      margin-inline: auto;
     }
 
     h1,
     h2,
     h3 {
-        color: var(--primary-color);
-        margin-block: 1.5rem 1rem;
+      color: var(--primary-color);
+      margin-block: 1.5rem 1rem;
     }
 
     h1 {
-        font-size: 2.5rem;
-        text-align: center;
-        margin-block-start: 0;
-        margin-block-end: 2rem;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-block-start: 0;
+      margin-block-end: 2rem;
     }
 
     h2 {
-        font-size: 2rem;
-        line-height: 1.1;
-        border-block-end: 2px solid var(--primary-color);
-        padding-block-end: 1rem;
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        background: var(--card-bg);
+      font-size: 2rem;
+      line-height: 1.1;
+      border-block-end: 2px solid var(--primary-color);
+      padding-block-end: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: var(--card-bg);
     }
 
     h3 {
-        font-size: 1.5rem;
+      font-size: 1.5rem;
     }
 
     .category {
-        background: var(--card-bg);
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-block-end: 2rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-block-end: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
     }
 
     .links {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
-        gap: 1rem;
-        padding: 1rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: 1rem;
+      padding: 1rem 0;
     }
 
     .link-item {
-        padding: 0.75rem;
-        background: var(--item-bg);
-        border-radius: 6px;
-        transition: all 0.3s ease;
+      padding: 0.75rem;
+      background: var(--item-bg);
+      border-radius: 6px;
+      transition: all 0.3s ease;
     }
 
     .link-item:hover {
-        background: var(--item-hover);
-        transform: translateY(-2px);
+      background: var(--item-hover);
+      transform: translateY(-2px);
     }
 
     .description {
-        font-size: 0.9rem;
-        color: var(--description-color);
-        margin-block-start: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--description-color);
+      margin-block-start: 0.5rem;
     }
 
     a {
-        color: var(--primary-color);
-        text-decoration: none;
-        display: block;
-        font-weight: bold;
-        /* Added bold */
+      color: var(--primary-color);
+      text-decoration: none;
+      display: block;
+      font-weight: bold;
+      /* Added bold */
     }
 
     a:hover {
-        color: var(--hover-color);
+      color: var(--hover-color);
     }
 
     .description {
-        font-size: 0.9rem;
-        color: #64748b;
-        margin-top: 0.25rem;
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-top: 0.25rem;
     }
 
     @media (max-width: 768px) {
-        body {
-            padding: 1rem;
-        }
+      body {
+        padding: 1rem;
+      }
 
-        .links {
-            grid-template-columns: 1fr;
-        }
+      .links {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
