@@ -127,11 +127,17 @@ h1 {
 ul {
   list-style: none;
 
-  /* ancho base de los ejemplos */
+  /*
+  Ancho base de los ejemplos
+  Sólo modificar la siguiente línea
+  */
   --grid-min-col-size: 12.5rem;
-
+  
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min-col-size)), 1fr));
+  
+  --ancho-base: minmax(min(100%, var(--grid-min-col-size)), 1fr);
+
+  grid-template-columns: repeat(auto-fill, var(--ancho-base));
   gap: clamp(0.75rem, 0.663rem + 0.4348vw, 1rem);
 
   & li {
