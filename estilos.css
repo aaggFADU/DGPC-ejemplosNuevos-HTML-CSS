@@ -183,7 +183,6 @@ footer p {
   color: hsl(from var(--text-secondary) h s l / 50%);
 }
 
-
 header {
   position: sticky;
   top: 1rem;
@@ -210,6 +209,7 @@ header {
     padding: 1rem 2rem;
   }
 }
+
 
 .theme-toggle-wrapper {
   display: flex;
