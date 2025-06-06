@@ -1,18 +1,19 @@
-/* 
-2025
-Permite transiciones visuales fluidas entre distintas páginas de un sitio web, lo que mejora la experiencia del usuario al hacer que la navegación sea más fluida y atractiva.
-Conviene colocar las transiciones dentro de la condición de si el usuario NO prefiere reducir el movimiento por alguna dificultad visual.
-*/
 @media (prefers-reduced-motion: no-preference) {
-
+  /* 
+  2025
+  Permite transiciones visuales fluidas entre distintas páginas de un sitio web, lo que mejora la experiencia del usuario al hacer que la navegación sea más fluida y atractiva.
+  Conviene colocar las transiciones dentro de la condición de si el usuario NO prefiere reducir el movimiento por alguna dificultad visual.
+  */
   @view-transition {
     navigation: auto;
   }
   /*::view-transition-group(root) {
       animation-duration: 1s; 
   }*/
-}
 
+  /* scroll suave */
+  :root { scroll-behavior: smooth; }
+}
 
 /* hace que dimensionar sea más simple */
 *,
@@ -52,11 +53,13 @@ Esto dará el mismo resultado y facilitará el cambio de la propiedad `box-sizin
   /* interlineado ampliado (aquí en lugar de en "body" para mayor control en diferentes situaciones) */
   line-height: 1.6;
   
+  /* Relleno superior para que el destino de un link no quede oculto por un header sticky  */
+  scroll-padding-top: var(--altura-header, 4rem);
+
   /* Permite animar, por ejemplo, a "height: auto;" o desde "display: none;" o  */
   @supports (interpolate-size: allow-keywords) {
     interpolate-size: allow-keywords;
   }
-
 }
 
 /* altura mínima: ventana del navegador */
@@ -118,15 +121,6 @@ select {
   font-size: inherit;
 }
 
-
-/* Relleno superior para que el destino de un link
-no quede oculto por un header sticky  */
-:root { scroll-padding-top: var(--altura-header, 4rem); }
-
-/* Scroll suave, si NO se prefiere eliminar animaciones */
-@media (prefers-reduced-motion: no-preference) {
-  :root { scroll-behavior: smooth; }
-}
 
 
 
