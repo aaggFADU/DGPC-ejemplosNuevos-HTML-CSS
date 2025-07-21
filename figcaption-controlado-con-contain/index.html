@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Contain: inline-size para figcaption</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .explanation {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .explanation h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .explanation p {
+      color: #888;
+      margin-bottom: 15px;
+    }
+
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      border-left: 4px solid #4299e1;
+    }
+
+    .demo-section {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-title {
+      font-size: 24px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .problem-indicator {
+      background: #fee;
+      color: #c53030;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .solution-indicator {
+      background: #f0fff4;
+      color: #38a169;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .demo-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    /* PROBLEMA: Figure sin contain */
+    .figure-problem {
+      border: 2px dashed #e53e3e;
+      background: #fed7d7;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .figure-problem figure {
+      /* Sin inline-size: fit-content */
+      margin: 0;
+    }
+
+    .figure-problem figcaption {
+      /* El figcaption puede ser más ancho que la imagen */
+      background: #fff5f5;
+      border: 1px solid #feb2b2;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      font-style: italic;
+      color: #2d3748;
+    }
+
+    /* SOLUCIÓN: Figure con contain */
+    .figure-solution {
+      border: 2px dashed #38a169;
+      background: #f0fff4;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .figure-solution figure {
+      /* CLAVE: fit-content hace que el figure sea del tamaño de su contenido más grande */
+      inline-size: fit-content;
+      margin-inline: auto;
+    }
+
+    .figure-solution figcaption {
+      /* SOLUCIÓN: contain: inline-size evita que el caption sea más ancho que el figure */
+      contain: inline-size;
+      background: #f0fff4;
+      border: 1px solid #9ae6b4;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      font-style: italic;
+      color: #2d3748;
+    }
+
+    .demo-image {
+      width: 100%;
+      max-width: 250px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .controls {
+      background: #2d3748;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .toggle-btn {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 0 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #3182ce;
+      transform: translateY(-2px);
+    }
+
+    .comparison-arrows {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+      font-size: 24px;
+      color: #4299e1;
+    }
+
+    .visual-indicator {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    .highlight-problem {
+      border-color: #e53e3e;
+      background: rgba(229, 62, 62, 0.1);
+    }
+
+    .highlight-solution {
+      border-color: #38a169;
+      background: rgba(56, 161, 105, 0.1);
+    }
+
+    .interactive-demo {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .caption-length-control {
+      margin: 20px 0;
+    }
+
+    .caption-slider {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .dynamic-caption {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="explanation">
+      <h1>🖼️ CSS Contain: inline-size para figcaption</h1>
+      <p>El problema clásico: cuando un <code>figcaption</code> tiene texto largo, puede ser más ancho que la
+        imagen dentro del <code>figure</code>, rompiendo el diseño visual.</p>
+
+      <div class="code-block">
+        /* EL PROBLEMA */<br>
+        figure {
+        /* Sin restricción de ancho */
+        }<br>
+
+        figcaption {
+        /* Puede ser más ancho que la imagen */
+        /* Rompe la armonía visual */
+        }</div>
+
+      <div class="code-block">
+        /* LA SOLUCIÓN */<br>
+        figure {
+        inline-size: fit-content; /* El figure se ajusta al contenido más ancho */
+        }<br>
+
+        figcaption {
+        contain: inline-size; /* El caption no puede ser más ancho que su contenedor */
+        }</div>
+
+      <p><strong>¿Por qué funciona?</strong> <code>contain: inline-size</code> le dice al navegador que el
+        elemento no debe influir en el tamaño inline (ancho) de su contenedor, manteniéndolo dentro de los
+        límites del <code>figure</code>.</p>
+    </div>
+
+    <div class="controls">
+      <button class="toggle-btn" id="toggleDemo">🔄 Alternar Demostración</button>
+      <button class="toggle-btn" id="changeText">📝 Cambiar Texto del Caption</button>
+    </div>
+
+    <div class="demo-section">
+      <div class="demo-grid">
+        <!-- PROBLEMA -->
+        <div>
+          <div class="demo-title">
+            ❌ Sin contain: inline-size
+            <span class="problem-indicator">PROBLEMA</span>
+          </div>
+
+          <div class="figure-problem">
+            <figure>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='180' viewBox='0 0 250 180'%3E%3Crect width='250' height='180' fill='%234299e1'/%3E%3Ctext x='125' y='95' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EImagen 250px%3C/text%3E%3C/svg%3E"
+                alt="Imagen de ejemplo" class="demo-image">
+              <figcaption id="problemCaption">
+                Esta es una descripción muy larga que claramente excede el ancho de la imagen y rompe el
+                diseño visual
+              </figcaption>
+            </figure>
+          </div>
+
+          <p style="margin-top: 15px; color: #e53e3e; font-size: 14px;">
+            ⚠️ El caption es más ancho que la imagen
+          </p>
+        </div>
+
+        <!-- SOLUCIÓN -->
+        <div>
+          <div class="demo-title">
+            ✅ Con contain: inline-size
+            <span class="solution-indicator">SOLUCIÓN</span>
+          </div>
+
+          <div class="figure-solution">
+            <figure>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='180' viewBox='0 0 250 180'%3E%3Crect width='250' height='180' fill='%2338a169'/%3E%3Ctext x='125' y='95' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EImagen 250px%3C/text%3E%3C/svg%3E"
+                alt="Imagen de ejemplo" class="demo-image">
+              <figcaption id="solutionCaption">
+                Esta es una descripción muy larga que claramente excede el ancho de la imagen y rompe el
+                diseño visual
+              </figcaption>
+            </figure>
+          </div>
+
+          <p style="margin-top: 15px; color: #38a169; font-size: 14px;">
+            ✅ El caption respeta el ancho de la imagen
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interactive-demo">
+      <h3 style="margin-bottom: 20px; color: #2c3e50;">🎮 Demo Interactiva</h3>
+
+      <div class="caption-length-control">
+        <label for="captionLength">Longitud del texto del caption:</label>
+        <input type="range" id="captionLength" class="caption-slider" min="1" max="5" value="3">
+        <div
+          style="display: flex; justify-content: space-between; font-size: 12px; color: #666; margin-top: 5px;">
+          <span>Corto</span>
+          <span>Medio</span>
+          <span>Muy largo</span>
+        </div>
+      </div>
+
+      <div class="demo-grid" style="margin-top: 30px;">
+        <div>
+          <h4 style="color: #e53e3e; margin-bottom: 15px;">Sin contain</h4>
+          <div class="figure-problem">
+            <figure>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23667eea'/%3E%3Ctext x='100' y='80' text-anchor='middle' fill='white' font-family='Arial' font-size='14'%3EDemo 200px%3C/text%3E%3C/svg%3E"
+                alt="Demo" style="width: 200px; height: 150px; border-radius: 8px;">
+              <figcaption class="dynamic-caption" id="dynamicProblem">
+                Descripción corta
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="color: #38a169; margin-bottom: 15px;">Con contain: inline-size</h4>
+          <div class="figure-solution">
+            <figure>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23667eea'/%3E%3Ctext x='100' y='80' text-anchor='middle' fill='white' font-family='Arial' font-size='14'%3EDemo 200px%3C/text%3E%3C/svg%3E"
+                alt="Demo" style="width: 200px; height: 150px; border-radius: 8px;">
+              <figcaption class="dynamic-caption" id="dynamicSolution">
+                Descripción corta
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="explanation" style="background: #2d3748; color: white;">
+      <h2 style="color: #4299e1; margin-bottom: 20px;">🔍 Análisis Técnico</h2>
+
+      <p><strong>¿Qué hace exactamente contain: inline-size?</strong></p>
+      <ul style="margin: 15px 0; padding-left: 20px;">
+        <li>Evita que el elemento afecte el cálculo del ancho de su contenedor</li>
+        <li>El elemento se mantiene dentro de los límites inline de su padre</li>
+        <li>Mejora el rendimiento al evitar recálculos de layout</li>
+      </ul>
+
+      <p><strong>¿Por qué inline-size: fit-content en figure?</strong></p>
+      <ul style="margin: 15px 0; padding-left: 20px;">
+        <li>Hace que el figure se ajuste al ancho del contenido más grande (la imagen)</li>
+        <li>Sin esto, el figure ocuparía todo el ancho disponible</li>
+        <li>Es la base para que contain: inline-size funcione correctamente</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const captions = [
+      "Descripción corta",
+      "Una descripción un poco más larga para la imagen",
+      "Esta es una descripción considerablemente más extensa que podría causar problemas de diseño",
+      "Una descripción extremadamente larga y detallada que definitivamente excederá el ancho de la imagen y causará problemas visuales en el layout",
+      "Esta es una descripción increíblemente extensa, extraordinariamente detallada y tremendamente verbose que sin lugar a dudas va a exceder por mucho el ancho de cualquier imagen razonable y va a demostrar claramente el problema de diseño que estamos intentando resolver"
+    ];
+
+    const alternativeTexts = [
+      "Texto alternativo para demostrar el efecto",
+      "Otro ejemplo de texto que puede ser problemático sin contain",
+      "Descripción diferente pero igualmente larga para mostrar el comportamiento",
+      "Una nueva descripción extensa para variar el contenido de la demostración"
+    ];
+
+    let currentTextIndex = 0;
+    let isShowingProblem = true;
+
+    function updateCaptions() {
+      const slider = document.getElementById('captionLength');
+      const value = slider.value - 1; // Convert to 0-based index
+
+      document.getElementById('dynamicProblem').textContent = captions[value];
+      document.getElementById('dynamicSolution').textContent = captions[value];
+    }
+
+    function toggleDemo() {
+      const problemElements = document.querySelectorAll('.figure-problem figure');
+      const solutionElements = document.querySelectorAll('.figure-solution figure');
+
+      if (isShowingProblem) {
+        // Show solution temporarily in problem side
+        problemElements.forEach(fig => {
+          fig.style.inlineSize = 'fit-content';
+          fig.querySelector('figcaption').style.contain = 'inline-size';
+        });
+      } else {
+        // Reset to problem state
+        problemElements.forEach(fig => {
+          fig.style.inlineSize = '';
+          fig.querySelector('figcaption').style.contain = '';
+        });
+      }
+
+      isShowingProblem = !isShowingProblem;
+      document.getElementById('toggleDemo').textContent =
+        isShowingProblem ? '🔄 Mostrar Solución en Problema' : '🔄 Volver al Problema';
+    }
+
+    function changeText() {
+      currentTextIndex = (currentTextIndex + 1) % alternativeTexts.length;
+      document.getElementById('problemCaption').textContent = alternativeTexts[currentTextIndex];
+      document.getElementById('solutionCaption').textContent = alternativeTexts[currentTextIndex];
+    }
+
+    // Event listeners
+    document.getElementById('captionLength').addEventListener('input', updateCaptions);
+    document.getElementById('toggleDemo').addEventListener('click', toggleDemo);
+    document.getElementById('changeText').addEventListener('click', changeText);
+
+    // Initialize
+    updateCaptions();
+  </script>
+</body>
+
+</html>
