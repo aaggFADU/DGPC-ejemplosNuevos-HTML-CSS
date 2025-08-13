@@ -1,0 +1,72 @@
+@property --c {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+@property --r {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+@property --g {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+@property --i {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
+body {
+  /* Estoy usando el body ya que es el elemento padre */
+  container-type: inline-size;
+  max-inline-size: 1200px;
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+.grid {
+  display: grid;
+
+  gap: 1rem;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  --g: tan(atan2(1rem,1px));
+  --c: round(down, tan(atan2((100cqw - 1rem), 1px)) / (200 + var(--g)), 1);
+}
+.grid > * {
+  --r: round(up,sibling-count()/ var(--c),1);
+  --i: clamp(0,sibling-index() - (var(--r) - 1)*var(--c),1);
+  
+  /* cuando i = 1 está en la última fila */
+  background: if(style(--i: 1): lightcoral; else: cornflowerblue;);
+}
+
+/* visualización */
+:root {
+  color-scheme: dark light;
+}
+
+* {
+  box-sizing: border-box;
+  line-height: 1;
+  text-wrap: balance;
+
+}
+body {
+  
+  font-family: system-ui;
+  text-align: center;
+}
+
+.grid {
+  border: 2px dotted hsl(0 0 50% / 50%);
+  margin-block: 1rem;
+}
+.grid > * {
+  block-size: 2rem;
+  border-radius: 100vw;
+  box-shadow: 0 4px 8px hsl(0 0 0 / 0.2);
+}
