@@ -5,15 +5,10 @@ html {
 body {
   background-image: url("../subgrid/imagenes/fadu_20180817_01.jpg");
   background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100dvh;
-  display: grid;
-  justify-items: center;
-  align-items: start;
 }
 
 nav {
+  font-size: 1.75rem;
   width: fit-content;
   margin: 1em auto;
   background: hsl(0 0% 0% / 0.8);
@@ -145,13 +140,26 @@ nav:has(ul > :nth-child(4):hover)::after {
   position-anchor: --link-4;
 } */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   color-scheme: dark;
 }
 
 body {
-  font-family: system-ui;
-  font-size: 1.75rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+  min-height: 100dvh;
+  display: grid;
+  justify-items: center;
+  align-items: start;
+
+  font-family: system-ui, sans-serif;
 }
 
 article {
@@ -162,6 +170,7 @@ article {
   text-wrap: balance;
   display: grid;
   gap: 2em;
+  max-width: calc(100% - 2em);
 
   * {
     line-height: 1.2;
