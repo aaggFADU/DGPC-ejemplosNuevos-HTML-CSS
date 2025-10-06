@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Últimos Videos de YouTube</title>
     <style>
         * {
@@ -19,7 +18,6 @@
             --text-primary: #ffffff;
             --text-secondary: #aaaaaa;
             --border: #303030;
-            --success: #00ff00;
         }
 
         body {
@@ -47,18 +45,7 @@
             font-size: 0.9rem;
         }
 
-        .cache-badge {
-            display: inline-block;
-            margin-left: 0.5rem;
-            padding: 0.25rem 0.5rem;
-            background: var(--success);
-            color: var(--bg-dark);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .api-config {
+        .controls {
             max-width: 600px;
             margin: 2rem auto;
             background: var(--bg-card);
@@ -67,36 +54,7 @@
             border: 1px solid var(--border);
         }
 
-        .api-config h2 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .api-config input {
-            width: 100%;
-            padding: 0.75rem;
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .api-config .cache-info {
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .api-config .cache-info strong {
-            color: var(--success);
-        }
-
-        .api-config button {
+        .controls button {
             width: 100%;
             padding: 0.75rem;
             background: var(--primary);
@@ -107,31 +65,22 @@
             font-weight: 600;
             cursor: pointer;
             transition: opacity 0.2s;
-            margin-bottom: 0.5rem;
         }
 
-        .api-config button:hover {
+        .controls button:hover {
             opacity: 0.9;
         }
 
-        .api-config button:disabled {
+        .controls button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        .api-config button.secondary {
-            background: var(--border);
-        }
-
-        .api-config .info {
+        .controls .info {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-top: 0.5rem;
-        }
-
-        .api-config .info a {
-            color: var(--primary);
-            text-decoration: none;
+            margin-top: 1rem;
+            text-align: center;
         }
 
         .loading {
@@ -168,12 +117,6 @@
             font-size: 0.9rem;
         }
 
-        .quota-info {
-            color: var(--success);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-        }
-
         .error {
             background: #ff000020;
             border: 1px solid var(--primary);
@@ -181,7 +124,6 @@
             border-radius: 8px;
             margin: 2rem auto;
             max-width: 600px;
-            text-align: center;
         }
 
         .category {
@@ -243,17 +185,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .video-duration {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
         }
 
         .video-info {
@@ -338,57 +269,25 @@
 <body>
     <header>
         <h1>📺 Últimos Videos de YouTube</h1>
-        <p class="last-update">
-            Última actualización: <span id="updateTime">-</span>
-            <span id="cacheBadge" class="cache-badge" style="display: none;">📦 Desde caché</span>
-        </p>
+        <p class="last-update">Última actualización: <span id="updateTime">-</span></p>
     </header>
 
-    <div id="apiConfig" class="api-config">
-        <h2>⚙️ Configuración de API</h2>
-        
-        <div id="cacheStatus" class="cache-info" style="display: none;">
-            <strong>✓ Datos en caché disponibles</strong><br>
-            Última carga: <span id="cacheTime">-</span><br>
-            <small>Los datos se actualizan automáticamente cada 6 horas</small>
-        </div>
-
-        <input type="text" id="apiKeyInput" placeholder="Ingresa tu YouTube API Key aquí">
-        <button id="loadButton" onclick="startLoading(false)">🔄 Cargar Videos</button>
-        <button id="loadCacheButton" onclick="loadFromCache()" class="secondary" style="display: none;">
-            📦 Usar Caché (sin consumir cuota)
-        </button>
-        <button id="forceButton" onclick="startLoading(true)" class="secondary" style="display: none;">
-            ⚡ Forzar Actualización
-        </button>
-        
+    <div id="controls" class="controls">
+        <button id="loadButton" onclick="startLoading()">🔄 Cargar Últimos Videos</button>
         <p class="info">
-            <strong>Optimizado:</strong> Solo usa ~180 unidades de cuota (1.8% del límite diario)<br>
-            El caché se actualiza automáticamente cada 6 horas
-        </p>
-        <p class="info">
-            ¿No tienes una API Key? 
-            <a href="https://console.cloud.google.com/" target="_blank" rel="noopener noreferrer">
-                Obtén una aquí
-            </a>
+            ⚡ Método optimizado sin API Key - Carga directa desde canales
         </p>
     </div>
 
     <main id="content"></main>
 
     <footer>
-        <p>✨ Optimizado para consumir mínima cuota de API</p>
-        <p>Método: Playlist Uploads + Caché Local (6 horas)</p>
+        <p>Videos cargados mediante scraping directo de canales de YouTube.</p>
+        <p>Desarrollado con HTML, CSS y JavaScript vanilla.</p>
     </footer>
 
     <script>
-        // Configuración
-        const CACHE_KEY = 'youtube_videos_cache';
-        const CACHE_TIME_KEY = 'youtube_videos_cache_time';
-        const API_KEY_STORAGE = 'youtube_api_key';
-        const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 horas
-
-        // Canales con Channel IDs
+        // Configuración de canales con IDs
         const channels = {
             'IA': [
                 { name: 'Santiago Bilinkis', id: 'UCMwlWUY_R3only6kK4218Tg' },
@@ -449,7 +348,7 @@
                 { name: 'Creative Crew', id: 'UCqAKvl6K5_X2LWQSoXPProg' },
                 { name: 'Coding2Go', id: 'UCkJRe4CgLk7g4VPR9Tn5H5A' },
                 { name: 'Boroji Design', id: 'UCRpNIMrv1b4bkDJjIo2_r1A' },
-                { name: 'Learn Web Code', id: 'UCHpGLpKlkmKWt8M0UuWKK-A' }
+                { name: 'Learn Web Code', id: 'UCHRp19HU7Y2LwfI0Ai6WAGQ' }
             ],
             'WordPress': [
                 { name: 'Jamie WP', id: 'UCHpGLpKlkmKWt8M0UuWKK-A' },
@@ -477,24 +376,6 @@
             ]
         };
 
-        let API_KEY = '';
-        let totalUnitsUsed = 0;
-
-        // Función para formatear duración ISO 8601
-        function formatDuration(isoDuration) {
-            const match = isoDuration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
-            if (!match) return '0:00';
-            
-            const hours = (match[1] || '').replace('H', '');
-            const minutes = (match[2] || '0').replace('M', '');
-            const seconds = (match[3] || '0').replace('S', '');
-            
-            if (hours) {
-                return `${hours}:${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
-            }
-            return `${minutes}:${seconds.padStart(2, '0')}`;
-        }
-
         // Función para formatear fecha relativa
         function formatRelativeTime(dateString) {
             const date = new Date(dateString);
@@ -512,78 +393,36 @@
             return date.toLocaleDateString('es-AR', { day: '2-digit', month: 'short' });
         }
 
-        // Función para formatear número de vistas
-        function formatViews(views) {
-            if (views >= 1000000) return `${(views / 1000000).toFixed(1)}M`;
-            if (views >= 1000) return `${(views / 1000).toFixed(1)}K`;
-            return views.toString();
-        }
-
-        // MÉTODO OPTIMIZADO: Usar Uploads Playlist (solo 2 unidades por canal)
-        async function fetchLatestVideoOptimized(channelId, channelName) {
+        // Función para obtener el último video usando página de canal
+        async function fetchLatestVideo(channelId, channelName) {
             try {
-                // Convertir channel ID a uploads playlist ID
-                const uploadsPlaylistId = 'UU' + channelId.substring(2);
-                
-                // Obtener el último video de la playlist (1 unidad)
-                const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=1&key=${API_KEY}`;
-                const playlistRes = await fetch(playlistUrl, {
-                    referrerPolicy: 'strict-origin-when-cross-origin'
+                // Intentar obtener desde la página de videos del canal
+                const response = await fetch(`https://www.youtube.com/channel/${channelId}/videos`, {
+                    headers: {
+                        'Accept': 'text/html',
+                    }
                 });
                 
-                if (!playlistRes.ok) {
-                    const errorText = await playlistRes.text();
-                    console.error(`Error HTTP ${playlistRes.status} para ${channelName}:`, errorText);
-                    throw new Error(`HTTP ${playlistRes.status}`);
-                }
+                const html = await response.text();
                 
-                const playlistData = await playlistRes.json();
-                totalUnitsUsed += 1;
+                // Buscar datos de video en el HTML
+                const videoIdMatch = html.match(/"videoId":"([^"]{11})"/);
+                const titleMatch = html.match(/"title":{"runs":\[{"text":"([^"]+)"/);
+                const thumbnailMatch = html.match(/"url":"(https:\/\/i\.ytimg\.com\/vi\/[^"]+)"/);
+                const publishedMatch = html.match(/"publishedTimeText":{"simpleText":"([^"]+)"}/);
                 
-                if (playlistData.error) {
-                    console.error(`API Error para ${channelName}:`, playlistData.error);
-                    throw new Error(playlistData.error.message);
-                }
-                
-                if (!playlistData.items || playlistData.items.length === 0) {
-                    console.warn(`No hay videos para: ${channelName}`);
+                if (!videoIdMatch) {
+                    console.warn(`No se encontró video para: ${channelName}`);
                     return null;
                 }
                 
-                const video = playlistData.items[0].snippet;
-                const videoId = video.resourceId.videoId;
-                
-                // Obtener detalles del video (1 unidad)
-                const detailsUrl = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoId}&key=${API_KEY}`;
-                const detailsRes = await fetch(detailsUrl, {
-                    referrerPolicy: 'strict-origin-when-cross-origin'
-                });
-                
-                if (!detailsRes.ok) {
-                    const errorText = await detailsRes.text();
-                    console.error(`Error HTTP ${detailsRes.status} en detalles:`, errorText);
-                    throw new Error(`HTTP ${detailsRes.status}`);
-                }
-                
-                const detailsData = await detailsRes.json();
-                totalUnitsUsed += 1;
-                
-                if (detailsData.error) {
-                    console.error(`API Error en detalles:`, detailsData.error);
-                    throw new Error(detailsData.error.message);
-                }
-                
-                const details = detailsData.items[0];
-                
                 return {
                     channelName: channelName,
-                    channelId: channelId,
-                    title: video.title,
-                    url: `https://www.youtube.com/watch?v=${videoId}`,
-                    thumbnail: video.thumbnails.medium.url,
-                    publishedAt: video.publishedAt,
-                    duration: formatDuration(details.contentDetails.duration),
-                    views: parseInt(details.statistics.viewCount) || 0
+                    title: titleMatch ? titleMatch[1].replace(/\\u0026/g, '&') : 'Título no disponible',
+                    url: `https://www.youtube.com/watch?v=${videoIdMatch[1]}`,
+                    thumbnail: thumbnailMatch ? thumbnailMatch[1] : `https://i.ytimg.com/vi/${videoIdMatch[1]}/mqdefault.jpg`,
+                    publishedAt: publishedMatch ? publishedMatch[1] : 'Fecha no disponible',
+                    videoId: videoIdMatch[1]
                 };
             } catch (error) {
                 console.error(`Error fetching ${channelName}:`, error);
@@ -596,27 +435,28 @@
             const percentage = Math.round((current / total) * 100);
             const progressFill = document.querySelector('.progress-fill');
             const progressText = document.querySelector('.progress-text');
-            const quotaInfo = document.querySelector('.quota-info');
             
-            if (progressFill) progressFill.style.width = `${percentage}%`;
-            if (progressText) progressText.textContent = `Cargando ${current} de ${total} canales... (${channelName})`;
-            if (quotaInfo) quotaInfo.textContent = `Unidades de cuota usadas: ${totalUnitsUsed} / 10,000`;
+            if (progressFill) {
+                progressFill.style.width = `${percentage}%`;
+            }
+            
+            if (progressText) {
+                progressText.textContent = `Cargando ${current} de ${total} canales... (${channelName})`;
+            }
         }
 
         // Función para cargar todos los videos
-        async function loadRealVideos() {
+        async function loadVideos() {
             const content = document.getElementById('content');
             content.innerHTML = `
                 <div class="progress">
-                    <p class="progress-text">Iniciando carga optimizada...</p>
+                    <p class="progress-text">Iniciando carga...</p>
                     <div class="progress-bar">
                         <div class="progress-fill"></div>
                     </div>
-                    <p class="quota-info">Unidades de cuota usadas: 0 / 10,000</p>
                 </div>
             `;
             
-            totalUnitsUsed = 0;
             const videosByCategory = {};
             let totalChannels = 0;
             let currentChannel = 0;
@@ -634,54 +474,21 @@
                     currentChannel++;
                     updateProgress(currentChannel, totalChannels, channel.name);
                     
-                    const video = await fetchLatestVideoOptimized(channel.id, channel.name);
+                    const video = await fetchLatestVideo(channel.id, channel.name);
                     if (video) {
                         videosByCategory[category].push(video);
                     }
                     
-                    // Pausa corta
-                    await new Promise(resolve => setTimeout(resolve, 100));
+                    // Pausa para no saturar
+                    await new Promise(resolve => setTimeout(resolve, 200));
                 }
             }
             
-            // Guardar en caché
-            saveToCache(videosByCategory);
-            
-            return videosByCategory;
-        }
-
-        // Funciones de caché
-        function saveToCache(data) {
-            try {
-                localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-                localStorage.setItem(CACHE_TIME_KEY, Date.now().toString());
-            } catch (e) {
-                console.error('Error guardando en caché:', e);
-            }
-        }
-
-        function getFromCache() {
-            try {
-                const data = localStorage.getItem(CACHE_KEY);
-                const time = localStorage.getItem(CACHE_TIME_KEY);
-                
-                if (!data || !time) return null;
-                
-                const cacheAge = Date.now() - parseInt(time);
-                if (cacheAge > CACHE_DURATION) return null;
-                
-                return {
-                    data: JSON.parse(data),
-                    timestamp: parseInt(time)
-                };
-            } catch (e) {
-                console.error('Error leyendo caché:', e);
-                return null;
-            }
+            renderVideos(videosByCategory);
         }
 
         // Función para renderizar videos
-        function renderVideos(videosByCategory, fromCache = false) {
+        function renderVideos(videosByCategory) {
             const content = document.getElementById('content');
             content.innerHTML = '';
 
@@ -691,7 +498,7 @@
             }
 
             if (totalVideos === 0) {
-                content.innerHTML = '<div class="error">❌ No se pudieron cargar videos. Verifica tu API Key.</div>';
+                content.innerHTML = '<div class="error">❌ No se pudieron cargar videos. Intenta nuevamente más tarde.</div>';
                 return;
             }
 
@@ -717,7 +524,6 @@
                     card.innerHTML = `
                         <div class="video-thumbnail">
                             <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-                            <span class="video-duration">${video.duration}</span>
                         </div>
                         <div class="video-info">
                             <div class="channel-name">
@@ -730,9 +536,7 @@
                                 </a>
                             </h3>
                             <div class="video-meta">
-                                <span>${formatViews(video.views)} vistas</span>
-                                <span class="meta-separator">•</span>
-                                <span>${formatRelativeTime(video.publishedAt)}</span>
+                                <span>${video.publishedAt}</span>
                             </div>
                         </div>
                     `;
@@ -754,140 +558,27 @@
                     hour: '2-digit', 
                     minute: '2-digit' 
                 });
-
-            const cacheBadge = document.getElementById('cacheBadge');
-            cacheBadge.style.display = fromCache ? 'inline-block' : 'none';
-
-            // Mostrar resumen de cuota usada
-            if (!fromCache && totalUnitsUsed > 0) {
-                const summary = document.createElement('div');
-                summary.className = 'api-config';
-                summary.style.marginTop = '2rem';
-                summary.innerHTML = `
-                    <h2>📊 Resumen de consumo</h2>
-                    <div class="cache-info">
-                        <strong>✓ Carga completada exitosamente</strong><br>
-                        Unidades de cuota usadas: <strong>${totalUnitsUsed}</strong> de 10,000<br>
-                        Porcentaje usado: <strong>${((totalUnitsUsed / 10000) * 100).toFixed(2)}%</strong><br>
-                        Videos cargados: <strong>${totalVideos}</strong><br>
-                        <small>Los datos se guardaron en caché local por 6 horas</small>
-                    </div>
-                `;
-                content.appendChild(summary);
-            }
-        }
-
-        // Función para cargar desde caché
-        function loadFromCache() {
-            const cached = getFromCache();
-            if (cached) {
-                renderVideos(cached.data, true);
-                document.getElementById('apiConfig').style.display = 'none';
-                
-                const cacheTime = new Date(cached.timestamp);
-                document.getElementById('updateTime').textContent = 
-                    cacheTime.toLocaleString('es-AR', { 
-                        day: '2-digit', 
-                        month: '2-digit', 
-                        year: 'numeric', 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
-                    });
-            }
         }
 
         // Función para iniciar la carga
-        async function startLoading(forceRefresh = false) {
-            const input = document.getElementById('apiKeyInput');
+        async function startLoading() {
             const button = document.getElementById('loadButton');
-            const forceButton = document.getElementById('forceButton');
-            const apiConfig = document.getElementById('apiConfig');
-            
-            API_KEY = input.value.trim() || localStorage.getItem(API_KEY_STORAGE) || '';
-            
-            if (!API_KEY) {
-                alert('Por favor ingresa una API Key válida');
-                return;
-            }
-
-            // Guardar API Key
-            localStorage.setItem(API_KEY_STORAGE, API_KEY);
-
-            // Verificar caché
-            const cached = getFromCache();
-            if (cached && !forceRefresh) {
-                const cacheAge = Date.now() - cached.timestamp;
-                const remainingTime = CACHE_DURATION - cacheAge;
-                const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
-                const remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-                
-                const useCache = confirm(
-                    `Hay datos en caché de hace ${Math.floor(cacheAge / (1000 * 60))} minutos.\n\n` +
-                    `Se actualizarán automáticamente en ${remainingHours}h ${remainingMinutes}m.\n\n` +
-                    `¿Quieres usar el caché (sin consumir cuota) o actualizar ahora?`
-                );
-                
-                if (useCache) {
-                    loadFromCache();
-                    return;
-                }
-            }
+            const controls = document.getElementById('controls');
             
             button.disabled = true;
-            if (forceButton) forceButton.disabled = true;
             button.textContent = 'Cargando...';
             
             try {
-                const videosByCategory = await loadRealVideos();
-                renderVideos(videosByCategory, false);
-                apiConfig.style.display = 'none';
+                await loadVideos();
+                controls.style.display = 'none';
             } catch (error) {
                 console.error('Error al cargar videos:', error);
                 document.getElementById('content').innerHTML = 
-                    `<div class="error">❌ Error: ${error.message}<br><br>Unidades usadas antes del error: ${totalUnitsUsed}</div>`;
+                    `<div class="error">❌ Error: ${error.message}</div>`;
                 button.disabled = false;
-                if (forceButton) forceButton.disabled = false;
-                button.textContent = '🔄 Cargar Videos';
+                button.textContent = '🔄 Cargar Últimos Videos';
             }
         }
-
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedKey = localStorage.getItem(API_KEY_STORAGE);
-            if (savedKey) {
-                document.getElementById('apiKeyInput').value = savedKey;
-            }
-
-            const cached = getFromCache();
-            if (cached) {
-                const cacheStatus = document.getElementById('cacheStatus');
-                const loadCacheButton = document.getElementById('loadCacheButton');
-                const forceButton = document.getElementById('forceButton');
-                
-                cacheStatus.style.display = 'block';
-                loadCacheButton.style.display = 'block';
-                forceButton.style.display = 'block';
-                
-                const cacheTime = new Date(cached.timestamp);
-                document.getElementById('cacheTime').textContent = 
-                    cacheTime.toLocaleString('es-AR', { 
-                        day: '2-digit', 
-                        month: '2-digit', 
-                        year: 'numeric', 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
-                    });
-
-                loadFromCache();
-            }
-
-            const input = document.getElementById('apiKeyInput');
-            input.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    startLoading(false);
-                }
-            });
-        });
     </script>
 </body>
 </html>
