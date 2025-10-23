@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Últimos Videos de YouTube</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff0000;
+            --bg-dark: #0f0f0f;
+            --bg-card: #1f1f1f;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --border: #303030;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 1rem;
+        }
+
+        header {
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .last-update {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .api-config {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .api-config h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .api-config input {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .api-config button {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .api-config button:hover {
+            opacity: 0.9;
+        }
+
+        .api-config button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .api-config .info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .api-config .info a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .progress {
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s;
+            width: 0%;
+        }
+
+        .progress-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .error {
+            background: #ff000020;
+            border: 1px solid var(--primary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .category {
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 0 0.5rem;
+        }
+
+        .category-title {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-card);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border);
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            padding-top: 56.25%;
+            background: var(--border);
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .channel-name {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .channel-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .video-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .video-title a:hover {
+            color: var(--primary);
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .meta-separator {
+            color: var(--border);
+        }
+
+        footer {
+            max-width: 1400px;
+            margin: 4rem auto 2rem;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .videos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📺 Últimos Videos de YouTube</h1>
+        <p class="last-update">Última actualización: <span id="updateTime">-</span></p>
+    </header>
+
+    <div id="apiConfig" class="api-config">
+        <h2>⚙️ Configuración de API</h2>
+        <input type="text" id="apiKeyInput" placeholder="Ingresa tu YouTube API Key aquí">
+        <button id="loadButton" onclick="startLoading()">Cargar Videos</button>
+        <p class="info">
+            ¿No tienes una API Key? 
+            <a href="https://console.cloud.google.com/" target="_blank" rel="noopener noreferrer">
+                Obtén una aquí
+            </a>
+        </p>
+    </div>
+
+    <main id="content"></main>
+
+    <footer>
+        <p>Los videos se cargan directamente desde YouTube Data API v3.</p>
+        <p>Desarrollado con HTML, CSS y JavaScript vanilla.</p>
+    </footer>
+
+    <script>
+        // Configuración de canales organizados por categoría
+        const channels = {
+            'IA': [
+                { name: 'Santiago Bilinkis', handle: '@bilinkis' },
+                { name: 'DotCSV', handle: '@DotCSV' },
+                { name: 'DotCSV Lab', handle: '@DotCSVLab' },
+                { name: 'Theoretically Media', handle: '@TheoreticallyMedia' },
+                { name: 'Bob Doyle Media', handle: '@BobDoyleMedia' },
+                { name: 'Mr. Eflow', handle: '@mreflow' },
+                { name: 'Pixivu', handle: '@Pixivu' },
+                { name: 'La Inteligencia Artificial', handle: '@la_inteligencia_artificial' },
+                { name: 'Migue Baena IA', handle: '@MigueBaenaIA' },
+                { name: 'Xavier Mitjana', handle: '@XavierMitjana' },
+                { name: 'Tech Halla', handle: '@techhalla' },
+                { name: 'Johan Solutions', handle: '@johansolutionsdigitales' },
+                { name: 'Futurepedia', handle: '@futurepedia_io' },
+                { name: 'Matt VidPro', handle: '@MattVidPro' },
+                { name: 'Curious Refuge', handle: '@curiousrefuge' },
+                { name: 'AI Webb TV', handle: '@AIWebbTV' },
+                { name: 'AI Controversy', handle: '@aicontroversy' },
+                { name: 'El Oma Quiabelo', handle: '@elomaquiabelo' },
+                { name: 'We Are Nocode', handle: '@wearenocode' },
+                { name: 'Meydeey', handle: '@meydeey' },
+                { name: 'Bilawal Sidhu', handle: '@bilawalsidhu' },
+                { name: 'IA Sonora', handle: '@IA_Sonora' },
+                { name: 'Academia IA Lab', handle: '@AcademiaIAlab' },
+                { name: 'Mia Meow AI', handle: '@miameowai' }
+            ],
+            'Web y Programación': [
+                { name: 'Chrome Devs', handle: '@ChromeDevs' },
+                { name: 'Kevin Powell', handle: '@KevinPowell' },
+                { name: 'General Musings', handle: '@GeneralMusings' },
+                { name: 'midudev', handle: '@midudev' },
+                { name: 'midu live', handle: '@midulive' },
+                { name: 'Una Kravets', handle: '@UnaKravets' },
+                { name: 'Online Tutorials', handle: '@OnlineTutorialsYT' },
+                { name: 'Codex Community', handle: '@CodexCommunity' },
+                { name: 'Flux Academy', handle: '@FluxAcademy' },
+                { name: 'Hyperplexed', handle: '@Hyperplexed' },
+                { name: 'DesignCode', handle: '@DesignCodeTeam' },
+                { name: 'CodelyTV', handle: '@CodelyTV' },
+                { name: 'Web Dev Simplified', handle: '@WebDevSimplified' },
+                { name: 'CSS Weekly', handle: '@CSSWeekly' },
+                { name: 'Bedimcode', handle: '@Bedimcode' },
+                { name: 'Malewicz', handle: '@MalewiczHype' },
+                { name: 'DesignCourse', handle: '@DesignCourse' },
+                { name: 'freeCodeCamp Español', handle: '@freeCodeCampEspanol' },
+                { name: 'Fazt Code', handle: '@FaztCode' },
+                { name: 'Lun Developer', handle: '@lundeveloper' },
+                { name: 'CSScapism', handle: '@CSScapism' },
+                { name: 'Optimistic Web', handle: '@OptimisticWeb' },
+                { name: 'Snippets Code', handle: '@Snippets_Code' },
+                { name: 'Coder Coder', handle: '@TheCoderCoder' },
+                { name: 'Envato Tuts', handle: '@envatotuts' },
+                { name: 'Orbit Media', handle: '@Orbitmedia' },
+                { name: 'Frontend FYI', handle: '@frontendfyi' },
+                { name: 'Design Sense', handle: '@DesignSense' },
+                { name: 'Satori Graphics', handle: '@SatoriGraphics' },
+                { name: 'Creative Crew', handle: '@CreativeCrewCommunity' },
+                { name: 'Coding2Go', handle: '@coding2go' },
+                { name: 'Boroji Design', handle: '@BorojiDesign' },
+                { name: 'Learn Web Code', handle: '@LearnWebCode' }
+            ],
+            'WordPress': [
+                { name: 'Jamie WP', handle: '@jamiewp' },
+                { name: 'WPTuts', handle: '@WPTuts' },
+                { name: 'The Admin Bar', handle: '@TheAdminBar' },
+                { name: 'Brainstorm Force', handle: '@BrainstormForce' },
+                { name: 'David McCan', handle: '@DavidMcCan' },
+                { name: 'Elmastudio', handle: '@elmastudio' },
+                { name: 'WPCrafter', handle: '@WPCrafter' },
+                { name: 'Permaslug', handle: '@Permaslug' },
+                { name: 'WP Soul', handle: '@WPSoul' },
+                { name: 'WordPress', handle: '@WordPress' },
+                { name: 'Gutenberg Hub', handle: '@GutenbergHub' },
+                { name: 'WP Jakson', handle: '@wpjakson' }
+            ],
+            'Photoshop': [
+                { name: 'Photolarium', handle: '@Photolarium' },
+                { name: 'PiXimperfect', handle: '@PiXimperfect' },
+                { name: 'Tripiyon', handle: '@Tripiyon' },
+                { name: 'Smart Graphic', handle: '@SmartGraphic' },
+                { name: 'Pixivu PS', handle: '@Pixivu' },
+                { name: 'Learning Screen', handle: '@LearningScreen' },
+                { name: 'Steve Arnold Photo', handle: '@SteveArnoldPhoto' },
+                { name: 'PANTERvision', handle: '@PANTERvision' }
+            ]
+        };
+
+        let API_KEY = '';
+
+        // Función para formatear duración ISO 8601
+        function formatDuration(isoDuration) {
+            const match = isoDuration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+            if (!match) return '0:00';
+            
+            const hours = (match[1] || '').replace('H', '');
+            const minutes = (match[2] || '0').replace('M', '');
+            const seconds = (match[3] || '0').replace('S', '');
+            
+            if (hours) {
+                return `${hours}:${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+            }
+            return `${minutes}:${seconds.padStart(2, '0')}`;
+        }
+
+        // Función para formatear fecha relativa
+        function formatRelativeTime(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffMinutes = Math.floor(diffMs / (1000 * 60));
+
+            if (diffMinutes < 60) return `hace ${diffMinutes} min`;
+            if (diffHours < 24) return `hace ${diffHours} h`;
+            if (diffDays === 1) return 'hace 1 día';
+            if (diffDays < 7) return `hace ${diffDays} días`;
+            if (diffDays < 30) return `hace ${Math.floor(diffDays / 7)} sem`;
+            return date.toLocaleDateString('es-AR', { day: '2-digit', month: 'short' });
+        }
+
+        // Función para formatear número de vistas
+        function formatViews(views) {
+            if (views >= 1000000) return `${(views / 1000000).toFixed(1)}M`;
+            if (views >= 1000) return `${(views / 1000).toFixed(1)}K`;
+            return views.toString();
+        }
+
+        // Función para obtener el último video de un canal
+        async function fetchLatestVideo(channelHandle) {
+            try {
+                // Extraer el handle sin @
+                const handle = channelHandle.replace('@', '');
+                
+                // Buscar el canal por handle
+                const channelUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${handle}&type=channel&maxResults=1&key=${API_KEY}`;
+                const channelRes = await fetch(channelUrl);
+                const channelData = await channelRes.json();
+                
+                if (channelData.error) {
+                    throw new Error(channelData.error.message);
+                }
+                
+                if (!channelData.items || channelData.items.length === 0) {
+                    console.warn(`Canal no encontrado: ${channelHandle}`);
+                    return null;
+                }
+                
+                const channelId = channelData.items[0].id.channelId;
+                
+                // Obtener el último video del canal
+                const videosUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&type=video&maxResults=1&key=${API_KEY}`;
+                const videosRes = await fetch(videosUrl);
+                const videosData = await videosRes.json();
+                
+                if (videosData.error) {
+                    throw new Error(videosData.error.message);
+                }
+                
+                if (!videosData.items || videosData.items.length === 0) {
+                    console.warn(`No hay videos para: ${channelHandle}`);
+                    return null;
+                }
+                
+                const video = videosData.items[0];
+                const videoId = video.id.videoId;
+                
+                // Obtener detalles del video (duración, vistas)
+                const detailsUrl = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoId}&key=${API_KEY}`;
+                const detailsRes = await fetch(detailsUrl);
+                const detailsData = await detailsRes.json();
+                
+                if (detailsData.error) {
+                    throw new Error(detailsData.error.message);
+                }
+                
+                const details = detailsData.items[0];
+                
+                return {
+                    channelName: video.snippet.channelTitle,
+                    channelHandle: channelHandle,
+                    title: video.snippet.title,
+                    url: `https://www.youtube.com/watch?v=${videoId}`,
+                    thumbnail: video.snippet.thumbnails.medium.url,
+                    publishedAt: video.snippet.publishedAt,
+                    duration: formatDuration(details.contentDetails.duration),
+                    views: parseInt(details.statistics.viewCount) || 0
+                };
+            } catch (error) {
+                console.error(`Error fetching ${channelHandle}:`, error);
+                return null;
+            }
+        }
+
+        // Función para actualizar el progreso
+        function updateProgress(current, total, channelName) {
+            const percentage = Math.round((current / total) * 100);
+            const progressFill = document.querySelector('.progress-fill');
+            const progressText = document.querySelector('.progress-text');
+            
+            if (progressFill) {
+                progressFill.style.width = `${percentage}%`;
+            }
+            
+            if (progressText) {
+                progressText.textContent = `Cargando ${current} de ${total} canales... (${channelName})`;
+            }
+        }
+
+        // Función para cargar todos los videos
+        async function loadRealVideos() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <div class="progress">
+                    <p class="progress-text">Iniciando carga...</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            `;
+            
+            const videosByCategory = {};
+            let totalChannels = 0;
+            let currentChannel = 0;
+            
+            // Contar total de canales
+            for (const channelList of Object.values(channels)) {
+                totalChannels += channelList.length;
+            }
+            
+            // Cargar videos por categoría
+            for (const [category, channelList] of Object.entries(channels)) {
+                videosByCategory[category] = [];
+                
+                for (const channel of channelList) {
+                    currentChannel++;
+                    updateProgress(currentChannel, totalChannels, channel.name);
+                    
+                    const video = await fetchLatestVideo(channel.handle);
+                    if (video) {
+                        videosByCategory[category].push(video);
+                    }
+                    
+                    // Pausa para evitar rate limits
+                    await new Promise(resolve => setTimeout(resolve, 150));
+                }
+            }
+            
+            renderVideos(videosByCategory);
+        }
+
+        // Función para renderizar videos
+        function renderVideos(videosByCategory) {
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+
+            let totalVideos = 0;
+            for (const videos of Object.values(videosByCategory)) {
+                totalVideos += videos.length;
+            }
+
+            if (totalVideos === 0) {
+                content.innerHTML = '<div class="error">❌ No se pudieron cargar videos. Verifica tu API Key.</div>';
+                return;
+            }
+
+            for (const [category, videos] of Object.entries(videosByCategory)) {
+                if (videos.length === 0) continue;
+
+                const section = document.createElement('section');
+                section.className = 'category';
+
+                const header = document.createElement('div');
+                header.className = 'category-header';
+                header.innerHTML = `
+                    <h2 class="category-title">${category}</h2>
+                    <span class="category-count">${videos.length} canales</span>
+                `;
+
+                const grid = document.createElement('div');
+                grid.className = 'videos-grid';
+
+                videos.forEach(video => {
+                    const card = document.createElement('article');
+                    card.className = 'video-card';
+                    card.innerHTML = `
+                        <div class="video-thumbnail">
+                            <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+                            <span class="video-duration">${video.duration}</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-name">
+                                <div class="channel-icon"></div>
+                                <span>${video.channelName}</span>
+                            </div>
+                            <h3 class="video-title">
+                                <a href="${video.url}" target="_blank" rel="noopener noreferrer">
+                                    ${video.title}
+                                </a>
+                            </h3>
+                            <div class="video-meta">
+                                <span>${formatViews(video.views)} vistas</span>
+                                <span class="meta-separator">•</span>
+                                <span>${formatRelativeTime(video.publishedAt)}</span>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+                section.appendChild(header);
+                section.appendChild(grid);
+                content.appendChild(section);
+            }
+
+            // Actualizar tiempo
+            const now = new Date();
+            document.getElementById('updateTime').textContent = 
+                now.toLocaleString('es-AR', { 
+                    day: '2-digit', 
+                    month: '2-digit', 
+                    year: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+        }
+
+        // Función para iniciar la carga
+        async function startLoading() {
+            const input = document.getElementById('apiKeyInput');
+            const button = document.getElementById('loadButton');
+            const apiConfig = document.getElementById('apiConfig');
+            
+            API_KEY = input.value.trim();
+            
+            if (!API_KEY) {
+                alert('Por favor ingresa una API Key válida');
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Cargando...';
+            
+            try {
+                apiConfig.style.display = 'none';
+                await loadRealVideos();
+            } catch (error) {
+                console.error('Error al cargar videos:', error);
+                document.getElementById('content').innerHTML = 
+                    `<div class="error">❌ Error: ${error.message}</div>`;
+                apiConfig.style.display = 'block';
+                button.disabled = false;
+                button.textContent = 'Cargar Videos';
+            }
+        }
+
+        // Permitir presionar Enter en el input
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('apiKeyInput');
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    startLoading();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
