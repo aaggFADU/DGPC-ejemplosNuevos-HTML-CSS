@@ -1,10 +1,10 @@
 :root {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #252525;
-  --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-  --accent: hsl(245 83% 65%);
-  --accent-hover: hsl(245 70% 75%);
+  --bg-primary: hsl(245 10% 10%);
+  --bg-secondary: hsl(245 10% 15%);
+  --text-primary: hsl(245 10% 100%);
+  --text-secondary: hsl(245 10% 80%);
+  --accent: hsl(245 75% 65%);
+  --accent-hover: hsl(245 75% 75%);
 
   --bg-primary-alpha-20: hsl(from var(--bg-primary) h s l / 20%);
   --bg-secondary-alpha-20: hsl(from var(--bg-secondary) h s l / 20%);
@@ -22,12 +22,12 @@
 }
 
 :root:has(#theme-toggle:checked) {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --accent: hsl(245 70% 50%);
-  --accent-hover: hsl(245 69% 42%);
+  --bg-primary: hsl(245 10% 100%);
+  --bg-secondary: hsl(245 10% 95%);
+  --text-primary: hsl(245 10% 10%);
+  --text-secondary: hsl(245 10% 20%);
+  --accent: hsl(245 60% 50%);
+  --accent-hover: hsl(245 60% 42%);
 }
 
 *,
@@ -150,8 +150,7 @@ ul {
 
     & a {
       display: block;
-      height: 100%;
-      background-color: var(--bg-secondary);
+      height: stretch;
       background-color: hsl(from var(--accent-alpha-20) h s l / 10%);
       border: solid 1px var(--accent-alpha-20);
       border-radius: 1rem;
@@ -186,7 +185,7 @@ ul {
 }
 
 footer p {
-  color: var(--text-secondary);
+  color: var(--text-secondary-alpha-80);
 }
 
 header {
