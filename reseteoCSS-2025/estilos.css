@@ -1,8 +1,16 @@
+/*
+Hay que colocar las transiciones
+dentro de la condición de si el usuario
+NO prefiere reducir el movimiento
+por accesibilidad.
+*/
 @media (prefers-reduced-motion: no-preference) {
   /* 
   2025
-  Permite transiciones visuales fluidas entre distintas páginas de un sitio web, lo que mejora la experiencia del usuario al hacer que la navegación sea más fluida y atractiva.
-  Conviene colocar las transiciones dentro de la condición de si el usuario NO prefiere reducir el movimiento por alguna dificultad visual.
+  Permite transiciones visuales fluidas
+  entre páginas de un sitio web,
+  mejorando la experiencia del usuario al
+  hacer la navegación más fluida y atractiva.
   */
   @view-transition {
     navigation: auto;
@@ -24,14 +32,18 @@
 se propone tb:
 
 html { box-sizing: border-box; }
-*, *:before, *:after { box-sizing: inherit;}
+*, *::before, *::after { box-sizing: inherit;}
 
-Esto dará el mismo resultado y facilitará el cambio de la propiedad `box-sizing` en plugins u otros componentes que utilicen un comportamiento diferente.
+Esto dará el mismo resultado y
+facilitará el cambio de la propiedad `box-sizing`
+en plugins u otros componentes
+que utilicen un comportamiento diferente.
 */
 }
 
 /* Elimina espaciado predeterminado */
-/* Obliga que estilo de la tipografía se defina a través de estilos, en lugar de elementos */
+/* Obliga que estilo de la tipografía se defina
+   a través de estilos, en lugar de elementos */
 * {
   margin: 0; /* tal vez */
   padding: 0; /* tal vez */
@@ -39,24 +51,36 @@ Esto dará el mismo resultado y facilitará el cambio de la propiedad `box-sizin
 }
 
 :root {
-  /* Estilos de agente de usuario para el modo claro / oscuro */
+  /* Estilos de agente de usuario
+  para el modo claro / oscuro */
   color-scheme: light dark;
 
-  /* Mejora la puntuación en navegadores compatibles */
+  /* Mejora la puntuación
+  en navegadores compatibles */
   hanging-punctuation: first last;
   
-  /* Evitar el aumento del tamaño de fuente en celulares IOS */
+  /* Evita el aumento del tamaño de fuente
+  en celulares IOS */
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 
-  /* interlineado ampliado (aquí en lugar de en "body" para mayor control en diferentes situaciones) */
+  /*
+  interlineado ampliado
+  (en ":root" en lugar de en "body"
+  para mayor control en diferentes situaciones)
+  */
   line-height: 1.6;
   
-  /* Relleno superior para que el destino de un link no quede oculto por un header sticky  */
+  /*
+  Relleno superior para que
+  el destino de un link no quede oculto
+  por un header sticky
+  */
   scroll-padding-top: var(--altura-header, 4rem);
 
-  /* Permite animar, por ejemplo, a "height: auto;" o desde "display: none;" o  */
+  /* Permite animar, por ejemplo, a "height: auto;"
+  o desde "display: none;" o  */
   @supports (interpolate-size: allow-keywords) {
     interpolate-size: allow-keywords;
   }
@@ -76,7 +100,8 @@ video {
   max-inline-size: 100%;
 }
 
-/* Encabezados mejorados en navegadores compatibles */
+/* Encabezados mejorados
+en navegadores compatibles */
 h1,
 h2,
 h3,
@@ -91,7 +116,8 @@ textarea {
   line-height: 1.1;
 }
 
-/* Mejora la legibilidad con max-width en párrafos y listas */
+/* Con ancho máximo se mejora la legibilidad
+en párrafos y listas */
 /* Evita huérfanos en navegadores compatibles */
 p,
 li,
@@ -100,10 +126,12 @@ figcaption {
   text-wrap: pretty;
 }
 
-/* transforma en "contenedores" cuyas medidas
-puedes ser evaluadas para decidir
-disposición de elementos contenidos
-usando "@container" */
+/*
+transforma en "contenedores"
+cuyas medidas pueden ser evaluadas
+para decidir disposición
+de elementos contenidos usando "@container"
+*/
 header,
 footer,
 main,
@@ -112,7 +140,8 @@ article {
   container-type: inline-size;
 }
 
-/*  botones e inputs de formularios heredan tipografía */
+/* botones e inputs de formularios
+heredan tipografía */
 input,
 button,
 textarea,
@@ -136,10 +165,166 @@ select {
 body {
   display: grid;
   grid-template-rows: auto 1fr;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, sans-serif;
 
-  > *,
-  section {
-    padding: 2rem;
+  > * {
+    padding: 1rem;
+  }
+}
+
+/* Estilos para syntax highlighting estilo VS Code */
+
+pre {
+  background: #282828;
+  color: #d4d4d4;
+  padding: 0;
+  margin: 0;
+  border-radius: 6px;
+  overflow: auto;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: clamp(1rem, 0.8645rem + 0.6024vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.6;
+  border: 1px solid #1e1e1e;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  max-height: 85vh;
+}
+
+code.language-css {
+  display: block;
+  /* padding: 1.5rem 0; */
+  font-family: inherit;
+  white-space: pre;
+}
+
+.code-line {
+  display: flex;
+  width: 100%;
+  min-height: 1.6em;
+  padding-right: 2rem;
+}
+
+.code-line:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.line-number {
+  flex-shrink: 0;
+  width: 4rem;
+  text-align: right;
+  padding: 0 1.5rem 0 1rem;
+  color: #6e7681;
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: clamp(1rem, 0.8645rem + 0.6024vw, 1.25rem);
+}
+
+.line-content {
+  flex: 1;
+  white-space: pre;
+  color: #d4d4d4;
+  font-size: clamp(1rem, 0.8645rem + 0.6024vw, 1.25rem);
+}
+
+/* Tokens de sintaxis CSS */
+
+/* Comentarios */
+.comment {
+  color: #6a9955;
+}
+
+/* @rules como @media */
+.at-rule {
+  color: #c586c0;
+}
+
+/* Selectores como body, *, img */
+.selector {
+  color: #d7ba7d;
+}
+
+/* Propiedades CSS como margin, padding */
+.property {
+  color: #9cdcfe;
+}
+
+/* Números */
+.number {
+  color: #b5cea8;
+}
+
+/* Unidades como px, rem, % */
+.unit {
+  color: #b5cea8;
+}
+
+/* Colores hexadecimales */
+.color {
+  color: #ce9178;
+}
+
+/* Palabras clave como auto, none, smooth */
+.keyword {
+  color: #569cd6;
+}
+
+/* Funciones como var() */
+.function {
+  color: #dcdcaa;
+}
+
+/* Pseudo-clases y pseudo-elementos como :root, ::before */
+.pseudo {
+  color: #dcdcaa;
+}
+
+/* Puntuación: llaves, dos puntos, punto y coma */
+.punctuation {
+  color: #d4d4d4;
+}
+
+/* Scrollbar oscuro */
+pre::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 6px;
+  border: 2px solid #1e1e1e;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}
+
+pre::-webkit-scrollbar-corner {
+  background: #1e1e1e;
+}
+
+/* Responsive para móviles 
+@media (max-width: 768px) {
+  pre {
+    font-size: 16px;
+    max-height: 70vh;
+  }
+  
+  .line-number {
+    width: 3rem;
+    padding: 0 1rem 0 0.5rem;
+    font-size: 11px;
+  }
+  
+  .line-content {
+    font-size: 12px;
+  }
+  
+  .code-line {
+    padding-right: 1rem;
   }
 }

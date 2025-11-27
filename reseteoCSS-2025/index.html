@@ -7,6 +7,8 @@
   <title>Reseteo CSS en 2025</title>
   <link rel="stylesheet" href="estilos.css">
   <link rel="icon" type="image/svg+xml" href="../icono-dgpc.svg">
+
+  <script src="colores.js" defer></script>
 </head>
 
 <body>
@@ -18,23 +20,161 @@
 </header>
 
 <main>
-<section>
-  <h2>sección 1</h2>
-  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus assumenda beatae rerum natus officia omnis nesciunt commodi magni. Soluta magni nulla ullam nobis dignissimos eius.</p>
-  <ul>
-    <li><a href="">item 1</a></li>
-    <li><a href="">item 2</a></li>
-    <li><a href="">item 3</a></li>
-  </ul>
-</section>
-<section>
-  <h2>sección 2</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident eveniet repudiandae nesciunt eius error, illo amet cupiditate perferendis quidem vel? Ad quasi, at, dolorem sed odio maiores ratione ab dolor est deserunt culpa ut! Veritatis.</p>
-</section>
-<section>
-  <h2>sección 3</h2>
-  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore harum tempore, molestiae hic doloremque sunt voluptatibus fugiat eaque assumenda eos.</p>
-</section>
+
+<pre>
+  <code class="language-css">/*
+Hay que colocar las transiciones
+dentro de la condición de si el usuario
+NO prefiere reducir el movimiento
+por accesibilidad.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  /* 
+  2025
+  Permite transiciones visuales fluidas
+  entre páginas de un sitio web,
+  mejorando la experiencia del usuario al
+  hacer la navegación más fluida y atractiva.
+  */
+  @view-transition {
+    navigation: auto;
+  }
+  /*::view-transition-group(root) {
+      animation-duration: 1s; 
+  }*/
+
+  /* scroll suave */
+  :root { scroll-behavior: smooth; }
+}
+
+/* hace que dimensionar sea más simple */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+/* 
+se propone tb:
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit;}
+
+Esto dará el mismo resultado y
+facilitará el cambio de la propiedad `box-sizing`
+en plugins u otros componentes
+que utilicen un comportamiento diferente.
+*/
+}
+
+/* Elimina espaciado predeterminado */
+/* Obliga que estilo de la tipografía se defina
+   a través de estilos, en lugar de elementos */
+* {
+  margin: 0; /* tal vez */
+  padding: 0; /* tal vez */
+  font: inherit; /* tal vez */
+}
+
+:root {
+  /* Estilos de agente de usuario
+  para el modo claro / oscuro */
+  color-scheme: light dark;
+
+  /* Mejora la puntuación
+  en navegadores compatibles */
+  hanging-punctuation: first last;
+  
+  /* Evita el aumento del tamaño de fuente
+  en celulares IOS */
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+
+  /*
+  interlineado ampliado
+  (en ":root" en lugar de en "body"
+  para mayor control en diferentes situaciones)
+  */
+  line-height: 1.6;
+  
+  /*
+  Relleno superior para que
+  el destino de un link no quede oculto
+  por un header sticky
+  */
+  scroll-padding-top: var(--altura-header, 4rem);
+
+  /* Permite animar, por ejemplo, a "height: auto;"
+  o desde "display: none;" o  */
+  @supports (interpolate-size: allow-keywords) {
+    interpolate-size: allow-keywords;
+  }
+}
+
+/* altura mínima: ventana del navegador */
+body {
+  min-block-size: 100svh;
+}
+
+/* imágenes/videos adaptables */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-inline-size: 100%;
+}
+
+/* Encabezados mejorados
+en navegadores compatibles */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label,
+optgroup,
+select,
+textarea {
+  text-wrap: balance;
+  line-height: 1.1;
+}
+
+/* Con ancho máximo se mejora la legibilidad
+en párrafos y listas */
+/* Evita huérfanos en navegadores compatibles */
+p,
+li,
+figcaption {
+  max-inline-size: var(--p-ancho-maximo, 75ch);
+  text-wrap: pretty;
+}
+
+/*
+transforma en "contenedores"
+cuyas medidas pueden ser evaluadas
+para decidir disposición
+de elementos contenidos usando "@container"
+*/
+header,
+footer,
+main,
+section,
+article {
+  container-type: inline-size;
+}
+
+/* botones e inputs de formularios
+heredan tipografía */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}</code>
+</pre>
+
 </main>
 
 <footer>
