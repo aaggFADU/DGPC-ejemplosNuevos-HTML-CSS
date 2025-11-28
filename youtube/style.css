@@ -43,6 +43,12 @@ p {
   color: var(--text-secondary);
 }
 
+code {
+  color: var(--accent-hover);
+  font-weight: 600;
+  font-size: larger;
+}
+
 /* File Input Styling */
 .file-input-container {
   margin-top: 2rem;
