@@ -1,10 +1,9 @@
 :root {
-  --bg-color: #0f0f12;
-  --card-bg: #1e1e24;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
+  --bg-color: hsl(240 9% 6%);
+  --card-bg: hsl(240 9% 13%);
+  --text-primary: hsl(0 0% 100%);
+  --text-secondary: hsl(0 0% 63%);
   --accent: hsl(25 75% 47%);
-  /* YouTube-ish red but modern */
   --accent-hover: hsl(25 75% 35%);
   --font-family: 'Outfit', sans-serif;
   --card-radius: 12px;
@@ -33,10 +32,9 @@ header {
 h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  background: linear-gradient(45deg, #fff, #a0a0a0);
-  -webkit-background-clip: text;
+  background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 p {
@@ -126,25 +124,24 @@ input[type="file"] {
 }
 
 .thumbnail-container {
-  position: relative;
-  padding-top: 56.25%;
-  /* 16:9 Aspect Ratio */
+  aspect-ratio: 16 / 9;
   background-color: #000;
+  overflow: hidden;
+  border-radius: var(--card-radius);
 }
 
 .thumbnail-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0.9;
-  transition: var(--transition);
+  transition: opacity var(--transition), transform var(--transition);
 }
 
 .video-card:hover .thumbnail-container img {
   opacity: 1;
+  transform: scale(1.02);
 }
 
 .card-content {
