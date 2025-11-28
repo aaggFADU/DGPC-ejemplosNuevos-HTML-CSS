@@ -45,8 +45,8 @@ p {
 
 code {
   color: var(--accent-hover);
-  font-weight: 600;
-  font-size: larger;
+  font-weight: 700;
+  font-size: 1.35em;
 }
 
 /* File Input Styling */
