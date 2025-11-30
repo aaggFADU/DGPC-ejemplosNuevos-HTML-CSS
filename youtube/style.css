@@ -21,7 +21,9 @@ body {
   color: var(--text-primary);
   font-family: var(--font-family);
   line-height: 1.6;
-  padding: 2rem;
+  padding: 1rem clamp(1rem, 0.5909rem + 1.8182vw, 2rem);
+  min-height: 100dvh;
+  align-content: center;
 }
 
 header {
@@ -31,7 +33,6 @@ header {
 
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
   background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
   background-clip: text;
   color: transparent;

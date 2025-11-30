@@ -22,8 +22,10 @@ async function handleFileSelect(event) {
       await renderCategories(categories);
 
       // Hide upload UI on success
+      const headerH1 = document.querySelector('header h1');
       const headerP = document.querySelector('header p');
       const fileInputContainer = document.querySelector('.file-input-container');
+      if (headerH1) headerH1.style.fontSize = '1.5rem';
       if (headerP) headerP.style.display = 'none';
       if (fileInputContainer) fileInputContainer.style.display = 'none';
 
