@@ -133,7 +133,7 @@ function isYouTubeLink(url) {
 
 async function renderCategories(items, container = gallery) {
   // Allowed categories (normalized to lowercase)
-  const allowedCategories = ['ia', 'web & prog', 'wp', 'ps'];
+  const allowedCategories = ['ia', 'web & prog', 'wp', 'ps', 'audiovisual'];
 
   for (const item of items) {
     if (item.type === 'category') {
