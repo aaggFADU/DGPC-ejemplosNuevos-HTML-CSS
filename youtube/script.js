@@ -3,7 +3,7 @@ const gallery = document.getElementById('gallery');
 const loadingOverlay = document.getElementById('loadingOverlay');
 
 // CORS Proxy to bypass restrictions
-const CORS_PROXY = 'https://api.allorigins.win/get?url=';
+// Proxies managed in fetchText function
 
 fileInput.addEventListener('change', handleFileSelect);
 
@@ -307,27 +307,31 @@ async function fetchLatestVideo(channelUrl) {
   return null;
 }
 
+const PROXIES = [
+  'https://api.codetabs.com/v1/proxy?quest=',
+  'https://api.allorigins.win/raw?url=',
+  'https://corsproxy.io/?'
+];
+
 async function fetchText(url) {
-  // Try primary proxy first (corsproxy.io)
-  try {
-    // Add random delay to avoid rate limiting
-    await new Promise(r => setTimeout(r, Math.random() * 1000));
+  for (const proxyBase of PROXIES) {
+    try {
+      // Add random delay to avoid rate limiting and allow UI updates
+      await new Promise(r => setTimeout(r, Math.random() * 500));
 
-    const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
-    if (response.ok) return await response.text();
-  } catch (e) {
-    console.warn('Primary proxy failed, trying fallback for', url);
-  }
+      const proxyUrl = `${proxyBase}${encodeURIComponent(url)}`;
+      const response = await fetch(proxyUrl);
 
-  // Fallback to allorigins
-  try {
-    const response = await fetch(`${CORS_PROXY}${encodeURIComponent(url)}`);
-    if (response.ok) {
-      const data = await response.json();
-      return data.contents;
+      if (response.ok) {
+        return await response.text();
+      } else {
+        console.warn(`Proxy ${proxyBase} returned ${response.status} for ${url}`);
+      }
+    } catch (e) {
+      console.warn(`Proxy ${proxyBase} failed for ${url}`, e);
     }
-  } catch (e) {
-    console.error('All proxies failed for', url, e);
   }
+
+  console.error('All proxies failed for', url);
   return null;
 }
