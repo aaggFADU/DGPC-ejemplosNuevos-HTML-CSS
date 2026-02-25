@@ -89,8 +89,8 @@
       background: none;
       border: 1px solid rgba(255, 255, 255, .2);
       color: var(--text);
-      width: 2.2rem;
-      height: 2.2rem;
+      width: clamp(0.875rem, 0.2803rem + 2.293vw, 2rem);
+      height: clamp(0.875rem, 0.2803rem + 2.293vw, 2rem);
       border-radius: 50%;
       cursor: pointer;
       font-size: 1rem;
@@ -128,7 +128,7 @@
 
     .dot.active {
       background: var(--accent);
-      transform: scale(1.4);
+      transform: scale(1.25);
     }
 
     /* ── Typography ── */
@@ -457,6 +457,17 @@
           <span class="cover-pill">v0 (Vercel)</span>
           <span class="cover-pill">Bolt.new</span>
           <span class="cover-pill">UX Pilot</span>
+          <span class="cover-pill"
+            style="grid-column:1/-1;background:transparent;border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem 0;">IDEs
+            con IA</span>
+          <span class="cover-pill">Antigravity</span>
+          <span class="cover-pill">Cursor</span>
+          <span class="cover-pill">Trae</span>
+          <span class="cover-pill">Windsurf</span>
+          <span class="cover-pill">VS Code + Copilot</span>
+          <span class="cover-pill">Kiro</span>
+          <span class="cover-pill">Zed</span>
+          <span class="cover-pill">Claude Code</span>
         </div>
         <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;">
           <span class="badge badge-pro">● Uso profesional</span>
@@ -1132,7 +1143,271 @@
         </div>
       </article>
 
-      <!-- ═══ SLIDE 13 — Tabla comparativa ═══ -->
+      <!-- ═══ SLIDE 13 — IDEs con IA (Grupo 1) ═══ -->
+      <article class="slide">
+        <p class="label">Entorno de desarrollo · Grupo 1</p>
+        <h2>IDEs con IA — Maduros</h2>
+        <div class="accent-line"></div>
+        <p class="scroll-hint">↕ desplazá para ver todo</p>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Antigravity (Google DeepMind)</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">Incluido en plan</span>
+              <span class="badge badge-pro">MCP · Skills · Workflows</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>MCP nativo con docenas de servidores (Pencil, Stitch, Firebase, Penpot…)</li>
+                <li>Sistema de <strong>Skills</strong> (SKILL.md) y <strong>Workflows</strong> personalizables</li>
+                <li>Contexto persistente entre sesiones (Knowledge Items)</li>
+                <li>Integrado con ecosistema Google (Search, Gemini, Firebase)</li>
+                <li><strong>Costo:</strong> incluido en la cuota Antigravity — sin pago adicional por herramientas MCP
+                </li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li>Cuota gratuita accesible por conversación</li>
+                <li>Ideal para demostrar flujos MCP complejos sin configuración extra</li>
+                <li>Skills reutilizables — define una vez, usa en toda la cátedra</li>
+                <li><strong>Diferencial:</strong> único con sistema de workflows + persistencia de conocimiento
+                  integrado</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Cursor</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">2.000 completions + 50 req. premium/mes</span>
+              <span class="badge badge-warn">Pro $20/mes</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>MCP sí — integra GitHub, Jira, Figma y cualquier servidor MCP</li>
+                <li>Agente Composer para edición multiarchivo autónoma</li>
+                <li>Plan Pro (sistema créditos desde jun 2025): Claude 3.7, GPT-4.1, Gemini 2.5</li>
+                <li>Plan Educación: 1 año gratis con email .edu <span class="limite">verificar disponibilidad</span>
+                </li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li>50 req. premium gratis alcanzan para <strong>2–3 ejercicios</strong> con agente</li>
+                <li>2.000 completions — suficiente para trabajo diario sin agente</li>
+                <li><strong>Diferencial:</strong> el IDE más adoptado en flujos profesionales reales — curva
+                  transferible al mercado laboral</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Trae (ByteDance)</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">Gratis en acceso temprano</span>
+              <span class="badge badge-warn">Precio futuro: ~$5–10/mes <span class="limite">a confirmar</span></span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>MCP sí (desde v1.3.0) + soporte .rules</li>
+                <li>Modelos incluidos en free (feb. 2026): <strong>Gemini 3-Pro-Preview, Gemini 2.5-Pro/Flash,
+                    GPT-5.1/5.2, Kimi-K2, DeepSeek-V3.1</strong> — Claude ya no figura en el tier free</li>
+                <li>Fork de VS Code — compatibilidad total con extensiones</li>
+                <li><strong>Costo:</strong> gratis con modelos top mientras dure el acceso temprano; precio Pro aún
+                  inestable</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li><strong>El más generoso hoy</strong>: Gemini 3-Pro-Preview + GPT-5.x sin costo — sin Claude en free
+                </li>
+                <li>Instalación familiar para usuarios de VS Code</li>
+                <li><strong>Riesgo:</strong> modelo de negocio en transición — no planificar curs a largo plazo sobre
+                  free</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Windsurf (Codeium)</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">Free para siempre (Cascade Base ilimitado)</span>
+              <span class="badge badge-warn">Pro $15/mes</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>MCP sí — agente Cascade con contexto de codebase completo</li>
+                <li>Free: Cascade Base ilimitado + <strong>5 Flow actions/mes</strong> con modelos premium</li>
+                <li>Pro $15/mes: 500 Flow actions + acceso a todos los modelos</li>
+                <li><strong>Diferencial:</strong> el “cascade” agent puede editar múltiples archivos con mínima fricción
+                </li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li>Autocomplete ilimitado en free — sin preocuparse por cuota en clase</li>
+                <li>5 Flow actions/mes gratis alcanzan para <strong>demostraciones puntuales</strong></li>
+                <li><strong>Diferencial:</strong> el free más generoso en autocomplete de todos los IDEs listados</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 14 — IDEs con IA (Grupo 2) ═══ -->
+      <article class="slide">
+        <p class="label">Entorno de desarrollo · Grupo 2</p>
+        <h2>IDEs con IA — Complementarios y emergentes</h2>
+        <div class="accent-line"></div>
+        <p class="scroll-hint">↕ desplazá para ver todo</p>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">VS Code + GitHub Copilot</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">Gratis para estudiantes/OSS</span>
+              <span class="badge badge-warn">Individual $10/mes</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>MCP sí + Agent mode (desde abr. 2025 en planes pago)</li>
+                <li>Free: 2.000 completions + 50 req. premium/mes</li>
+                <li>Pro $10/mes: 300 req. premium, Claude 3.7, GPT-4.1, Gemini 2.0</li>
+                <li>Pro+ $39/mes: 1.500 req. premium + todos los modelos</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li><strong>Gratis total</strong> con email .edu — Copilot Pro sin costo para estudiantes y docentes
+                </li>
+                <li>El IDE más familiar: curva de aprendizaje mínima para alumnos</li>
+                <li><strong>Diferencial:</strong> ecosistema de extensiones + GitHub integrado — ideal para enseñar
+                  CI/CD</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Kiro (Amazon AWS)</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">Preview gratuito · 50 interacciones/mes</span>
+              <span class="badge badge-warn">Pro $20/mes · Emergente</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li><strong>Spec-driven development</strong>: genera user stories y diseño técnico antes de codear</li>
+                <li>Disponible en preview para Mac, Windows y Linux (julio 2025)</li>
+                <li>Free: 50 interacciones/mes • Pro $20/mes: 1.000 interacciones</li>
+                <li>Integración natural con AWS y servicios cloud de Amazon</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li>El enfoque “spec-first” es valioso didácticamente: fuerza a definir antes de implementar</li>
+                <li>50 interacciones gratis — alcanza para ejercicios breves</li>
+                <li><strong>Riesgo:</strong> aún en preview — no apto como herramienta principal de cátedra todavía</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Zed</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">50 prompts/mes + 2.000 predicciones</span>
+              <span class="badge badge-edu">Open Source</span>
+              <span class="badge badge-warn">Pro $20/mes</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>MCP sí (cliente MCP) + agente para edición y delegación de tareas</li>
+                <li>Propio modelo open source: <strong>Zeta</strong> (predicción de edición, feb. 2025)</li>
+                <li>Ilimitado con API key propia: trae tu propio Claude/GPT/Gemini</li>
+                <li>Colaboración en tiempo real nativa — Rust, extremadamente veloz</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li>Con API key propia: <strong>sin límites de cuota</strong> (solo paga el token a la API)</li>
+                <li>50 prompts gratis/mes del hosting de Zed para primeros pasos</li>
+                <li>Colaboración en tiempo real — útil para ejercicios grupales en clase</li>
+                <li><strong>Diferencial:</strong> único IDE del listado que es open source y self-hosteable</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Claude Code (Anthropic)</span>
+            <div class="tool-badges">
+              <span class="badge badge-warn">$20/mes vía Claude Pro</span>
+              <span class="badge badge-pro">Referencia MCP original</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>El agente MCP de referencia: es la implementación original del protocolo</li>
+                <li>Terminal-first: opera en cualquier directorio sin IDE</li>
+                <li>Compatible con Pencil.dev, Penpot MCP y cualquier servidor MCP</li>
+                <li><strong>Costo:</strong> incluido en Claude Pro ($20/mes) o por consumo de API</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li>Plan gratuito de Claude: muy limitado en uso de agentes automáticos</li>
+                <li>Útil para demostrar qué es un agente terminal sin GUI</li>
+                <li><strong>Barrera:</strong> no es un IDE visual — requiere comodidad con la terminal</li>
+                <li><strong>Diferencial:</strong> enseñar el concepto de "agente puro" sin capa de IDE</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 15 — Tabla comparativa ═══ -->
       <article class="slide">
         <p class="label">Resumen</p>
         <h2>Tabla comparativa de uso gratuito</h2>
@@ -1235,6 +1510,68 @@
                 <td class="partial">★☆☆</td>
                 <td class="yes">Sí</td>
               </tr>
+              <!-- IDEs con IA -->
+              <tr style="background:rgba(91,124,250,.06);">
+                <td colspan="5"
+                  style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:.5rem 1rem;font-weight:600;">
+                  IDEs con IA · entornos de desarrollo</td>
+              </tr>
+              <tr>
+                <td>Antigravity</td>
+                <td>Incluido en plan</td>
+                <td class="yes">★★★</td>
+                <td class="yes">★★★</td>
+                <td class="partial">Dep. del plan</td>
+              </tr>
+              <tr>
+                <td>Cursor</td>
+                <td>2.000 completions + 50 req/mes</td>
+                <td class="partial">★★☆</td>
+                <td class="yes">★★★</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Trae</td>
+                <td>Gratis (acceso temprano) ⚠</td>
+                <td class="yes">★★★</td>
+                <td class="yes">★★★</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Windsurf</td>
+                <td>Cascade Base ∞ + 5 Flow/mes</td>
+                <td class="yes">★★★</td>
+                <td class="partial">★★☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>VS Code + Copilot</td>
+                <td>Gratis .edu · 2.000 completions free</td>
+                <td class="yes">★★★ con .edu</td>
+                <td class="partial">★★☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Kiro</td>
+                <td>50 interacciones/mes (preview)</td>
+                <td class="no">★☆☆</td>
+                <td class="no">★☆☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Zed</td>
+                <td>50 prompts/mes · API key propia: ∞</td>
+                <td class="partial">★★☆</td>
+                <td class="partial">★★☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Claude Code</td>
+                <td>Plan gratuito muy limitado</td>
+                <td class="no">★☆☆</td>
+                <td class="partial">★★☆</td>
+                <td class="no">No (Claude Pro)</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -1315,7 +1652,7 @@
   <nav class="controls">
     <button id="prev" aria-label="Anterior">‹</button>
     <div class="dots" id="dots"></div>
-    <span class="slide-counter" id="counter">1 / 14</span>
+    <span class="slide-counter" id="counter">1 / 16</span>
     <button id="next" aria-label="Siguiente">›</button>
   </nav>
 
