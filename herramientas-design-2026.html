@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herramientas de Diseño IA — Uso Gratuito 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #141720;
+      --border: #252a38;
+      --accent: #5b7cfa;
+      --accent2: #3ecfb2;
+      --accent3: #f0a84e;
+      --text: #e4e8f5;
+      --muted: #7a839e;
+      --pro-col: #5b7cfa;
+      --edu-col: #3ecfb2;
+      --warn: #f0a84e;
+      --font-head: 'Georgia', 'Times New Roman', serif;
+      --font-body: 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'Fira Code', 'Consolas', monospace;
+      --font-size: 1.2rem;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: var(--font-size);
+    }
+
+    /* ── Slider ── */
+    .slider {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slides-track {
+      display: flex;
+      height: 100%;
+      transition: transform .5s cubic-bezier(.77, 0, .18, 1);
+    }
+
+    .slide {
+      min-width: 100vw;
+      height: 100%;
+      overflow-y: auto;
+      padding: 2.5rem 4vw 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    /* ── Nav ── */
+    nav.controls {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(20, 23, 32, .9);
+      border: 1px solid var(--border);
+      border-radius: 3rem;
+      padding: .5rem 1.2rem;
+      z-index: 100;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    nav.controls button {
+      background: none;
+      border: 1px solid rgba(255, 255, 255, .2);
+      color: var(--text);
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background .2s, border-color .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav.controls button:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .slide-counter {
+      font-size: .8rem;
+      color: var(--muted);
+      min-width: 3rem;
+      text-align: center;
+    }
+
+    .dots {
+      display: flex;
+      gap: .4rem;
+    }
+
+    .dot {
+      width: .45rem;
+      height: .45rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .22);
+      transition: background .3s, transform .3s;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.4);
+    }
+
+    /* ── Typography ── */
+    .label {
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .6rem;
+    }
+
+    h1 {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 400;
+      margin-bottom: .8rem;
+    }
+
+    h3 {
+      font-size: .95rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+
+    p {
+      line-height: 1.7;
+      color: #9da6bf;
+      font-size: .95rem;
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    /* ── Cover slide ── */
+    .slide-cover {
+      justify-content: center;
+      gap: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .45rem;
+      max-width: 36rem;
+      margin: 1.8rem auto 0;
+      opacity: .7;
+    }
+
+    .cover-pill {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 2rem;
+      padding: .4rem .8rem;
+      font-size: .7rem;
+      color: #c0c8dc;
+      text-align: center;
+    }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: 2rem;
+    }
+
+    .badge-pro {
+      background: rgba(91, 124, 250, .15);
+      color: var(--pro-col);
+      border: 1px solid rgba(91, 124, 250, .3);
+    }
+
+    .badge-edu {
+      background: rgba(62, 207, 178, .15);
+      color: var(--edu-col);
+      border: 1px solid rgba(62, 207, 178, .3);
+    }
+
+    .badge-warn {
+      background: rgba(240, 168, 78, .15);
+      color: var(--warn);
+      border: 1px solid rgba(240, 168, 78, .3);
+    }
+
+    .badge-free {
+      background: rgba(62, 207, 178, .08);
+      color: var(--accent2);
+      border: 1px solid rgba(62, 207, 178, .2);
+    }
+
+    /* ── Tool card ── */
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .tool-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: .8rem;
+    }
+
+    .tool-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .tool-badges {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── Two-col layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Uso block ── */
+    .uso-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: .5rem;
+      padding: .9rem 1rem;
+    }
+
+    .uso-block h3 {
+      font-size: .72rem;
+      margin-bottom: .5rem;
+    }
+
+    .uso-block ul {
+      list-style: none;
+    }
+
+    .uso-block ul li {
+      font-size: .85rem;
+      color: var(--muted);
+      padding: .2rem 0;
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .uso-block ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    .pro-block h3 {
+      color: var(--pro-col);
+    }
+
+    .edu-block h3 {
+      color: var(--edu-col);
+    }
+
+    /* ── Límite chip ── */
+    .limite {
+      display: inline-block;
+      background: rgba(240, 168, 78, .1);
+      border: 1px solid rgba(240, 168, 78, .25);
+      color: var(--warn);
+      font-size: .72rem;
+      font-family: var(--font-mono);
+      border-radius: .3rem;
+      padding: .1rem .5rem;
+      margin-left: .3rem;
+    }
+
+    /* ── Comparison table ── */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .82rem;
+    }
+
+    .comp-table th {
+      text-align: left;
+      padding: .6rem .8rem;
+      color: var(--muted);
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comp-table td {
+      padding: .65rem .8rem;
+      border-bottom: 1px solid rgba(37, 42, 56, .7);
+      vertical-align: top;
+      color: var(--muted);
+    }
+
+    .comp-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comp-table td:first-child {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .comp-table .yes {
+      color: var(--edu-col);
+    }
+
+    .comp-table .partial {
+      color: var(--warn);
+    }
+
+    .comp-table .no {
+      color: #e05c5c;
+    }
+
+    /* ── Figma/Penpot/Stitch block ── */
+    .special-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: 1rem 1.2rem;
+      margin-bottom: .8rem;
+    }
+
+    .special-card .pill-row {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+      margin: .6rem 0;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1rem 0;
+    }
+
+    /* ── Scroll indicator ── */
+    .scroll-hint {
+      font-size: .72rem;
+      color: var(--border);
+      text-align: right;
+      margin-top: -.5rem;
+      margin-bottom: .5rem;
+    }
+
+    /* ── Accent line ── */
+    .accent-line {
+      width: 2.5rem;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Number stat ── */
+    .stat {
+      font-size: 1.8rem;
+      font-family: var(--font-head);
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="slider" id="slider">
+    <div class="slides-track" id="track">
+
+      <!-- ═══ SLIDE 1 — Portada ═══ -->
+      <article class="slide slide-cover">
+        <div>
+          <p class="label">Ecosistema IA · Diseño UI · 2026</p>
+          <h1>Herramientas de Diseño IA<br><em>Qué podés usar gratis<br>y hasta dónde</em></h1>
+          <div class="accent-line" style="margin: 1rem auto;"></div>
+          <p style="max-width:38rem;margin:0 auto;">Mapa de uso gratuito para <strong>flujos profesionales</strong> y
+            <strong>entornos académicos</strong> — sin confundir freemium con gratuito real.
+          </p>
+        </div>
+        <div class="cover-grid">
+          <span class="cover-pill">Pencil.dev</span>
+          <span class="cover-pill">Loki.build</span>
+          <span class="cover-pill">Agentation</span>
+          <span class="cover-pill">Magic Patterns</span>
+          <span class="cover-pill">Paper.design</span>
+          <span class="cover-pill">MagicPath.ai</span>
+          <span class="cover-pill">Figma</span>
+          <span class="cover-pill">Penpot</span>
+          <span class="cover-pill">Google Stitch</span>
+          <span class="cover-pill">Penpot MCP</span>
+          <span class="cover-pill">v0 (Vercel)</span>
+          <span class="cover-pill">Bolt.new</span>
+          <span class="cover-pill">UX Pilot</span>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;">
+          <span class="badge badge-pro">● Uso profesional</span>
+          <span class="badge badge-edu">● Uso académico</span>
+          <span class="badge badge-warn">⚠ Limitaciones</span>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 2 — Criterios ═══ -->
+      <article class="slide">
+        <p class="label">Introducción</p>
+        <h2>Antes de ver las herramientas</h2>
+        <div class="accent-line"></div>
+
+        <div class="two-col" style="margin-bottom:1rem;">
+          <div class="tool-card">
+            <h3 style="color:var(--pro-col);">¿Qué es uso profesional?</h3>
+            <p>Proyectos con entregables reales, clientes o productos propios. Se valora <strong>velocidad, calidad de
+                output y continuidad</strong> sin interrupciones por límites de créditos.</p>
+          </div>
+          <div class="tool-card">
+            <h3 style="color:var(--edu-col);">¿Qué es uso académico?</h3>
+            <p>Clases, ejercicios, prototipos de estudio. Prioridad: <strong>cero costo, instalación sencilla, curva de
+                aprendizaje clara</strong> y sin necesidad de tarjeta de crédito.</p>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <h3 style="color:var(--warn);">Freemium ≠ Gratuito real</h3>
+          <p>La mayoría de estas herramientas tienen planes "free" que funcionan como <strong>demos limitadas</strong>.
+            Para uso académico serio hay que entender exactamente qué se puede hacer antes de llegar al paywall. Para
+            uso profesional, el costo de suscripción suele recuperarse en horas.</p>
+        </div>
+
+        <div class="tool-card">
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <div><span class="stat">~US$20</span>
+              <p style="font-size:.8rem;margin-top:.2rem;">costo típico plan Pro/mes</p>
+            </div>
+            <div><span class="stat">1–3h</span>
+              <p style="font-size:.8rem;margin-top:.2rem;">para recuperar la inversión vs. trabajo manual</p>
+            </div>
+            <div><span class="stat">100%</span>
+              <p style="font-size:.8rem;margin-top:.2rem;">de las listadas tienen algún nivel gratuito</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 3 — Tipologías ═══ -->
+      <article class="slide">
+        <p class="label">Marco conceptual</p>
+        <h2>No todas estas herramientas hacen lo mismo</h2>
+        <div class="accent-line"></div>
+        <p style="margin-bottom:1.4rem;">Antes de evaluar cada herramienta por separado, conviene distinguir las
+          <strong>cuatro categorías funcionales</strong> del ecosistema. Confundirlas lleva a comparar herramientas que
+          no compiten entre sí.
+        </p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+
+          <div class="tool-card" style="border-left:3px solid var(--accent);padding-left:1.2rem;">
+            <h3 style="color:var(--accent);margin-bottom:.5rem;">◈ Canvas de diseño</h3>
+            <p style="margin-bottom:.8rem;">Lienzo interactivo donde el diseñador trabaja directamente. Produce archivos
+              de diseño versionables, no código listo para producción.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+              <span class="badge badge-pro">Pencil.dev</span>
+              <span class="badge badge-pro">Paper.design</span>
+              <span class="badge badge-pro">Figma</span>
+              <span class="badge badge-pro">Penpot</span>
+            </div>
+          </div>
+
+          <div class="tool-card" style="border-left:3px solid var(--accent2);padding-left:1.2rem;">
+            <h3 style="color:var(--accent2);margin-bottom:.5rem;">◈ Generación asistida</h3>
+            <p style="margin-bottom:.8rem;">Toman un prompt o diseño existente y generan pantallas, variantes o código
+              exportable. El output es el punto de partida, no el destino.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+              <span class="badge badge-edu">Magic Patterns</span>
+              <span class="badge badge-edu">MagicPath.ai</span>
+              <span class="badge badge-edu">Google Stitch</span>
+            </div>
+          </div>
+
+          <div class="tool-card" style="border-left:3px solid var(--accent3);padding-left:1.2rem;">
+            <h3 style="color:var(--accent3);margin-bottom:.5rem;">◈ Marketing / Landing</h3>
+            <p style="margin-bottom:.8rem;">Orientadas a publicar páginas completas con rapidez. El foco está en el
+              deploy, el SEO y la conversión, no en el sistema de diseño.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+              <span class="badge badge-warn">Loki.build</span>
+            </div>
+          </div>
+
+          <div class="tool-card" style="border-left:3px solid #9b7ff5;padding-left:1.2rem;">
+            <h3 style="color:#9b7ff5;margin-bottom:.5rem;">◈ Infraestructura de feedback</h3>
+            <p style="margin-bottom:.8rem;">Se montan <em>sobre</em> una app existente para mejorar la comunicación
+              diseñador↔agente IA. No generan diseño: mejoran la precisión del prompt.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+              <span class="badge"
+                style="background:rgba(155,127,245,.15);color:#9b7ff5;border:1px solid rgba(155,127,245,.3);">Agentation</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="tool-card" style="background:rgba(91,124,250,.05);border-color:rgba(91,124,250,.2);">
+          <p><strong>¿Por qué importa la distinción?</strong> Porque los criterios de evaluación difieren: un canvas se
+            juzga por su fidelidad y versionado; un generador, por la calidad y exportabilidad de su output; una
+            herramienta de marketing, por el tiempo hasta el deploy; y la infraestructura de feedback, por la reducción
+            de ambigüedad en las instrucciones al agente.</p>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 4 — Pencil.dev ═══ -->
+      <article class="slide">
+        <p class="label">Herramienta 01</p>
+        <h2>Pencil.dev</h2>
+        <div class="accent-line"></div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Canvas de diseño en el IDE · MCP · Git</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">Gratis en Early Access</span>
+              <span class="badge badge-warn">Requiere agente MCP</span>
+            </div>
+          </div>
+          <p><strong>Plataformas:</strong> Mac, Linux, Windows (soporte disponible, experiencia más estable en
+            Mac/Linux). Extensión para VS Code y Cursor. App de escritorio standalone.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="uso-block pro-block">
+            <h3>● Uso profesional</h3>
+            <ul>
+              <li>Diseño versionado en Git junto al código</li>
+              <li>Importar frames de Figma conservando vectores</li>
+              <li>Agentes MCP para generar pantallas en paralelo (Claude Code, Cursor, <strong>Antigravity</strong>,
+                etc.)</li>
+              <li>Conexión a APIs reales y Playwright para testing</li>
+              <li><strong>Costo real:</strong> el canvas es gratis <span class="limite">Early Access</span>; el motor IA
+                depende del agente. Con Antigravity u otro agente MCP propio: <span class="limite">sin costo
+                  adicional</span></li>
+            </ul>
+          </div>
+          <div class="uso-block edu-block">
+            <h3>● Uso académico</h3>
+            <ul>
+              <li>Demostrar integración diseño-código en clase</li>
+              <li>Ejercicio de branching de diseño como código</li>
+              <li>Alternativa liviana a Figma dentro del IDE</li>
+              <li><strong>Barrera real:</strong> requiere un agente MCP configurado — Claude Code ($20/mes) es el más
+                documentado, pero Antigravity u otros agentes MCP funcionan igualmente</li>
+              <li>Sin <em>ningún</em> agente IA: funciona como canvas manual, sin generación automática</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card" style="margin-top:.8rem;">
+          <p><strong>Veredicto:</strong> El canvas es gratis. El motor IA lo aporta el agente MCP conectado: Claude Code
+            ($20/mes) es el camino más documentado, pero <strong>cualquier agente con soporte MCP funciona</strong> —
+            incluyendo Antigravity dentro de su cuota propia. Para estudiantes sin ningún agente IA, el canvas manual
+            sigue siendo útil para branching de diseño y versionado en Git.</p>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 5 — Loki.build ═══ -->
+      <article class="slide">
+        <p class="label">Herramienta 02</p>
+        <h2>Loki.build</h2>
+        <div class="accent-line"></div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Landing pages · Builder nativo IA · Web</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">Freemium</span>
+              <span class="badge badge-warn">Marca de agua en free</span>
+              <span class="badge"
+                style="background:rgba(240,168,78,.12);color:#e8994a;border:1px solid rgba(240,168,78,.35);">Marketing /
+                Landing-first</span>
+            </div>
+          </div>
+          <p>Generación de páginas de aterrizaje completas desde un prompt. <strong>No es una herramienta de diseño de
+              producto</strong>: el foco está en publicar rápido con buen SEO y conversión, no en construir sistemas de
+            diseño. No requiere instalación — 100% web.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="uso-block pro-block">
+            <h3>● Uso profesional</h3>
+            <ul>
+              <li>Prototipo rápido de propuesta para cliente</li>
+              <li>Test A/B visual con función Remix</li>
+              <li>SEO automático + responsive por defecto</li>
+              <li>Publicación con dominio propio <span class="limite">solo en Premium</span></li>
+              <li>Sin marca de agua <span class="limite">solo en Premium</span></li>
+              <li><strong>Gratis útil hasta:</strong> mockups para aprobar concepto, no para entrega final</li>
+            </ul>
+          </div>
+          <div class="uso-block edu-block">
+            <h3>● Uso académico</h3>
+            <ul>
+              <li>Ejercicio: generar landing desde un brief textual</li>
+              <li>Comparar output IA vs diseño manual</li>
+              <li>Análisis crítico de jerarquía visual generada</li>
+              <li>No requiere cuenta para generación básica</li>
+              <li><strong>Límite:</strong> publicación tiene marca de agua, dominio propio requiere pago</li>
+              <li>Ideal para clase: el proceso importa más que el deploy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card" style="margin-top:.8rem;">
+          <p><strong>Veredicto:</strong> El mejor de la lista para uso académico inmediato. Sin cuenta, sin instalación,
+            sin costo para generar y revisar. La limitación del dominio propio no afecta al aula.</p>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 6 — Agentation ═══ -->
+      <article class="slide">
+        <p class="label">Herramienta 03</p>
+        <h2>Agentation</h2>
+        <div class="accent-line"></div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Anotación visual del DOM · Open Source · React</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">100% Gratuito</span>
+              <span class="badge badge-edu">Open Source</span>
+              <span class="badge"
+                style="background:rgba(155,127,245,.15);color:#9b7ff5;border:1px solid rgba(155,127,245,.3);">Infraestructura
+                · No canvas</span>
+            </div>
+          </div>
+          <p>Biblioteca React que se monta sobre cualquier app en desarrollo para anotar elementos del DOM y generar
+            contexto estructurado para agentes IA. <strong>Cero dependencias adicionales</strong> (solo React 18+).</p>
+        </div>
+
+        <div class="two-col">
+          <div class="uso-block pro-block">
+            <h3>● Uso profesional</h3>
+            <ul>
+              <li>Eliminar ambigüedad en el feedback de UI al agente</li>
+              <li>Anotar estados de animación congelados para revisión</li>
+              <li>Generar contexto Markdown preciso con selector CSS + ruta DOM</li>
+              <li>Compatible con Claude Code, Cursor, Windsurf</li>
+              <li><strong>Sin límites:</strong> open source, sin créditos, sin plan</li>
+            </ul>
+          </div>
+          <div class="uso-block edu-block">
+            <h3>● Uso académico</h3>
+            <ul>
+              <li>Enseñar estructura del DOM de forma visual e interactiva</li>
+              <li>Ejercicio: identificar selectores CSS en apps reales</li>
+              <li>Demostrar jerarquía de componentes React en clase</li>
+              <li>Instalación: <code style="font-size:.8rem;color:var(--accent2);">npm install agentation -D</code></li>
+              <li><strong>Sin límites.</strong> Requiere entorno React 18+, no funciona en móvil para edición</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card" style="margin-top:.8rem;">
+          <p><strong>Veredicto:</strong> La única herramienta de la lista <strong>completamente libre de
+              restricciones</strong>. Ideal como infraestructura invisible en proyectos académicos y profesionales. Muy
+            útil para enseñar DOM y selectores CSS.</p>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 7 — Magic Patterns ═══ -->
+      <article class="slide">
+        <p class="label">Herramienta 04</p>
+        <h2>Magic Patterns</h2>
+        <div class="accent-line"></div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Prototipado IA · Sistemas de diseño · React/Vue/Tailwind</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">20 generaciones gratis</span>
+              <span class="badge badge-warn">Créditos se agotan</span>
+              <span class="badge"
+                style="background:rgba(91,124,250,.12);color:#7a9bfa;border:1px solid rgba(91,124,250,.3);">Export · No
+                MCP-native</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="uso-block pro-block">
+            <h3>● Uso profesional</h3>
+            <ul>
+              <li>Iteración sobre sistemas de diseño existentes</li>
+              <li>Exporta React, Vue y Tailwind CSS — <strong>integración vía export, no agente MCP</strong></li>
+              <li>Captura de pantalla desde cualquier sitio con extensión Chrome</li>
+              <li>Plan Hobby <span class="limite">$15–19/mes</span>: 80–100 msg + rollover 2 meses</li>
+              <li><strong>Gratis útil para:</strong> exploración inicial, proof of concept</li>
+              <li>Ediciones manuales y exports <strong>no consumen créditos</strong></li>
+            </ul>
+          </div>
+          <div class="uso-block edu-block">
+            <h3>● Uso académico</h3>
+            <ul>
+              <li>20 generaciones gratis son suficientes para <strong>1–2 ejercicios completos</strong></li>
+              <li>Cada alumno puede crear cuenta gratuita</li>
+              <li>Ejercicio: importar sistema de diseño real y extenderlo</li>
+              <li>Canvas colaborativo en tiempo real</li>
+              <li><strong>Límite crítico:</strong> agotadas las 20 generaciones, requiere pago</li>
+              <li>Estrategia: usar gratis para concepto, refinar manualmente</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card" style="margin-top:.8rem;">
+          <p><strong>Veredicto:</strong> Las 20 generaciones gratuitas son útiles pero se agotan rápido. En aula
+            funciona bien si el ejercicio está bien acotado. Para profesionales, el costo del Hobby se justifica desde
+            el primer proyecto.</p>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 8 — Paper.design ═══ -->
+      <article class="slide">
+        <p class="label">Herramienta 05</p>
+        <h2>Paper.design</h2>
+        <div class="accent-line"></div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Canvas nativo HTML/CSS · Agentes MCP · Alta fidelidad</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">100 llamadas MCP/semana gratis</span>
+              <span class="badge badge-warn">Restrictivo en free</span>
+            </div>
+          </div>
+          <p>Canvas construido íntegramente sobre HTML y CSS. Lo que se ve es lo que renderiza el navegador. Soporta
+            gamut P3, shaders animados y conexión directa a APIs.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="uso-block pro-block">
+            <h3>● Uso profesional</h3>
+            <ul>
+              <li>100 llamadas MCP/semana gratis: <strong>insuficiente para flujo activo</strong></li>
+              <li>Plan Pro <span class="limite">$20/mes</span>: 1M llamadas/semana — uso real</li>
+              <li>Diseños conectados a APIs y spreadsheets con datos reales</li>
+              <li>Exportación de video <span class="limite">solo Pro</span></li>
+              <li>Sincronización bidireccional código ↔ lienzo</li>
+            </ul>
+          </div>
+          <div class="uso-block edu-block">
+            <h3>● Uso académico</h3>
+            <ul>
+              <li>100 llamadas/semana alcanzan para <strong>ejercicios puntuales</strong></li>
+              <li>Excelente para demostrar que HTML/CSS ES el diseño</li>
+              <li>Mostrar filtros CSS y shaders directamente en diseño</li>
+              <li>200MB por archivo en plan free</li>
+              <li><strong>Límite:</strong> el ritmo de agente se corta rápido en proyectos largos</li>
+              <li>Uso manual (sin IA) no tiene límites en free</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card" style="margin-top:.8rem;">
+          <p><strong>Veredicto:</strong> En free, Paper es útil como demostración y para ejercicios breves. El argumento
+            conceptual (HTML/CSS como lienzo) es poderoso para enseñanza. Para profesionales, el Pro a $20/mes es
+            obligatorio si se usan agentes.</p>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 9 — MagicPath.ai ═══ -->
+      <article class="slide">
+        <p class="label">Herramienta 06</p>
+        <h2>MagicPath.ai</h2>
+        <div class="accent-line"></div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Diseño IA empresarial · Liquid Glass · Valoración $100M</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">20 créditos diarios gratis</span>
+              <span class="badge badge-edu">Renovación diaria</span>
+            </div>
+          </div>
+          <p>20 créditos que se renuevan cada día (no por mes) hacen que el plan free sea excepcionalmente generoso
+            comparado con competidores.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="uso-block pro-block">
+            <h3>● Uso profesional</h3>
+            <ul>
+              <li>20 créditos/día renovables = acceso sostenido para exploración</li>
+              <li>5 importaciones de Figma/mes en free</li>
+              <li>Plan Creator <span class="limite">$20/mes</span>: 400 créditos/mes + 25 imports Figma</li>
+              <li>Descarga de código fuente completo <span class="limite">solo Pro $30/mes</span></li>
+              <li>Sincronización directa con Cursor u otros IDEs</li>
+              <li>Generación de variantes instantáneas desde un prompt</li>
+            </ul>
+          </div>
+          <div class="uso-block edu-block">
+            <h3>● Uso académico</h3>
+            <ul>
+              <li><strong>El más generoso en free</strong> por la renovación diaria</li>
+              <li>Cada sesión de clase puede usar créditos frescos</li>
+              <li>Ejercicio: generar 3 variantes de una pantalla y comparar</li>
+              <li>Interfaz tipo "Liquid Glass" — útil para discutir tendencias estéticas</li>
+              <li><strong>Límite:</strong> sin descarga de código fuente en free</li>
+              <li>Ideal para enseñar workflow de variantes rápidas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card" style="margin-top:.8rem;">
+          <p><strong>Veredicto:</strong> El plan gratuito más sostenible de la lista para uso académico continuo. La
+            renovación diaria lo hace viable clase a clase. Para profesionales que necesitan exportar código, el plan
+            Creator es el mínimo.</p>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 10 — Figma / Penpot / Stitch ═══ -->
+      <article class="slide">
+        <p class="label">Integración al ecosistema</p>
+        <h2>Figma · Penpot · Google Stitch</h2>
+        <div class="accent-line"></div>
+        <p class="scroll-hint">↕ desplazá para ver todo</p>
+
+        <div class="special-card">
+          <div class="tool-header">
+            <span class="tool-name">Figma</span>
+            <div class="tool-badges">
+              <span class="badge badge-warn">Free limitado</span>
+              <span class="badge badge-pro">Estándar de industria</span>
+            </div>
+          </div>
+          <div class="pill-row">
+            <span class="badge badge-free">3 archivos en free</span>
+            <span class="badge badge-warn">Historial 30 días</span>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>Fuente de origen para importar a Pencil, MagicPath y Magic Patterns</li>
+                <li>Sistemas de diseño para alimentar herramientas IA</li>
+                <li>Free: 3 archivos activos, 1 proyecto — suficiente para freelancers iniciales</li>
+                <li>Plan Pro <span class="limite">$15/mes</span>: archivos ilimitados, historial completo</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li>Education plan <strong>gratuito</strong> con email institucional</li>
+                <li>Archivos ilimitados, colaboración en tiempo real</li>
+                <li>Punto de partida para ejercicios que luego se importan a herramientas IA</li>
+                <li>Enseñar: handoff clásico vs handoff IA</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="special-card">
+          <div class="tool-header">
+            <span class="tool-name">Penpot</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">100% Open Source</span>
+              <span class="badge badge-edu">Sin restricciones</span>
+            </div>
+          </div>
+          <div class="pill-row">
+            <span class="badge badge-edu">Self-hosted disponible</span>
+            <span class="badge badge-edu">Alternativa EU a Figma</span>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>Alternativa real sin costo: archivos ilimitados, colaboración, prototipado</li>
+                <li>Exporta CSS directamente desde el inspector</li>
+                <li>Integración aún limitada con herramientas IA del ecosistema (vs Figma)</li>
+                <li>Ideal para proyectos con restricciones de privacidad o presupuesto</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li><strong>La mejor opción free sin límites</strong> si no se necesita integración IA profunda</li>
+                <li>Puede instalarse en servidor de la institución</li>
+                <li>Interfaz similar a Figma — curva de aprendizaje transferible</li>
+                <li>Enseñar: herramientas open source como alternativa sostenible</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="special-card">
+          <div class="tool-header">
+            <span class="tool-name">Google Stitch</span>
+            <div class="tool-badges">
+              <span class="badge badge-warn">Experimental / Beta</span>
+              <span class="badge badge-free">Cuota mensual gratis</span>
+            </div>
+          </div>
+          <div class="pill-row">
+            <span class="badge badge-edu">Flash mode + Experimental mode</span>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Uso profesional</h3>
+              <ul>
+                <li>Generación de UI para web y móvil con export a herramientas de diseño</li>
+                <li>Cuota mensual gratuita (Flash + Experimental modes)</li>
+                <li>Aún en fase experimental — no recomendado para producción crítica</li>
+                <li>Integración natural con ecosistema Google (Workspace, Firebase)</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Uso académico</h3>
+              <ul>
+                <li>Cuota gratuita mensual accesible para ejercicios</li>
+                <li>Enseñar: posicionamiento de Google en el espacio de herramientas IA</li>
+                <li>Exporta a Figma — útil en flujos mixtos</li>
+                <li>Ideal para comparar outputs entre herramientas distintas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 11 — Penpot MCP (Emergente) ═══ -->
+      <article class="slide">
+        <p class="label">Emergente · A observar en 2026</p>
+        <h2>Penpot MCP</h2>
+        <div class="accent-line" style="background:linear-gradient(90deg,#3ecfb2,#9b7ff5);"></div>
+
+        <div class="tool-card"
+          style="border-style:dashed;border-color:rgba(62,207,178,.4);background:rgba(62,207,178,.03);">
+          <div class="tool-header">
+            <span class="tool-name">Design → Code con agentes · Open Source · Sin lock-in</span>
+            <div class="tool-badges">
+              <span class="badge"
+                style="background:rgba(62,207,178,.12);color:#3ecfb2;border:1px solid rgba(62,207,178,.35);">Emergente
+                2026</span>
+              <span class="badge badge-edu">Open Source</span>
+              <span class="badge"
+                style="background:rgba(155,127,245,.15);color:#9b7ff5;border:1px solid rgba(155,127,245,.3);">No
+                mainstream aún</span>
+            </div>
+          </div>
+          <p>Penpot — ya listado como canvas de diseño — está desarrollando una capa de <strong>Model Context
+              Protocol</strong> que expone el archivo de diseño directamente a agentes IA. Permite el flujo <em>design →
+              code</em> con agentes sin depender de plataformas propietarias ni créditos de terceros.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="uso-block pro-block">
+            <h3>● Por qué es estratégica</h3>
+            <ul>
+              <li>Flujo <strong>design → code via agente</strong> completamente open source</li>
+              <li>Sin lock-in: ni Figma, ni Claude Code, ni créditos de terceros</li>
+              <li>Compatible con cualquier agente que soporte MCP (Claude, Cursor, etc.)</li>
+              <li>Penpot es self-hosteable — flujo 100% soberano posible</li>
+              <li><strong>Hoy:</strong> experimental / en desarrollo activo
+                <span class="limite">no production-ready</span>
+              </li>
+            </ul>
+          </div>
+          <div class="uso-block edu-block">
+            <h3>● Potencial académico</h3>
+            <ul>
+              <li>Enseñar MCP como protocolo — no como vendor feature</li>
+              <li>Ejercicio: conectar un agente a un archivo Penpot real</li>
+              <li>Demostrar ecosistema open source alternativo al stack propietario</li>
+              <li><strong>Sin costo</strong>, sin cuenta paga, sin límites de créditos</li>
+              <li><strong>Barrera:</strong> requiere configuración técnica, no plug-and-play aún</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card"
+          style="margin-top:.8rem;border-color:rgba(62,207,178,.25);background:rgba(62,207,178,.04);">
+          <p><strong>Veredicto:</strong> No reemplaza a ninguna herramienta de la lista hoy, pero representa la
+            dirección hacia un ecosistema design → code abierto. Estratégica para quien enseña arquitectura de
+            herramientas IA, no solo su uso superficial. Monitorear durante 2026.</p>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 12 — Herramientas de soporte ═══ -->
+      <article class="slide">
+        <p class="label">Soporte y complementos</p>
+        <h2>v0 · Bolt.new · UX Pilot · Otras</h2>
+        <div class="accent-line"></div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">v0 (Vercel)</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">Freemium · créditos</span>
+              <span class="badge badge-pro">React/shadcn/Tailwind</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Profesional</h3>
+              <ul>
+                <li>Genera componentes React listos para producción en Vercel</li>
+                <li>Gratis hasta agotar créditos de computación del mes</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Académico</h3>
+              <ul>
+                <li>Ideal para enseñar React + Tailwind con output inmediato</li>
+                <li>Los créditos gratuitos alcanzan para varios ejercicios por semana</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">Bolt.new</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">~1M tokens/mes gratis</span>
+              <span class="badge badge-pro">Full-stack en browser</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Profesional</h3>
+              <ul>
+                <li>Configura Node, Supabase y Stripe desde un prompt</li>
+                <li>1M tokens/mes gratuitos = prototipos medianos completos</li>
+                <li>Pro <span class="limite">$18/mes anual</span></li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Académico</h3>
+              <ul>
+                <li>1M tokens libres son muy generosos para ejercicios de clase</li>
+                <li>Sin instalación — funciona 100% en navegador</li>
+                <li>Demostrar full-stack sin configuración de entorno</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <span class="tool-name">UX Pilot AI</span>
+            <div class="tool-badges">
+              <span class="badge badge-free">7 pantallas gratis</span>
+              <span class="badge badge-warn">Muy limitado en free</span>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="uso-block pro-block">
+              <h3>● Profesional</h3>
+              <ul>
+                <li>Heatmaps predictivos antes de testear con usuarios reales</li>
+                <li>Auditoría heurística automática</li>
+                <li>7 pantallas gratis — útil solo para evaluación inicial</li>
+              </ul>
+            </div>
+            <div class="uso-block edu-block">
+              <h3>● Académico</h3>
+              <ul>
+                <li>Las 7 pantallas gratis alcanzan para 1 ejercicio de análisis por alumno</li>
+                <li>Enseñar heurísticas de usabilidad de forma visual y automatizada</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ SLIDE 13 — Tabla comparativa ═══ -->
+      <article class="slide">
+        <p class="label">Resumen</p>
+        <h2>Tabla comparativa de uso gratuito</h2>
+        <div class="accent-line"></div>
+        <p class="scroll-hint">↕ desplazá para ver todo</p>
+
+        <div class="tool-card" style="overflow-x:auto;">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Herramienta</th>
+                <th>Límite free</th>
+                <th>Académico</th>
+                <th>Profesional</th>
+                <th>Sin tarjeta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Agentation</td>
+                <td>Sin límites (OSS)</td>
+                <td class="yes">★★★</td>
+                <td class="yes">★★★</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Loki.build</td>
+                <td>Generación libre, marca de agua</td>
+                <td class="yes">★★★</td>
+                <td class="partial">★★☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>MagicPath.ai</td>
+                <td>20 créditos/día renovables</td>
+                <td class="yes">★★★</td>
+                <td class="partial">★★☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Penpot</td>
+                <td>Sin límites (OSS)</td>
+                <td class="yes">★★★</td>
+                <td class="yes">★★★</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Bolt.new</td>
+                <td>~1M tokens/mes</td>
+                <td class="yes">★★★</td>
+                <td class="partial">★★☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Figma</td>
+                <td>3 archivos (Education: ilimitado)</td>
+                <td class="yes">★★★ con edu</td>
+                <td class="partial">★☆☆ sin pago</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Magic Patterns</td>
+                <td>20 generaciones totales</td>
+                <td class="partial">★★☆</td>
+                <td class="partial">★☆☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Paper.design</td>
+                <td>100 llamadas MCP/semana</td>
+                <td class="partial">★★☆</td>
+                <td class="no">★☆☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>v0 (Vercel)</td>
+                <td>Créditos mensuales variables</td>
+                <td class="partial">★★☆</td>
+                <td class="partial">★★☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>UX Pilot</td>
+                <td>7 pantallas totales</td>
+                <td class="partial">★★☆</td>
+                <td class="no">★☆☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>Pencil.dev</td>
+                <td>Free · agente MCP propio (ej. Antigravity)</td>
+                <td class="partial">★★☆</td>
+                <td class="partial">★★☆</td>
+                <td class="partial">Depende del agente</td>
+              </tr>
+              <tr>
+                <td>Google Stitch</td>
+                <td>Cuota mensual beta</td>
+                <td class="partial">★★☆</td>
+                <td class="partial">★☆☆</td>
+                <td class="yes">Sí</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:.8rem;font-size:.78rem;color:var(--muted);">★★★ muy recomendable en free · ★★☆ útil con
+          limitaciones · ★☆☆ free insuficiente para uso serio</p>
+      </article>
+
+      <!-- ═══ SLIDE 14 — Recomendaciones finales ═══ -->
+      <article class="slide">
+        <p class="label">Conclusión</p>
+        <h2>Stack recomendado sin costo</h2>
+        <div class="accent-line"></div>
+
+        <div class="two-col" style="margin-bottom:1rem;">
+          <div class="tool-card" style="border-color:rgba(91,124,250,.3);">
+            <h3 style="color:var(--pro-col);margin-bottom:.8rem;">● Stack profesional free</h3>
+            <ul style="list-style:none;">
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border);">
+                <strong style="color:var(--text);">Figma free</strong> — 3 archivos para el trabajo activo
+              </li>
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border);">
+                <strong style="color:var(--text);">MagicPath.ai</strong> — 20 créditos/día para iteración visual
+              </li>
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border);">
+                <strong style="color:var(--text);">Loki.build</strong> — mockups de landing para cliente
+              </li>
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border);">
+                <strong style="color:var(--text);">Agentation</strong> — feedback preciso de UI al agente
+              </li>
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);"><strong
+                  style="color:var(--text);">Bolt.new</strong> — full-stack para prototipos rápidos</li>
+            </ul>
+          </div>
+          <div class="tool-card" style="border-color:rgba(62,207,178,.3);">
+            <h3 style="color:var(--edu-col);margin-bottom:.8rem;">● Stack académico free</h3>
+            <ul style="list-style:none;">
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border);">
+                <strong style="color:var(--text);">Penpot</strong> — base de diseño sin límites (o Figma Education)
+              </li>
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border);">
+                <strong style="color:var(--text);">Loki.build</strong> — generación IA sin cuenta, sin costo
+              </li>
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border);">
+                <strong style="color:var(--text);">MagicPath.ai</strong> — créditos diarios sostenibles para cada clase
+              </li>
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border);">
+                <strong style="color:var(--text);">Agentation</strong> — enseñar DOM y selectores de forma visual
+              </li>
+              <li style="padding:.3rem 0;font-size:.88rem;color:var(--muted);"><strong
+                  style="color:var(--text);">Bolt.new</strong> — full-stack sin instalación de entorno</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card" style="border-color:rgba(240,168,78,.2);">
+          <h3 style="color:var(--warn);margin-bottom:.6rem;">⚠ Herramientas con condiciones a verificar
+          </h3>
+          <p style="font-size:.88rem;"><strong>Pencil.dev</strong> — el canvas es gratis. El motor IA lo aporta el
+            agente MCP conectado: <strong>Claude Code ($20/mes)</strong> es el camino más documentado, pero
+            <strong>cualquier IDE con soporte MCP</strong> (Antigravity, Cursor, Windsurf, etc.) funciona con la cuota
+            propia del agente — sin costo adicional.
+          </p>
+          <p>
+            <strong>UX Pilot / Magic Patterns</strong> — los
+            límites gratuitos se agotan en pocas sesiones.
+          </p>
+          <p>
+            <strong>Paper.design</strong> — 100 llamadas MCP/semana son
+            insuficientes para trabajo activo con agentes.
+          </p>
+        </div>
+      </article>
+
+    </div><!-- /slides-track -->
+  </section>
+
+  <!-- ── Navigation ── -->
+  <nav class="controls">
+    <button id="prev" aria-label="Anterior">‹</button>
+    <div class="dots" id="dots"></div>
+    <span class="slide-counter" id="counter">1 / 14</span>
+    <button id="next" aria-label="Siguiente">›</button>
+  </nav>
+
+  <script>
+    const track = document.getElementById('track');
+    const counter = document.getElementById('counter');
+    const dotsEl = document.getElementById('dots');
+    const slides = track.querySelectorAll('.slide');
+    const total = slides.length;
+    let current = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', `Slide ${i + 1}`);
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    });
+
+    function goTo(n) {
+      current = Math.max(0, Math.min(n, total - 1));
+      track.style.transform = `translateX(-${current * 100}vw)`;
+      counter.textContent = `${current + 1} / ${total}`;
+      dotsEl.querySelectorAll('.dot').forEach((d, i) =>
+        d.classList.toggle('active', i === current));
+    }
+
+    document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('next').addEventListener('click', () => goTo(current + 1));
+
+    document.addEventListener('keydown', e => {
+      const NAV_KEYS = ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End'];
+      if (!NAV_KEYS.includes(e.key)) return;
+      e.preventDefault(); // evita scroll del navegador
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown') goTo(current + 1);
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') goTo(current - 1);
+      if (e.key === 'Home') goTo(0);
+      if (e.key === 'End') goTo(total - 1);
+    });
+
+    // Touch/swipe
+    let startX = 0;
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+    }, { passive: true });
+  </script>
+</body>
+
+</html>
