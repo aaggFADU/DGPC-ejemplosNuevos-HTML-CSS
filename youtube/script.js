@@ -169,7 +169,7 @@ async function renderCategories(items, container = gallery) {
     } else if (item.type === 'channel') {
       // Only render channels if we are inside a grid (which implies we are inside an allowed category)
       if (container.classList.contains('video-grid')) {
-        renderChannelCard(item, container);
+        await renderChannelCard(item, container);
       }
     }
   }
@@ -250,27 +250,23 @@ async function fetchLatestVideo(channelUrl) {
   let channelId = null;
 
   // 1. Try to extract ID from URL (e.g. /channel/UC...)
-  const idMatch = channelUrl.match(/channel\/(UC[\w-]{22})/);
+  const idMatch = channelUrl.match(/channel\/(UC[\w-]{21}[AQgw])/);
   if (idMatch) {
     channelId = idMatch[1];
   } else {
     // 2. If it's a handle (@name) or custom URL, fetch page to find ID
     const pageContent = await fetchText(channelUrl);
     if (pageContent) {
-      // Try to find the RSS link or common ID keys in the source
-      // YouTube recently renamed/moved "channelId" to "externalId" or "browseId" in many parts of the JS data
-      const idPatterns = [
-        /feeds\/videos\.xml\?channel_id=(UC[\w-]{22})/,
-        /"externalId":"(UC[\w-]{22})"/,
-        /"browseId":"(UC[\w-]{22})"/,
-        /"channelId":"(UC[\w-]{22})"/
-      ];
-
-      for (const pattern of idPatterns) {
-        const match = pageContent.match(pattern);
-        if (match) {
-          channelId = match[1];
-          break;
+      // Try to find the RSS link which contains the channelId
+      // <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.youtube.com/feeds/videos.xml?channel_id=UC..." />
+      const rssMatch = pageContent.match(/href="https:\/\/www\.youtube\.com\/feeds\/videos\.xml\?channel_id=(UC[\w-]{21}[AQgw])"/);
+      if (rssMatch) {
+        channelId = rssMatch[1];
+      } else {
+        // Fallback: Look for "channelId":"UC..." in the JS blob
+        const jsonMatch = pageContent.match(/"(?:channelId|externalId|browseId)":"(UC[\w-]{21}[AQgw])"/);
+        if (jsonMatch) {
+          channelId = jsonMatch[1];
         }
       }
     }
@@ -295,12 +291,13 @@ async function fetchLatestVideo(channelUrl) {
         const mediaGroup = entry.getElementsByTagName('media:group')[0] || entry.getElementsByTagName('group')[0];
         const thumbnail = mediaGroup ? (mediaGroup.getElementsByTagName('media:thumbnail')[0] || mediaGroup.getElementsByTagName('thumbnail')[0]) : null;
         const videoId = entry.getElementsByTagName('yt:videoId')[0] || entry.getElementsByTagName('videoId')[0];
+        const pubDateElem = entry.querySelector('published') || entry.querySelector('updated');
 
         return {
           title: entry.querySelector('title').textContent,
           link: entry.querySelector('link').getAttribute('href'),
           thumbnail: thumbnail ? thumbnail.getAttribute('url') : `https://i.ytimg.com/vi/${videoId ? videoId.textContent : ''}/hqdefault.jpg`,
-          pubDate: entry.querySelector('published').textContent
+          pubDate: pubDateElem ? pubDateElem.textContent : new Date().toISOString()
         };
       }
     } catch (e) {
@@ -312,78 +309,34 @@ async function fetchLatestVideo(channelUrl) {
 }
 
 const PROXIES = [
-  { url: 'https://api.codetabs.com/v1/proxy?quest=', failCount: 0, nextTry: 0 },
-  { url: 'https://corsproxy.io/?', failCount: 0, nextTry: 0 },
-  { url: 'https://api.allorigins.win/get?url=', failCount: 0, nextTry: 0 },
-  { url: 'https://proxy.cors.sh/', failCount: 0, nextTry: 0 }
+  'https://api.allorigins.win/get?url=',
+  'https://api.codetabs.com/v1/proxy?quest=',
+  'https://thingproxy.freeboard.io/fetch/'
 ];
 
-let globalNextRequestTime = Date.now();
-
 async function fetchText(url) {
-  // Rate limiter global: encola las peticiones para que salgan espaciadas
-  const now = Date.now();
-  let delay = 0;
-  if (globalNextRequestTime > now) {
-    delay = globalNextRequestTime - now;
-  }
-  globalNextRequestTime = Math.max(now, globalNextRequestTime) + 1200; // 1.2 segundos por petición global
-  
-  if (delay > 0) {
-    await new Promise(r => setTimeout(r, delay));
-  }
-
-  // Ordenamos proxies: prioridad a los que menos han fallado
-  const sortedProxies = [...PROXIES].sort((a, b) => a.failCount - b.failCount);
-
-  for (const proxy of sortedProxies) {
-    // Si este proxy está baneado temporalmente (ej. por muchos 403/429), lo saltamos
-    if (Date.now() < proxy.nextTry) {
-      continue; 
-    }
-
+  for (const proxyBase of PROXIES) {
     try {
-      const headers = {};
-      if (proxy.url.includes('proxy.cors.sh')) {
-        headers['x-cors-gratis'] = 'true';
-      }
+      // Add random delay to avoid rate limiting and allow UI updates
+      await new Promise(r => setTimeout(r, Math.random() * 500));
 
-      const proxyUrl = `${proxy.url}${encodeURIComponent(url)}`;
-      const response = await fetch(proxyUrl, { headers });
+      const proxyUrl = `${proxyBase}${encodeURIComponent(url)}`;
+      const response = await fetch(proxyUrl);
 
       if (response.ok) {
-        // Éxito: reducimos el registro de fallos de este proxy para darle mejor reputación
-        proxy.failCount = Math.max(0, proxy.failCount - 1); 
-
-        // Handle AllOrigins JSON format
-        if (proxy.url.includes('allorigins.win/get')) {
+        if (proxyBase.includes('allorigins.win/get')) {
           const json = await response.json();
           return json.contents;
         }
         return await response.text();
-      } else if (response.status === 404 || response.status === 400) {
-        // Error de la fuente destino. El proxy procesó bien, el recurso no existe
-        return null;
+      } else {
+        console.warn(`Proxy ${proxyBase} returned ${response.status} for ${url}`);
       }
-      
-      // El proxy en sí bloqueó (403, 429) o falló
-      proxy.failCount++;
-      if (proxy.failCount >= 3) {
-        // Pausar este proxy durante 5 minutos para evitar más 403s
-        proxy.nextTry = Date.now() + (60000 * 5); 
-      }
-      console.debug(`Proxy ${proxy.url} devolvió status ${response.status}. Moviendo a siguiente proxy...`);
-
     } catch (e) {
-      proxy.failCount++;
-      if (proxy.failCount >= 3) {
-        proxy.nextTry = Date.now() + (60000 * 5);
-      }
-      console.debug(`Proxy ${proxy.url} tuvo un error de red. Moviendo a siguiente proxy...`);
+      console.warn(`Proxy ${proxyBase} failed for ${url}`, e);
     }
   }
 
-  // Fallaron todos silenciosamente (los logs en rojo de "Failed to load resource" son de los navegadores y no por la lógica)
-  // console.debug('Se agotaron los proxies vivos para: ', url);
+  console.error('All proxies failed for', url);
   return null;
 }
