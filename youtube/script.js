@@ -313,8 +313,8 @@ async function fetchLatestVideo(channelUrl) {
 
 const PROXIES = [
   'https://corsproxy.io/?',
+  'https://api.allorigins.win/get?url=',
   'https://api.codetabs.com/v1/proxy?quest=',
-  'https://api.allorigins.win/raw?url=',
   'https://proxy.cors.sh/'
 ];
 
@@ -322,18 +322,31 @@ async function fetchText(url) {
   for (const proxyBase of PROXIES) {
     try {
       // Add random delay to avoid rate limiting and allow UI updates
-      await new Promise(r => setTimeout(r, Math.random() * 500));
+      const headers = {};
+      if (proxyBase.includes('proxy.cors.sh')) {
+        headers['x-cors-gratis'] = 'true';
+      }
 
       const proxyUrl = `${proxyBase}${encodeURIComponent(url)}`;
-      const response = await fetch(proxyUrl);
+      const response = await fetch(proxyUrl, { headers });
 
       if (response.ok) {
+        // Handle AllOrigins JSON format if /get is used
+        if (proxyBase.includes('allorigins.win/get')) {
+          const json = await response.json();
+          return json.contents;
+        }
         return await response.text();
-      } else {
-        console.warn(`Proxy ${proxyBase} returned ${response.status} for ${url}`);
+      } else if (response.status === 404) {
+        // If it's a 404, the resource is gone, don't retry other proxies
+        return null;
       }
+      // Log only as info/debug to avoid filling the console with red errors
+      console.debug(`Proxy ${proxyBase} returned ${response.status} for ${url}`);
+      // Wait longer if we hit a 403 or 429
+      await new Promise(r => setTimeout(r, 1000 + Math.random() * 2000));
     } catch (e) {
-      console.warn(`Proxy ${proxyBase} failed for ${url}`, e);
+      console.debug(`Proxy ${proxyBase} failed for ${url}`, e);
     }
   }
 
