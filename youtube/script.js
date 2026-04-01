@@ -312,59 +312,78 @@ async function fetchLatestVideo(channelUrl) {
 }
 
 const PROXIES = [
-  'https://corsproxy.io/?',
-  'https://api.allorigins.win/get?url=',
-  'https://api.codetabs.com/v1/proxy?quest=',
-  'https://proxy.cors.sh/'
+  { url: 'https://api.codetabs.com/v1/proxy?quest=', failCount: 0, nextTry: 0 },
+  { url: 'https://corsproxy.io/?', failCount: 0, nextTry: 0 },
+  { url: 'https://api.allorigins.win/get?url=', failCount: 0, nextTry: 0 },
+  { url: 'https://proxy.cors.sh/', failCount: 0, nextTry: 0 }
 ];
 
 let globalNextRequestTime = Date.now();
 
 async function fetchText(url) {
-  // Rate limiter global: encola las peticiones para que salgan con 1 segundo de diferencia
-  // Esto evita enviar ráfagas de 50 peticiones de golpe y recibir el error 429 (Too Many Requests)
+  // Rate limiter global: encola las peticiones para que salgan espaciadas
   const now = Date.now();
   let delay = 0;
   if (globalNextRequestTime > now) {
     delay = globalNextRequestTime - now;
   }
-  globalNextRequestTime = Math.max(now, globalNextRequestTime) + 1200; // 1.2 segundos por petición
+  globalNextRequestTime = Math.max(now, globalNextRequestTime) + 1200; // 1.2 segundos por petición global
   
   if (delay > 0) {
     await new Promise(r => setTimeout(r, delay));
   }
 
-  for (const proxyBase of PROXIES) {
+  // Ordenamos proxies: prioridad a los que menos han fallado
+  const sortedProxies = [...PROXIES].sort((a, b) => a.failCount - b.failCount);
+
+  for (const proxy of sortedProxies) {
+    // Si este proxy está baneado temporalmente (ej. por muchos 403/429), lo saltamos
+    if (Date.now() < proxy.nextTry) {
+      continue; 
+    }
+
     try {
-      // Add random delay to avoid rate limiting and allow UI updates
       const headers = {};
-      if (proxyBase.includes('proxy.cors.sh')) {
+      if (proxy.url.includes('proxy.cors.sh')) {
         headers['x-cors-gratis'] = 'true';
       }
 
-      const proxyUrl = `${proxyBase}${encodeURIComponent(url)}`;
+      const proxyUrl = `${proxy.url}${encodeURIComponent(url)}`;
       const response = await fetch(proxyUrl, { headers });
 
       if (response.ok) {
-        // Handle AllOrigins JSON format if /get is used
-        if (proxyBase.includes('allorigins.win/get')) {
+        // Éxito: reducimos el registro de fallos de este proxy para darle mejor reputación
+        proxy.failCount = Math.max(0, proxy.failCount - 1); 
+
+        // Handle AllOrigins JSON format
+        if (proxy.url.includes('allorigins.win/get')) {
           const json = await response.json();
           return json.contents;
         }
         return await response.text();
-      } else if (response.status === 404) {
-        // If it's a 404, the resource is gone, don't retry other proxies
+      } else if (response.status === 404 || response.status === 400) {
+        // Error de la fuente destino. El proxy procesó bien, el recurso no existe
         return null;
       }
-      // Log only as info/debug to avoid filling the console with red errors
-      console.debug(`Proxy ${proxyBase} returned ${response.status} for ${url}`);
-      // Wait longer if we hit a 403 or 429
-      await new Promise(r => setTimeout(r, 1000 + Math.random() * 2000));
+      
+      // El proxy en sí bloqueó (403, 429) o falló
+      proxy.failCount++;
+      if (proxy.failCount >= 3) {
+        // Pausar este proxy durante 5 minutos para evitar más 403s
+        proxy.nextTry = Date.now() + (60000 * 5); 
+      }
+      console.debug(`Proxy ${proxy.url} devolvió status ${response.status}. Moviendo a siguiente proxy...`);
+
     } catch (e) {
-      console.debug(`Proxy ${proxyBase} failed for ${url}`, e);
+      proxy.failCount++;
+      if (proxy.failCount >= 3) {
+        proxy.nextTry = Date.now() + (60000 * 5);
+      }
+      console.debug(`Proxy ${proxy.url} tuvo un error de red. Moviendo a siguiente proxy...`);
     }
   }
 
-  console.error('All proxies failed for', url);
+  // Fallaron todos silenciosamente (los logs en rojo de "Failed to load resource" son de los navegadores y no por la lógica)
+  // console.debug('Se agotaron los proxies vivos para: ', url);
   return null;
 }
