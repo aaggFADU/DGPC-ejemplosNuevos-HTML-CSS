@@ -318,7 +318,22 @@ const PROXIES = [
   'https://proxy.cors.sh/'
 ];
 
+let globalNextRequestTime = Date.now();
+
 async function fetchText(url) {
+  // Rate limiter global: encola las peticiones para que salgan con 1 segundo de diferencia
+  // Esto evita enviar ráfagas de 50 peticiones de golpe y recibir el error 429 (Too Many Requests)
+  const now = Date.now();
+  let delay = 0;
+  if (globalNextRequestTime > now) {
+    delay = globalNextRequestTime - now;
+  }
+  globalNextRequestTime = Math.max(now, globalNextRequestTime) + 1200; // 1.2 segundos por petición
+  
+  if (delay > 0) {
+    await new Promise(r => setTimeout(r, delay));
+  }
+
   for (const proxyBase of PROXIES) {
     try {
       // Add random delay to avoid rate limiting and allow UI updates
