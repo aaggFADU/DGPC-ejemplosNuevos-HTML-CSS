@@ -250,23 +250,27 @@ async function fetchLatestVideo(channelUrl) {
   let channelId = null;
 
   // 1. Try to extract ID from URL (e.g. /channel/UC...)
-  const idMatch = channelUrl.match(/channel\/(UC[\w-]{21}[AQgw])/);
+  const idMatch = channelUrl.match(/channel\/(UC[\w-]{22})/);
   if (idMatch) {
     channelId = idMatch[1];
   } else {
     // 2. If it's a handle (@name) or custom URL, fetch page to find ID
     const pageContent = await fetchText(channelUrl);
     if (pageContent) {
-      // Try to find the RSS link which contains the channelId
-      // <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.youtube.com/feeds/videos.xml?channel_id=UC..." />
-      const rssMatch = pageContent.match(/href="https:\/\/www\.youtube\.com\/feeds\/videos\.xml\?channel_id=(UC[\w-]{21}[AQgw])"/);
-      if (rssMatch) {
-        channelId = rssMatch[1];
-      } else {
-        // Fallback: Look for "channelId":"UC..." in the JS blob
-        const jsonMatch = pageContent.match(/"channelId":"(UC[\w-]{21}[AQgw])"/);
-        if (jsonMatch) {
-          channelId = jsonMatch[1];
+      // Try to find the RSS link or common ID keys in the source
+      // YouTube recently renamed/moved "channelId" to "externalId" or "browseId" in many parts of the JS data
+      const idPatterns = [
+        /feeds\/videos\.xml\?channel_id=(UC[\w-]{22})/,
+        /"externalId":"(UC[\w-]{22})"/,
+        /"browseId":"(UC[\w-]{22})"/,
+        /"channelId":"(UC[\w-]{22})"/
+      ];
+
+      for (const pattern of idPatterns) {
+        const match = pageContent.match(pattern);
+        if (match) {
+          channelId = match[1];
+          break;
         }
       }
     }
@@ -308,9 +312,10 @@ async function fetchLatestVideo(channelUrl) {
 }
 
 const PROXIES = [
+  'https://corsproxy.io/?',
   'https://api.codetabs.com/v1/proxy?quest=',
   'https://api.allorigins.win/raw?url=',
-  'https://corsproxy.io/?'
+  'https://proxy.cors.sh/'
 ];
 
 async function fetchText(url) {
