@@ -97,7 +97,7 @@ input[type="file"] {
   text-transform: uppercase;
   letter-spacing: 1px;
   position: sticky;
-  top: .25rem;
+  top: -.25rem;
   z-index: 10;
 }
 
