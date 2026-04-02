@@ -96,6 +96,9 @@ input[type="file"] {
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 1px;
+  position: sticky;
+  top: .25rem;
+  z-index: 10;
 }
 
 .video-grid {
@@ -116,12 +119,12 @@ input[type="file"] {
   flex-direction: column;
   height: 100%;
   position: relative;
-  box-shadow: 0 4px  hsl(from var(--accent) h s l / 0.25);
+  box-shadow: 0 4px hsl(from var(--accent) h s l / 0.25);
 }
 
 .video-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px  var(--accent);
+  box-shadow: 0 4px var(--accent);
 }
 
 .thumbnail-container {
