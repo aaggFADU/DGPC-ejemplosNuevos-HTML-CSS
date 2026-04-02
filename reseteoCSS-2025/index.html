@@ -13,15 +13,15 @@
 
 <body>
 
-<header>
-  <h1>
-    Reset CSS inicialmente en enero de 2024, con agregados en septiembre y en 2025
-  </h1>
-</header>
+  <header>
+    <h1>
+      Reset CSS inicialmente en enero de 2024, con agregados en septiembre, en 2025 y en 2026
+    </h1>
+  </header>
 
-<main>
+  <main>
 
-<pre>
+    <pre>
   <code class="language-css">/*
 Hay que colocar las transiciones
 dentro de la condición de si el usuario
@@ -110,9 +110,17 @@ que utilicen un comportamiento diferente.
   }
 }
 
+/* Evita saltos en el diseño cuando hay o no barras de desplazamiento */
+html {
+  scroll-gutter: stable;
+}
+
 /* altura mínima: ventana del navegador */
 body {
   min-block-size: 100svh;
+  /* footer siempre abajo */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 /* imágenes/videos adaptables */
@@ -175,13 +183,14 @@ select {
 }</code>
 </pre>
 
-</main>
+  </main>
 
-<footer>
-<p>
-  Ejemplo tomado de <a href="https://youtu.be/cCAtD_BAHNw?si=xK4cS-UQbCOACO1V" target="_blank" title="artículo original" rel="noopener">video de Kevin Powell en YouTube</a>.
-</p>
-</footer>
+  <footer>
+    <p>
+      Ejemplo tomado de <a href="https://youtu.be/cCAtD_BAHNw?si=xK4cS-UQbCOACO1V" target="_blank"
+        title="artículo original" rel="noopener">video de Kevin Powell en YouTube</a>.
+    </p>
+  </footer>
 
 </body>
 
