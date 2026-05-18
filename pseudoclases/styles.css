@@ -1,0 +1,355 @@
+:root {
+  --bg-main: #0d0d0d;
+  --bg-card: #151515;
+  --bg-panel: #1e1e1e;
+  --text-main: #f0f0f0;
+  --text-muted: #a0a0a0;
+  --accent-color: #f39c12;
+  --accent-hover: #e67e22;
+  --border-color: #333;
+  --html-color: #e34c26;
+  --css-color: #264de4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Restaurar el centrado nativo del dialog que rompe el reset anterior */
+dialog {
+  margin: auto;
+}
+
+html {
+  /* La altura del header es dinámica y se calcula en app.js. 
+     Agregamos 20px extra para que el ancla no quede pegada al borde. */
+  scroll-padding-top: calc(var(--header-height, 220px) + 20px);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER --- */
+.header {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 1) 0%, rgba(30, 30, 30, 1) 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-tag {
+  display: block;
+  width: fit-content;
+  background: rgba(243, 156, 18, 0.2);
+  color: var(--accent-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: .8em;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  line-height: 1.2em;
+  font-weight: 800;
+  background: -webkit-linear-gradient(45deg, #f0f0f0, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 300px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 40px 12px 40px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  opacity: 0.6;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 5px;
+  display: none;
+  /* Oculto por defecto, JS lo muestra al escribir */
+}
+
+.clear-btn:hover {
+  color: var(--text-main);
+}
+
+.search-box input:not(:placeholder-shown)~.clear-btn {
+  display: block;
+  /* Solo se muestra si el input tiene texto (gracias a la pseudoclase placeholder-shown!) */
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--bg-panel);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: #2a2a2a;
+  color: var(--text-main);
+}
+
+.filter-btn.active {
+  background: var(--accent-color);
+  color: var(--bg-main);
+  border-color: var(--accent-color);
+}
+
+/* --- MAIN CATALOG --- */
+.catalog-grid {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  max-width: 100%;
+}
+
+.card:hover {
+  border-color: #444;
+}
+
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.selector-name {
+  font-family: monospace;
+  font-size: 1.8rem;
+  color: var(--accent-color);
+}
+
+.selector-badge {
+  background: var(--bg-panel);
+  border: 1px solid #444;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.selector-description {
+  color: var(--text-main);
+  font-size: 1rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  text-wrap: balance;
+}
+
+.card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 900px) {
+  .card-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.code-panels {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .code-panels {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.panel {
+  flex: 1;
+  background: #1a1a1a;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.html-panel {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.panel-header {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 800;
+  padding: 8px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
+.html-panel .panel-header {
+  color: var(--html-color);
+}
+
+.css-panel .panel-header {
+  color: var(--css-color);
+}
+
+.panel pre {
+  padding: 15px !important;
+  margin: 0 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  flex: 1;
+  background: transparent !important;
+}
+
+.panel code {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.sandbox-panel {
+  background: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sandbox-panel .panel-header {
+  color: #2ecc71;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sandbox-container {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* This targets the injected content container */
+.sandbox-content {
+  width: 100%;
+  max-width: 400px;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  margin-top: 3rem;
+}
+
+/* Utility to escape characters safely in the pre block (handled via JS) */

@@ -1,0 +1,505 @@
+const cssCatalog = [
+  // LÓGICA Y RELACIÓN
+  {
+    id: "has",
+    name: ":has()",
+    type: "pseudo-class",
+    category: "logica",
+    description: "El 'selector padre'. Permite estilizar un elemento dependiendo de su contenido o de sus elementos descendientes.",
+    html: `<div class="card">
+  <h3>Card simple</h3>
+  <p>Sin imagen destacada.</p>
+</div>
+
+<div class="card">
+  <img src="https://picsum.photos/200/100" alt="Destacada">
+  <h3>Card con imagen</h3>
+  <p>Esta card tiene un fondo distinto porque contiene una imagen.</p>
+</div>`,
+    css: `.card {
+  border: 2px solid #333;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background: #1e1e1e;
+}
+
+/* Si la .card contiene una <img> dentro, cambia su borde y fondo */
+.card:has(img) {
+  border-color: #f39c12;
+  background: #2a2215;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 4px;
+}`
+  },
+  {
+    id: "is-where",
+    name: ":is() / :where()",
+    type: "pseudo-class",
+    category: "logica",
+    description: "Agrupan selectores para simplificar el código. :is() mantiene la especificidad del selector más alto, mientras que :where() siempre tiene especificidad 0.",
+    html: `<header>
+  <h2>Título en Header</h2>
+  <p>Párrafo en header</p>
+</header>
+<main>
+  <h2>Título en Main</h2>
+  <p>Párrafo en main</p>
+</main>
+<footer>
+  <h2>Título en Footer</h2>
+  <p>Párrafo en footer</p>
+</footer>`,
+    css: `/* Aplica a h2 y p dentro de header, main o footer sin repetir selectores */
+:is(header, main, footer) :is(h2, p) {
+  color: #3498db;
+  margin: 5px 0;
+}
+
+header, main, footer {
+  padding: 10px;
+  border: 1px solid #444;
+  margin-bottom: 10px;
+}`
+  },
+  {
+    id: "not",
+    name: ":not()",
+    type: "pseudo-class",
+    category: "logica",
+    description: "Representa todos los elementos seleccionados menos los que responden al selector dentro de los paréntesis.",
+    html: `<ul class="lista">
+  <li>Elemento 1</li>
+  <li class="destacado">Elemento 2 (Destacado)</li>
+  <li>Elemento 3</li>
+  <li>Elemento 4</li>
+</ul>`,
+    css: `.lista { list-style: none; padding: 0; }
+.lista li { padding: 8px; background: #2c3e50; margin-bottom: 4px; }
+
+/* Aplica a todos los li que NO tengan la clase .destacado */
+.lista li:not(.destacado) { opacity: 0.5; }
+.destacado { background: #e74c3c !important; font-weight: bold; }`
+  },
+
+  // INTERACCIÓN Y ESTADO
+  {
+    id: "active",
+    name: ":active",
+    type: "pseudo-class",
+    category: "interaccion",
+    description: "Se aplica en el momento exacto en que un elemento está siendo activado (por ejemplo, mientras se hace click en él con el ratón).",
+    html: `<button class="btn">Mantenme presionado</button>`,
+    css: `.btn {
+  background: #3498db; color: white; padding: 10px 20px;
+  border: none; border-radius: 4px; cursor: pointer; transition: transform 0.1s;
+}
+.btn:active {
+  background: #2980b9; transform: scale(0.95);
+}`
+  },
+  {
+    id: "hover",
+    name: ":hover",
+    type: "pseudo-class",
+    category: "interaccion",
+    description: "Se aplica cuando el usuario coloca el puntero sobre algún elemento.",
+    html: `<button class="btn">Pasa el cursor por aquí</button>`,
+    css: `.btn {
+  background: #27ae60; color: white; padding: 15px 30px;
+  border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;
+}
+.btn:hover { background: #2ecc71; transform: translateY(-3px); }`
+  },
+  {
+    id: "focus",
+    name: ":focus",
+    type: "pseudo-class",
+    category: "interaccion",
+    description: "Se aplica cuando un elemento recibe el foco (mediante teclado o clic).",
+    html: `<input type="text" placeholder="Haz click aquí para foco">`,
+    css: `input { padding: 10px; border: 2px solid #555; background: #222; color: white; outline: none; }
+input:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52,152,219,0.5); }`
+  },
+  {
+    id: "focus-visible",
+    name: ":focus-visible",
+    type: "pseudo-class",
+    category: "interaccion",
+    description: "Muestra el estilo de foco solo cuando el usuario navega por teclado (ej. Tab), evitando bordes indeseados al hacer clic con ratón.",
+    html: `<button class="btn-modern">Botón (Navega con TAB)</button>`,
+    css: `.btn-modern { padding: 10px 20px; background: #34495e; color: white; border: none; cursor: pointer; outline: none; }
+.btn-modern:focus-visible { outline: 3px solid #3498db; outline-offset: 3px; }`
+  },
+  {
+    id: "focus-within",
+    name: ":focus-within",
+    type: "pseudo-class",
+    category: "interaccion",
+    description: "Se aplica a un contenedor si este o cualquiera de sus hijos recibe foco.",
+    html: `<form class="caja-formulario">
+  <input type="text" placeholder="Usuario">
+  <input type="password" placeholder="Contraseña">
+</form>`,
+    css: `.caja-formulario { padding: 20px; background: #111; border: 2px solid #333; transition: 0.3s; }
+.caja-formulario:focus-within { border-color: #9b59b6; }
+input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; }`
+  },
+  {
+    id: "target",
+    name: ":target",
+    type: "pseudo-class",
+    category: "interaccion",
+    useExternalIframe: "ejemplo-target.html",
+    description: "Representa el elemento único con un 'id' coincidente con el ancla (#) de la URL. Hoy en día es ideal en UX para resaltar visualmente la sección exacta a la que el usuario acaba de saltar en un índice.",
+    html: `<nav class="indice">
+  <a href="#cap1" class="btn-link">Capítulo 1</a> | 
+  <a href="#cap2" class="btn-link">Capítulo 2</a>
+</nav>
+
+<article id="cap1" class="seccion">
+  <h4>Capítulo 1</h4>
+  <p>Texto introductorio de la sección uno.</p>
+</article>
+
+<article id="cap2" class="seccion">
+  <h4>Capítulo 2</h4>
+  <p>Desarrollo principal de la sección dos.</p>
+</article>`,
+    css: `/* Previene que el menú fijo tape la sección al hacer scroll */
+html {
+  scroll-padding-top: 60px;
+}
+
+.indice {
+  position: sticky;
+  top: 0;
+  background: #111;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.btn-link { color: #3498db; text-decoration: none; font-weight: bold; margin-right: 5px; }
+.btn-link:hover { text-decoration: underline; }
+
+.seccion {
+  padding: 10px;
+  margin-top: 15px;
+  border-left: 4px solid transparent;
+  transition: all 0.4s ease;
+  background: #1e1e1e;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Cuando la sección es el objetivo de la URL */
+.seccion:target {
+  background: rgba(243, 156, 18, 0.15); 
+  border-left-color: #f39c12; 
+}
+.seccion:target h4 {
+  color: #f39c12;
+}`
+  },
+  {
+    id: "link-visited",
+    name: ":link / :visited",
+    type: "pseudo-class",
+    category: "interaccion",
+    description: ":link se aplica a enlaces no visitados. :visited a enlaces que el usuario ya visitó en su historial.",
+    html: `<a href="https://example.com/no-visitado" class="mi-enlace">Enlace no visitado</a><br>
+<a href="" class="mi-enlace">Enlace visitado (esta pág)</a>`,
+    css: `.mi-enlace:link { color: #3498db; font-weight: bold; }
+.mi-enlace:visited { color: #8e44ad; }`
+  },
+
+  // FORMULARIOS
+  {
+    id: "checked",
+    name: ":checked",
+    type: "pseudo-class",
+    category: "formularios",
+    description: "Aplica a checkboxes o radio buttons cuando están marcados.",
+    html: `<input type="checkbox" id="chk" class="cb"> 
+<label for="chk">Opción 1</label>
+<div class="resultado">¡Marcaste la opción!</div>`,
+    css: `.resultado { display: none; margin-top: 10px; color: #2ecc71; }
+.cb:checked ~ .resultado { display: block; }`
+  },
+  {
+    id: "disabled-enabled",
+    name: ":disabled / :enabled",
+    type: "pseudo-class",
+    category: "formularios",
+    description: "Selecciona elementos de formulario habilitados o deshabilitados.",
+    html: `<input type="text" value="Habilitado">
+<input type="text" value="Deshabilitado" disabled>`,
+    css: `input { padding: 5px; margin: 5px; border: 1px solid #555; }
+input:enabled { border-color: #2ecc71; color: white; background: #222; }
+input:disabled { border-color: #e74c3c; cursor: not-allowed; opacity: 0.5; }`
+  },
+  {
+    id: "required-optional",
+    name: ":required / :optional",
+    type: "pseudo-class",
+    category: "formularios",
+    description: "Aplica cuando un campo tiene (o no) el atributo required.",
+    html: `<input type="text" placeholder="Requerido" required>
+<input type="text" placeholder="Opcional">`,
+    css: `input { padding: 5px; margin: 5px; border: 1px solid #555; background: #222; color: white; }
+input:required { border-left: 4px solid #e74c3c; }
+input:optional { border-left: 4px solid #95a5a6; }`
+  },
+  {
+    id: "valid-invalid",
+    name: ":valid / :invalid",
+    type: "pseudo-class",
+    category: "formularios",
+    description: "Evalúa si un campo cumple con la validación HTML (type, min, max, required). ¡Cuidado! Se disparan antes de que el usuario interactúe.",
+    html: `<input type="email" placeholder="Email (escribe mal)">`,
+    css: `input { padding: 5px; border: 2px solid #555; }
+input:valid { border-color: #2ecc71; }
+input:invalid { border-color: #e74c3c; }`
+  },
+  {
+    id: "user-invalid",
+    name: ":user-invalid / :user-valid",
+    type: "pseudo-class",
+    category: "formularios",
+    description: "Mejora UX frente a :invalid. Marca el error de validación solo DESPUÉS de que el usuario ha interactuado con el input.",
+    html: `<input type="email" required placeholder="Escribe un email erróneo y sal del campo">`,
+    css: `input { padding: 10px; border: 2px solid #444; background: #222; color: white; }
+input:user-invalid { border-color: #e74c3c; background: rgba(231, 76, 60, 0.1); }
+input:user-valid { border-color: #2ecc71; }`
+  },
+  {
+    id: "in-out-range",
+    name: ":in-range / :out-of-range",
+    type: "pseudo-class",
+    category: "formularios",
+    description: "Aplica a campos numéricos según si su valor está dentro de los límites (min/max).",
+    html: `<input type="number" min="10" max="20" value="5" placeholder="10 a 20">`,
+    css: `input { padding: 5px; border: 2px solid #555; background: #222; color: white; }
+input:in-range { background: rgba(46, 204, 113, 0.2); }
+input:out-of-range { background: rgba(231, 76, 60, 0.2); border-color: #e74c3c; }`
+  },
+  {
+    id: "placeholder-shown",
+    name: ":placeholder-shown",
+    type: "pseudo-class",
+    category: "formularios",
+    description: "Detecta si el placeholder es visible. Permite animar etiquetas (floating labels) sin JS.",
+    html: `<div class="input-container">
+  <input type="text" id="nombre" placeholder=" " required>
+  <label for="nombre">Nombre Completo</label>
+</div>`,
+    css: `.input-container { position: relative; margin-top: 20px; }
+input { width: 100%; padding: 15px 10px 5px; background: transparent; border: none; border-bottom: 2px solid #888; color: white; outline: none; }
+label { position: absolute; top: 10px; left: 10px; color: #aaa; transition: 0.2s ease; pointer-events: none; }
+input:not(:placeholder-shown) + label, input:focus + label { top: -10px; font-size: 12px; color: #3498db; }
+input:focus { border-bottom-color: #3498db; }`
+  },
+  {
+    id: "empty",
+    name: ":empty",
+    type: "pseudo-class",
+    category: "arbol",
+    description: "Corresponde a un elemento sin ningún 'hijo' (ni siquiera texto).",
+    html: `<div class="caja">Con texto</div>
+<div class="caja"></div>
+<div class="caja">Otro texto</div>`,
+    css: `.caja { padding: 10px; background: #2c3e50; margin: 5px 0; border: 1px solid #34495e; min-height: 20px; }
+.caja:empty { background: #e74c3c; border-color: #c0392b; }
+.caja:empty::before { content: '¡Caja vacía detectada!'; color: white; font-size: 0.8em; }`
+  },
+
+  // ESTRUCTURA DEL ÁRBOL
+  {
+    id: "first-last-child",
+    name: ":first-child / :last-child",
+    type: "pseudo-class",
+    category: "arbol",
+    description: "Representa el primero o el último elemento 'hijo' de su 'padre'.",
+    html: `<ul class="lista">
+  <li>Primer ítem</li>
+  <li>Ítem medio</li>
+  <li>Último ítem</li>
+</ul>`,
+    css: `.lista li { padding: 5px; background: #34495e; margin: 2px 0; }
+.lista li:first-child { background: #27ae60; color: white; }
+.lista li:last-child { background: #e67e22; color: white; }`
+  },
+  {
+    id: "nth-child",
+    name: ":nth-child()",
+    type: "pseudo-class",
+    category: "arbol",
+    description: "Selecciona elementos según su posición numérica entre sus hermanos. (ej: 2n = pares, 2n+1 = impares)",
+    html: `<div class="grilla">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+  <div class="box">4</div><div class="box">5</div><div class="box">6</div>
+</div>`,
+    css: `.grilla { display: flex; gap: 5px; }
+.box { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: #333; }
+.box:nth-child(even) { background: #2980b9; }
+.box:nth-child(5) { background: #e74c3c; }`
+  },
+  {
+    id: "nth-last-child",
+    name: ":nth-last-child()",
+    type: "pseudo-class",
+    category: "arbol",
+    description: "Igual que :nth-child(), pero cuenta desde el final hacia el principio.",
+    html: `<div class="grilla">
+  <div class="box">1</div><div class="box">2</div><div class="box">3</div>
+</div>`,
+    css: `.grilla { display: flex; gap: 5px; }
+.box { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: #333; }
+.box:nth-last-child(2) { background: #9b59b6; /* El penúltimo */ }`
+  },
+  {
+    id: "first-last-of-type",
+    name: ":first-of-type / :last-of-type",
+    type: "pseudo-class",
+    category: "arbol",
+    description: "Selecciona el primer/último hermano de su MISMO TIPO de etiqueta (ej: el primer <p> aunque antes haya un <h2>).",
+    html: `<article class="art">
+  <h2>Título (primer h2)</h2>
+  <p>Párrafo 1 (primer p)</p>
+  <p>Párrafo 2</p>
+  <p>Párrafo 3 (último p)</p>
+</article>`,
+    css: `.art p { color: #ccc; }
+.art p:first-of-type { color: #f39c12; font-weight: bold; }
+.art p:last-of-type { color: #2ecc71; text-decoration: underline; }`
+  },
+  {
+    id: "nth-of-type",
+    name: ":nth-of-type() / :nth-last-of-type()",
+    type: "pseudo-class",
+    category: "arbol",
+    description: "Cuenta la posición ignorando otros tipos de etiquetas.",
+    html: `<article class="art">
+  <h2>T1</h2>
+  <p>P1</p>
+  <p>P2</p>
+  <h2>T2 (segundo h2)</h2>
+  <p>P3</p>
+</article>`,
+    css: `.art h2 { font-size: 1.1em; color: #888; }
+.art h2:nth-of-type(2) { color: #e74c3c; }`
+  },
+  {
+    id: "only-child-type",
+    name: ":only-child / :only-of-type",
+    type: "pseudo-class",
+    category: "arbol",
+    description: ":only-child aplica si es el único nodo. :only-of-type si es el único de su etiqueta.",
+    html: `<div class="box"> <p>Único P aquí adentro</p> </div>
+<div class="box"> <p>P uno</p> <p>P dos</p> </div>`,
+    css: `.box { border: 1px solid #555; padding: 5px; margin-bottom: 5px; }
+p:only-child { color: #f1c40f; }`
+  },
+
+  // PSEUDO-ELEMENTOS
+  {
+    id: "before-after",
+    name: "::before / ::after",
+    type: "pseudo-element",
+    category: "pseudo-elementos",
+    description: "Crea elementos virtuales dentro del elemento (antes/después del contenido). Requiere la propiedad 'content'.",
+    html: `<a href="#" class="link-externo">Sitio externo</a>`,
+    css: `.link-externo::after { content: ' ↗'; color: #3498db; }
+.link-externo::before { content: '🌐 '; }`
+  },
+  {
+    id: "first-letter-line",
+    name: "::first-letter / ::first-line",
+    type: "pseudo-element",
+    category: "pseudo-elementos",
+    description: "Aplica estilos solo a la primera letra (tipo letra capital) o primera línea de un bloque de texto.",
+    html: `<p class="capitular">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam repudiandae, officiis nisi pariatur.</p>`,
+    css: `.capitular::first-letter { font-size: 2.5em; float: left; margin-right: 5px; color: #e74c3c; line-height: 1; }
+.capitular::first-line { font-weight: bold; color: #f1c40f; }`
+  },
+  {
+    id: "selection",
+    name: "::selection",
+    type: "pseudo-element",
+    category: "pseudo-elementos",
+    description: "Cambia el aspecto del texto cuando el usuario lo selecciona (sombrea) con el cursor.",
+    html: `<p class="texto-sel">Selecciona este texto con tu ratón. Verás que el resaltado nativo se reemplaza.</p>`,
+    css: `.texto-sel::selection { background: #e74c3c; color: #fff; }`
+  },
+  {
+    id: "placeholder",
+    name: "::placeholder",
+    type: "pseudo-element",
+    category: "pseudo-elementos",
+    description: "Permite dar estilo al texto sugerido de un input.",
+    html: `<input type="text" class="input-custom" placeholder="Ingresa tu nombre...">`,
+    css: `.input-custom { padding: 10px; background: #111; border: 1px solid #555; color: white; width: 100%; }
+.input-custom::placeholder { color: #f1c40f; font-style: italic; opacity: 0.8; }`
+  },
+  {
+    id: "marker",
+    name: "::marker",
+    type: "pseudo-element",
+    category: "pseudo-elementos",
+    description: "Permite cambiar color o viñeta de los elementos de una lista sin afectar al texto.",
+    html: `<ul class="lista-custom">
+  <li>Elemento uno</li>
+  <li>Elemento dos</li>
+</ul>`,
+    css: `.lista-custom li::marker { content: '👉 '; color: #e74c3c; font-size: 1.2em; }`
+  },
+  {
+    id: "file-selector-button",
+    name: "::file-selector-button",
+    type: "pseudo-element",
+    category: "pseudo-elementos",
+    description: "Estiliza el feo botón nativo de los inputs de tipo 'file'.",
+    html: `<input type="file" class="file-input">`,
+    css: `.file-input::file-selector-button {
+  background: #2980b9; color: white; padding: 8px 16px; border: none;
+  border-radius: 4px; cursor: pointer; transition: 0.3s;
+}
+.file-input::file-selector-button:hover { background: #3498db; }`
+  },
+  {
+    id: "backdrop",
+    name: "::backdrop",
+    type: "pseudo-element",
+    category: "pseudo-elementos",
+    description: "Capa que se coloca detrás de un elemento en la 'top layer' (como un <dialog> abierto o popover), oscureciendo la página.",
+    html: `<button onclick="document.getElementById('dialog').showModal()">Abrir Modal Nativo</button>
+<dialog id="dialog">
+  <p>Modal nativo con Backdrop estilizado.</p>
+  <button onclick="document.getElementById('dialog').close()">Cerrar</button>
+</dialog>`,
+    css: `dialog { padding: 20px; background: #1e1e1e; color: white; border: 1px solid #444; border-radius: 8px; }
+/* El fondo oscuro que cubre el sitio */
+dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px); }`
+  },
+  {
+    id: "cue",
+    name: "::cue",
+    type: "pseudo-element",
+    category: "pseudo-elementos",
+    description: "Estiliza los subtítulos de video (captions) dentro de un elemento multimedia.",
+    html: `<video controls src="https://www.w3schools.com/html/mov_bbb.mp4" style="width:100%">
+  <!-- <track default src="subtitulos.vtt"> -->
+</video>
+<p style="font-size:0.8em; color:#888;">(Imagina que tiene un archivo .vtt cargado)</p>`,
+    css: `video::cue {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #f1c40f;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 2px #000;
+}`
+  }
+];
+
+export default cssCatalog;

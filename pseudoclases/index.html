@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Interactivo de Selectores CSS - DGPC FADU</title>
+    <!-- Fuente moderna (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-titles">
+                <span class="header-tag">DGPC - Díaz Cortez</span>
+                <h1>Pseudoclases y Pseudoelementos CSS</h1>
+                <p>Explorá, buscá y experimentá (Actualizado 2026).</p>
+            </div>
+
+            <div class="controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar selector (ej: hover, has, child)...">
+                    <span class="search-icon">🔍</span>
+                    <button id="clearSearch" class="clear-btn" aria-label="Borrar búsqueda">&times;</button>
+                </div>
+
+                <div class="filters" id="categoryFilters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="logica">Lógica</button>
+                    <button class="filter-btn" data-filter="interaccion">Interacción</button>
+                    <button class="filter-btn" data-filter="formularios">Formularios</button>
+                    <button class="filter-btn" data-filter="arbol">Árbol CSS</button>
+                    <button class="filter-btn" data-filter="pseudo-elementos">Pseudoelementos</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="catalogContainer" class="catalog-grid">
+        <!-- Las cards se inyectarán aquí mediante JavaScript -->
+    </main>
+
+    <footer>
+        <p>Material de apoyo generado para la cátedra Díaz Cortez (DGPC FADU-UBA).</p>
+    </footer>
+
+    <!-- Templates -->
+    <template id="cardTemplate">
+        <article class="card">
+            <header class="card-header">
+                <div class="card-title">
+                    <h2 class="selector-name"></h2>
+                    <span class="selector-badge"></span>
+                </div>
+                <p class="selector-description"></p>
+            </header>
+
+            <div class="card-body">
+                <div class="code-panels">
+                    <div class="panel html-panel">
+                        <div class="panel-header">HTML</div>
+                        <pre><code class="language-html"></code></pre>
+                    </div>
+                    <div class="panel css-panel">
+                        <div class="panel-header">CSS</div>
+                        <pre><code class="language-css"></code></pre>
+                    </div>
+                </div>
+
+                <div class="sandbox-panel">
+                    <div class="panel-header">Resultado en vivo</div>
+                    <!-- Sandbox env -->
+                    <div class="sandbox-container">
+                        <div class="sandbox-content"></div>
+                        <!-- A scoped style block will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
