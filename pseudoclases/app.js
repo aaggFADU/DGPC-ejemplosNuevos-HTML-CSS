@@ -5,10 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const template = document.getElementById('cardTemplate');
     const searchInput = document.getElementById('searchInput');
     const clearSearchBtn = document.getElementById('clearSearch');
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const categoryFilterBtns = document.querySelectorAll('#categoryFilters .filter-btn');
+    const levelFilterBtns = document.querySelectorAll('#levelFilters .filter-btn');
 
     let currentFilter = 'all';
+    let currentLevel = 'all';
     let searchQuery = '';
+
+    function normalizeText(text) {
+        return (text || '')
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
 
     // Función para calcular dinámicamente la altura del header sticky
     function updateHeaderHeight() {
@@ -27,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Eventos de búsqueda
     searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase();
+        searchQuery = normalizeText(e.target.value);
         filterCatalog();
     });
 
@@ -40,27 +49,76 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Eventos de filtro por categoría
-    filterBtns.forEach(btn => {
+    categoryFilterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             // Actualizar clase activa
-            filterBtns.forEach(b => b.classList.remove('active'));
+            categoryFilterBtns.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
             
             currentFilter = e.target.dataset.filter;
             filterCatalog();
+            scrollToCatalogStart();
+        });
+    });
+
+    levelFilterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            levelFilterBtns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            currentLevel = e.target.dataset.level;
+            filterCatalog();
+            scrollToCatalogStart();
         });
     });
 
     function filterCatalog() {
         const filtered = cssCatalog.filter(item => {
-            const matchesSearch = item.name.toLowerCase().includes(searchQuery) || 
-                                  item.description.toLowerCase().includes(searchQuery);
+            const matchesSearch = !searchQuery || matchesItemSearch(item, searchQuery);
             const matchesFilter = currentFilter === 'all' || item.category === currentFilter;
+            const matchesLevel = currentLevel === 'all' || (item.level || 'actual') === currentLevel;
             
-            return matchesSearch && matchesFilter;
+            return matchesSearch && matchesFilter && matchesLevel;
         });
         
         renderCatalog(filtered);
+    }
+
+    function matchesItemSearch(item, query) {
+        const name = normalizeText(item.name);
+        const description = normalizeText(item.description);
+        const category = normalizeText(item.category);
+        const tags = (item.tags || []).map(normalizeText);
+
+        return (
+            name.includes(query) ||
+            description.includes(query) ||
+            category.includes(query) ||
+            tags.some(tag => tag.includes(query))
+        );
+    }
+
+    function getLevelLabel(level) {
+        const labels = {
+            imprescindible: 'Imprescindible',
+            actual: 'Uso actual',
+            moderna: 'Moderna',
+            especializada: 'Especializada'
+        };
+
+        return labels[level] || labels.actual;
+    }
+
+    function scrollToCatalogStart() {
+        const firstCard = container.querySelector('.card, .render-error-card');
+        const headerHeight = parseFloat(getComputedStyle(document.documentElement)
+            .getPropertyValue('--header-height')) || 0;
+        const top = (firstCard || container).getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: 'smooth'
+        });
     }
 
     function renderCatalog(items) {
@@ -72,50 +130,88 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         items.forEach((item, index) => {
-            // Clonar template
-            const clone = template.content.cloneNode(true);
-            
-            // Llenar datos básicos
-            clone.querySelector('.selector-name').textContent = item.name;
-            clone.querySelector('.selector-badge').textContent = item.category;
-            clone.querySelector('.selector-description').textContent = item.description;
-            
-            // Asignar texto plano para que Prism haga el escape y resaltado
-            clone.querySelector('.language-html').textContent = item.html;
-            clone.querySelector('.language-css').textContent = item.css;
-
-            const sandboxContainer = clone.querySelector('.sandbox-container');
-            const sandboxContent = clone.querySelector('.sandbox-content');
-
-            // ID único para el scope del sandbox
-            const sandboxId = `sandbox-${item.id}-${index}`;
-            sandboxContent.id = sandboxId;
-
-            if (item.useExternalIframe) {
-                // Modo Iframe Externo (Aislamiento absoluto para evitar saltos de scroll)
-                const iframe = document.createElement('iframe');
-                iframe.src = item.useExternalIframe;
-                iframe.style.width = '100%';
-                iframe.style.height = '250px';
-                iframe.style.border = 'none';
-                iframe.style.borderRadius = '4px';
-                iframe.style.backgroundColor = 'transparent';
+            try {
+                // Clonar template
+                const clone = template.content.cloneNode(true);
                 
-                sandboxContent.appendChild(iframe);
-            } else {
-                // Modo Normal (@scope puro)
-                sandboxContent.innerHTML = item.html;
+                // Llenar datos básicos
+                clone.querySelector('.selector-name').textContent = item.name;
+                clone.querySelector('.selector-badge').textContent = item.category;
+                const levelBadge = clone.querySelector('.level-badge');
+                levelBadge.textContent = getLevelLabel(item.level);
+                levelBadge.dataset.level = item.level || 'actual';
+                clone.querySelector('.selector-description').textContent = item.description;
+                
+                // Asignar texto plano para que Prism haga el escape y resaltado
+                clone.querySelector('.language-html').textContent = item.html;
+                clone.querySelector('.language-css').textContent = item.css;
 
-                const styleEl = document.createElement('style');
-                styleEl.textContent = `
-                    @scope (#${sandboxId}) {
-                        ${item.css}
-                    }
+                const sandboxContainer = clone.querySelector('.sandbox-container');
+                const sandboxContent = clone.querySelector('.sandbox-content');
+
+                // ID único para el scope del sandbox
+                const sandboxId = `sandbox-${item.id}-${index}`;
+                sandboxContent.id = sandboxId;
+
+                if (item.useExternalIframe) {
+                    // Modo Iframe Externo (Aislamiento absoluto para evitar saltos de scroll)
+                    const iframe = document.createElement('iframe');
+                    iframe.src = item.useExternalIframe;
+                    iframe.style.width = '100%';
+                    iframe.style.height = item.iframeHeight || '250px';
+                    iframe.style.border = 'none';
+                    iframe.style.borderRadius = '4px';
+                    iframe.style.backgroundColor = 'transparent';
+                    
+                    sandboxContent.appendChild(iframe);
+                } else {
+                    // Modo Normal (@scope puro)
+                    sandboxContent.innerHTML = item.html;
+
+                    const styleEl = document.createElement('style');
+                    styleEl.textContent = `
+                        #${sandboxId},
+                        #${sandboxId} * {
+                            box-sizing: border-box;
+                        }
+
+                        #${sandboxId} img,
+                        #${sandboxId} video,
+                        #${sandboxId} iframe,
+                        #${sandboxId} input,
+                        #${sandboxId} select,
+                        #${sandboxId} textarea,
+                        #${sandboxId} button,
+                        #${sandboxId} dialog {
+                            max-width: 100%;
+                            font: inherit;
+                        }
+
+                        @scope (#${sandboxId}) {
+                            ${item.css}
+                        }
+                    `;
+                    sandboxContainer.appendChild(styleEl);
+                }
+
+                container.appendChild(clone);
+            } catch (error) {
+                console.error(`Error al renderizar ${item.id}:`, error);
+                const errorCard = document.createElement('article');
+                errorCard.className = 'card render-error-card';
+                errorCard.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2 class="selector-name">${item.name}</h2>
+                            <span class="selector-badge">error</span>
+                        </div>
+                        <p class="selector-description">
+                            Este ejemplo no pudo renderizarse en este navegador. Selector: ${item.id}
+                        </p>
+                    </div>
                 `;
-                sandboxContainer.appendChild(styleEl);
+                container.appendChild(errorCard);
             }
-
-            container.appendChild(clone);
         });
 
         // Aplicar resaltado de sintaxis a los nuevos elementos insertados

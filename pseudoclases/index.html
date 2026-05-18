@@ -38,6 +38,33 @@
                     <button class="filter-btn" data-filter="arbol">Árbol CSS</button>
                     <button class="filter-btn" data-filter="pseudo-elementos">Pseudoelementos</button>
                 </div>
+
+                <div class="filters filters-secondary" id="levelFilters">
+                    <button class="filter-btn active" data-level="all">Todos los niveles</button>
+                    <button class="filter-btn" data-level="imprescindible">Imprescindibles</button>
+                    <button class="filter-btn" data-level="actual">Uso actual</button>
+                    <button class="filter-btn" data-level="moderna">Modernas</button>
+                    <button class="filter-btn" data-level="especializada">Especializadas</button>
+                </div>
+
+                <section class="level-guide" aria-label="Guía de niveles">
+                    <article class="level-card">
+                        <h2>Imprescindibles</h2>
+                        <p>Los selectores que conviene reconocer y manejar con soltura durante la cursada.</p>
+                    </article>
+                    <article class="level-card">
+                        <h2>Uso actual</h2>
+                        <p>Patrones muy presentes hoy en interfaces reales y flujos cotidianos de maquetado.</p>
+                    </article>
+                    <article class="level-card">
+                        <h2>Modernas</h2>
+                        <p>Recursos más recientes, valiosos para 2026 aunque no siempre formen parte del piso básico.</p>
+                    </article>
+                    <article class="level-card">
+                        <h2>Especializadas</h2>
+                        <p>Casos más puntuales o de nicho, útiles para ampliar criterio aunque no sean de uso general.</p>
+                    </article>
+                </section>
             </div>
         </div>
     </header>
@@ -57,6 +84,7 @@
                 <div class="card-title">
                     <h2 class="selector-name"></h2>
                     <span class="selector-badge"></span>
+                    <span class="level-badge"></span>
                 </div>
                 <p class="selector-description"></p>
             </header>

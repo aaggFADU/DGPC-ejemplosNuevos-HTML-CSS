@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+    margin: 0;
+    padding: 12px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #f1f1f1;
+    background: transparent;
+    line-height: 1.5;
+}
+
+.demo {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.demo a {
+    width: fit-content;
+    padding: 0.7rem 0.9rem;
+    border-radius: 999px;
+    background: #f39c12;
+    color: #111;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.demo p {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+::target-text {
+    background: #f39c12;
+    color: #111;
+    border-radius: 0.2em;
+}
+</style>
+</head>
+<body>
+<div class="demo">
+  <a href="#:~:text=fragmento%20de%20texto%20que%20queremos%20resaltar">Ir al fragmento</a>
+  <p>
+    Este ejemplo intenta resaltar un fragmento de texto que queremos resaltar
+    usando un text fragment en la URL. Si tu navegador soporta esta función,
+    al activar el enlace se aplicará el estilo definido en ::target-text sólo
+    sobre esas palabras.
+  </p>
+  <p style="color:#888; font-size:0.9rem;">
+    Si no ves el resaltado, puede ser una limitación del navegador o del
+    soporte de text fragments dentro del iframe.
+  </p>
+</div>
+</body>
+</html>

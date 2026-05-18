@@ -154,6 +154,10 @@ body {
   flex-wrap: wrap;
 }
 
+.filters-secondary {
+  margin-top: -0.5rem;
+}
+
 .filter-btn {
   background: var(--bg-panel);
   color: var(--text-muted);
@@ -176,6 +180,32 @@ body {
   background: var(--accent-color);
   color: var(--bg-main);
   border-color: var(--accent-color);
+}
+
+.level-guide {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.level-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.level-card h2 {
+  font-size: 0.95rem;
+  color: var(--accent-color);
+  margin-bottom: 0.35rem;
+}
+
+.level-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
 }
 
 /* --- MAIN CATALOG --- */
@@ -213,6 +243,7 @@ body {
   align-items: center;
   gap: 1rem;
   margin-bottom: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .selector-name {
@@ -229,6 +260,40 @@ body {
   font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--text-muted);
+}
+
+.level-badge {
+  border: 1px solid #444;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--text-main);
+}
+
+.level-badge[data-level="imprescindible"] {
+  background: rgba(243, 156, 18, 0.18);
+  border-color: rgba(243, 156, 18, 0.45);
+}
+
+.level-badge[data-level="actual"] {
+  background: rgba(46, 204, 113, 0.14);
+  border-color: rgba(46, 204, 113, 0.35);
+}
+
+.level-badge[data-level="moderna"] {
+  background: rgba(52, 152, 219, 0.14);
+  border-color: rgba(52, 152, 219, 0.35);
+}
+
+.level-badge[data-level="especializada"] {
+  background: rgba(155, 89, 182, 0.16);
+  border-color: rgba(155, 89, 182, 0.38);
+}
+
+@media (max-width: 1000px) {
+  .level-guide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .selector-description {
@@ -341,7 +406,53 @@ body {
 /* This targets the injected content container */
 .sandbox-content {
   width: 100%;
-  max-width: 400px;
+  max-width: min(100%, 460px);
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 1.25rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .controls {
+    gap: 1rem;
+  }
+
+  .search-box {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .catalog-grid {
+    margin: 1.25rem auto;
+    padding: 0 1rem;
+    gap: 1.25rem;
+  }
+
+  .level-guide {
+    grid-template-columns: 1fr;
+  }
+
+  .card-header {
+    padding: 1rem;
+  }
+
+  .selector-name {
+    font-size: 1.4rem;
+  }
+
+  .sandbox-container {
+    padding: 1rem;
+  }
 }
 
 footer {
