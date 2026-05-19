@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       currentFilter = e.target.dataset.filter;
       filterCatalog();
-      scrollToCatalogStart();
     });
 
     // Manejar popover para los tooltips en hover
@@ -77,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       currentLevel = e.target.dataset.level;
       filterCatalog();
-      scrollToCatalogStart();
     });
 
     // Manejar popover para los tooltips en hover
@@ -129,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (noResultsMsg) {
       noResultsMsg.style.display = 'none';
     }
+    scrollToCatalogStart();
   }
 
   function matchesItemSearch(item, query) {
@@ -251,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         @scope (#${sandboxId}) {
-                            ${item.css}
+                            ${item.css.replace(/:root/g, ':scope')}
                         }
                     `;
           sandboxContainer.appendChild(styleEl);

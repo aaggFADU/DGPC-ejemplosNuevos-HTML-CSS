@@ -854,10 +854,10 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
     html: `<div class="paleta">
   <p class="paleta-titulo">Paleta del sitio (variables desde :root)</p>
   <div class="swatches">
-    <div class="swatch" style="--swatch-bg: #f39c12; --swatch-label: '--color-primario'; --swatch-value: '#f39c12';"></div>
-    <div class="swatch" style="--swatch-bg: #e74c3c; --swatch-label: '--color-alerta'; --swatch-value: '#e74c3c';"></div>
-    <div class="swatch" style="--swatch-bg: #2ecc71; --swatch-label: '--color-exito'; --swatch-value: '#2ecc71';"></div>
-    <div class="swatch" style="--swatch-bg: #3498db; --swatch-label: '--color-acento'; --swatch-value: '#3498db';"></div>
+    <div class="swatch swatch-primario"></div>
+    <div class="swatch swatch-alerta"></div>
+    <div class="swatch swatch-exito"></div>
+    <div class="swatch swatch-acento"></div>
   </div>
   <div class="tipo-muestra">
     <span class="tipo-sample tipo-heading">Aa — Heading</span>
@@ -908,6 +908,26 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
   border-radius: 8px;
   position: relative;
   min-height: 60px;
+}
+
+.swatch-primario {
+  --swatch-bg: var(--color-primario);
+  --swatch-label: '--color-primario';
+}
+
+.swatch-alerta {
+  --swatch-bg: var(--color-alerta);
+  --swatch-label: '--color-alerta';
+}
+
+.swatch-exito {
+  --swatch-bg: var(--color-exito);
+  --swatch-label: '--color-exito';
+}
+
+.swatch-acento {
+  --swatch-bg: var(--color-acento);
+  --swatch-label: '--color-acento';
 }
 
 .swatch::after {
