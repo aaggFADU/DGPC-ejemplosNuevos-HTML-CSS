@@ -173,8 +173,8 @@ input:focus, button:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52,1
     relatedCategories: ["Formularios"],
     description: "Se aplica a un contenedor si este o cualquiera de sus hijos recibe foco. Perfecto para resaltar formularios completos.",
     html: `<form class="caja-formulario">
-  <input type="text" placeholder="Usuario">
-  <input type="password" placeholder="Contraseña">
+  <input type="text" placeholder="Nombre">
+  <input type="email" placeholder="Correo electrónico">
 </form>`,
     css: `.caja-formulario { padding: 20px; background: #111; border: 2px solid #333; transition: 0.3s; border-radius: 8px; }
 .caja-formulario:focus-within { border-color: #9b59b6; box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.1); }

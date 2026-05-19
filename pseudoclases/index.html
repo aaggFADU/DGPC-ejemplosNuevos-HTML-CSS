@@ -41,30 +41,19 @@
 
         <div class="filters filters-secondary" id="levelFilters">
           <button class="filter-btn active" data-level="all">Todos los niveles</button>
-          <button class="filter-btn" data-level="imprescindible">Imprescindibles</button>
-          <button class="filter-btn" data-level="actual">Uso actual</button>
-          <button class="filter-btn" data-level="moderna">Modernas</button>
-          <button class="filter-btn" data-level="especializada">Especializadas</button>
-        </div>
+          
+          <button class="filter-btn popover-trigger" data-level="imprescindible" data-target="tp-imp" style="anchor-name: --btn-imp;">Imprescindibles</button>
+          <div id="tp-imp" popover class="modern-tooltip" style="position-anchor: --btn-imp;">Los selectores que conviene reconocer y manejar con soltura durante la cursada.</div>
 
-        <section class="level-guide" aria-label="Guía de niveles">
-          <article class="level-card">
-            <h2>Imprescindibles</h2>
-            <p>Los selectores que conviene reconocer y manejar con soltura durante la cursada.</p>
-          </article>
-          <article class="level-card">
-            <h2>Uso actual</h2>
-            <p>Patrones muy presentes hoy en interfaces reales y flujos cotidianos de maquetado.</p>
-          </article>
-          <article class="level-card">
-            <h2>Modernas</h2>
-            <p>Recursos más recientes, valiosos para 2026 aunque no siempre formen parte del piso básico.</p>
-          </article>
-          <article class="level-card">
-            <h2>Especializadas</h2>
-            <p>Casos más puntuales o de nicho, útiles para ampliar criterio aunque no sean de uso general.</p>
-          </article>
-        </section>
+          <button class="filter-btn popover-trigger" data-level="actual" data-target="tp-act" style="anchor-name: --btn-act;">Uso actual</button>
+          <div id="tp-act" popover class="modern-tooltip" style="position-anchor: --btn-act;">Patrones muy presentes hoy en interfaces reales y flujos cotidianos de maquetado.</div>
+
+          <button class="filter-btn popover-trigger" data-level="moderna" data-target="tp-mod" style="anchor-name: --btn-mod;">Modernas</button>
+          <div id="tp-mod" popover class="modern-tooltip" style="position-anchor: --btn-mod;">Recursos más recientes, valiosos para 2026 aunque no siempre formen parte del piso básico.</div>
+
+          <button class="filter-btn popover-trigger" data-level="especializada" data-target="tp-esp" style="anchor-name: --btn-esp;">Especializadas</button>
+          <div id="tp-esp" popover class="modern-tooltip" style="position-anchor: --btn-esp;">Casos más puntuales o de nicho, útiles para ampliar criterio aunque no sean de uso general.</div>
+        </div>
       </div>
     </div>
   </header>

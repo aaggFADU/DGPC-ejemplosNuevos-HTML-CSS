@@ -176,30 +176,60 @@ body {
   border-color: var(--accent-color);
 }
 
-.level-guide {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  width: 100%;
-}
-
-.level-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1rem;
-}
-
-.level-card h2 {
-  font-size: 0.95rem;
-  color: var(--accent-color);
-  margin-bottom: 0.35rem;
-}
-
-.level-card p {
+/* Modern Tooltips via Popover API + Anchor Positioning */
+.modern-tooltip {
+  /* Restablecer popover nativo */
+  border: none;
   margin: 0;
-  color: var(--text-muted);
-  font-size: 0.92rem;
+  
+  /* Fallback para navegadores antiguos (sin anchor positioning) */
+  top: auto;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  
+  /* Visuales */
+  background: var(--bg-card);
+  color: var(--text-main);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  width: max-content;
+  max-width: 250px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  line-height: 1.4;
+  
+  /* Transición de apertura */
+  opacity: 0;
+  transition: opacity 0.2s ease, display 0.2s allow-discrete, overlay 0.2s allow-discrete;
+}
+
+.modern-tooltip:popover-open {
+  opacity: 1;
+}
+
+/* Modern CSS Anchor Positioning */
+@supports (position-anchor: --test) {
+  .modern-tooltip {
+    /* Quitar fallback */
+    bottom: auto;
+    left: auto;
+    transform: none;
+    
+    /* Anclar */
+    position: absolute;
+    inset-block-start: anchor(bottom);
+    justify-self: anchor-center;
+    
+    /* Evitar recortes automáticamente (la magia!) */
+    position-try-fallbacks: flip-inline, flip-block, bottom right, bottom left;
+    
+    margin-top: 10px;
+  }
 }
 
 .catalog-grid {
@@ -283,11 +313,7 @@ body {
   border-color: rgba(155, 89, 182, 0.38);
 }
 
-@media (max-width: 1000px) {
-  .level-guide {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+
 
 .selector-description {
   color: var(--text-main);
@@ -448,9 +474,7 @@ body {
     gap: 1.25rem;
   }
 
-  .level-guide {
-    grid-template-columns: 1fr;
-  }
+
 
   .card-header {
     padding: 1rem;

@@ -31,9 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderCatalog(cssCatalog);
 
+  let debounceTimeout;
   searchInput.addEventListener('input', (e) => {
-    searchQuery = normalizeText(e.target.value);
-    filterCatalog();
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      searchQuery = normalizeText(e.target.value);
+      filterCatalog();
+    }, 200);
   });
 
   clearSearchBtn.addEventListener('click', () => {
@@ -63,18 +67,54 @@ document.addEventListener('DOMContentLoaded', () => {
       filterCatalog();
       scrollToCatalogStart();
     });
+
+    // Manejar popover para los tooltips en hover
+    if (btn.classList.contains('popover-trigger')) {
+      const targetId = btn.dataset.target;
+      const popover = document.getElementById(targetId);
+      if (popover) {
+        btn.addEventListener('mouseenter', () => popover.showPopover());
+        btn.addEventListener('mouseleave', () => popover.hidePopover());
+        btn.addEventListener('focus', () => popover.showPopover());
+        btn.addEventListener('blur', () => popover.hidePopover());
+      }
+    }
   });
 
   function filterCatalog() {
-    const filtered = cssCatalog.filter(item => {
+    let visibleCount = 0;
+    
+    cssCatalog.forEach((item) => {
       const matchesSearch = !searchQuery || matchesItemSearch(item, searchQuery);
       const matchesFilter = currentFilter === 'all' || item.category === currentFilter;
       const matchesLevel = currentLevel === 'all' || (item.level || 'actual') === currentLevel;
 
-      return matchesSearch && matchesFilter && matchesLevel;
+      const card = document.getElementById(`card-${item.id}`);
+      if (card) {
+        if (matchesSearch && matchesFilter && matchesLevel) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      }
     });
 
-    renderCatalog(filtered);
+    let noResultsMsg = document.getElementById('no-results-msg');
+    if (visibleCount === 0) {
+      if (!noResultsMsg) {
+        noResultsMsg = document.createElement('p');
+        noResultsMsg.id = 'no-results-msg';
+        noResultsMsg.style.textAlign = 'center';
+        noResultsMsg.style.color = 'var(--text-muted)';
+        noResultsMsg.style.padding = '2rem';
+        noResultsMsg.textContent = 'No se encontraron selectores con esos criterios.';
+        container.appendChild(noResultsMsg);
+      }
+      noResultsMsg.style.display = 'block';
+    } else if (noResultsMsg) {
+      noResultsMsg.style.display = 'none';
+    }
   }
 
   function matchesItemSearch(item, query) {
@@ -103,14 +143,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function scrollToCatalogStart() {
-    const firstCard = container.querySelector('.card, .render-error-card');
-    const headerHeight = parseFloat(getComputedStyle(document.documentElement)
-      .getPropertyValue('--header-height')) || 0;
-    const top = (firstCard || container).getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+    requestAnimationFrame(() => {
+      let firstVisibleCard = null;
+      const cards = container.querySelectorAll('.card');
+      for (const card of cards) {
+        if (card.style.display !== 'none') {
+          firstVisibleCard = card;
+          break;
+        }
+      }
+      
+      const targetElement = firstVisibleCard || container;
+      const header = document.querySelector('.header');
+      const headerHeight = header ? header.offsetHeight : 0;
+      const top = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
 
-    window.scrollTo({
-      top: Math.max(0, top),
-      behavior: 'smooth'
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: 'smooth'
+      });
     });
   }
 
@@ -125,6 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
     items.forEach((item, index) => {
       try {
         const clone = template.content.cloneNode(true);
+        
+        const article = clone.querySelector('.card');
+        if (article) article.id = `card-${item.id}`;
 
         clone.querySelector('.selector-name').textContent = item.name;
         clone.querySelector('.selector-badge').textContent = item.category;
