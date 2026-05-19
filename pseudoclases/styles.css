@@ -181,14 +181,14 @@ body {
   /* Restablecer popover nativo */
   border: none;
   margin: 0;
-  
+
   /* Fallback para navegadores antiguos (sin anchor positioning) */
   top: auto;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   position: fixed;
-  
+
   /* Visuales */
   background: var(--bg-card);
   color: var(--text-main);
@@ -202,7 +202,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   text-align: left;
   line-height: 1.4;
-  
+
   /* Transición de apertura */
   opacity: 0;
   transition: opacity 0.2s ease, display 0.2s allow-discrete, overlay 0.2s allow-discrete;
@@ -219,15 +219,15 @@ body {
     bottom: auto;
     left: auto;
     transform: none;
-    
+
     /* Anclar */
     position: absolute;
     inset-block-start: anchor(bottom);
     justify-self: anchor-center;
-    
+
     /* Evitar recortes automáticamente (la magia!) */
     position-try-fallbacks: flip-inline, flip-block, bottom right, bottom left;
-    
+
     margin-top: 10px;
   }
 }
@@ -434,7 +434,7 @@ body {
   flex: 1;
   padding: 2rem;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   position: relative;
   overflow: hidden;

@@ -56,6 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
       filterCatalog();
       scrollToCatalogStart();
     });
+
+    // Manejar popover para los tooltips en hover
+    if (btn.classList.contains('popover-trigger')) {
+      const targetId = btn.dataset.target;
+      const popover = document.getElementById(targetId);
+      if (popover) {
+        btn.addEventListener('mouseenter', () => popover.showPopover());
+        btn.addEventListener('mouseleave', () => popover.hidePopover());
+        btn.addEventListener('focus', () => popover.showPopover());
+        btn.addEventListener('blur', () => popover.hidePopover());
+      }
+    }
   });
 
   levelFilterBtns.forEach(btn => {

@@ -31,12 +31,24 @@
 
         <div class="filters" id="categoryFilters">
           <button class="filter-btn active" data-filter="all">Todos</button>
-          <button class="filter-btn" data-filter="relacionales">Relacionales</button>
-          <button class="filter-btn" data-filter="interaccion">Interacción</button>
-          <button class="filter-btn" data-filter="formularios">Formularios</button>
-          <button class="filter-btn" data-filter="arbol">Árbol CSS</button>
-          <button class="filter-btn" data-filter="pseudo-elementos">Pseudoelementos</button>
-          <button class="filter-btn" data-filter="transversales">Transversales</button>
+
+          <button class="filter-btn popover-trigger" data-filter="relacionales" data-target="tp-cat-rel" style="anchor-name: --btn-cat-rel;">Relacionales</button>
+          <div id="tp-cat-rel" popover class="modern-tooltip" style="position-anchor: --btn-cat-rel;">Selectores avanzados que evalúan parentescos, contexto o contenido de los elementos: si un elemento contiene o es hermano de otro (ej. <code>:has()</code>, <code>:not()</code>, <code>:is()</code>).</div>
+
+          <button class="filter-btn popover-trigger" data-filter="interaccion" data-target="tp-cat-int" style="anchor-name: --btn-cat-int;">Interacción</button>
+          <div id="tp-cat-int" popover class="modern-tooltip" style="position-anchor: --btn-cat-int;">Reaccionan a las acciones directas del usuario: mouse, teclado o pantalla táctil (ej. <code>:hover</code>, <code>:focus</code>, <code>:active</code>).</div>
+
+          <button class="filter-btn popover-trigger" data-filter="formularios" data-target="tp-cat-form" style="anchor-name: --btn-cat-form;">Formularios</button>
+          <div id="tp-cat-form" popover class="modern-tooltip" style="position-anchor: --btn-cat-form;">Orientados a evaluar y estilizar el estado de controles e inputs (ej. <code>:checked</code>, <code>:valid</code>, <code>:disabled</code>).</div>
+
+          <button class="filter-btn popover-trigger" data-filter="arbol" data-target="tp-cat-arbol" style="anchor-name: --btn-cat-arbol;">Árbol CSS</button>
+          <div id="tp-cat-arbol" popover class="modern-tooltip" style="position-anchor: --btn-cat-arbol;">Actúan según la <strong>posición</strong> del elemento en la página: si es el primero, el último, el par, el impar, etc. (ej. <code>:nth-child()</code>, <code>:first-of-type</code>).</div>
+
+          <button class="filter-btn popover-trigger" data-filter="pseudo-elementos" data-target="tp-cat-pe" style="anchor-name: --btn-cat-pe;">Pseudoelementos</button>
+          <div id="tp-cat-pe" popover class="modern-tooltip" style="position-anchor: --btn-cat-pe;">Crean contenido virtual o seleccionan partes específicas de un elemento sin necesidad de agregar etiquetas al HTML (ej. <code>::before</code>, <code>::after</code>, <code>::marker</code>).</div>
+
+          <button class="filter-btn popover-trigger" data-filter="transversales" data-target="tp-cat-trans" style="anchor-name: --btn-cat-trans;">Transversales</button>
+          <div id="tp-cat-trans" popover class="modern-tooltip" style="position-anchor: --btn-cat-trans;">Selectores de estado global que operan sobre características de todo el documento o de nicho muy específico (ej. <code>:root</code>, <code>:target</code>, <code>:fullscreen</code>).</div>
         </div>
 
         <div class="filters filters-secondary" id="levelFilters">

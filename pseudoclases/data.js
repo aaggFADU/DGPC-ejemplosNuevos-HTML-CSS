@@ -826,6 +826,152 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
 
   // SELECTORES TRANSVERSALES (en múltiples categorías)
   {
+    id: "root",
+    name: ":root",
+    type: "pseudo-class",
+    category: "transversales",
+    level: "imprescindible",
+    tags: ["variables", "custom properties", "design tokens", "paleta"],
+    description: "Selecciona el elemento raíz del documento (el <html>). Es el lugar estándar para declarar las Custom Properties (variables CSS) que definen la identidad visual: colores, tipografías y espaciados globales.",
+    html: `<div class="paleta">
+  <p class="paleta-titulo">Paleta del sitio (variables desde :root)</p>
+  <div class="swatches">
+    <div class="swatch" style="--swatch-bg: #f39c12; --swatch-label: '--color-primario'; --swatch-value: '#f39c12';"></div>
+    <div class="swatch" style="--swatch-bg: #e74c3c; --swatch-label: '--color-alerta'; --swatch-value: '#e74c3c';"></div>
+    <div class="swatch" style="--swatch-bg: #2ecc71; --swatch-label: '--color-exito'; --swatch-value: '#2ecc71';"></div>
+    <div class="swatch" style="--swatch-bg: #3498db; --swatch-label: '--color-acento'; --swatch-value: '#3498db';"></div>
+  </div>
+  <div class="tipo-muestra">
+    <span class="tipo-sample tipo-heading">Aa — Heading</span>
+    <span class="tipo-sample tipo-body">Aa — Body text</span>
+    <span class="tipo-sample tipo-mono">Aa — Monospace</span>
+  </div>
+</div>`,
+    css: `/* En producción: se declaran en :root para que sean globales */
+:root {
+  --color-primario: #f39c12;
+  --color-alerta:   #e74c3c;
+  --color-exito:    #2ecc71;
+  --color-acento:   #3498db;
+  --fuente-heading: 'Inter', sans-serif;
+  --fuente-body:    'Inter', sans-serif;
+  --fuente-mono:    'Consolas', monospace;
+  --espacio-base:   1rem;
+}
+
+/* Las vars se usan referenciando su nombre con var() */
+.paleta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-base);
+  background: #111;
+  padding: var(--espacio-base);
+  border-radius: 10px;
+}
+
+.paleta-titulo {
+  font-family: var(--fuente-mono);
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.swatch {
+  aspect-ratio: 1;
+  background: var(--swatch-bg);
+  border-radius: 8px;
+  position: relative;
+  min-height: 60px;
+}
+
+.swatch::after {
+  content: var(--swatch-label);
+  position: absolute;
+  bottom: -1.4rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.6rem;
+  font-family: var(--fuente-mono);
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tipo-muestra {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  border-left: 3px solid var(--color-acento);
+}
+
+.tipo-sample { color: #ddd; }
+.tipo-heading { font-family: var(--fuente-heading); font-size: 1.1rem; font-weight: 800; }
+.tipo-body    { font-family: var(--fuente-body);    font-size: 0.9rem; }
+.tipo-mono    { font-family: var(--fuente-mono);    font-size: 0.85rem; color: #f39c12; }`
+  },
+  {
+    id: "fullscreen",
+    name: ":fullscreen",
+    type: "pseudo-class",
+    category: "transversales",
+    level: "moderna",
+    tags: ["pantalla completa", "fullscreen api", "ui"],
+    description: "Aplica estilos cuando un elemento ocupa toda la pantalla mediante la Fullscreen API. Permite personalizar su aspecto (fondo, tipografía, layout) en ese modo.",
+    html: `<div class="fs-demo" id="demo-fs">
+  <p class="fs-texto">Este bloque cambia de aspecto en pantalla completa.</p>
+  <button class="fs-btn" onclick="document.getElementById('demo-fs').requestFullscreen()">
+    ⛶ Pantalla completa
+  </button>
+</div>`,
+    css: `.fs-demo {
+  padding: 1.5rem;
+  background: #1a1a1a;
+  border: 2px dashed #444;
+  border-radius: 8px;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.fs-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Estilos exclusivos para el modo pantalla completa */
+.fs-demo:fullscreen {
+  background: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fs-demo:fullscreen .fs-texto {
+  font-size: 2rem;
+  color: #f39c12;
+}`
+  },
+  {
     id: "lang",
     name: ":lang()",
     type: "pseudo-class",
