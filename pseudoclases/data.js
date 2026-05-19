@@ -186,7 +186,7 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; backgrou
     type: "pseudo-class",
     category: "interaccion",
     level: "actual",
-    useExternalIframe: "../ejemplo-target.html",
+    useExternalIframe: "ejemplo-target.html",
     iframeHeight: "290px",
     tags: ["anclas", "indice", "scroll"],
     description: "Representa el elemento único con un 'id' coincidente con el ancla (#) de la URL. Hoy en día es ideal en UX para resaltar visualmente la sección exacta a la que el usuario acaba de saltar en un índice.",
