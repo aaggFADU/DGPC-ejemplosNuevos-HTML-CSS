@@ -392,11 +392,15 @@ body {
 }
 
 .html-panel .panel-header {
-  color: var(--html-color);
+  background-color: hsl(from var(--html-color) h s l / 0.05);
+  outline: 2px dotted hsl(from var(--html-color) h s l / 0.35);
+  outline-offset: -4px;
 }
 
 .css-panel .panel-header {
-  color: var(--css-color);
+  background-color: hsl(from var(--css-color) h s l / 0.05);
+  outline: 2px dotted hsl(from var(--css-color) h s l / 0.35);
+  outline-offset: -4px;
 }
 
 .panel pre {
@@ -426,8 +430,9 @@ body {
 }
 
 .sandbox-panel .panel-header {
-  color: #2ecc71;
-  border-bottom: 1px solid var(--border-color);
+  background-color: hsl(from #2ecc71 h s l / 0.05);
+  outline: 2px dotted hsl(from #2ecc71 h s l / 0.35);
+  outline-offset: -4px;
 }
 
 .sandbox-container {

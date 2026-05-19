@@ -99,7 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cssCatalog.forEach((item) => {
       const matchesSearch = !searchQuery || matchesItemSearch(item, searchQuery);
       const matchesFilter = currentFilter === 'all' || item.category === currentFilter;
-      const matchesLevel = currentLevel === 'all' || (item.level || 'actual') === currentLevel;
+      const primaryLevel = item.level || 'actual';
+      const matchesLevel = currentLevel === 'all' || primaryLevel === currentLevel ||
+        (item.relatedLevels && item.relatedLevels.includes(currentLevel));
 
       const card = document.getElementById(`card-${item.id}`);
       if (card) {

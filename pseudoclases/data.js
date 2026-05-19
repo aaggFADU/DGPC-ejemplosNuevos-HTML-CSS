@@ -189,6 +189,7 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; backgrou
     useExternalIframe: "ejemplo-target.html",
     iframeHeight: "290px",
     tags: ["anclas", "indice", "scroll"],
+    relatedCategories: ["Transversales"],
     description: "Representa el elemento único con un 'id' coincidente con el ancla (#) de la URL. Hoy en día es ideal en UX para resaltar visualmente la sección exacta a la que el usuario acaba de saltar en un índice.",
     html: `<nav class="indice">
   <a href="#cap1" class="btn-link">Capítulo 1</a> | 
@@ -231,6 +232,7 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; backgrou
     type: "pseudo-class",
     category: "interaccion",
     level: "actual",
+    relatedLevels: ["moderna"],
     tags: ["enlaces", "link", "visited"],
     description: "Selecciona cualquier enlace real con href, sin importar si ya fue visitado o no. Práctico cuando querés estilizar enlaces sin separar :link y :visited.",
     html: `<nav class="mini-nav">
@@ -262,6 +264,7 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; backgrou
     type: "pseudo-class",
     category: "interaccion",
     level: "moderna",
+    relatedLevels: ["especializada"],
     tags: ["details", "dialog", "ui nativa"],
     relatedCategories: ["Pseudo-elementos"],
     description: "Aplica a elementos que tienen estado abierto/cerrado cuando están abiertos. En HTML actual se usa mucho con <details>, <dialog> y controles con picker nativo.",
@@ -302,6 +305,7 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; backgrou
     category: "interaccion",
     level: "moderna",
     tags: ["popover", "ui nativa", "2026"],
+    relatedCategories: ["Transversales"],
     description: "Selecciona un popover nativo mientras está visible. Es útil para enseñar UI nativa moderna sin recurrir a JavaScript pesado.",
     html: `<button class="btn-pop" popovertarget="demo-pop">Abrir popover</button>
 <div id="demo-pop" popover class="popover-demo">
@@ -341,6 +345,7 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; backgrou
     category: "interaccion",
     level: "moderna",
     tags: ["dialog", "modal", "top layer"],
+    relatedCategories: ["Pseudo-elementos"],
     description: "Coincide con un diálogo modal activo. Complementa muy bien a ::backdrop: uno selecciona la caja modal y el otro el fondo detrás de ella.",
     html: `<button class="btn-modal" onclick="this.nextElementSibling.showModal()">Abrir diálogo modal</button>
 <dialog class="modal-demo">
@@ -379,6 +384,7 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; backgrou
     type: "pseudo-class",
     category: "formularios",
     level: "actual",
+    relatedCategories: ["Interacción"],
     description: "Aplica a checkboxes o radio buttons cuando están marcados.",
     html: `<input type="checkbox" id="chk" class="cb"> 
 <label for="chk">Opción 1</label>
@@ -460,6 +466,7 @@ input:out-of-range { background: rgba(231, 76, 60, 0.2); border-color: #e74c3c; 
     category: "formularios",
     level: "actual",
     tags: ["floating label", "formularios", "placeholder"],
+    relatedCategories: ["Interacción"],
     description: "Detecta si el placeholder es visible. Permite animar etiquetas (floating labels) sin JS.",
     html: `<div class="input-container">
   <input type="text" id="nombre" placeholder=" " required>
@@ -478,6 +485,7 @@ input:focus { border-bottom-color: #3498db; }`
     category: "formularios",
     level: "actual",
     tags: ["formularios", "autocompletado", "2026"],
+    relatedCategories: ["Transversales"],
     description: "Se activa cuando el navegador completa un campo automáticamente. Combínalo con :-webkit-autofill usando :is() para mejor compatibilidad.",
     html: `<form class="autofill-demo" autocomplete="on">
   <label for="mail">Email</label>
@@ -509,7 +517,9 @@ input:focus { border-bottom-color: #3498db; }`
     type: "pseudo-class",
     category: "formularios",
     level: "actual",
+    relatedLevels: ["especializada"],
     tags: ["formularios", "progress", "estado"],
+    relatedCategories: ["Interacción"],
     description: "Coincide con controles en estado indeterminado. Un caso simple de mostrar sin JS es <progress> sin atributo value.",
     html: `<label class="estado">Cargando indefinido</label>
 <progress class="barra" max="100"></progress>
@@ -577,6 +587,7 @@ input:focus { border-bottom-color: #3498db; }`
     type: "pseudo-class",
     category: "arbol",
     level: "actual",
+    relatedLevels: ["especializada"],
     description: "Igual que :nth-child(), pero cuenta desde el final hacia el principio.",
     html: `<div class="grilla">
   <div class="box">1</div><div class="box">2</div><div class="box">3</div>
@@ -625,6 +636,7 @@ input:focus { border-bottom-color: #3498db; }`
     type: "pseudo-class",
     category: "arbol",
     level: "actual",
+    relatedLevels: ["especializada"],
     description: ":only-child aplica si es el único nodo. :only-of-type si es el único de su etiqueta.",
     html: `<div class="box"> <p>Único P aquí adentro</p> </div>
 <div class="box"> <p>P uno</p> <p>P dos</p> </div>`,
@@ -666,6 +678,7 @@ p:only-child { color: #f1c40f; }`
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "actual",
+    relatedCategories: ["\u00c1rbol CSS"],
     description: "Aplica estilos solo a la primera letra (tipo letra capital) o primera línea de un bloque de texto. Uso limitado: efectos tipográficos decorativos.",
     html: `<p class="capitular">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam repudiandae, officiis nisi pariatur.</p>`,
     css: `.capitular::first-letter { font-size: 2.5em; float: left; margin-right: 5px; color: #e74c3c; line-height: 1; }
@@ -678,6 +691,7 @@ p:only-child { color: #f1c40f; }`
     category: "pseudo-elementos",
     level: "actual",
     tags: ["highlight", "texto", "seleccion"],
+    relatedCategories: ["Interacción"],
     description: "Cambia el aspecto del texto cuando el usuario lo selecciona (sombrea) con el cursor.",
     html: `<p class="texto-sel">Selecciona este texto con tu ratón. Verás que el resaltado nativo se reemplaza.</p>`,
     css: `.texto-sel::selection { background: #e74c3c; color: #fff; }`
@@ -688,6 +702,7 @@ p:only-child { color: #f1c40f; }`
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "especializada",
+    relatedLevels: ["moderna"],
     useExternalIframe: "ejemplo-target-text.html",
     iframeHeight: "320px",
     tags: ["text fragments", "highlight", "2026"],
@@ -739,6 +754,7 @@ p:only-child { color: #f1c40f; }`
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "actual",
+    relatedCategories: ["Formularios"],
     description: "Estiliza el botón nativo de los inputs de tipo 'file'.",
     html: `<input type="file" class="file-input">`,
     css: `.file-input::file-selector-button {
@@ -770,6 +786,7 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "moderna",
+    relatedLevels: ["especializada"],
     tags: ["details", "ui nativa", "2026"],
     relatedCategories: ["Interacción"],
     description: "Selecciona el contenido desplegable de <details>. Es muy útil para dar estilo o transiciones al bloque expandible sin envolverlo en divs extra.",
@@ -811,6 +828,7 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "moderna",
+    relatedLevels: ["especializada"],
     description: "Estiliza los subtítulos de video (captions) dentro de un elemento multimedia.",
     html: `<video controls src="https://www.w3schools.com/html/mov_bbb.mp4" style="width:100%">
   <!-- <track default src="subtitulos.vtt"> -->
@@ -929,6 +947,7 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
     type: "pseudo-class",
     category: "transversales",
     level: "moderna",
+    relatedLevels: ["especializada"],
     tags: ["pantalla completa", "fullscreen api", "ui"],
     description: "Aplica estilos cuando un elemento ocupa toda la pantalla mediante la Fullscreen API. Permite personalizar su aspecto (fondo, tipografía, layout) en ese modo.",
     html: `<div class="fs-demo" id="demo-fs">
@@ -978,6 +997,7 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
     category: "transversales",
     level: "actual",
     tags: ["internacionalizacion", "i18n", "idioma"],
+    relatedCategories: ["Relacionales"],
     description: "Selecciona elementos según el idioma declarado en el atributo lang. Muy útil para tipografía específica por idioma o variantes regionales.",
     html: `<p lang="es">Texto en español</p>
 <p lang="en">Text in English</p>
