@@ -688,7 +688,7 @@ p:only-child { color: #f1c40f; }`
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "especializada",
-    useExternalIframe: "../ejemplo-target-text.html",
+    useExternalIframe: "ejemplo-target-text.html",
     iframeHeight: "320px",
     tags: ["text fragments", "highlight", "2026"],
     description: "Estiliza el texto resaltado por un text fragment (#:~:text=...). Es una extensión moderna de :target, pero aplicada al texto en lugar del elemento completo.",
