@@ -1,90 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<style>
-/* Estilos base para igualar el aspecto del sandbox del catálogo */
-body {
-    margin: 0;
-    padding: 10px;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color: #f1f1f1;
-    background-color: transparent; /* Hereda del iframe */
-}
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #f1f1f1;
+      background-color: transparent;
+    }
 
-/* Scrollbar estilizado para no desentonar */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-}
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
 
-/* ========================================================= */
-/* EL CSS ORIGINAL DEL EJEMPLO (COPIA EXACTA DE DATA.JS)     */
-/* ========================================================= */
-/* Previene que el menú fijo tape la sección al hacer scroll */
-html {
-  scroll-padding-top: 60px;
-}
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-.indice {
-  position: sticky;
-  top: 0;
-  background: #111;
-  padding: 10px 0;
-  border-bottom: 1px solid #333;
-}
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
 
-.btn-link { color: #3498db; text-decoration: none; font-weight: bold; margin-right: 5px; }
-.btn-link:hover { text-decoration: underline; }
+    html {
+      scroll-padding-top: 60px;
+    }
 
-.seccion {
-  padding: 10px;
-  margin-top: 15px;
-  border-left: 4px solid transparent;
-  transition: all 0.4s ease;
-  background: #1e1e1e;
-  border-radius: 0 4px 4px 0;
-}
+    .indice {
+      position: sticky;
+      top: 0;
+      background: #111;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
 
-/* Cuando la sección es el objetivo de la URL */
-.seccion:target {
-  background: rgba(243, 156, 18, 0.15); 
-  border-left-color: #f39c12; 
-}
-.seccion:target h4 {
-  color: #f39c12;
-}
-/* ========================================================= */
-</style>
+    .btn-link {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .btn-link:hover {
+      text-decoration: underline;
+    }
+
+    .seccion {
+      padding: 10px;
+      margin-top: 15px;
+      border-left: 4px solid transparent;
+      transition: all 0.4s ease;
+      background: #1e1e1e;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .seccion:target {
+      background: rgba(243, 156, 18, 0.15);
+      border-left-color: #f39c12;
+    }
+
+    .seccion:target h4 {
+      color: #f39c12;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- EL HTML ORIGINAL DEL EJEMPLO (COPIA EXACTA DE DATA.JS) -->
-<nav class="indice">
-  <a href="#cap1" class="btn-link">Capítulo 1</a> | 
-  <a href="#cap2" class="btn-link">Capítulo 2</a>
-</nav>
+  <nav class="indice">
+    <a href="#cap1" class="btn-link">Capítulo 1</a> |
+    <a href="#cap2" class="btn-link">Capítulo 2</a>
+  </nav>
 
-<article id="cap1" class="seccion">
-  <h4>Capítulo 1</h4>
-  <p>Texto introductorio de la sección uno. <br><br>Intenta desplazarte hacia abajo también.</p>
-</article>
+  <article id="cap1" class="seccion">
+    <h4>Capítulo 1</h4>
+    <p>Texto introductorio de la sección uno. <br><br>Intenta desplazarte hacia abajo también.</p>
+  </article>
 
-<article id="cap2" class="seccion">
-  <h4>Capítulo 2</h4>
-  <p>Desarrollo principal de la sección dos.</p>
-</article>
+  <article id="cap2" class="seccion">
+    <h4>Capítulo 2</h4>
+    <p>Desarrollo principal de la sección dos.</p>
+  </article>
 
-<!-- Altura extra artificial para garantizar que exista scroll dentro de este iframe -->
-<div style="height: 300px; padding-top: 20px; color: #555; font-style: italic; font-size: 0.9em;">
-  (Espacio extra para demostrar el salto del scroll...)
-</div>
+  <div style="height: 300px; padding-top: 20px; color: #555; font-style: italic; font-size: 0.9em;">
+    (Espacio extra para demostrar el salto del scroll...)
+  </div>
 
 </body>
+
 </html>

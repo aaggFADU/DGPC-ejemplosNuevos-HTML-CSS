@@ -17,14 +17,11 @@
   padding: 0;
 }
 
-/* Restaurar el centrado nativo del dialog que rompe el reset anterior */
 dialog {
   margin: auto;
 }
 
 html {
-  /* La altura del header es dinámica y se calcula en app.js. 
-     Agregamos 20px extra para que el ancla no quede pegada al borde. */
   scroll-padding-top: calc(var(--header-height, 220px) + 20px);
 }
 
@@ -38,7 +35,6 @@ body {
   flex-direction: column;
 }
 
-/* --- HEADER --- */
 .header {
   background: linear-gradient(135deg, rgba(20, 20, 20, 1) 0%, rgba(30, 30, 30, 1) 100%);
   border-bottom: 1px solid var(--border-color);
@@ -136,7 +132,6 @@ body {
   line-height: 1;
   padding: 0 5px;
   display: none;
-  /* Oculto por defecto, JS lo muestra al escribir */
 }
 
 .clear-btn:hover {
@@ -145,7 +140,6 @@ body {
 
 .search-box input:not(:placeholder-shown)~.clear-btn {
   display: block;
-  /* Solo se muestra si el input tiene texto (gracias a la pseudoclase placeholder-shown!) */
 }
 
 .filters {
@@ -208,7 +202,6 @@ body {
   font-size: 0.92rem;
 }
 
-/* --- MAIN CATALOG --- */
 .catalog-grid {
   max-width: 1200px;
   margin: 2rem auto;
@@ -302,6 +295,24 @@ body {
   overflow-wrap: break-word;
   word-wrap: break-word;
   text-wrap: balance;
+  margin-bottom: 0.75rem;
+}
+
+.related-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.related-tag {
+  background: rgba(52, 152, 219, 0.15);
+  border: 1px solid rgba(52, 152, 219, 0.35);
+  color: #3498db;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .card-body {
@@ -403,7 +414,6 @@ body {
   overflow: hidden;
 }
 
-/* This targets the injected content container */
 .sandbox-content {
   width: 100%;
   max-width: min(100%, 460px);
@@ -462,5 +472,3 @@ footer {
   border-top: 1px solid var(--border-color);
   margin-top: 3rem;
 }
-
-/* Utility to escape characters safely in the pre block (handled via JS) */

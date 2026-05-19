@@ -1,13 +1,14 @@
 const cssCatalog = [
-  // LÓGICA Y RELACIÓN
+  // SELECTORES RELACIONALES Y LÓGICOS
   {
     id: "has",
     name: ":has()",
     type: "pseudo-class",
-    category: "logica",
+    category: "relacionales",
     level: "actual",
     tags: ["selector padre", "relacion", "2026"],
-    description: "El 'selector padre'. Permite estilizar un elemento dependiendo de su contenido o de sus elementos descendientes.",
+    relatedCategories: ["Árbol CSS"],
+    description: "El 'selector padre'. Permite estilizar un elemento dependiendo de su contenido o de sus elementos descendientes. Usa combinadores como >, +, ~ para precisar.",
     html: `<div class="card">
   <h3>Card simple</h3>
   <p>Sin imagen destacada.</p>
@@ -17,6 +18,11 @@ const cssCatalog = [
   <img src="https://picsum.photos/200/100" alt="Destacada">
   <h3>Card con imagen</h3>
   <p>Esta card tiene un fondo distinto porque contiene una imagen.</p>
+</div>
+
+<div class="card">
+  <a href="#">Enlace directo</a>
+  <p>Otro patrón válido con :has()</p>
 </div>`,
     css: `.card {
   border: 2px solid #333;
@@ -26,25 +32,28 @@ const cssCatalog = [
   background: #1e1e1e;
 }
 
-/* Si la .card contiene una <img> dentro, cambia su borde y fondo */
+/* Si la .card contiene una <img> dentro (hijo descendiente) */
 .card:has(img) {
   border-color: #f39c12;
   background: #2a2215;
 }
 
-img {
-  max-width: 100%;
-  border-radius: 4px;
-}`
+/* Si la .card contiene un <a> como HIJO DIRECTO */
+.card:has(> a) {
+  border-left: 4px solid #3498db;
+}
+
+img { max-width: 100%; border-radius: 4px; }`
   },
   {
     id: "is-where",
     name: ":is() / :where()",
     type: "pseudo-class",
-    category: "logica",
+    category: "relacionales",
     level: "imprescindible",
     tags: ["agrupacion", "especificidad", "selectores"],
-    description: "Agrupan selectores para simplificar el código. :is() mantiene la especificidad del selector más alto, mientras que :where() siempre tiene especificidad 0.",
+    relatedCategories: ["Transversales"],
+    description: "Agrupan selectores para simplificar el código. :is() mantiene la especificidad del selector más alto, mientras que :where() siempre tiene especificidad 0. Úsalos juntos con :is() para máxima compatibilidad.",
     html: `<header>
   <h2>Título en Header</h2>
   <p>Párrafo en header</p>
@@ -73,32 +82,35 @@ header, main, footer {
     id: "not",
     name: ":not()",
     type: "pseudo-class",
-    category: "logica",
+    category: "relacionales",
     level: "imprescindible",
     tags: ["negacion", "filtro", "selectores"],
-    description: "Representa todos los elementos seleccionados menos los que responden al selector dentro de los paréntesis.",
+    relatedCategories: ["Transversales"],
+    description: "Representa todos los elementos seleccionados menos los que responden al selector dentro de los paréntesis. Desde CSS 4 permite múltiples selectores: :not(.a, .b, :disabled)",
     html: `<ul class="lista">
   <li>Elemento 1</li>
   <li class="destacado">Elemento 2 (Destacado)</li>
   <li>Elemento 3</li>
-  <li>Elemento 4</li>
+  <li class="oculto">Elemento 4 (Oculto)</li>
 </ul>`,
     css: `.lista { list-style: none; padding: 0; }
 .lista li { padding: 8px; background: #2c3e50; margin-bottom: 4px; }
 
-/* Aplica a todos los li que NO tengan la clase .destacado */
-.lista li:not(.destacado) { opacity: 0.5; }
-.destacado { background: #e74c3c !important; font-weight: bold; }`
+/* Aplica a todos los li que NO tengan .destacado NI .oculto */
+.lista li:not(.destacado, .oculto) { opacity: 1; font-weight: normal; }
+.destacado { background: #e74c3c !important; font-weight: bold; }
+.oculto { opacity: 0.3; }`
   },
 
-  // INTERACCIÓN Y ESTADO
+  // INTERACCIÓN Y EVENTOS
   {
     id: "active",
     name: ":active",
     type: "pseudo-class",
     category: "interaccion",
     level: "imprescindible",
-    description: "Se aplica en el momento exacto en que un elemento está siendo activado (por ejemplo, mientras se hace click en él con el ratón).",
+    tags: ["evento", "mouse", "presion"],
+    description: "Se aplica en el momento exacto en que un elemento está siendo activado (por ejemplo, mientras se hace clic en él con el ratón).",
     html: `<button class="btn">Mantenme presionado</button>`,
     css: `.btn {
   background: #3498db; color: white; padding: 10px 20px;
@@ -114,6 +126,7 @@ header, main, footer {
     type: "pseudo-class",
     category: "interaccion",
     level: "imprescindible",
+    tags: ["evento", "mouse", "pointer"],
     description: "Se aplica cuando el usuario coloca el puntero sobre algún elemento.",
     html: `<button class="btn">Pasa el cursor por aquí</button>`,
     css: `.btn {
@@ -128,10 +141,13 @@ header, main, footer {
     type: "pseudo-class",
     category: "interaccion",
     level: "imprescindible",
-    description: "Se aplica cuando un elemento recibe el foco (mediante teclado o clic).",
-    html: `<input type="text" placeholder="Haz click aquí para foco">`,
-    css: `input { padding: 10px; border: 2px solid #555; background: #222; color: white; outline: none; }
-input:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52,152,219,0.5); }`
+    tags: ["keyboard", "accesibilidad", "estado"],
+    relatedCategories: ["Formularios"],
+    description: "Se aplica cuando un elemento recibe el foco (mediante teclado o clic). Afecta tanto inputs como botones y enlaces.",
+    html: `<input type="text" placeholder="Haz click o presiona TAB para foco">
+<button>Botón (también recibe :focus)</button>`,
+    css: `input, button { padding: 10px; border: 2px solid #555; background: #222; color: white; outline: none; margin-bottom: 5px; }
+input:focus, button:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52,152,219,0.5); }`
   },
   {
     id: "focus-visible",
@@ -140,9 +156,11 @@ input:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52,152,219,0.5); }
     category: "interaccion",
     level: "imprescindible",
     tags: ["accesibilidad", "teclado", "focus"],
-    description: "Muestra el estilo de foco solo cuando el usuario navega por teclado (ej. Tab), evitando bordes indeseados al hacer clic con ratón.",
-    html: `<button class="btn-modern">Botón (Navega con TAB)</button>`,
-    css: `.btn-modern { padding: 10px 20px; background: #34495e; color: white; border: none; cursor: pointer; outline: none; }
+    relatedCategories: ["Formularios"],
+    description: "Muestra el estilo de foco solo cuando el usuario navega por teclado (ej. Tab), evitando bordes indeseados al hacer clic con ratón. Mejor UX.",
+    html: `<button class="btn-modern">Botón (Navega con TAB)</button>
+<a href="#" class="btn-modern">Enlace</a>`,
+    css: `.btn-modern { padding: 10px 20px; background: #34495e; color: white; border: none; cursor: pointer; outline: none; margin-bottom: 5px; text-decoration: none; display: inline-block; }
 .btn-modern:focus-visible { outline: 3px solid #3498db; outline-offset: 3px; }`
   },
   {
@@ -152,14 +170,15 @@ input:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52,152,219,0.5); }
     category: "interaccion",
     level: "actual",
     tags: ["contenedor", "focus", "formularios"],
-    description: "Se aplica a un contenedor si este o cualquiera de sus hijos recibe foco.",
+    relatedCategories: ["Formularios"],
+    description: "Se aplica a un contenedor si este o cualquiera de sus hijos recibe foco. Perfecto para resaltar formularios completos.",
     html: `<form class="caja-formulario">
   <input type="text" placeholder="Usuario">
   <input type="password" placeholder="Contraseña">
 </form>`,
-    css: `.caja-formulario { padding: 20px; background: #111; border: 2px solid #333; transition: 0.3s; }
-.caja-formulario:focus-within { border-color: #9b59b6; }
-input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; }`
+    css: `.caja-formulario { padding: 20px; background: #111; border: 2px solid #333; transition: 0.3s; border-radius: 8px; }
+.caja-formulario:focus-within { border-color: #9b59b6; box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.1); }
+input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; background: #1a1a1a; border: 1px solid #444; color: white; }`
   },
   {
     id: "target",
@@ -167,7 +186,7 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; }`
     type: "pseudo-class",
     category: "interaccion",
     level: "actual",
-    useExternalIframe: "ejemplo-target.html",
+    useExternalIframe: "../ejemplo-target.html",
     iframeHeight: "290px",
     tags: ["anclas", "indice", "scroll"],
     description: "Representa el elemento único con un 'id' coincidente con el ancla (#) de la URL. Hoy en día es ideal en UX para resaltar visualmente la sección exacta a la que el usuario acaba de saltar en un índice.",
@@ -185,39 +204,13 @@ input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; }`
   <h4>Capítulo 2</h4>
   <p>Desarrollo principal de la sección dos.</p>
 </article>`,
-    css: `/* Previene que el menú fijo tape la sección al hacer scroll */
-html {
-  scroll-padding-top: 60px;
-}
-
-.indice {
-  position: sticky;
-  top: 0;
-  background: #111;
-  padding: 10px 0;
-  border-bottom: 1px solid #333;
-}
-
+    css: `html { scroll-padding-top: 60px; }
+.indice { position: sticky; top: 0; background: #111; padding: 10px 0; border-bottom: 1px solid #333; }
 .btn-link { color: #3498db; text-decoration: none; font-weight: bold; margin-right: 5px; }
 .btn-link:hover { text-decoration: underline; }
-
-.seccion {
-  padding: 10px;
-  margin-top: 15px;
-  border-left: 4px solid transparent;
-  transition: all 0.4s ease;
-  background: #1e1e1e;
-  border-radius: 0 4px 4px 0;
-}
-
-/* Cuando la sección es el objetivo de la URL */
-.seccion:target {
-  background: rgba(243, 156, 18, 0.15); 
-  border-left-color: #f39c12; 
-}
-.seccion:target h4 {
-  color: #f39c12;
-}`
+.seccion { padding: 10px; margin-top: 15px; border-left: 4px solid transparent; transition: all 0.4s ease; background: #1e1e1e; border-radius: 0 4px 4px 0; }
+.seccion:target { background: rgba(243, 156, 18, 0.15); border-left-color: #f39c12; }
+.seccion:target h4 { color: #f39c12; }`
   },
   {
     id: "link-visited",
@@ -226,7 +219,7 @@ html {
     category: "interaccion",
     level: "actual",
     tags: ["historial", "enlaces", "privacidad"],
-    description: ":link se aplica a enlaces no visitados. :visited a enlaces que el usuario ya visitó en su historial. Su demostración depende del historial real del navegador.",
+    description: ":link se aplica a enlaces no visitados. :visited a enlaces ya visitados en el historial del navegador. Su demostración depende del historial real.",
     html: `<a href="https://example.com/no-visitado" class="mi-enlace">Enlace posiblemente no visitado</a><br>
 <a href="https://developer.mozilla.org/" class="mi-enlace">Enlace quizás visitado</a>`,
     css: `.mi-enlace:link { color: #3498db; font-weight: bold; }
@@ -239,7 +232,7 @@ html {
     category: "interaccion",
     level: "actual",
     tags: ["enlaces", "link", "visited"],
-    description: "Selecciona cualquier enlace real con href, sin importar si ya fue visitado o no. Es práctico cuando querés estilizar enlaces sin separar :link y :visited.",
+    description: "Selecciona cualquier enlace real con href, sin importar si ya fue visitado o no. Práctico cuando querés estilizar enlaces sin separar :link y :visited.",
     html: `<nav class="mini-nav">
   <a href="#interno">Ancla interna</a>
   <a href="https://example.com/">Enlace externo</a>
@@ -270,6 +263,7 @@ html {
     category: "interaccion",
     level: "moderna",
     tags: ["details", "dialog", "ui nativa"],
+    relatedCategories: ["Pseudo-elementos"],
     description: "Aplica a elementos que tienen estado abierto/cerrado cuando están abiertos. En HTML actual se usa mucho con <details>, <dialog> y controles con picker nativo.",
     html: `<details class="faq">
   <summary>¿Qué hace :open?</summary>
@@ -478,28 +472,13 @@ input:not(:placeholder-shown) + label, input:focus + label { top: -10px; font-si
 input:focus { border-bottom-color: #3498db; }`
   },
   {
-    id: "empty",
-    name: ":empty",
-    type: "pseudo-class",
-    category: "arbol",
-    level: "actual",
-    tags: ["estructura", "arbol", "contenido"],
-    description: "Corresponde a un elemento sin hijos de elemento ni texto visible. Un espacio o salto de línea dentro del elemento puede hacer que deje de coincidir.",
-    html: `<div class="caja">Con texto</div>
-<div class="caja"></div>
-<div class="caja">Otro texto</div>`,
-    css: `.caja { padding: 10px; background: #2c3e50; margin: 5px 0; border: 1px solid #34495e; min-height: 20px; }
-.caja:empty { background: #e74c3c; border-color: #c0392b; }
-.caja:empty::before { content: '¡Caja vacía detectada!'; color: white; font-size: 0.8em; }`
-  },
-  {
     id: "autofill",
     name: ":autofill",
     type: "pseudo-class",
     category: "formularios",
     level: "actual",
     tags: ["formularios", "autocompletado", "2026"],
-    description: "Se activa cuando el navegador completa un campo automáticamente. En la práctica suele combinarse con :-webkit-autofill usando :is() para mejorar compatibilidad.",
+    description: "Se activa cuando el navegador completa un campo automáticamente. Combínalo con :-webkit-autofill usando :is() para mejor compatibilidad.",
     html: `<form class="autofill-demo" autocomplete="on">
   <label for="mail">Email</label>
   <input id="mail" name="mail" type="email" autocomplete="email" placeholder="tu@correo.com">
@@ -562,7 +541,7 @@ input:focus { border-bottom-color: #3498db; }`
     type: "pseudo-class",
     category: "arbol",
     level: "imprescindible",
-    description: "Representa el primero o el último elemento 'hijo' de su 'padre'.",
+    description: "Representa el primero o el último elemento 'hijo' de su 'padre'. Simple pero muy usado.",
     html: `<ul class="lista">
   <li>Primer ítem</li>
   <li>Ítem medio</li>
@@ -578,15 +557,19 @@ input:focus { border-bottom-color: #3498db; }`
     type: "pseudo-class",
     category: "arbol",
     level: "imprescindible",
-    description: "Selecciona elementos según su posición numérica entre sus hermanos. (ej: 2n = pares, 2n+1 = impares)",
+    tags: ["posicion", "formulas", "patrones"],
+    description: "Selecciona elementos según su posición numérica entre sus hermanos. Usa fórmulas: 2n (pares), 2n+1 (impares), 3n (cada tercero), etc.",
     html: `<div class="grilla">
   <div class="box">1</div><div class="box">2</div><div class="box">3</div>
   <div class="box">4</div><div class="box">5</div><div class="box">6</div>
-</div>`,
-    css: `.grilla { display: flex; gap: 5px; }
-.box { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: #333; }
+</div>
+
+<p style="font-size:0.85em; color:#888; margin-top:10px;">Los pares tienen fondo azul (2n). El 5to está destacado (nth-child(5)).</p>`,
+    css: `.grilla { display: flex; gap: 5px; flex-wrap: wrap; }
+.box { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #333; font-weight: bold; }
 .box:nth-child(even) { background: #2980b9; }
-.box:nth-child(5) { background: #e74c3c; }`
+.box:nth-child(2n+1) { color: #ccc; }
+.box:nth-child(5) { background: #e74c3c; color: white; }`
   },
   {
     id: "nth-last-child",
@@ -648,6 +631,21 @@ input:focus { border-bottom-color: #3498db; }`
     css: `.box { border: 1px solid #555; padding: 5px; margin-bottom: 5px; }
 p:only-child { color: #f1c40f; }`
   },
+  {
+    id: "empty",
+    name: ":empty",
+    type: "pseudo-class",
+    category: "arbol",
+    level: "actual",
+    tags: ["estructura", "contenido"],
+    description: "Corresponde a un elemento sin hijos de elemento ni texto visible. Un espacio o salto de línea dentro puede hacer que deje de coincidir.",
+    html: `<div class="caja">Con texto</div>
+<div class="caja"></div>
+<div class="caja">Otro texto</div>`,
+    css: `.caja { padding: 10px; background: #2c3e50; margin: 5px 0; border: 1px solid #34495e; min-height: 20px; }
+.caja:empty { background: #e74c3c; border-color: #c0392b; }
+.caja:empty::before { content: '¡Caja vacía detectada!'; color: white; font-size: 0.8em; }`
+  },
 
   // PSEUDO-ELEMENTOS
   {
@@ -667,8 +665,8 @@ p:only-child { color: #f1c40f; }`
     name: "::first-letter / ::first-line",
     type: "pseudo-element",
     category: "pseudo-elementos",
-    level: "imprescindible",
-    description: "Aplica estilos solo a la primera letra (tipo letra capital) o primera línea de un bloque de texto.",
+    level: "actual",
+    description: "Aplica estilos solo a la primera letra (tipo letra capital) o primera línea de un bloque de texto. Uso limitado: efectos tipográficos decorativos.",
     html: `<p class="capitular">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam repudiandae, officiis nisi pariatur.</p>`,
     css: `.capitular::first-letter { font-size: 2.5em; float: left; margin-right: 5px; color: #e74c3c; line-height: 1; }
 .capitular::first-line { font-weight: bold; color: #f1c40f; }`
@@ -690,10 +688,10 @@ p:only-child { color: #f1c40f; }`
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "especializada",
-    useExternalIframe: "ejemplo-target-text.html",
+    useExternalIframe: "../ejemplo-target-text.html",
     iframeHeight: "320px",
     tags: ["text fragments", "highlight", "2026"],
-    description: "Estiliza el texto resaltado por un text fragment (#:~:text=...). Es una extensión moderna de la idea de :target, pero aplicada al texto en lugar del elemento completo.",
+    description: "Estiliza el texto resaltado por un text fragment (#:~:text=...). Es una extensión moderna de :target, pero aplicada al texto en lugar del elemento completo.",
     html: `<a href="#:~:text=fragmento%20de%20texto%20que%20queremos%20resaltar" class="btn-demo">
   Ir al fragmento
 </a>
@@ -701,11 +699,6 @@ p:only-child { color: #f1c40f; }`
 <p>
   Este ejemplo intenta resaltar un fragmento de texto que queremos resaltar
   usando un text fragment en la URL.
-</p>
-
-<p>
-  Si tu navegador soporta esta función, al activar el enlace se aplicará el
-  estilo definido en ::target-text sólo sobre esas palabras.
 </p>`,
     css: `::target-text {
   background: #f39c12;
@@ -718,6 +711,8 @@ p:only-child { color: #f1c40f; }`
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "imprescindible",
+    tags: ["inputs", "formularios"],
+    relatedCategories: ["Formularios"],
     description: "Permite dar estilo al texto sugerido de un input.",
     html: `<input type="text" class="input-custom" placeholder="Ingresa tu nombre...">`,
     css: `.input-custom { padding: 10px; background: #111; border: 1px solid #555; color: white; width: 100%; }
@@ -729,6 +724,8 @@ p:only-child { color: #f1c40f; }`
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "actual",
+    tags: ["listas", "viñetas"],
+    relatedCategories: ["Árbol CSS"],
     description: "Permite cambiar color o viñeta de los elementos de una lista sin afectar al texto.",
     html: `<ul class="lista-custom">
   <li>Elemento uno</li>
@@ -742,7 +739,7 @@ p:only-child { color: #f1c40f; }`
     type: "pseudo-element",
     category: "pseudo-elementos",
     level: "actual",
-    description: "Estiliza el feo botón nativo de los inputs de tipo 'file'.",
+    description: "Estiliza el botón nativo de los inputs de tipo 'file'.",
     html: `<input type="file" class="file-input">`,
     css: `.file-input::file-selector-button {
   background: #2980b9; color: white; padding: 8px 16px; border: none;
@@ -757,6 +754,7 @@ p:only-child { color: #f1c40f; }`
     category: "pseudo-elementos",
     level: "actual",
     tags: ["dialog", "top layer", "modal"],
+    relatedCategories: ["Interacción"],
     description: "Capa que se coloca detrás de un elemento en la 'top layer' (como un <dialog> abierto o popover), oscureciendo la página.",
     html: `<button onclick="this.nextElementSibling.showModal()">Abrir Modal Nativo</button>
 <dialog>
@@ -764,7 +762,6 @@ p:only-child { color: #f1c40f; }`
   <button onclick="this.closest('dialog').close()">Cerrar</button>
 </dialog>`,
     css: `dialog { padding: 20px; background: #1e1e1e; color: white; border: 1px solid #444; border-radius: 8px; }
-/* El fondo oscuro que cubre el sitio */
 dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px); }`
   },
   {
@@ -774,6 +771,7 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
     category: "pseudo-elementos",
     level: "moderna",
     tags: ["details", "ui nativa", "2026"],
+    relatedCategories: ["Interacción"],
     description: "Selecciona el contenido desplegable de <details>. Es muy útil para dar estilo o transiciones al bloque expandible sin envolverlo en divs extra.",
     html: `<details class="acordeon">
   <summary>Mostrar explicación</summary>
@@ -824,6 +822,23 @@ dialog::backdrop { background: rgba(231, 76, 60, 0.4); backdrop-filter: blur(3px
   font-size: 1.2rem;
   text-shadow: 2px 2px 2px #000;
 }`
+  },
+
+  // SELECTORES TRANSVERSALES (en múltiples categorías)
+  {
+    id: "lang",
+    name: ":lang()",
+    type: "pseudo-class",
+    category: "transversales",
+    level: "actual",
+    tags: ["internacionalizacion", "i18n", "idioma"],
+    description: "Selecciona elementos según el idioma declarado en el atributo lang. Muy útil para tipografía específica por idioma o variantes regionales.",
+    html: `<p lang="es">Texto en español</p>
+<p lang="en">Text in English</p>
+<p lang="fr">Texte en français</p>`,
+    css: `p:lang(es) { color: #3498db; }
+p:lang(en) { color: #2ecc71; }
+p:lang(fr) { color: #e74c3c; }`
   }
 ];
 
