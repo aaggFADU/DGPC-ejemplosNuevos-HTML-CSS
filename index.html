@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="icono-dgpc.svg">
-  
+
   <title>Ejemplos con nuevas técnicas CSS y etiquetas y atributos HTML</title>
   <link rel="stylesheet" href="estilos.css">
 
@@ -14,21 +14,22 @@
 
 <body>
 
-<header class="contenedora">
-  
-  <h1>Ejemplos de componentes o páginas web con técnicas CSS y HTML que se van disponibilizando desde 2020</h1>
+  <header class="contenedora">
 
-  <div class="theme-toggle-wrapper" role="group" aria-label="Selector de tema">
+    <h1>Ejemplos de componentes o páginas web con técnicas CSS y HTML que se van disponibilizando desde 2020</h1>
 
-    <input type="checkbox" id="theme-toggle" aria-label="Cambiar entre modo oscuro y claro">
+    <div class="theme-toggle-wrapper" role="group" aria-label="Selector de tema">
 
-    <label for="theme-toggle" class="theme-toggle-label">
+      <input type="checkbox" id="theme-toggle" aria-label="Cambiar entre modo oscuro y claro">
 
-      <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation">
-        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
-      </svg>
-        
-      <svg class="sun-icon" viewBox="0 0 48 48" width="48" height="48" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation">
+      <label for="theme-toggle" class="theme-toggle-label">
+
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation">
+          <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+        </svg>
+
+        <svg class="sun-icon" viewBox="0 0 48 48" width="48" height="48" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation">
           <circle cx="24" cy="24" r="12" />
           <line x1="24" y1="2" x2="24" y2="10" stroke="currentColor" stroke-width="2" />
           <line x1="24" y1="38" x2="24" y2="46" stroke="currentColor" stroke-width="2" />
@@ -38,133 +39,285 @@
           <line x1="33.5" y1="33.5" x2="39.5" y2="39.5" stroke="currentColor" stroke-width="2" />
           <line x1="8.5" y1="39.5" x2="14.5" y2="33.5" stroke="currentColor" stroke-width="2" />
           <line x1="33.5" y1="14.5" x2="39.5" y2="8.5" stroke="currentColor" stroke-width="2" />
-      </svg>
-          
-    </label>
+        </svg>
 
-</div>
+      </label>
 
-</header>
+    </div>
 
-<div class="contenedora search-container">
-  <input 
-    type="search" 
-    id="filterInput" 
-    placeholder="Filtrar por palabras clave..."
-    aria-label="Filtrar ejemplos"
-  >
-</div>
+  </header>
 
-<main class="contenedora">
+  <div class="contenedora search-container">
+    <input type="search" id="filterInput" placeholder="Filtrar por palabras clave..." aria-label="Filtrar ejemplos">
+  </div>
 
-  <ul>
-    <li><a href="./animacion-css-svg/" target="_blank" rel="noreferrer">Animación de <span>SVG</span> con CSS</a></li>
-    <li><a href="./animaMaquinaEscribir/" target="_blank" rel="noreferrer">Anima máquina de escribir con propiedad <span>animation</span> y función <span>steps()</span></a></li>
-    <li><a href="./animaScroll-soloCSS/" target="_blank" rel="noreferrer">Anima scroll, sólo con CSS <span>scroll-driven animations</span></a></li>
-    <!-- <li><a href="./animaScroll-soloCSS-version3/" target="_blank" rel="noreferrer">Anima con <span>clip-path</span> al aparecer, sólo con CSS</a></li> -->
-    <li><a href="./animaScroll-soloCSS-version4/" target="_blank" rel="noreferrer">Anima imagen con <span>clip-path</span> y fondo de sección al aparecer, sólo con CSS <span>scroll-driven animations</span></a></li>
-    <li><a href="./animacionOffsetPath/" target="_blank" rel="noreferrer">Anima con <span>offset-path</span> sólo con CSS</a></li>
-    <li><a href="./animacionOffsetPathScroll/" target="_blank" rel="noreferrer">Anima con <span>offset-path</span> al "scrollear" sólo con CSS <span>scroll-driven animations</span></a></li>
-    <li><a href="./animacion3Dthree/" target="_blank" rel="noreferrer">Animación 3D <span>al hacer "scroll"</span>con three.js</a></li>
-    <li><a href="./bentoGrid-responsive/" target="_blank" rel="noreferrer">"Bento grid" responsive con <span>auto-fill</span><span>minmax()</span><span>@media</span></a></li>
-    <li><a href="./borde-Grad-conico-que-gira/" target="_blank" rel="noreferrer">Borde que gira, con <span>background: conic-gradient()</span>en pseudo-elemento <span>::before</span></a></li>
-    <li><a href="./borde-que-rota-solo-CSS/" target="_blank" rel="noreferrer">Borde que rota, con <span>background: conic-gradient()</span>en pseudo-elemento <span>::before</span></a></li>
-    <li><a href="./bordesTorcidosCSS/" target="_blank" rel="noreferrer">Bordes torcidos, con <span>transform: skew()</span>en pseudo-elemento <span>::before</span></a></li>
-    <li><a href="./botonNeon/" target="_blank" rel="noreferrer">Botones "de neón" con pseudo-elementos<span>::before ::after</span></a></li>
-    <li><a href="./boxs-con-reflejo-y-animacion-de-fondoCSS/" target="_blank" rel="noreferrer">Box con reflejos y animación de fondo, sólo con CSS</a></li>
-    <li><a href="./calificacion-por-estrellas/" target="_blank" rel="noreferrer">Calificación con estrellas con sólo CSS usando <span>input[type="range"]</span> y <span>mask</span></a></li>
-    <li><a href="./carousel3D/" target="_blank" rel="noreferrer">Carousel 3D, con sólo CSS usando<span>perspective</span>y<span>transform-style: preserve-3d;</span></a></li>
-    <li><a href="./centrados-con-grid-sin-contenedor/" target="_blank" rel="noreferrer">Sistema para contenidos centrados, sin contenedores, usando <span>CSS Grid</span></a></li>
-    <li><a href="./container-query-2/" target="_blank" rel="noreferrer">Responsive Cards con <span>@container</span></a></li>
-    <li><a href="./card-con-brillo-interior/" target="_blank" rel="noreferrer">Card con brillo interior usando <span>border-image</span></a></li>
-    <li><a href="./centrar-ultima-linea-de-grid/" target="_blank" rel="noreferrer">Centrar última línea de contenidos en contenedor CSS Grid</a></li>
-    <li><a href="./coloresHDR/" target="_blank" rel="noreferrer">Paleta de colores HDR del atardecer usando <span>CSS color()</span>y modelo de color<span>display-p3</span></a></li>
-    <li><a href="./subgrid/" target="_blank" rel="noreferrer">Contenidos totalmente alineados usando CSS <span>subgrid</span></a></li>
-    <li><a href="./cubo3DsoloCSS/" target="_blank" rel="noreferrer">Cubo 3D que rota, con sólo CSS</a></li>
-    <li><a href="./cursorAnimado-con-JS/" target="_blank" rel="noreferrer">Cursor animado, con JS</a></li>
-    <li><a href="./3D-en-hover-solo-css/" target="_blank" rel="noreferrer">Efecto 3D en :hover, con sólo CSS</a></li>
-    <li><a href="./efecto-de-cartas/" target="_blank" rel="noreferrer">Efecto de cartas, con sólo CSS</a></li>
-    <li><a href="./FAQ-HTML-CSS/" target="_blank" rel="noreferrer">FAQ - Preguntas frecuentes, con sólo HTML y CSS</a></li>
-    <li><a href="./figcaption-controlado-con-contain/" target="_blank" rel="noreferrer">figcaption controlado con la propiedad CSS contain</a></li>
-    <li><a href="./degradeAnimado/" target="_blank" rel="noreferrer">Fondo con degradé animado</a></li>
-    <li><a href="./fondo-animado-aparece/" target="_blank" rel="noreferrer">Fondo animado con <span>mask-image</span></a></li>
-    <li><a href="./medioTono/" target="_blank" rel="noreferrer">Fondo con efecto de medio-tono animado con CSS</a></li>
-    <li><a href="./galeria-con-pseudoclase-HAS/" target="_blank" rel="noreferrer">Uso de la pseudo clase <span>:has</span> en una galería</a></li>
-    <li><a href="./glassCssJS/" target="_blank" rel="noreferrer">Glass con CSS y JS</a></li>
-    <li><a href="./glass-solo-Css/" target="_blank" rel="noreferrer">Glass con sólo CSS</a></li>
-    <li><a href="./grid-responsive-con-solo-3-declaraciones-CSS/" target="_blank" rel="noreferrer">Grid responsive con sólo 1 declaración CSS</a></li>
-    <li><a href="./humoCSS-y-video/" target="_blank" rel="noreferrer">Efecto de humo con CSS y la etiqueta <span>video</span></a></li>
-    <li><a href="./lista-filtrada-js/" target="_blank" rel="noreferrer">Lista filtrada con JS</a></li>
-    <li><a href="./menuAnimado-solo-CSS/" target="_blank" rel="noreferrer">Menú animado con sólo CSS</a></li>
-    <li><a href="./menu-animado-con-anchors-y-transiciones/" target="_blank" rel="noreferrer">Menú animado con CSS anchors y transiciones</a></li>
-    <li><a href="./menuDesplegablePopover/" target="_blank" rel="noreferrer">Menú desplegable sólo con CSS y atributos <span>popover y popovertarget</span></a></li>
-    <li><a href="./NavBarPopOver/" target="_blank" rel="noreferrer">Menú inferior sólo con CSS y atributos <span>popover y popovertarget</span></a></li>
-    <li><a href="./menu-lateral-admin/" target="_blank" rel="noreferrer">Menú lateral / inferior de administración con CSS y JS</a></li>
-    <li><a href="./darkModeCSS/" target="_blank" rel="noreferrer">Modos oscuro y claro con CSS sin JavaScript</a></li>
-    <li><a href="./tabs-animadas-solo-CSS/" target="_blank" rel="noreferrer">Navegación por pestañas animadas con sólo CSS</a></li>
-    <li><a href="./tabs-details-summary/" target="_blank" rel="noreferrer">Navegación por pestañas con elementos HTML <span>details</span></a></li>
-    <li><a href="./navegacion-funky-CSS/" target="_blank" rel="noreferrer">Navegación entre páginas con <span>::view-transition</span>
-      <br>Desplazamiento sólo con Chrome 130 o posterior</a></li>
-    <li><a href="./overlay-usando-CSS-border-image/" target="_blank" rel="noreferrer">efecto Overlay usando la propiedad <span>border-image</span></a></li>
-    <li><a href="./parallaxCSS-2024/" target="_blank" rel="noreferrer">Parallax con sólo CSS <br>... falta actualizar</a></li>
-    <li><a href="./parallaxCSS/" target="_blank" rel="noreferrer">Parallax con sólo CSS usando <span>perspective</span>y valor<span>preserve-3d;</span></a></li>
-    <li><a href="./popover/" target="_blank" rel="noreferrer"><span>Popover</span> con función CSS <span>anchor()</span></a></li>
-    <li><a href="./portada-con-nubes-animadas-CSS/" target="_blank" rel="noreferrer">Portada (hero section) con nubes animadas</a></li>
-    <li><a href="./producto360gradosSoloCSS/" target="_blank" rel="noreferrer">Producto gira 360º solo CSS</a></li>
-    <li><a href="./Propiedades-y-Valores-Logicos-CSS/" target="_blank" rel="noreferrer">Propiedades y valores lógicos en CSS</a></li>
-    <li><a href="./relatoWeb-con-CSS-sticky/" target="_blank" rel="noreferrer">Relato web con<span>position: sticky</span></a></li>
-    <li><a href="./reseteoCSS-2025/" target="_blank" rel="noreferrer">Reset CSS en 2025</a></li>
-    <li><a href="./ruidoCSS/" target="_blank" rel="noreferrer">Ruido CSS</a></li>
-    <li><a href="./scroll-horizontal/" target="_blank" rel="noreferrer">Galerías con scroll horizontal y <span>scroll-snap-type</span></a></li>
-    <li><a href="./scroll-sticky-solo-CSS/" target="_blank" rel="noreferrer">scroll pantalla completa con <span>position: sticky</span></a></li>
-    <li><a href="./scroll-horizontal-y-vertical/" target="_blank" rel="noreferrer">Scroll horizontal y vertical - sólo CSS</a></li>
-    <li><a href="./seccionesNOortogonales/" target="_blank" rel="noreferrer">Secciones NO ortogonales</a></li>
-    <li><a href="./seleccionar-ultima-fila-de-elementos/" target="_blank" rel="noreferrer">Selección de última fila de elementos en Grid</a></li>
-    <li><a href="./slider-solo-HTML-y-CSS/" target="_blank" rel="noreferrer">Slider con sólo CSS</a></li>
-    <li><a href="./sliding-en-botones-de-opción-sin-JS/" target="_blank" rel="noreferrer">Sliding en radio buttons sin JS</a></li>
-    <li><a href="./texto-con-efecto-en-hover/" target="_blank" rel="noreferrer">Texto con efecto en <span>:hover</span></a></li>
-    <li><a href="./texto-efecto-agua-solo-CSS/" target="_blank" rel="noreferrer">Texto con efecto de agua solo CSS</a></li>
-    <li><a href="./textoBalanceado-con-CSS-text-wrap/" target="_blank" rel="noreferrer">Texto balanceado usando propiedad CSS <span>text-wrap</span></a></li>
-    <li><a href="./textoRevelado-con-scroll/" target="_blank" rel="noreferrer">Texto que se revela al scroll</a></li>
-    <li><a href="./shape-outside/" target="_blank" rel="noreferrer">Texto recorre imagen usando<span>float</span>y<span>shape-outside</span></a></li>
-    <li><a href="./view-transition-css/" target="_blank" rel="noreferrer">Transiciones fluidas entre HTMLs con <span>API View Transition</span>por ahora solo visible en Chrome y Edge</a></li>
-    <li><a href="./trunca-lineas-de-texto/" target="_blank" rel="noreferrer">Truncar líneas de texto con <span>-webkit-line-clamp</span></a></li>
-    <li><a href="./validar-form-con-css/" target="_blank" rel="noreferrer">Validación de formularios con CSS</a></li>
-  </ul>
+  <main class="contenedora">
 
-</main>
+    <!-- SECCIÓN 1: DISEÑO Y MAQUETACIÓN -->
+    <section>
+      <h2>Estructura, Layout y Visualización (Grid, Flexbox, Containers)</h2>
+      <ul>
+        <li><a href="./bentoGrid-responsive/" target="_blank" rel="noreferrer">"Bento grid" responsive con
+            <span>auto-fill</span>, <span>minmax()</span> y <span>@media</span></a></li>
+        <li><a href="./centrados-con-grid-sin-contenedor/" target="_blank" rel="noreferrer">Contenidos centrados
+            sin
+            contenedores usando <span>CSS Grid</span></a></li>
+        <li><a href="./centrar-ultima-linea-de-grid/" target="_blank" rel="noreferrer">Centrar última línea de
+            contenidos en contenedor <span>CSS Grid</span></a></li>
+        <li><a href="./grid-responsive-con-solo-3-declaraciones-CSS/" target="_blank" rel="noreferrer">Grid
+            responsive
+            con sólo 3 declaraciones <span>CSS</span> (1 de columnas)</a></li>
+        <li><a href="./subgrid/" target="_blank" rel="noreferrer">Contenidos totalmente alineados usando CSS
+            <span>subgrid</span></a></li>
+        <li><a href="./seleccionar-ultima-fila-de-elementos/" target="_blank" rel="noreferrer">Selección de
+            última fila
+            de elementos en <span>CSS Grid</span></a></li>
+        <li><a href="./container-query-2/" target="_blank" rel="noreferrer">Responsive Cards con
+            <span>@container
+              queries</span></a></li>
+        <li><a href="./Propiedades-y-Valores-Logicos-CSS/" target="_blank" rel="noreferrer">Propiedades y
+            valores
+            lógicos en <span>CSS</span></a></li>
+        <li><a href="./textoBalanceado-con-CSS-text-wrap/" target="_blank" rel="noreferrer">Texto balanceado
+            usando
+            propiedad CSS <span>text-wrap: balance</span></a></li>
+        <li><a href="./trunca-lineas-de-texto/" target="_blank" rel="noreferrer">Truncar líneas de texto con
+            <span>-webkit-line-clamp</span></a></li>
+        <li><a href="./seccionesNOortogonales/" target="_blank" rel="noreferrer">Secciones web <span>NO
+              ortogonales</span> en diagonal</a></li>
+        <li><a href="./shape-outside/" target="_blank" rel="noreferrer">Texto recorre imagen usando
+            <span>float</span> y
+            <span>shape-outside</span></a></li>
+        <li><a href="./figcaption-controlado-con-contain/" target="_blank" rel="noreferrer">figcaption
+            controlado con la
+            propiedad CSS <span>contain</span></a></li>
+        <li><a href="./reseteoCSS-2025/" target="_blank" rel="noreferrer">Reset <span>CSS</span> en 2025 para
+            nuevos
+            proyectos</a></li>
+      </ul>
+    </section>
 
-<footer class="contenedora">
-  <p>
-    Muchos de los ejemplos son inspirados o tomados de artículos, videos, tutoriales disponibles en la web. Se irán indicando las fuentes
-  </p>
-</footer>
+    <!-- SECCIÓN 2: INTERACTIVIDAD Y COMPONENTES -->
+    <section>
+      <h2>Componentes e Interactividad (Formularios, Popover, Selectores)</h2>
+      <ul>
+        <li><a href="./pseudoclases/" target="_blank" rel="noreferrer">Catálogo interactivo de
+            <span>Pseudoclases y
+              Pseudoelementos</span> (Edición FADU 2026)</a></li>
+        <li><a href="./menuDesplegablePopover/" target="_blank" rel="noreferrer">Menú desplegable con atributos
+            HTML
+            <span>popover</span> y <span>popovertarget</span></a></li>
+        <li><a href="./NavBarPopOver/" target="_blank" rel="noreferrer">Menú inferior tipo barra usando
+            atributos
+            <span>popover</span> nativos</a></li>
+        <li><a href="./popover/" target="_blank" rel="noreferrer"><span>Popover</span> alineado con la función
+            CSS
+            <span>anchor()</span> de posicionamiento</a></li>
+        <li><a href="./FAQ-HTML-CSS/" target="_blank" rel="noreferrer">FAQ - Preguntas frecuentes usando solo
+            <span>HTML
+              y CSS</span></a></li>
+        <li><a href="./tabs-details-summary/" target="_blank" rel="noreferrer">Navegación por pestañas (tabs)
+            usando
+            elementos HTML <span>details</span></a></li>
+        <li><a href="./tabs-animadas-solo-CSS/" target="_blank" rel="noreferrer">Pestañas animadas con sólo
+            <span>CSS</span> sin JS</a></li>
+        <li><a href="./menuAnimado-solo-CSS/" target="_blank" rel="noreferrer">Menú animado interactivo con sólo
+            <span>CSS</span></a></li>
+        <li><a href="./menu-animado-con-anchors-y-transiciones/" target="_blank" rel="noreferrer">Menú animado
+            interactivo con <span>CSS anchors</span> y transiciones</a></li>
+        <li><a href="./menu-lateral-admin/" target="_blank" rel="noreferrer">Menú de administración lateral /
+            inferior
+            con <span>CSS y JS</span></a></li>
+        <li><a href="./validar-form-con-css/" target="_blank" rel="noreferrer">Validación nativa de formularios
+            usando
+            selectores <span>CSS</span></a></li>
+        <li><a href="./calificacion-por-estrellas/" target="_blank" rel="noreferrer">Calificación por estrellas
+            usando
+            <span>input[type="range"]</span> y <span>mask</span></a></li>
+        <li><a href="./sliding-en-botones-de-opción-sin-JS/" target="_blank" rel="noreferrer">Desplazamiento
+            (sliding)
+            en radio buttons sin <span>JavaScript</span></a></li>
+        <li><a href="./darkModeCSS/" target="_blank" rel="noreferrer">Modos oscuro y claro automáticos en CSS
+            sin
+            <span>JavaScript</span></a></li>
+      </ul>
+    </section>
 
-<script>
-  // Selecciona el elemento input de búsqueda
-  const filterInput = document.getElementById('filterInput');
-  // Selecciona todos los elementos li que contienen los enlaces dentro de la lista en main
-  const links = document.querySelectorAll('main ul li');
+    <!-- SECCIÓN 3: EFECTOS DE SCROLL Y ANIMACIONES DE CONTROL -->
+    <section>
+      <h2>Animaciones basadas en Scroll (Scroll-Driven Animations & Sticky)</h2>
+      <ul>
+        <li><a href="./animaScroll-soloCSS/" target="_blank" rel="noreferrer">Animaciones al aparecer y progreso
+            de
+            página con <span>scroll-driven animations</span></a></li>
+        <li><a href="./animaScroll-soloCSS-version4/" target="_blank" rel="noreferrer">Revelado de imagen con
+            <span>clip-path</span> y cambio de fondo en scroll</a></li>
+        <li><a href="./animacionOffsetPathScroll/" target="_blank" rel="noreferrer">Animación de recorrido con
+            <span>offset-path</span> basada en scroll</a></li>
+        <li><a href="./textoRevelado-con-scroll/" target="_blank" rel="noreferrer">Efecto de revelado de texto
+            de
+            opacidad progresiva al <span>scrollear</span></a></li>
+        <li><a href="./parallaxCSS-2024/" target="_blank" rel="noreferrer">Efecto Parallax moderno usando
+            <span>scroll-driven animations</span> en CSS</a></li>
+        <li><a href="./parallaxCSS/" target="_blank" rel="noreferrer">Efecto Parallax clásico usando perspectiva
+            3D
+            (Keith Clark <span>preserve-3d</span>)</a></li>
+        <li><a href="./relatoWeb-con-CSS-sticky/" target="_blank" rel="noreferrer">Relato web narrativo
+            (scrollytelling)
+            con <span>position: sticky</span></a></li>
+        <li><a href="./scroll-sticky-solo-CSS/" target="_blank" rel="noreferrer">Desplazamiento pantalla
+            completa usando
+            <span>position: sticky</span></a></li>
+        <li><a href="./scroll-horizontal/" target="_blank" rel="noreferrer">Galerías horizontales usando
+            propiedades de
+            alineación <span>scroll-snap</span></a></li>
+        <li><a href="./scroll-horizontal-y-vertical/" target="_blank" rel="noreferrer">Galería con scroll
+            bidireccional
+            (horizontal y vertical) en <span>CSS</span></a></li>
+      </ul>
+    </section>
 
-  // Agrega un evento que se ejecuta cada vez que el usuario escribe en el campo de búsqueda
-  filterInput.addEventListener('input', function(e) {
-    // Obtiene el texto ingresado y lo convierte a minúsculas para hacer la búsqueda insensible a mayúsculas/minúsculas
-    const searchTerm = e.target.value.toLowerCase();
+    <!-- SECCIÓN 4: EFECTOS VISUALES, COLOR Y TRANSCICIONES -->
+    <section>
+      <h2>Efectos Visuales, Degradados, Colores y Transiciones</h2>
+      <ul>
+        <li><a href="./view-transition-css/" target="_blank" rel="noreferrer">Transiciones de página fluidas
+            nativas
+            entre HTMLs con la API <span>View Transition</span></a></li>
+        <li><a href="./navegacion-funky-CSS/" target="_blank" rel="noreferrer">Transiciones avanzadas
+            <span>::view-transition</span> (Chrome 130 o posterior)</a></li>
+        <li><a href="./borde-brillo-hover-property/" target="_blank" rel="noreferrer">Borde con brillo giratorio
+            animando variables tipadas con <span>@property</span></a></li>
+        <li><a href="./card-con-brillo-interior/" target="_blank" rel="noreferrer">Card con brillo interior de
+            contorno
+            usando <span>border-image</span> y <span>@property</span></a></li>
+        <li><a href="./borde-que-rota-solo-CSS/" target="_blank" rel="noreferrer">Efecto de borde giratorio con
+            <span>conic-gradient</span> en pseudo-elementos</a></li>
+        <li><a href="./borde-Grad-conico-que-gira/" target="_blank" rel="noreferrer">Borde degradado cónico
+            rotatorio
+            continuo con pseudo-elemento <span>::before</span></a></li>
+        <li><a href="./efecto-de-cartas/" target="_blank" rel="noreferrer">Efecto visual de apilado y sombreado
+            de
+            cartas con solo <span>CSS</span></a></li>
+        <li><a href="./botonNeon/" target="_blank" rel="noreferrer">Botón brillante efecto Neón con
+            pseudo-elementos
+            <span>::before</span> y <span>::after</span></a></li>
+        <li><a href="./boxs-con-reflejo-y-animacion-de-fondoCSS/" target="_blank" rel="noreferrer">Cajas con
+            reflejo
+            dinámico y animación de fondo continuo</a></li>
+        <li><a href="./3D-en-hover-solo-css/" target="_blank" rel="noreferrer">Efecto de inclinación 3D en hover
+            de
+            tarjeta con solo <span>CSS</span></a></li>
+        <li><a href="./cubo3DsoloCSS/" target="_blank" rel="noreferrer">Cubo 3D rotatorio interactivo con
+            selectores
+            <span>CSS</span></a></li>
+        <li><a href="./carousel3D/" target="_blank" rel="noreferrer">Carrusel 3D rotatorio usando
+            <span>perspective</span> y <span>preserve-3d</span></a></li>
+        <li><a href="./producto360gradosSoloCSS/" target="_blank" rel="noreferrer">Vista de producto 360º
+            animada sin
+            usar <span>JavaScript</span></a></li>
+        <li><a href="./animacion-css-svg/" target="_blank" rel="noreferrer">Animaciones dinámicas sobre vectores
+            <span>SVG</span> usando estilos CSS</a></li>
+        <li><a href="./animacionOffsetPath/" target="_blank" rel="noreferrer">Animación de desplazamiento de
+            elementos
+            sobre trazados con <span>offset-path</span></a></li>
+        <li><a href="./animaMaquinaEscribir/" target="_blank" rel="noreferrer">Efecto de máquina de escribir con
+            <span>animation</span> y función <span>steps()</span></a></li>
+        <li><a href="./degradeAnimado/" target="_blank" rel="noreferrer">Fondo de pantalla con degradé dinámico
+            animado</a></li>
+        <li><a href="./fondo-animado-aparece/" target="_blank" rel="noreferrer">Fondo animado de revelación
+            radial
+            usando <span>mask-image</span></a></li>
+        <li><a href="./medioTono/" target="_blank" rel="noreferrer">Efecto artístico de semitono (half-tone) con
+            degradés en <span>CSS</span></a></li>
+        <li><a href="./ruidoCSS/" target="_blank" rel="noreferrer">Generación de efecto de textura de ruido
+            visual con
+            degradés y filtros</a></li>
+        <li><a href="./portada-con-nubes-animadas-CSS/" target="_blank" rel="noreferrer">Portada hero con nubes
+            realistas desplazadas de forma infinita</a></li>
+        <li><a href="./humoCSS-y-video/" target="_blank" rel="noreferrer">Efecto de humo dinámico mediante la
+            combinación de CSS y video</a></li>
+        <li><a href="./texto-con-efecto-en-hover/" target="_blank" rel="noreferrer">Texto con efecto dinámico en
+            hover y
+            pseudo-elementos</a></li>
+        <li><a href="./texto-efecto-agua-solo-CSS/" target="_blank" rel="noreferrer">Efecto fluido de texto
+            simulando
+            movimiento de agua</a></li>
+        <li><a href="./galeria-con-pseudoclase-HAS/" target="_blank" rel="noreferrer">Galería interactiva
+            auto-enfocada
+            con la pseudo-clase <span>:has()</span></a></li>
+        <li><a href="./glass-solo-Css/" target="_blank" rel="noreferrer">Efecto de cristal esmerilado
+            (glassmorphism)
+            con puro <span>CSS</span></a></li>
+        <li><a href="./glassCssJS/" target="_blank" rel="noreferrer">Efecto de cristal esmerilado interactivo
+            asistido
+            con <span>JS</span></a></li>
+        <li><a href="./coloresHDR/" target="_blank" rel="noreferrer">Paleta de colores de alto rango dinámico
+            (HDR)
+            usando <span>display-p3</span></a></li>
+        <li><a href="./bordesTorcidosCSS/" target="_blank" rel="noreferrer">Efecto de distorsión de bordes de
+            sección
+            usando <span>transform: skew()</span></a></li>
+        <li><a href="./overlay-usando-CSS-border-image/" target="_blank" rel="noreferrer">Efecto de
+            superposición
+            (overlay) usando la propiedad <span>border-image</span></a></li>
+      </ul>
+    </section>
 
-    // Recorre cada elemento de la lista
-    links.forEach(link => {
-      // Obtiene el texto del enlace y lo convierte a minúsculas
-      const text = link.textContent.toLowerCase();
-      // Si el texto del enlace incluye el término buscado, muestra el elemento
-      if (text.includes(searchTerm)) {
-        link.style.display = '';
-      } else {
-        // Si no incluye el término buscado, oculta el elemento
-        link.style.display = 'none';
-      }
+    <!-- SECCIÓN 5: TECNOLOGÍAS ADICIONALES Y EXPERIMENTALES -->
+    <section>
+      <h2>Tecnologías Adicionales (WebGL, Animaciones con JS)</h2>
+      <ul>
+        <li><a href="./animacion3Dthree/" target="_blank" rel="noreferrer">Animaciones interactivas 3D basadas
+            en scroll
+            usando <span>Three.js</span> (WebGL)</a></li>
+        <li><a href="./cursorAnimado-con-JS/" target="_blank" rel="noreferrer">Cursor personalizado animado con
+            interacción física usando <span>JavaScript</span></a></li>
+        <li><a href="./lista-filtrada-js/" target="_blank" rel="noreferrer">Filtrado dinámico en tiempo real de
+            colecciones con <span>JavaScript</span></a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="contenedora">
+    <p>
+      Muchos de los ejemplos son inspirados o tomados de artículos, videos, tutoriales disponibles en la web. Se
+      irán indicando las fuentes.
+    </p>
+  </footer>
+
+  <script>
+    const filterInput = document.getElementById('filterInput');
+    const sections = document.querySelectorAll('main section');
+
+    filterInput.addEventListener('input', function (e) {
+      const searchTerm = e.target.value.toLowerCase();
+
+      sections.forEach(section => {
+        const links = section.querySelectorAll('ul li');
+        let visibleCount = 0;
+
+        links.forEach(link => {
+          const text = link.textContent.toLowerCase();
+          if (text.includes(searchTerm)) {
+            link.style.display = '';
+            visibleCount++;
+          } else {
+            link.style.display = 'none';
+          }
+        });
+
+        // Muestra u oculta la sección completa si hay algún enlace visible que coincida
+        if (visibleCount > 0 || searchTerm === '') {
+          section.style.display = '';
+        } else {
+          section.style.display = 'none';
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
+
 </html>

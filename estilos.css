@@ -322,3 +322,26 @@ header {
   background-color: var(--bg-secondary-alpha-20);
   box-shadow: 0 0 0 2px var(--accent-alpha-20, rgba(74, 158, 255, 0.2));
 }
+
+/* Estilos para secciones de categorías 2026 */
+main section {
+  margin-bottom: 3.5rem;
+  text-align: start;
+}
+
+main section h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--accent-alpha-20);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+main section h2::before {
+  content: "📁";
+  font-size: 1.1em;
+}

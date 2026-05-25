@@ -74,12 +74,7 @@ h1 {
 
 
 section:has(.animado-al-aparecer) {
-
   background-color: hsl(15deg 30% 15%);
-
-  animation: fondo linear forwards;
-  animation-timeline: view();
-  animation-range: entry;
 }
 
 
