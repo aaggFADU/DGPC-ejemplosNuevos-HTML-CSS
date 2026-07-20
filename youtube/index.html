@@ -15,7 +15,7 @@
     <p>Carga tu archivo de favoritos local para ver los videos recientes.</p>
   </header>
 
-  <section class="panel">
+  <form id="controls" class="panel">
     <div class="field">
       <label for="apiKey">API key de YouTube Data API v3</label>
       <input id="apiKey" type="password" autocomplete="off" placeholder="Pegar aquí la API key">
@@ -27,11 +27,11 @@
       </div>
     </div>
     <div class="actions">
-      <button id="load" type="button">Cargar novedades</button>
+      <button id="load" type="submit">Cargar novedades</button>
       <button id="clear" class="secondary" type="button">Limpiar</button>
     </div>
     <p class="hint">El archivo se procesa en este navegador y no se sube a GitHub. La clave no se guarda.</p>
-  </section>
+  </form>
 
   <p id="status" class="status">Esperando archivo…</p>
   <section id="content"></section>

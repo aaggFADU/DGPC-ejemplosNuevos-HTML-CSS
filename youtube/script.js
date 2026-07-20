@@ -157,7 +157,10 @@ async function load() {
   }
 }
 
-document.querySelector("#load").addEventListener("click", load);
+document.querySelector("#controls").addEventListener("submit", event => {
+  event.preventDefault();
+  load();
+});
 document.querySelector("#clear").addEventListener("click", () => {
   apiKeyInput.value = "";
   bookmarksInput.value = "";
