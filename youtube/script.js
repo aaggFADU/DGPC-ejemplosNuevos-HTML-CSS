@@ -121,27 +121,41 @@ async function load() {
     const bookmarks = await readBookmarks(file);
     if (!bookmarks.length) throw new Error("No encontré enlaces de YouTube en el archivo.");
 
-    const channels = new Map();
+    const entries = [];
     const errors = [];
     for (const bookmark of bookmarks) {
       try {
         const channel = await resolveChannel(bookmark.ref, key);
-        channels.set(channel.id, channel);
+        entries.push({ bookmark, channel });
       } catch (error) {
         errors.push(bookmark.url + " — " + error.message);
       }
     }
 
     let index = 0;
-    for (const channel of channels.values()) {
+    let shown = 0;
+    const maximumAge = 30 * 24 * 60 * 60 * 1000;
+    for (const entry of entries) {
+      const channel = entry.channel;
       index += 1;
-      status.textContent = "Leyendo canal " + index + " de " + channels.size + "…";
+      status.textContent = "Leyendo canal " + index + " de " + entries.length + "…";
       try {
         const playlistId = channel.contentDetails.relatedPlaylists.uploads;
-        const data = await youtube("playlistItems", { part: "snippet,contentDetails", playlistId, maxResults: "12" }, key);
-        renderChannel(channel, data.items || []);
+        const data = await youtube("playlistItems", { part: "snippet,contentDetails", playlistId, maxResults: "50" }, key);
+        const latest = (data.items || []).reduce((newest, item) => {
+          if (!newest) return item;
+          return new Date(item.snippet.publishedAt) > new Date(newest.snippet.publishedAt) ? item : newest;
+        }, null);
+        if (!latest) continue;
+
+        const publicationDate = new Date(latest.snippet.publishedAt);
+        const age = Date.now() - publicationDate.getTime();
+        if (age >= 0 && age < maximumAge) {
+          renderChannel(channel, [latest]);
+          shown += 1;
+        }
       } catch (error) {
-        errors.push(channel.snippet.title + " — " + error.message);
+        errors.push(entry.bookmark.url + " — " + error.message);
       }
     }
 
@@ -151,7 +165,7 @@ async function load() {
       errorBox.textContent = "Enlaces no resueltos:\n" + errors.join("\n");
       content.append(errorBox);
     }
-    status.textContent = channels.size + " canales cargados; " + errors.length + " problemas.";
+    status.textContent = shown + " videos recientes de " + entries.length + " enlaces; " + errors.length + " problemas.";
   } catch (error) {
     showError(error.message);
   }
