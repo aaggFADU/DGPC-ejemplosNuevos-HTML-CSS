@@ -1,96 +1,167 @@
-const $ = selector => document.querySelector(selector);
-const apiKeyInput = $("#apiKey");
-const bookmarksInput = $("#bookmarks");
-const status = $("#status");
-const content = $("#content");
+const apiKeyInput = document.querySelector("#apiKey");
+const bookmarksInput = document.querySelector("#bookmarks");
+const status = document.querySelector("#status");
+const content = document.querySelector("#content");
 
-function html(value) {
-  return String(value ?? "").replace(/[&<>\"']/g, char => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;"
-  }[char]));
+function showError(message) {
+  status.textContent = "";
+  content.textContent = message;
+  content.className = "error";
 }
 
-function youtubeUrl(raw) {
+function getYouTubeUrl(raw) {
   try {
     const url = new URL(raw, location.href);
-    if (!/^https?:$/.test(url.protocol)) return null;
     const host = url.hostname.toLowerCase().replace(/^www\./, "");
-    if (host !== "youtube.com" && host !== "youtu.be") return null;
+    if ((host !== "youtube.com" && host !== "youtu.be") || !/^https?:$/.test(url.protocol)) return null;
     return url;
-  } catch { return null; }
+  } catch (_) {
+    return null;
+  }
 }
 
-function reference(raw) {
-  const url = youtubeUrl(raw);
+function getReference(raw) {
+  const url = getYouTubeUrl(raw);
   if (!url) return null;
-  if (url.hostname.replace(/^www\./, "") === "youtu.be") {
-    return { type: "video", value: url.pathname.split("/").filter(Boolean)[0] };
-  }
+  const host = url.hostname.toLowerCase().replace(/^www\./, "");
   const parts = url.pathname.split("/").filter(Boolean);
+
+  if (host === "youtu.be" && parts[0]) return { type: "video", value: parts[0] };
   if (parts[0] === "watch" && url.searchParams.get("v")) return { type: "video", value: url.searchParams.get("v") };
   if (parts[0] === "shorts" && parts[1]) return { type: "video", value: parts[1] };
   if (parts[0] === "channel" && /^UC[\w-]{20,}$/.test(parts[1] || "")) return { type: "id", value: parts[1] };
-  if (parts[0]?.startsWith("@")) return { type: "handle", value: parts[0].slice(1) };
+  if (parts[0] && parts[0].startsWith("@")) return { type: "handle", value: parts[0].slice(1) };
   if (parts[0] === "user" && parts[1]) return { type: "username", value: parts[1] };
   if (parts[0] === "c" && parts[1]) return { type: "custom", value: parts[1] };
   return null;
 }
 
-function getBookmarks(file) {
-  return file.text().then(text => {
-    const document = new DOMParser().parseFromString(text, "text/html");
-    return [...document.querySelectorAll("a[href]")]
-      .map(anchor => ({ url: anchor.href, title: anchor.textContent.trim(), ref: reference(anchor.href) }))
-      .filter(item => item.ref);
-  });
+async function readBookmarks(file) {
+  const text = await file.text();
+  const parsed = new DOMParser().parseFromString(text, "text/html");
+  return Array.from(parsed.querySelectorAll("a[href]"))
+    .map(anchor => ({ url: anchor.href, ref: getReference(anchor.href) }))
+    .filter(item => item.ref);
 }
 
-async function api(resource, params, key) {
-  const url = new URL(`https://www.googleapis.com/youtube/v3/${resource}`);
+async function youtube(resource, params, key) {
+  const url = new URL("https://www.googleapis.com/youtube/v3/" + resource);
   Object.entries({ ...params, key }).forEach(([name, value]) => url.searchParams.set(name, value));
   const response = await fetch(url);
   const data = await response.json();
-  if (!response.ok) throw new Error(data.error?.message || `YouTube API: HTTP ${response.status}`);
+  if (!response.ok) throw new Error(data.error?.message || "Error de YouTube API (HTTP " + response.status + ")");
   return data;
 }
 
-async function resolveChannel(ref, key) {
-  if (ref.type === "video") {
-    const videos = await api("videos", { part: "snippet", id: ref.value }, key);
-    const video = videos.items?.[0];
-    if (!video) throw new Error(`Video no encontrado: ${ref.value}`);
-    ref = { type: "id", value: video.snippet.channelId };
+async function resolveChannel(reference, key) {
+  if (reference.type === "video") {
+    const videoData = await youtube("videos", { part: "snippet", id: reference.value }, key);
+    const video = videoData.items?.[0];
+    if (!video) throw new Error("Video no encontrado: " + reference.value);
+    reference = { type: "id", value: video.snippet.channelId };
   }
-  if (ref.type === "custom") {
-    const search = await api("search", { part: "snippet", type: "channel", q: ref.value, maxResults: "5" }, key);
-    const match = search.items?.find(item => item.snippet?.customUrl?.toLowerCase() === `@${ref.value}`.toLowerCase()) || search.items?.[0];
-    if (!match) throw new Error(`No se encontró el canal personalizado /c/${ref.value}`);
-    ref = { type: "id", value: match.snippet.channelId || match.id.channelId };
+
+  if (reference.type === "custom") {
+    const searchData = await youtube("search", { part: "snippet", type: "channel", q: reference.value, maxResults: "5" }, key);
+    const item = searchData.items?.[0];
+    if (!item) throw new Error("Canal no encontrado: /c/" + reference.value);
+    reference = { type: "id", value: item.snippet.channelId || item.id.channelId };
   }
+
   const params = { part: "snippet,contentDetails" };
-  params[ref.type === "id" ? "id" : ref.type === "handle" ? "forHandle" : "forUsername"] = ref.value;
-  const data = await api("channels", params, key);
-  const channel = data.items?.[0];
-  if (!channel) throw new Error(`No se encontró ${ref.value}`);
-  return channel;
+  if (reference.type === "id") params.id = reference.value;
+  if (reference.type === "handle") params.forHandle = reference.value;
+  if (reference.type === "username") params.forUsername = reference.value;
+  const data = await youtube("channels", params, key);
+  if (!data.items?.length) throw new Error("Canal no encontrado: " + reference.value);
+  return data.items[0];
+}
+
+function addVideo(container, item) {
+  const id = item.contentDetails.videoId;
+  const link = document.createElement("a");
+  link.className = "video";
+  link.href = "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
+  link.target = "_blank";
+  link.rel = "noopener";
+
+  const image = document.createElement("img");
+  image.src = item.snippet.thumbnails?.medium?.url || "https://i.ytimg.com/vi/" + encodeURIComponent(id) + "/mqdefault.jpg";
+  image.alt = "";
+  const title = document.createElement("h3");
+  title.textContent = item.snippet.title;
+  const date = document.createElement("small");
+  date.textContent = new Date(item.snippet.publishedAt).toLocaleDateString();
+  link.append(image, title, date);
+  container.append(link);
+}
+
+function renderChannel(channel, videos) {
+  const section = document.createElement("section");
+  section.className = "channel";
+  const heading = document.createElement("h2");
+  heading.textContent = channel.snippet.title;
+  const grid = document.createElement("div");
+  grid.className = "videos";
+  videos.forEach(video => addVideo(grid, video));
+  section.append(heading, grid);
+  content.append(section);
 }
 
 async function load() {
   const key = apiKeyInput.value.trim();
   const file = bookmarksInput.files?.[0];
-  if (!key) return showError("Falta la API key.");
-  if (!file) return showError("Seleccioná el bookmarks.html de tu navegador.");
   content.replaceChildren();
-  status.textContent = "Leyendo marcadores locales…";
+  content.className = "";
+  if (!key) return showError("Falta la API key.");
+  if (!file) return showError("Seleccioná el archivo bookmarks.html.");
+
   try {
-    const bookmarks = await getBookmarks(file);
+    status.textContent = "Leyendo marcadores locales…";
+    const bookmarks = await readBookmarks(file);
     if (!bookmarks.length) throw new Error("No encontré enlaces de YouTube en el archivo.");
+
     const channels = new Map();
     const errors = [];
     for (const bookmark of bookmarks) {
       try {
         const channel = await resolveChannel(bookmark.ref, key);
         channels.set(channel.id, channel);
-      } catch (error) { errors.push(`${bookmark.url} — ${error.message}`); }
+      } catch (error) {
+        errors.push(bookmark.url + " — " + error.message);
+      }
     }
-    const results = [];
+
+    let index = 0;
+    for (const channel of channels.values()) {
+      index += 1;
+      status.textContent = "Leyendo canal " + index + " de " + channels.size + "…";
+      try {
+        const playlistId = channel.contentDetails.relatedPlaylists.uploads;
+        const data = await youtube("playlistItems", { part: "snippet,contentDetails", playlistId, maxResults: "12" }, key);
+        renderChannel(channel, data.items || []);
+      } catch (error) {
+        errors.push(channel.snippet.title + " — " + error.message);
+      }
+    }
+
+    if (errors.length) {
+      const errorBox = document.createElement("p");
+      errorBox.className = "error";
+      errorBox.textContent = "Enlaces no resueltos:\n" + errors.join("\n");
+      content.append(errorBox);
+    }
+    status.textContent = channels.size + " canales cargados; " + errors.length + " problemas.";
+  } catch (error) {
+    showError(error.message);
+  }
+}
+
+document.querySelector("#load").addEventListener("click", load);
+document.querySelector("#clear").addEventListener("click", () => {
+  apiKeyInput.value = "";
+  bookmarksInput.value = "";
+  content.replaceChildren();
+  content.className = "";
+  status.textContent = "Esperando archivo…";
+});
