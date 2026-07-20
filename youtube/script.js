@@ -41,16 +41,22 @@ function getReference(raw) {
   return null;
 }
 
-function collectBookmarks(node, folder, result) {
-  if (!node?.children) return;
+function collectBookmarks(node, folder, result, visited = new WeakSet()) {
+  if (!node?.children || visited.has(node)) return;
+  visited.add(node);
   const children = Array.from(node.children);
   for (let index = 0; index < children.length; index += 1) {
     const element = children[index];
     if (element.tagName === "H3") {
-      const childList = element.nextElementSibling;
+      // En el HTML exportado por Chrome, el DL puede ser hermano del DT
+      // que contiene al H3, no hermano directo del H3.
+      let childList = element.nextElementSibling;
+      if (childList?.tagName !== "DL" && element.parentElement?.tagName === "DT") {
+        childList = element.parentElement.nextElementSibling;
+      }
       if (childList?.tagName === "DL") {
-        collectBookmarks(childList, element.textContent.trim() || folder, result);
-        index += 1;
+        collectBookmarks(childList, element.textContent.trim() || folder, result, visited);
+        if (children[index + 1] === childList) index += 1;
       }
       continue;
     }
@@ -61,7 +67,7 @@ function collectBookmarks(node, folder, result) {
     }
     // Chrome exporta los marcadores dentro de DT; hay que atravesar
     // cualquier contenedor para llegar a los A y a las subcarpetas.
-    collectBookmarks(element, folder, result);
+    collectBookmarks(element, folder, result, visited);
   }
 }
 
