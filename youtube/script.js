@@ -309,6 +309,9 @@ async function fetchLatestVideo(channelUrl) {
 }
 
 const PROXIES = [
+  'https://corsproxy.io/?',
+  'https://api.allorigins.win/raw?url=',
+  'https://api.allorigins.win/get?url=',
   'https://api.codetabs.com/v1/proxy?quest=',
   'https://thingproxy.freeboard.io/fetch/'
 ];
