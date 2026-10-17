@@ -1,317 +1,261 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cards con @container</title>
-  <link rel="stylesheet" href="estilos.css">
-  <link rel="icon" type="image/svg+xml" href="../icono-dgpc.svg">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards "responsivas" con @container</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/svg+xml" href="icono-dgpc.svg" />
+  </head>
 
-<body>
+  <body>
+    <header>
+      <h1>Tarjetas "responsivas" con CSS @container</h1>
+    </header>
 
-<header>
-  <h1>
-    "Fichas" con CSS @container
-  </h1>
-</header>
+    <main>
+      <section>
+        <h2>Sección 1</h2>
 
-<main>
+        <p>
+          Cuando el layout general y los componentes varían según el ancho de la
+          ventana del navegador, se usan reglas CSS <code>@media</code>.
+        </p>
+        <p>
+          Pero cuando un componente debe adaptarse al
+          <strong>espacio disponible donde se ubica</strong>, independientemente
+          del ancho del navegador, se lo define como contenedor con la propiedad
+          <code>container-type</code> y se usan reglas CSS
+          <code>@container</code> para transformar los elementos que tiene
+          adentro.
+        </p>
 
-  <section>
+        <div class="cards">
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_01.jpg" alt="foto" />
+            </figure>
 
-    <h2>Seccion 1</h2>
+            <div class="card__textos">
+              <h3>Tarjeta 1.1</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Impedit ab iure provident exercitationem dolore quasi!
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
 
-    <div class="cards">
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_02.jpg" alt="foto" />
+            </figure>
 
-      <article class="card__ext">
+            <div class="card__textos">
+              <h3>Tarjeta 1.2</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+              <a href>link</a>
+            </div>
+          </article>
 
-        <div class="card__int">
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_03.jpg" alt="foto" />
+            </figure>
 
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 1.1
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit ab iure provident exercitationem dolore quasi!</p>
-            <a href>link</a>
-          </div>
-
+            <div class="card__textos">
+              <h3>Tarjeta 1.3</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+                nostrum a doloribus inventore, sequi accusantium optio enim
+                atque adipisci provident.
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
         </div>
+      </section>
 
-      </article>
-      
-      <article class="card__ext">
+      <section>
+        <h2>Sección 2</h2>
 
-        <div class="card__int">
+        <p>
+          Para mantener un código limpio y escalable, en este proyecto se
+          definió
+          <strong>una sola estructura</strong>
+          para todas las secciones y sus tarjetas.
+        </p>
+        <p>
+          Al cambiar en cada sección el valor de la variable
+          <code>--tamanio</code>, la misma declaración de plantilla de columnas
+          general y la misma regla <code>@container</code> general se encarga de
+          adaptar el layout automáticamente.
+        </p>
+        <p>
+          Además, al cambiar en cada sección el valor de las variables
+          <code>--fondo-ficha</code> y <code>--color-textos</code>, se
+          personalizan los colores.
+        </p>
 
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
+        <div class="cards">
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_02.jpg" alt="foto" />
+            </figure>
 
-          <div class="card__textos">
-            <h3>
-              Ficha 1.2
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <a href>link</a>
-          </div>
+            <div class="card__textos">
+              <h3>Tarjeta 2.1</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Impedit ab iure provident exercitationem dolore quasi!
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
 
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_03.jpg" alt="foto" />
+            </figure>
+
+            <div class="card__textos">
+              <h3>Tarjeta 2.2</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+              <a href>link</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_04.jpg" alt="foto" />
+            </figure>
+
+            <div class="card__textos">
+              <h3>Tarjeta 2.3</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+                nostrum a doloribus inventore, sequi accusantium optio enim
+                atque adipisci provident.
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_01.jpg" alt="foto" />
+            </figure>
+
+            <div class="card__textos">
+              <h3>Tarjeta 2.4</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Impedit ab iure provident exercitationem dolore quasi!
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_02.jpg" alt="foto" />
+            </figure>
+
+            <div class="card__textos">
+              <h3>Tarjeta 2.5</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+              <a href>link</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_01.jpg" alt="foto" />
+            </figure>
+
+            <div class="card__textos">
+              <h3>Tarjeta 2.6</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+                nostrum a doloribus inventore, sequi accusantium optio enim
+                atque adipisci provident.
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
         </div>
+      </section>
 
-      </article>
-      
-      <article class="card__ext">
+      <section>
+        <h2>Sección 3</h2>
 
-        <div class="card__int">
+        <div class="cards">
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_04.jpg" alt="foto" />
+            </figure>
 
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
+            <div class="card__textos">
+              <h3>Tarjeta 3.1</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Impedit ab iure provident exercitationem dolore quasi!
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
 
-          <div class="card__textos">
-            <h3>
-              Ficha 1.3
-            </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla nostrum a doloribus inventore, sequi accusantium optio enim atque adipisci provident.</p>
-            <a href>link</a>
-          </div>
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_03.jpg" alt="foto" />
+            </figure>
 
+            <div class="card__textos">
+              <h3>Tarjeta 3.2</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+              <a href>link</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_02.jpg" alt="foto" />
+            </figure>
+
+            <div class="card__textos">
+              <h3>Tarjeta 3.3</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+                nostrum a doloribus inventore, sequi accusantium optio enim
+                atque adipisci provident.
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <figure class="card__img">
+              <img src="imagenes/fadu_20180817_01.jpg" alt="foto" />
+            </figure>
+
+            <div class="card__textos">
+              <h3>Tarjeta 3.4</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                accusantium optio enim atque adipisci provident.
+              </p>
+              <a href>link</a>
+            </div>
+          </article>
         </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-  <section>
-
-    <h2>Seccion 2</h2>
-
-    <div class="cards">
-
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 2.1
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit ab iure provident exercitationem dolore quasi!</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-      
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 2.2
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-      
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 2.3
-            </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla nostrum a doloribus inventore, sequi accusantium optio enim atque adipisci provident.</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 2.4
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit ab iure provident exercitationem dolore quasi!</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-      
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 2.5
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-      
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 2.6
-            </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla nostrum a doloribus inventore, sequi accusantium optio enim atque adipisci provident.</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-  <section>
-
-    <h2>Seccion 3</h2>
-
-    <div class="cards">
-
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 3.1
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit ab iure provident exercitationem dolore quasi!</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-      
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 3.2
-            </h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-      
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 3.3
-            </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla nostrum a doloribus inventore, sequi accusantium optio enim atque adipisci provident.</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-      
-      <article class="card__ext">
-
-        <div class="card__int">
-
-          <div class="card__img">
-            <img src="https://picsum.photos/320" alt="foto">
-          </div>
-
-          <div class="card__textos">
-            <h3>
-              Ficha 3.4
-            </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit accusantium optio enim atque adipisci provident.</p>
-            <a href>link</a>
-          </div>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-</main>
-
-<footer></footer>
-
-</body>
-
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint maiores
+        aperiam, illo modi optio quidem nobis ducimus inventore provident amet.
+      </p>
+    </footer>
+  </body>
 </html>
